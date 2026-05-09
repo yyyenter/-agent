@@ -1,0 +1,42 @@
+[project]
+name = "agent_test0"
+version = "0.1.0"
+description = "agent_test0 using crewAI"
+authors = [
+    { name = "Your Name", email = "you@example.com" },
+]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[litellm,tools]==1.14.1",
+    "httpx>=0.25.0",
+    "ollama>=0.6.1",
+    "pyjwt[crypto]>=2.10.1",
+    "zhipuai>=1.0.7",
+    "langchain-core>=0.3.0",
+    "langchain-community>=0.3.0",
+    "langchain>=1.2.15",
+    "langchain-openai>=1.1.15",
+    "langchain-chroma>=1.0.0",
+    "semantic-router>=0.1.12",
+    "fastapi>=0.136.1",
+    "tavily-python>=0.7.24",
+    "crewai-tools>=1.14.1",
+    "redis>=7.4.0",
+]
+
+[project.scripts]
+agent_test0 = "agent_test0.main:run"
+run_crew = "agent_test0.main:run"
+train = "agent_test0.main:train"
+replay = "agent_test0.main:replay"
+test = "agent_test0.main:test"
+run_with_trigger = "agent_test0.main:run_with_trigger"
+
+[build-system]
+requires = [
+    "hatchling",
+]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"

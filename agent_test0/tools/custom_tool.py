@@ -1,4 +1,5 @@
 from re import T
+import sqlite3
 from typing import Any, Type
 from crewai_tools.tools.jina_scrape_website_tool.jina_scrape_website_tool import JinaScrapeWebsiteTool
 from datetime import datetime
@@ -110,58 +111,78 @@ class OllamaEmbeddingFunction(EmbeddingFunction):
             embeddings.append(response["embedding"])
         return embeddings
 
-# --- 2. 持久化初始化 ---
-# 确保目录存在
+# ==========================================
+# 长期记忆数据库初始化 (使用 SQLite 模拟结构化 DB)
+# ==========================================
+DB_PATH = "knowledge/user_profiles.db"
 os.makedirs("knowledge", exist_ok=True)
-chroma_client = chromadb.PersistentClient(path="knowledge/chroma_db")
-collection = chroma_client.get_or_create_collection(
-    name="agent_long_term_memory",
-    embedding_function=OllamaEmbeddingFunction()
-)
 
-history_store = InMemoryChatMessageHistory()
+def init_db():
+    """初始化用户长期画像表"""
+    with sqlite3.connect(DB_PATH) as conn:
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS user_profiles (
+                user_id TEXT PRIMARY KEY,
+                preferences TEXT,        -- 用户的通用偏好 (如：喜欢自然风光)
+                dietary_rules TEXT,      -- 饮食禁忌 (如：不吃海鲜)
+                system_notes TEXT,       -- AI 总结的其他特征
+                last_updated TIMESTAMP
+            )
+        """)
+init_db()
 
+# ==========================================
+# Tool 1: 灵活读取记忆
+# ==========================================
 class ReadMemoryInput(BaseModel):
-    query: str = Field(..., description="检索关键词，用于寻找历史偏好")
-    user_id: str = Field(..., description="当前对话的用户 ID，用于隔离查询") # ✅ 新增
+    user_id: str = Field(..., description="当前对话的用户 ID")
 
 class ReadMemoryTool(BaseTool):
     name: str = "read_memory_tool"
-    description: str = "任务开始时，必须调用此工具检索指定用户的历史对话或偏好。"
-    args_schema: Type[BaseModel] = ReadMemoryInput
+    description: str = "任务开始时，必须调用此工具检索指定用户的所有历史偏好和特征画像。"
+    args_schema: type[BaseModel] = ReadMemoryInput
 
-    def _run(self, query: str, user_id: str) -> str: # ✅ 接收 user_id
-        # 使用 where 条件实现真正的隔离！
-        results = collection.query(
-            query_texts=[query], 
-            n_results=1000,
-            where={"user_id": user_id} 
-        )
-        if not results['documents'] or not results['documents'][0]:
-            return f"未找到用户 {user_id} 的相关历史记录。"
+    def _run(self, user_id: str) -> str:
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.execute(
+                "SELECT memory_key, memory_value FROM user_memory WHERE user_id = ?", 
+                (user_id,)
+            )
+            rows = cursor.fetchall()
+            
+        if not rows:
+            return f"未找到用户 {user_id} 的历史记忆，请将其视为新用户。"
         
-        formatted = [f"[{r['role']}] {doc}" for doc, r in zip(results['documents'][0], results['metadatas'][0])]
-        return f"检索到用户 {user_id} 的历史记忆：\n" + "\n".join(formatted)
+        # 动态组装所有查到的 Key-Value
+        profile_lines = [f"- {row[0]}: {row[1]}" for row in rows]
+        profile_text = "\n".join(profile_lines)
+        
+        return f"【用户 {user_id} 的长期画像】\n{profile_text}\n请在规划本次行程时，严格遵守上述特征！"
 
-
+# ==========================================
+# Tool 2: 动态保存记忆 (不再校验固定 Category)
+# ==========================================
 class SaveMemoryInput(BaseModel):
-    content: str = Field(..., description="需要持久化保存的分析结论")
-    user_id: str = Field(..., description="当前对话的用户 ID") # ✅ 新增
+    user_id: str = Field(..., description="当前对话的用户 ID")
+    memory_key: str = Field(..., description="提炼出的偏好维度，使用英文下划线命名法，例如：'dietary_habit', 'favorite_transport', 'budget_preference'")
+    memory_value: str = Field(..., description="具体的偏好内容，例如：'不吃香菜', '尽量避免红眼航班'")
 
 class SaveMemoryTool(BaseTool):
     name: str = "save_memory_tool"
-    description: str = "获得关键结论后，必须调用此工具将信息持久化到指定用户库。"
+    description: str = "如果在对话中发现了用户新的硬性偏好或禁忌，提取维度名称(key)和具体内容(value)，调用此工具持久化。"
     args_schema: type[BaseModel] = SaveMemoryInput
-    fixed_role: str = "assistant"
 
-    def _run(self, content: str, user_id: str) -> str: # ✅ 接收 user_id
-        timestamp = str(datetime.now())
-        collection.add(
-            documents=[content],
-            ids=[str(uuid.uuid4())],
-            metadatas=[{"role": self.fixed_role, "timestamp": timestamp, "user_id": user_id}] # ✅ 写入隔离标签
-        )
-        return "关键信息已成功保存至持久化库。"
-
-
-
+    def _run(self, user_id: str, memory_key: str, memory_value: str) -> str:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        with sqlite3.connect(DB_PATH) as conn:
+            # SQLite 的 UPSERT 语法：遇到主键冲突则更新，否则插入
+            conn.execute("""
+                INSERT INTO user_memory (user_id, memory_key, memory_value, last_updated)
+                VALUES (?, ?, ?, ?)
+                ON CONFLICT(user_id, memory_key) 
+                DO UPDATE SET memory_value = memory_value || '；' || excluded.memory_value, 
+                              last_updated = excluded.last_updated
+            """, (user_id, memory_key, memory_value, timestamp))
+                
+        return f"✅ 成功将【{memory_key}: {memory_value}】保存至用户【{user_id}】的长期记忆中。"

@@ -3,9 +3,12 @@
 planning_task:
   description: >
     深度分析用户需求: {message}。
-    在分析用户需求之前，【务必】调用 read_memory_tool 查询用户 {user_id} 的历史偏好。
-    如果用户提到“老地方”、“我最喜欢的”等模糊词汇，必须从记忆中提取真实地名。
-    你是一个智能路由与规划大脑。请完成以下判定：
+    深度分析用户需求: {message}。
+    【第一步：记忆检索与更新】
+    1. 调用 read_memory_tool 查询用户 {user_id} 的历史偏好。
+    2. 检查当前用户的输入 {message} 是否包含了新的长期偏好（例如“我一直吃素”、“我腰不好不能走太多路”、“我只住五星级”）。
+    3. 如果有新偏好，立即调用 save_memory_tool。你需要自己发明合适的 memory_key（如 'health_constraint', 'budget_tier'）并将内容存入。
+    【第二步：任务规划】
     1. 【复杂度判定 (is_complex)】：
        - 如果是简单的实事查询（如：今天天气、徐州有什么好吃的、故宫门票多少钱），设为 false。
        - 如果是需要制定多天行程、路线安排、逻辑整合的复杂规划，设为 true。
@@ -14,7 +17,7 @@ planning_task:
        - 如果 is_complex 为 true，请留空 ("")。
     3. 【实体与工具 (location & tools_needed)】：
        - 提取目的地 location（如果没有明确地点，设为"未知"）。
-       - 预估这趟复杂任务需要用到的工具列表 tools_needed (可选: "weather_tool", "search_tool", "vanna_tool")。
+       - 预估这趟复杂任务需要用到的工具列表 tools_needed (可选: "weather_tool", "search_tool",)。
     4. 个性化合规检查：调用 read_memory_tool 获取用户 {user_id} 的长期忌口或特殊要求。
     如果草案中推荐了用户忌口的食物或不喜欢的出行方式，视为逻辑错误打回。
     

@@ -18,7 +18,7 @@ zhipu_llm = LLM(
     api_key=os.getenv("GLM_API_KEY") or "",
 )
 
-search_tool = TavilySearchTool(api_key=os.getenv('TAVILY_API_KEY'))
+search_tool = None  # TavilySearchTool(api_key=os.getenv('TAVILY_API_KEY'))
 
 class TravelState(BaseModel):
     message: str = ''
@@ -86,7 +86,7 @@ class TravelExpertCrew:
         # 严格对应 agent.yaml 的 info_search_agent，直接动态注入工具与模型
         return Agent(
             config=self.agents_config['info_search_agent'],
-            tools=[search_tool, WeatherTool(), ReadMemoryTool()], # 搜集专家只有 Read 长期记忆权限，防止污染 DB
+            tools=[WeatherTool(), ReadMemoryTool()] if search_tool is None else [search_tool, WeatherTool(), ReadMemoryTool()], # 搜集专家只有 Read 长期记忆权限，防止污染 DB
             llm=zhipu_llm,
             verbose=True
         )
@@ -104,7 +104,7 @@ class TravelExpertCrew:
     def logic_validator_agent(self) -> Agent:
         return Agent(
             config=self.agents_config['logic_validator_agent'],
-            tools=[search_tool], # 内部快速质检需要时空距离校准
+            tools=[search_tool] if search_tool else [], # 内部快速质检需要时空距离校准
             llm=zhipu_llm,
             verbose=True
         )
@@ -143,7 +143,7 @@ class ValidatorCrew:
         # 对应 YAML 中的 logic_validator_agent Key
         return Agent(
             config=self.agents_config['logic_validator_agent'],
-            tools=[search_tool, ReadMemoryTool()], # 终审官拥有核对历史长期偏好的权限
+            tools=[ReadMemoryTool()] if search_tool is None else [search_tool, ReadMemoryTool()], # 终审官拥有核对历史长期偏好的权限
             llm=zhipu_llm,
             verbose=True
         )
@@ -162,7 +162,7 @@ class ValidatorCrew:
      
 # ==================== Flow 调度（自适应 ReAct 收敛闭环） ====================
 class TravelWorkflow(Flow[TravelState]):
-    def __init__(self, status_callback = None):
+    def __init__(self, status_callback = None, content_callback = None):
         super().__init__()
         self.max_error_retries = 3   
         self.max_adjustments = 20     
@@ -170,10 +170,16 @@ class TravelWorkflow(Flow[TravelState]):
         self.current_adjust_count = 0
         self.feedback_history: list[str] = []  
         self.status_callback = status_callback
+        self.content_callback = content_callback  # 新增内容回调
 
     def notify(self, text: str):
         if self.status_callback:
             self.status_callback(text)
+    
+    def notify_content(self, content: str, content_type: str = "content"):
+        """通知内容更新"""
+        if self.content_callback:
+            self.content_callback(content, content_type)
 
     def _parse_feedback(self, feedback: str) -> tuple[str, str]:
         feedback_lower = feedback.lower()
@@ -198,13 +204,17 @@ class TravelWorkflow(Flow[TravelState]):
         
         inputs = {
             "message": self.state.message,
-            "user_id": self.state.user_id
+            "user_id": self.state.user_id,
+            "focus": self.state.focus
         }
         if self.feedback_history:
             inputs["feedback_history"] = "\n".join(self.feedback_history[-3:])
         
         result = PlannerCrew().crew().kickoff(inputs=inputs)
         raw_text = result.raw.strip()
+        
+        # 实时输出决策结果
+        self.notify_content(f"📋 决策分析完成：{raw_text[:200]}...", "planning")
         
         try:
             json_match = re.search(r'\{.*\}', raw_text, re.DOTALL)
@@ -248,6 +258,10 @@ class TravelWorkflow(Flow[TravelState]):
         
         self.state.draft_report = result.raw
         print(f"📝 生成草案: {len(result.raw)} 字符")
+        
+        # 实时输出执行结果
+        self.notify_content(f"⚡ 执行完成，生成旅游方案：\n{result.raw}", "execution")
+        
         return self.state
 
     @listen(execute_step)
@@ -270,6 +284,9 @@ class TravelWorkflow(Flow[TravelState]):
         
         validation_feedback = result.raw
         self.feedback_history.append(validation_feedback)
+        
+        # 实时输出质检结果
+        self.notify_content(f"🔍 质检完成：{validation_feedback}", "validation")
         
         feedback_type, adjustment_hint = self._parse_feedback(validation_feedback)
         print(f"📊 反馈类型: {feedback_type}")

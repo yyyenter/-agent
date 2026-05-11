@@ -4,11 +4,83 @@ import sqlite3
 import os
 import re
 from datetime import datetime
-import redis
+from typing import Optional
+
+try:
+    import redis
+    REDIS_AVAILABLE = True
+except ImportError:
+    REDIS_AVAILABLE = False
+    redis = None
+
 from crewai import LLM
 
 DB_PATH = "knowledge/user_profiles.db"
 os.makedirs("knowledge", exist_ok=True)
+
+# ==================== 内存回退存储 ====================
+class InMemoryFallback:
+    """Redis 不可用时的内存回退存储"""
+    def __init__(self):
+        self.data: dict[str, list[str]] = {}
+        self.hashes: dict[str, dict[str, str]] = {}
+    
+    def rpush(self, key: str, value: str) -> None:
+        if key not in self.data:
+            self.data[key] = []
+        self.data[key].append(value)
+    
+    def ltrim(self, key: str, start: int, end: int) -> None:
+        if key in self.data:
+            self.data[key] = self.data[key][start:]
+    
+    def lrange(self, key: str, start: int, end: int) -> list[str]:
+        if key not in self.data:
+            return []
+        if end == -1:
+            return self.data[key][start:]
+        return self.data[key][start:end+1]
+    
+    def expire(self, key: str, ttl: int) -> None:
+        pass  # 内存存储不需要 TTL
+    
+    def hset(self, key: str, mapping: dict[str, str] | None = None, **kwargs: str) -> None:
+        if key not in self.hashes:
+            self.hashes[key] = {}
+        if mapping:
+            self.hashes[key].update(mapping)
+        self.hashes[key].update(kwargs)
+    
+    def hgetall(self, key: str) -> dict[str, str]:
+        return self.hashes.get(key, {})
+    
+    def get(self, key: str) -> Optional[str]:
+        return None
+    
+    def setex(self, key: str, expire: int, value: str) -> None:
+        pass
+
+# 全局内存回退实例
+_memory_fallback = InMemoryFallback()
+
+def get_redis_or_fallback():  # -> tuple[Any, bool]
+    """
+    获取 Redis 客户端，如果连接失败或模块不存在则返回内存回退存储
+    返回: (client, is_fallback: bool)
+    """
+    if not REDIS_AVAILABLE:
+        print("[Redis] Module not available, using in-memory storage")
+        return _memory_fallback, True
+
+    try:
+        client = redis.Redis(host='localhost', port=6379, decode_responses=True)
+        client.ping()  # 测试连接
+        print("[Redis] Connected successfully")
+        return client, False  # type: ignore[return-value]
+    except Exception as e:
+        print(f"[Redis] Connection failed: {e}")
+        print("[Memory] Falling back to in-memory storage")
+        return _memory_fallback, True
 
 def init_db():
     """初始化 SQLite 动态 Key-Value 长期记忆表"""
@@ -25,12 +97,13 @@ def init_db():
 init_db()
 
 class MemoryManager:
-    """工业级 Session 记忆管理器 (CC 架构)"""
+    """工业级 Session 记忆管理器 (CC 架构) - 支持 Redis 和内存回退"""
     
-    def __init__(self, session_id: str, user_id: str, redis_client: redis.Redis):
+    def __init__(self, session_id: str, user_id: str, redis_client, is_fallback: bool = False):
         self.session_id = session_id
         self.user_id = user_id
         self.redis = redis_client
+        self.is_fallback = is_fallback
         
         self.chat_key = f"session:{session_id}:chat"          # 桶3: 原始对话轮次 (Episodic)
         self.summary_key = f"session:{session_id}:summary"    # 桶5: 短期精炼约束 (Working Memory)
@@ -44,7 +117,7 @@ class MemoryManager:
         self.redis.ltrim(self.chat_key, -(max_turns * 2), -1)
         self.redis.expire(self.chat_key, self.ttl)
 
-    def get_chat_history(self) -> list[dict]:
+    def get_chat_history(self) -> list[dict[str, str]]:
         """获取最近的原始对话"""
         raw = self.redis.lrange(self.chat_key, 0, -1)
         return [json.loads(m) for m in raw]
@@ -95,7 +168,7 @@ class MemoryManager:
     def convert_episodic_to_working(self, llm: LLM):
         """
         核心流转 A：Episodic -> Working Memory (提取当前行程的临时硬约束)
-        快速分析最近对话，捕获用户只针对“当前这一次出行”提出的限制。
+        快速分析最近对话，捕获用户只针对"当前这一次出行"提出的限制。
         """
         history = self.get_chat_history()
         if not history:
@@ -127,34 +200,27 @@ class MemoryManager:
 
     def convert_to_semantic(self, llm: LLM):
         """
-        核心流转 B：Working/Episodic -> Semantic Memory (提炼并永久持久化长期偏好)
-        过滤分析当前上下文，将用户的“恒定人设与禁忌”（如过敏源、偏好酒店等）永久固化进 SQLite DB。
+        核心流转 B：Short-term Summary -> Semantic Memory (提炼并永久持久化长期偏好)
+        【关键设计】只使用短期摘要作为输入，用于控制上下文长度和提取长期价值特征
         """
-        history = self.get_chat_history()
-        if not history:
+        short_term = self.get_short_term_summary()
+        if not short_term:
             return
         
-        history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in history])
+        short_term_text = json.dumps(short_term, ensure_ascii=False)
         
-        prompt = f"""
-        你是一个资深用户画像分析师。请分析用户在对话中表现出来的【长期、通用且恒定】个人特质或偏好（例如：严重饮食忌口、身体健康限制、常住地、习惯性出行工具偏好、恒定住宿标准等）。
-        注意：排除仅针对某一次具体行程的临时性安排（例如：“我明天去杭州”是临时安排，不是长期偏好；而“我对海鲜过敏”或“我习惯住高档星级酒店”属于长期偏好）。
-        
-        如果找到了，请将其抽象为 Key-Value 键值对：
-        - Key: 必须是下划线英文命名，如 'dietary_restrictions', 'physical_limits', 'preferred_hotel_brands'。
-        - Value: 具体特征描述。
-        
-        请严格按照纯 JSON 数组格式输出，不要包含 ```json 等任何 Markdown 标记或多余解释。
-        格式样例：
-        [
-          {{"key": "dietary_restrictions", "value": "不能吃任何海鲜，过敏"}},
-          {{"key": "physical_limits", "value": "膝盖有旧伤，避免大量登山和剧烈徒徒步运动"}}
-        ]
-        如果未分析出任何恒定的长期偏好，直接输出 []。
-        
-        【对话历史】：
-        {history_text}
-        """
+        prompt = f"""你是一个资深用户画像分析师。
+以下是用户本次行程的【临时约束摘要】：
+{short_term_text}
+
+请从中剥离出：
+1. 属于本次临时的约束（如去哪玩、几天、预算多少）。 -> 【忽略】
+2. 属于用户长期的、通用的个人偏好（如：忌口、身体状况、强烈的品牌偏好）。 -> 【提取】
+
+如果没有长期偏好，输出 []。
+如果有，请输出 JSON 数组，例如：
+[{{"key": "dietary_restrictions", "value": "海鲜过敏"}}, {{"key": "travel_style", "value": "不安排早起"}}]
+"""
         try:
             response = llm.call([{"role": "user", "content": prompt}]).strip()
             json_match = re.search(r'\[.*\]', response, re.DOTALL)
@@ -168,16 +234,44 @@ class MemoryManager:
         except Exception as e:
             print(f"[Memory Conversion] Conversion to Semantic failed: {e}")
 
+    def get_global_context_prompt(self, current_message: str = "") -> str:
+        """
+        组装完整上下文 Prompt（供旅游意图时使用）
+        仅在路由判断为 travel 后调用
+        """
+        parts = []
+        
+        # 长期偏好
+        profile = self.get_user_profile()
+        if profile != "暂无长期偏好":
+            parts.append(f"【用户长期偏好画像】：\n{profile}")
+        
+        # 短期约束
+        summary = self.get_short_term_summary()
+        if summary:
+            parts.append(f"【当前行程核心约束】：\n{json.dumps(summary, ensure_ascii=False)}")
+        
+        # 对话历史（限制条数）
+        history = self.get_chat_history()
+        if history:
+            history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in history[-6:]])
+            parts.append(f"【近期对话上下文】：\n{history_text}")
+        
+        if current_message:
+            parts.append(f"【当前最新指令】：{current_message}")
+        
+        return "\n\n".join(parts) if parts else ""
+
 class ToolCacheManager:
     """桶4: Tool Results (全局工具缓存，跨会话、跨用户共享)"""
     @staticmethod
-    def get_tool_result(redis_client: redis.Redis, tool_name: str, params: dict) -> str | None:
-        param_hash = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()
+    def get_tool_result(redis_client, tool_name: str, params) -> Optional[str]:  # type: ignore[type-arg]
+        param_hash = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()  # type: ignore[type-arg]
         key = f"cc:global:tool_cache:{tool_name}:{param_hash}"
         return redis_client.get(key)
 
     @staticmethod
-    def set_tool_result(redis_client: redis.Redis, tool_name: str, params: dict, result: str, expire: int = 3600):
-        param_hash = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()
+    def set_tool_result(redis_client, tool_name: str, params, result: str, expire: int = 3600) -> None:  # type: ignore[type-arg]
+        param_hash = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()  # type: ignore[type-arg]
         key = f"cc:global:tool_cache:{tool_name}:{param_hash}"
         redis_client.setex(key, expire, result)

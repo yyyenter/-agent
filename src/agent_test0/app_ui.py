@@ -77,7 +77,7 @@ with st.container():
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.image("https://images.unsplash.com/photo-1599814420042-30f576e27bd3?auto=format&fit=crop&w=300&q=80", use_container_width=True)
+        st.image("https://ts4.tc.mm.bing.net/th/id/OIP-C.OnKQdifKu1WYETYri87uewHaFj?rs=1&pid=ImgDetMain&o=7&rm=3", use_container_width=True)
         if st.button("🏞️ 杭州", use_container_width=True):
             st.session_state.destination = "杭州"
             st.rerun()
@@ -190,7 +190,7 @@ if active_prompt:
                     "metadata": active_metadata
                 },
                 stream=True,
-                timeout=30
+                timeout=6000
             )
             response.raise_for_status()
             

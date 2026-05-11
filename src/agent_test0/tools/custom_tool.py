@@ -21,8 +21,8 @@ class WeatherTool(BaseTool):
 
     def _run(self, location: str) -> str:
         import redis
-        from harness import ToolCacheManager
-        redis_client = redis.Redis(host='localhost', port=6373, db=0, decode_responses=True)
+        from ..harness import ToolCacheManager
+        redis_client = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
         
         # 1. 先查缓存
         cached = ToolCacheManager.get_tool_result(redis_client, "qweather", {"loc": location})
@@ -97,6 +97,9 @@ class SaveMemoryTool(BaseTool):
     args_schema: type[BaseModel] = SaveMemoryInput
 
     def _run(self, user_id: str, memory_key: str, memory_value: str) -> str:
+        """
+        【细粒度覆盖模式】同 Key 覆盖，异 Key 新增，互不干扰
+        """
         from datetime import datetime
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         with sqlite3.connect(DB_PATH) as conn:
@@ -104,7 +107,7 @@ class SaveMemoryTool(BaseTool):
                 INSERT INTO user_memory (user_id, memory_key, memory_value, last_updated)
                 VALUES (?, ?, ?, ?)
                 ON CONFLICT(user_id, memory_key) 
-                DO UPDATE SET memory_value = memory_value || '；' || excluded.memory_value, 
+                DO UPDATE SET memory_value = excluded.memory_value, 
                               last_updated = excluded.last_updated
             """, (user_id, memory_key, memory_value, timestamp))
                 

@@ -1,58 +1,51 @@
 #!/usr/bin/env python
 import asyncio
-import hashlib
-from   .harness import MemoryManager
-from fastapi.applications import FastAPI
 import json
 import os
-import redis
 import uuid
-from crewai import LLM
-# from dotenv import load_dotenv
+import redis
+import uvicorn
+from fastapi import FastAPI
 from pydantic import BaseModel
-from semantic_router import Route
-from semantic_router.encoders import OllamaEncoder
-from semantic_router.routers import SemanticRouter
 from starlette.responses import StreamingResponse
+from crewai import LLM
+
+# 环境变量隔离与注入
 os.environ["OPENAI_API_KEY"] = os.getenv("GLM_API_KEY", "dummy_key")
 os.environ["OPENAI_API_BASE"] = os.getenv("GLM_API_BASE", "")
 glm_model = os.getenv("GLM_MODEL_NAME", "glm-4-flash")
 os.environ["OPENAI_MODEL_NAME"] = f"openai/{glm_model}"
+
+# ✅ 从我们全新拆分的 harness 导入隔离机制与记忆管理器
+from harness import MemoryManager
 from agent_test0.crew import TravelWorkflow
-import uvicorn
 
-
-# --- 初始化 Redis 连接 ---
-# 建议通过环境变量配置：os.getenv("REDIS_HOST", "localhost")
+# 初始化 Redis 物理连接
 redis_client = redis.Redis(host='localhost', port=6373, db=0, decode_responses=True)
-MAX_HISTORY_TURNS = 10  # 限制存储最近 10 轮对话，防止 Token 爆炸
-base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-routes_path = os.path.join(base_dir, "knowledge", "routes.json")
 
 zhipu_llm = LLM(
     model=os.getenv("GLM_MODEL_NAME") or "glm-4-flash",
     base_url=os.getenv("GLM_API_BASE") or "",
     api_key=os.getenv("GLM_API_KEY") or "",
 )
-# --- 初始化 FastAPI 应用 ---
+
 app: FastAPI = FastAPI(title="智能旅游规划 Agent API", description="基于多智能体的旅游规划服务")
+
 class ChatRequest(BaseModel):
     user_id: str = "yyy"
     session_id: str = ""
     message: str
-    
 
 def rewrite_query_with_context(memory: MemoryManager, current_message: str) -> str:
-    # 如果完全没有历史，直接返回原话
     if not memory.get_chat_history():
         return current_message
 
-    # 获取分层组装好的 Context
+    # 获取 CC 层级拼装好的 Context (包含长期特征、短期总结、历史对话)
     context_payload = memory.get_global_context_prompt(current_message)
     
     rewrite_prompt = f"""
 你是一个极其严格的“指代消解”与“意图补全”组件。
-你的唯一任务是：根据【当前行程核心约束】和【近期对话上下文】，将用户的【当前最新指令】重写为一句独立、明确、包含所有关键实体（如地点、人数、约束）的完整句子。
+你的唯一任务是：根据【用户长期偏好画像】、【当前行程核心约束】和【近期对话上下文】，将用户的【当前最新指令】重写为一句独立、明确、包含所有关键实体（如地点、人数、约束）的完整句子。
 
 【绝对规则】：
 1. 必须以用户的口吻进行重写！绝不能使用 AI (assistant) 的视角或复述 AI 的自我介绍。
@@ -71,94 +64,28 @@ def rewrite_query_with_context(memory: MemoryManager, current_message: str) -> s
         print(f"⚠️ 重写失败: {e}")
         return current_message
 
-def build_router():
-    print("正在从 JSON 加载语义路由例句库...")
-    encoder = OllamaEncoder(name="nomic-embed-text")
-    
-    # 读取 JSON 文件
-    with open(routes_path, "r", encoding="utf-8") as f:
-        routes_data = json.load(fp=f)
-    
-    # 动态生成 Route 对象列表
-    routes = []
-    for name, utterances in routes_data.items():
-        routes.append(Route(name=name, utterances=utterances))
-    
-    return SemanticRouter(encoder=encoder, routes=routes,auto_sync="local")
 
-# 全局初始化路由器
-fast_intent_router = build_router()
-print("✅ Semantic Router 初始化完成！")
-
-# --- 2. 核心交互接口 ---
-@app.post("/api/chat")
-async def chat_endpoint(request: ChatRequest):
-    # 1. 会话分配逻辑 (复用我们之前的逻辑)
-    actual_user_id = request.user_id
-    actual_session_id = request.session_id or f"sess_{uuid.uuid4().hex[:6]}"
-    
-    # 2.  核心修复：上下文重写
-    # 我们不拿 request.message 去路由，而是拿重写后的 contextual_message 去路由！
-    contextual_message = rewrite_query_with_context(actual_session_id, request.message)
-
-    # 3. 将用户的原话加入短期记忆历史
-    if actual_session_id not in SESSION_HISTORY:
-        SESSION_HISTORY[actual_session_id] = []
-    SESSION_HISTORY[actual_session_id].append({"role": "user", "content": request.message})
-
-    # 4. 路由判断 (使用重写后的话)
-    route_choice = fast_intent_router(contextual_message)
-    intent_name = route_choice.name
-
-    response_payload = {
-        "user_id": actual_user_id,
-        "session_id": actual_session_id,
-        "intent": intent_name
-    }
-
-    reply_text = ""
-
-    # 5. 分流执行
-    if intent_name == "travel":
-        print("🚀 触发复杂工作流...")
-        travel_flow = TravelWorkflow()
-        # 注意：这里传给 Flow 的仍然是重写后、带有明确地点的话
-        travel_flow.state.message = contextual_message 
-        travel_flow.state.user_id = actual_user_id
-        travel_flow.state.session_id = actual_session_id
-        
-        travel_flow.kickoff()
-        reply_text = travel_flow.state.final_report
-    else:
-        # 闲聊处理...
-        reply_text = "收到你的消息啦！" 
-
-    # 6. 将 AI 的回复存入短期记忆，完成闭环
-    SESSION_HISTORY[actual_session_id].append({"role": "assistant", "content": reply_text})
-    # 维持历史记录长度，避免爆内存
-    if len(SESSION_HISTORY[actual_session_id]) > MAX_HISTORY_TURNS * 2:
-        SESSION_HISTORY[actual_session_id] = SESSION_HISTORY[actual_session_id][-MAX_HISTORY_TURNS*2:]
-
-    return {**response_payload, "reply": reply_text}
-
-
+# --- 流式 API 核心交互接口 ---
 @app.post("/api/chat_stream")
 async def chat_endpoint_stream(request: ChatRequest):
     actual_user_id: str = request.user_id
     actual_session_id = request.session_id or f"sess_{uuid.uuid4().hex[:6]}"
     
-    # 实例化当前会话的记忆管家
-    memory = MemoryManager(actual_session_id)
+    # 实例化当前会话的记忆管理器
+    memory = MemoryManager(actual_session_id, actual_user_id, redis_client)
     
-    # 1. 结合 CC 层级记忆进行重写
+    # 🔄 记忆转换链路 1: 启动前，快速进行 历史对话(Episodic) -> 短期约束(Working Memory) 的同步转化
+    memory.convert_episodic_to_working(zhipu_llm)
+    
+    # 结合分层上下文进行高精度 Query 重写
     contextual_message = rewrite_query_with_context(memory, request.message)
     
-    # 2. 将用户原话存入 桶3 (ChatHistory)
+    # 将用户最新消息追加进 Episodic (桶3)
     memory.add_message("user", request.message)
     
-    # 3. 路由判断
-    route_choice = fast_intent_router(contextual_message)
-    intent_name = route_choice.name if route_choice is not None else "default_chat"
+    # 简易多路意图分发
+    is_travel_related = any(kw in contextual_message for kw in ["旅游", "规划", "行程", "攻略", "玩", "去", "景点"])
+    intent_name = "travel" if is_travel_related else "default_chat"
     
     loop = asyncio.get_running_loop()
     queue = asyncio.Queue()
@@ -166,19 +93,8 @@ async def chat_endpoint_stream(request: ChatRequest):
     def run_crewai_task():
         try:
             if intent_name == "travel":
-                # --- 🧠 动态提取短期摘要 (Short-Term Memory) ---
-                # 在触发昂贵的 CrewAI 之前，用极快的速度提取当前对话的关键约束
-                extract_prompt = f"根据用户需求：'{contextual_message}'，提取JSON格式的核心约束，如地名、天数、偏好等。仅输出JSON格式，例如：{{\"destination\": \"杭州\", \"preferences\": \"不吃辣\"}}。如果没有明确约束则输出 {{}}"
-                try:
-                    summary_resp = zhipu_llm.call([{"role": "user", "content": extract_prompt}])
-                    import re
-                    json_match = re.search(r'\{.*\}', summary_resp, re.DOTALL)
-                    if json_match:
-                        new_constraints = json.loads(json_match.group(0))
-                        # 更新到 桶5
-                        memory.update_short_term_summary(new_constraints)
-                except Exception as e:
-                    print(f"短期约束提取失败: {e}")
+                # 再次执行一次提纯转换，捕获当下输入暴露的短期指标
+                memory.convert_episodic_to_working(zhipu_llm)
 
                 def workflow_status_listener(status_text: str):
                     asyncio.run_coroutine_threadsafe(
@@ -187,8 +103,7 @@ async def chat_endpoint_stream(request: ChatRequest):
 
                 travel_flow = TravelWorkflow(status_callback=workflow_status_listener)
                 
-                # ✅ 这里极其关键：把提纯后的 context 而不是简单的 message 传给 Flow
-                # 这样 Planner 就能直接看到 {"destination": "上海", "preferences": "不爬山"}
+                # 透传重写 Query，并将 Working Memory 桶中的约束 JSON 包转化为 Focus 的约束注入
                 travel_flow.state.message = contextual_message 
                 travel_flow.state.focus = json.dumps(memory.get_short_term_summary(), ensure_ascii=False)
                 travel_flow.state.user_id = actual_user_id
@@ -197,15 +112,17 @@ async def chat_endpoint_stream(request: ChatRequest):
                 travel_flow.kickoff()
                 final_result = travel_flow.state.final_report
                 
-                # 记录 AI 回复到 桶3
+                # 记录 AI 的结案报告
                 memory.add_message("assistant", final_result)
+                
+                # 🔄 记忆转换链路 2: 会话达成重大进展时，快速进行 Working/Episodic -> Semantic (长期记忆) 转化持久化
+                memory.convert_to_semantic(zhipu_llm)
                 
                 asyncio.run_coroutine_threadsafe(
                     queue.put({"type": "finish", "content": final_result}), loop
                 )
             else:
                 # ---------- 闲聊分支 ----------
-                # 直接获取完整的全局 Context 给 LLM 进行日常对话
                 context_payload = memory.get_global_context_prompt(request.message)
                 system_prompt = "你是一个亲切的旅游管家。请根据以下上下文自然地回答用户。"
                 
@@ -216,6 +133,10 @@ async def chat_endpoint_stream(request: ChatRequest):
                 reply_text = response.strip()
                 
                 memory.add_message("assistant", reply_text)
+                
+                # 闲聊同样进行画像特征捕获转化
+                memory.convert_to_semantic(zhipu_llm)
+                
                 asyncio.run_coroutine_threadsafe(
                     queue.put({"type": "finish", "content": reply_text}), loop
                 )
@@ -236,13 +157,9 @@ async def chat_endpoint_stream(request: ChatRequest):
 
 def run():
     print("====================================")
-    print("🌍 欢迎使用智能旅游规划系统 ")
+    print("🌍 智能旅游规划系统 - Agent API 服务已启动 ")
     print("====================================")
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 if __name__ == "__main__":
-    print("====================================")
-    print("测试读取到的模型地址：", os.getenv("GLM_API_BASE"))
-    print("测试读取到的 API Key:", os.getenv("GLM_API_KEY"))
-    print("====================================")
     run()

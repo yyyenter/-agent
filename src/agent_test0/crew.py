@@ -2,7 +2,6 @@
 import json
 import os
 import re
-from typing import Literal
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.flow import Flow, listen, start
 from crewai.project import CrewBase, agent, task, crew
@@ -162,31 +161,25 @@ class ValidatorCrew:
      
 # ==================== Flow 调度（自适应 ReAct 收敛闭环） ====================
 class TravelWorkflow(Flow[TravelState]):
-    def __init__(self, status_callback = None, content_callback = None):
+    def __init__(self, status_callback = None):
         super().__init__()
-        self.max_error_retries = 3   
-        self.max_adjustments = 20     
+        self.max_error_retries = 3
+        self.max_adjustments = 20
         self.current_error_count = 0
         self.current_adjust_count = 0
-        self.feedback_history: list[str] = []  
+        self.feedback_history: list[str] = []
         self.status_callback = status_callback
-        self.content_callback = content_callback  # 新增内容回调
 
     def notify(self, text: str):
         if self.status_callback:
             self.status_callback(text)
-    
-    def notify_content(self, content: str, content_type: str = "content"):
-        """通知内容更新"""
-        if self.content_callback:
-            self.content_callback(content, content_type)
 
     def _parse_feedback(self, feedback: str) -> tuple[str, str]:
         feedback_lower = feedback.lower()
-        if any(kw in feedback_lower for kw in ["通过", "合格", "满意", "完整", "pass", "ok", "✅"]):
-            if "错误" not in feedback_lower and "不足" not in feedback_lower:
+        if any(kw in feedback_lower for kw in ["通过", "合格", "满意", "完美", "pass", "ok"]):
+            if "错误" not in feedback_lower and "不足" not in feedback_lower and "打回" not in feedback_lower:
                 return "pass", ""
-        if any(kw in feedback_lower for kw in ["逻辑错误", "严重", "错误", "矛盾", "不可行", "❌"]):
+        if any(kw in feedback_lower for kw in ["逻辑错误", "严重", "错误", "矛盾", "不可行", "打回修正", "打回"]):
             return "error", feedback
         if any(kw in feedback_lower for kw in ["不足", "缺少", "不完整", "建议补充", "需要更多信息"]):
             return "incomplete", feedback
@@ -195,13 +188,13 @@ class TravelWorkflow(Flow[TravelState]):
         return "pass", feedback
 
     @start()
-    def plan_steps(self) -> TravelState:
-        """🚀 Step 1: L1 Plan - 脑部决策官启动 (SOP 强轨)"""
+    def plan_steps(self):
+        "Step 1: Plan — 决策官剖析需求"
         print(f"\n{'='*50}")
-        print(f"📋 [Plan] 决策官剖析需求中（重试次数: {self.current_error_count}）")
+        print(f"📋 [Plan] 决策官剖析需求中（error重试: {self.current_error_count}, adjust微调: {self.current_adjust_count}）")
         print(f"{'='*50}")
         self.notify("📋 [决策阶段] 决策大脑正在读取您的长期特征并建立行程执行 Focus 指引...")
-        
+
         inputs = {
             "message": self.state.message,
             "user_id": self.state.user_id,
@@ -209,120 +202,118 @@ class TravelWorkflow(Flow[TravelState]):
         }
         if self.feedback_history:
             inputs["feedback_history"] = "\n".join(self.feedback_history[-3:])
-        
+
         result = PlannerCrew().crew().kickoff(inputs=inputs)
         raw_text = result.raw.strip()
-        
-        # 实时输出决策结果
-        self.notify_content(f"📋 决策分析完成：{raw_text[:200]}...", "planning")
-        
+
         try:
             json_match = re.search(r'\{.*\}', raw_text, re.DOTALL)
             if json_match:
                 clean_json_str = json_match.group(0)
                 plan_data = json.loads(clean_json_str)
-                
                 self.state.is_complex = plan_data.get("is_complex", True)
                 self.state.simple_answer = plan_data.get("simple_answer", "")
                 self.state.location = plan_data.get("location", "未知")
-                # 动态提炼出的 focus 约束（如：“用户海鲜过敏，不推荐海鲜餐厅”）
-                self.state.focus = plan_data.get("focus", "") 
+                self.state.focus = plan_data.get("focus", "")
                 self.state.tools_needed = plan_data.get("tools_needed", [])
             else:
                 raise ValueError("未在模型输出中检测到 JSON 结构")
         except Exception as e:
             print(f"⚠️ Planner 提取失败: {str(e)}")
-            self.state.is_complex = True 
-            
-        return self.state
+            self.state.is_complex = True
 
     @listen(plan_steps)
-    def execute_step(self) -> TravelState:
-        """🚀 Step 2: L2 Act - 核心 SOP 执行层 (受 focus 强行约束)"""
+    def execute_step(self):
+        "Step 2: Act — 核心 SOP 执行层"
         if not self.state.is_complex:
             self.notify("⚡ [决策阶段] 判定为简单任务，正在直接解答...")
             self.state.final_report = self.state.simple_answer
-            return self.state
-        
-        self.notify(f"🔎 [执行阶段] 专家团队已集结！围绕决策约束【{self.state.focus}】，正在深度检索与规划【{self.state.location}】中...")
+            return
+
+        self.notify(f"🔎 [执行阶段] 专家团队已集结！正在深度检索与规划【{self.state.location}】...")
         print(f"\n{'='*50}")
-        print(f"⚡ [Act] 执行生成...")
+        print(f"⚡ [Act] 执行生成（focus: {self.state.focus}）...")
         print(f"{'='*50}")
-        
+
         result = TravelExpertCrew().crew().kickoff(inputs={
             "location": self.state.location,
             "focus": self.state.focus or "常规规划",
             "message": self.state.message,
             "user_id": self.state.user_id
         })
-        
         self.state.draft_report = result.raw
         print(f"📝 生成草案: {len(result.raw)} 字符")
-        
-        # 实时输出执行结果
-        self.notify_content(f"⚡ 执行完成，生成旅游方案：\n{result.raw}", "execution")
-        
-        return self.state
 
     @listen(execute_step)
-    def validate_router(self) -> Literal["execute_step", "plan_steps", "END"]:
-        """🚀 Step 3: L3 Reason - 硬性质检回环 (自适应 ReAct 反馈路由)"""
-        print(f"\n{'='*50}")
-        print(f"🔍 [Reason] 质检评估与 ReAct 自适应闭环...")
-        print(f"{'='*50}")
-        
+    def validate_router(self):
+        """
+        Step 3: Reason — 硬性质检 + 内部 ReAct 闭环
+        不再依赖 CrewAI Flow 的路由返回值（已被证实不工作），
+        改为内部 while 循环直接调用 plan_steps / execute_step。
+        """
         if not self.state.is_complex:
-            return "END"
+            return
 
-        self.notify("🔍 [质检阶段] 逻辑质检员正在进行严格的时空通勤距离和长期画像合规审查...")
-        
-        result = ValidatorCrew().crew().kickoff(inputs={
-            "draft": self.state.draft_report,
-            "location": self.state.location,
-            "user_id": self.state.user_id
-        })
-        
-        validation_feedback = result.raw
-        self.feedback_history.append(validation_feedback)
-        
-        # 实时输出质检结果
-        self.notify_content(f"🔍 质检完成：{validation_feedback}", "validation")
-        
-        feedback_type, adjustment_hint = self._parse_feedback(validation_feedback)
-        print(f"📊 反馈类型: {feedback_type}")
-        
-        if feedback_type == "pass":
-            print("✅ [Reason] 方案通过终审！")
-            self.state.final_report = validation_feedback
-            return "END"
-        
-        elif feedback_type in ["adjust", "incomplete"]:
-            print(f"🔄 [Reason] 需要优化或补充，重新进入局部微调循环...")
-            if self.current_adjust_count < self.max_adjustments:
-                self.current_adjust_count += 1
-                self.state.focus = f"{self.state.focus}；(历史质检不合理点整改要求: {adjustment_hint})"
-                return "execute_step"
-            else:
-                self.state.final_report = validation_feedback
-                return "END"
-        
-        elif feedback_type == "error":
-            print("❌ [Reason] 发现严重逻辑矛盾，回滚到 Plan 阶段重新规划。")
-            if self.current_error_count < self.max_error_retries:
-                self.current_error_count += 1
-                return "plan_steps"  
-            else:
-                self.state.final_report = f"[无法收敛修正的逻辑问题]\n{validation_feedback}"
-                return "END"
-        
-        self.state.final_report = validation_feedback
-        return "END"
+        while True:
+            print(f"\n{'='*50}")
+            print(f"🔍 [Reason] 质检评估中（error重试: {self.current_error_count}, adjust微调: {self.current_adjust_count}）")
+            print(f"{'='*50}")
+
+            self.notify("🔍 [质检阶段] 逻辑质检员正在进行严格的通勤距离和长期画像合规审查...")
+
+            result = ValidatorCrew().crew().kickoff(inputs={
+                "draft": self.state.draft_report,
+                "location": self.state.location,
+                "user_id": self.state.user_id
+            })
+            validation_feedback = result.raw
+            self.feedback_history.append(validation_feedback)
+
+            feedback_type, adjustment_hint = self._parse_feedback(validation_feedback)
+            print(f"📊 反馈类型: {feedback_type}")
+            if adjustment_hint:
+                print(f"   提示: {adjustment_hint[:200]}")
+
+            if feedback_type == "pass":
+                print("✅ [Reason] 方案通过终审！");
+                self.state.final_report = self.state.draft_report
+                return
+
+            elif feedback_type in ("adjust", "incomplete"):
+                if self.current_adjust_count < self.max_adjustments:
+                    self.current_adjust_count += 1
+                    print(f"🔄 [Reason] 需要优化/补充（第{self.current_adjust_count}次微调），重新执行...");
+                    self.notify(f"🔄 [重试 {self.current_adjust_count}/{self.max_adjustments}] 根据质检反馈微调行程...");
+                    self.state.focus = f"{self.state.focus}；(质检整改要求: {adjustment_hint})"
+                    self.execute_step()
+                    continue
+                else:
+                    print(f"⚠️ 微调次数耗尽，强制结束")
+                    self.state.final_report = self.state.draft_report
+                    return
+
+            elif feedback_type == "error":
+                if self.current_error_count < self.max_error_retries:
+                    self.current_error_count += 1
+                    print(f"❌ [Reason] 严重逻辑矛盾（第{self.current_error_count}次），回滚到 Plan 重新规划...")
+                    self.notify(f"❌ [重试 {self.current_error_count}/{self.max_error_retries}] 发现严重问题，回滚重新规划...")
+                    self.state.focus = f"{self.state.focus}；(历史质检致命错误: {adjustment_hint})"
+                    self.plan_steps()
+                    self.execute_step()
+                    continue
+                else:
+                    print(f"⚠️ 重试次数耗尽，强制结束")
+                    self.state.final_report = f"[无法收敛修正]\n{self.state.draft_report}"
+                    return
+
+            # 未知反馈类型，保守处理为通过
+            self.state.final_report = self.state.draft_report
+            return
 
     @listen(validate_router)
-    def finalize(self) -> TravelState:
+    def finalize(self):
         print(f"\n{'='*50}")
         print(f"🏁 流程结束")
         print(f"{'='*50}")
         if not self.state.final_report:
-            self.state.final_report = self.state.draft_report or "未能生成报告"
-        return self.state
+            self.state.final_report = self.state.draft_report or '未能生成报告'

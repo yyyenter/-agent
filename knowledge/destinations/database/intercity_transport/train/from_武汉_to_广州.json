@@ -1,0 +1,722 @@
+[
+    {
+        "TrainID": "G335",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "13:16",
+        "EndTime": "17:19",
+        "Duration": 4.12,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G79",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "13:58",
+        "EndTime": "17:38",
+        "Duration": 3.72,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G81",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "18:14",
+        "EndTime": "22:07",
+        "Duration": 3.93,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G337",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "16:16",
+        "EndTime": "20:27",
+        "Duration": 4.27,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G339",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "18:50",
+        "EndTime": "23:09",
+        "Duration": 4.4,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G77",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "12:06",
+        "EndTime": "16:02",
+        "Duration": 3.98,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G305",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "16:36",
+        "EndTime": "20:43",
+        "Duration": 4.28,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G541",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "10:38",
+        "EndTime": "14:51",
+        "Duration": 4.38,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1169",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "18:24",
+        "EndTime": "22:59",
+        "Duration": 4.7,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1189",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "12:56",
+        "EndTime": "17:04",
+        "Duration": 4.25,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1191",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "16:52",
+        "EndTime": "21:17",
+        "Duration": 4.5,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G543",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州北站",
+        "BeginTime": "16:31",
+        "EndTime": "20:33",
+        "Duration": 4.22,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G809",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "09:33",
+        "EndTime": "13:28",
+        "Duration": 3.97,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1163",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "11:34",
+        "EndTime": "15:53",
+        "Duration": 4.38,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1183",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "16:10",
+        "EndTime": "20:37",
+        "Duration": 4.52,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G637",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "10:27",
+        "EndTime": "14:36",
+        "Duration": 4.3,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1309",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "16:00",
+        "EndTime": "20:32",
+        "Duration": 4.67,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1747",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "19:04",
+        "EndTime": "23:39",
+        "Duration": 4.65,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G877",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "18:00",
+        "EndTime": "22:39",
+        "Duration": 4.78,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G845",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "18:44",
+        "EndTime": "23:04",
+        "Duration": 4.4,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G279",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "14:03",
+        "EndTime": "18:23",
+        "Duration": 4.63,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G2055",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:18",
+        "EndTime": "21:42",
+        "Duration": 4.55,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1009",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州北站",
+        "BeginTime": "13:40",
+        "EndTime": "17:37",
+        "Duration": 3.95,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1011",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "14:47",
+        "EndTime": "19:01",
+        "Duration": 4.23,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1175",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "14:08",
+        "EndTime": "18:28",
+        "Duration": 4.33,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1017",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "09:27",
+        "EndTime": "14:07",
+        "Duration": 5.0,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1019",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:38",
+        "EndTime": "22:02",
+        "Duration": 4.4,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1109",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "09:05",
+        "EndTime": "13:14",
+        "Duration": 4.15,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G881",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "09:00",
+        "EndTime": "12:46",
+        "Duration": 3.77,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G883",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "10:07",
+        "EndTime": "14:01",
+        "Duration": 3.9,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1031",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "11:26",
+        "EndTime": "16:07",
+        "Duration": 4.77,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1003",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "07:55",
+        "EndTime": "12:00",
+        "Duration": 4.08,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1021",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:08",
+        "EndTime": "21:27",
+        "Duration": 4.32,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1007",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "12:11",
+        "EndTime": "16:24",
+        "Duration": 4.22,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G341",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "14:37",
+        "EndTime": "19:29",
+        "Duration": 4.97,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G695",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:03",
+        "EndTime": "21:22",
+        "Duration": 4.52,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G825",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "15:55",
+        "EndTime": "20:10",
+        "Duration": 4.37,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1151",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:43",
+        "EndTime": "22:29",
+        "Duration": 4.97,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1119",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:33",
+        "EndTime": "22:14",
+        "Duration": 4.68,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1139",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "12:25",
+        "EndTime": "16:47",
+        "Duration": 4.47,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1013",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:23",
+        "EndTime": "21:47",
+        "Duration": 4.4,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1182",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "16:10",
+        "EndTime": "20:37",
+        "Duration": 4.52,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1034",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "11:26",
+        "EndTime": "16:07",
+        "Duration": 4.77,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1138",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "08:54",
+        "EndTime": "13:33",
+        "Duration": 4.78,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1030",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "10:22",
+        "EndTime": "15:18",
+        "Duration": 5.07,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1142",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "12:25",
+        "EndTime": "16:47",
+        "Duration": 4.47,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G531",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "09:43",
+        "EndTime": "14:25",
+        "Duration": 4.7,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G829",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:49",
+        "EndTime": "22:24",
+        "Duration": 4.68,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1103",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "06:46",
+        "EndTime": "11:25",
+        "Duration": 4.65,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G844",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "16:26",
+        "EndTime": "21:01",
+        "Duration": 4.77,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G848",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "18:44",
+        "EndTime": "23:04",
+        "Duration": 4.4,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1314",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "14:24",
+        "EndTime": "18:51",
+        "Duration": 4.52,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1553",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "18:19",
+        "EndTime": "22:54",
+        "Duration": 4.8,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G533",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "15:49",
+        "EndTime": "20:22",
+        "Duration": 4.65,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1005",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "08:12",
+        "EndTime": "12:25",
+        "Duration": 4.22,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1134",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "09:21",
+        "EndTime": "13:56",
+        "Duration": 4.68,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G278",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "15:02",
+        "EndTime": "19:22",
+        "Duration": 4.42,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1042",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "15:43",
+        "EndTime": "20:05",
+        "Duration": 4.43,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1146",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:13",
+        "EndTime": "21:32",
+        "Duration": 4.48,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1001",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "07:25",
+        "EndTime": "11:32",
+        "Duration": 4.12,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1188",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州北站",
+        "BeginTime": "10:57",
+        "EndTime": "15:03",
+        "Duration": 4.2,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G816",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "13:53",
+        "EndTime": "17:33",
+        "Duration": 3.72,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G832",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:49",
+        "EndTime": "22:24",
+        "Duration": 4.68,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G836",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:28",
+        "EndTime": "21:58",
+        "Duration": 4.67,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G828",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "15:55",
+        "EndTime": "20:10",
+        "Duration": 4.37,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G824",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "14:52",
+        "EndTime": "19:16",
+        "Duration": 4.53,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1020",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "09:27",
+        "EndTime": "14:07",
+        "Duration": 5.0,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1552",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "18:19",
+        "EndTime": "22:54",
+        "Duration": 4.8,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G1154",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:43",
+        "EndTime": "22:29",
+        "Duration": 4.97,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G2058",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "17:18",
+        "EndTime": "21:42",
+        "Duration": 4.55,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G2080",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "16:41",
+        "EndTime": "21:37",
+        "Duration": 5.1,
+        "Cost": 543.6
+    },
+    {
+        "TrainID": "G2077",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "广州南站",
+        "BeginTime": "16:41",
+        "EndTime": "21:37",
+        "Duration": 5.1,
+        "Cost": 543.6
+    }
+]

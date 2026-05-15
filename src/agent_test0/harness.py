@@ -1,5 +1,6 @@
 import json
 import hashlib
+import math
 import sqlite3
 import os
 import re
@@ -24,6 +25,7 @@ class InMemoryFallback:
     def __init__(self):
         self.data: dict[str, list[str]] = {}
         self.hashes: dict[str, dict[str, str]] = {}
+        self.kv: dict[str, str] = {}
     
     def rpush(self, key: str, value: str) -> None:
         if key not in self.data:
@@ -50,15 +52,23 @@ class InMemoryFallback:
         if mapping:
             self.hashes[key].update(mapping)
         self.hashes[key].update(kwargs)
-    
+
+    def hget(self, key: str, field: str) -> Optional[str]:
+        return self.hashes.get(key, {}).get(field)
+
     def hgetall(self, key: str) -> dict[str, str]:
         return self.hashes.get(key, {})
     
     def get(self, key: str) -> Optional[str]:
-        return None
-    
+        return self.kv.get(key)
+
     def setex(self, key: str, expire: int, value: str) -> None:
-        pass
+        self.kv[key] = value
+
+    def delete(self, key: str) -> None:
+        self.kv.pop(key, None)
+        self.hashes.pop(key, None)
+        self.data.pop(key, None)
 
 # 全局内存回退实例
 _memory_fallback = InMemoryFallback()
@@ -263,15 +273,181 @@ class MemoryManager:
         return "\n\n".join(parts) if parts else ""
 
 class ToolCacheManager:
-    """桶4: Tool Results (全局工具缓存，跨会话、跨用户共享)"""
-    @staticmethod
-    def get_tool_result(redis_client, tool_name: str, params) -> Optional[str]:  # type: ignore[type-arg]
-        param_hash = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()  # type: ignore[type-arg]
-        key = f"cc:global:tool_cache:{tool_name}:{param_hash}"
-        return redis_client.get(key)
+    """桶4: 全局工具缓存 — 三层匹配: 精确(L1) → 归一(L2) → 语义向量(L3)
+
+    L1 精确哈希: 参数完全相同时毫秒级命中
+    L2 归一哈希: 自动去空格/转小写/排序, 处理格式变体
+    L3 语义向量: 字符 bigram 余弦相似度, 处理同义换说 (阈值 0.45)
+    """
+
+    CACHE_PREFIX = "cc:global:tool_cache"
+    # L3: 语义匹配配置
+    SEMANTIC_THRESHOLD = 0.45   # 余弦相似度阈值 (越低越宽松)
+    MAX_SCAN = 200              # L3 扫描上限, 防性能退化
+
+    # ---- 参数标准化 (L2) ----
 
     @staticmethod
-    def set_tool_result(redis_client, tool_name: str, params, result: str, expire: int = 3600) -> None:  # type: ignore[type-arg]
-        param_hash = hashlib.md5(json.dumps(params, sort_keys=True).encode()).hexdigest()  # type: ignore[type-arg]
-        key = f"cc:global:tool_cache:{tool_name}:{param_hash}"
-        redis_client.setex(key, expire, result)
+    def _normalize_params(params):
+        """参数文本标准化: 去空格 / 转小写 / 排序"""
+        if isinstance(params, str):
+            return re.sub(r'\s+', '', params).strip().lower()
+        if isinstance(params, dict):
+            return {k: ToolCacheManager._normalize_params(v)
+                    for k, v in sorted(params.items())}
+        if isinstance(params, list):
+            return sorted(ToolCacheManager._normalize_params(p) for p in params)
+        return params
+
+    @staticmethod
+    def _params_to_text(params) -> str:
+        """从参数中提取可搜索的文本, 生成语义向量输入"""
+        if isinstance(params, str):
+            return params
+        if isinstance(params, dict):
+            parts = []
+            for v in params.values():
+                if isinstance(v, str):
+                    parts.append(v)
+                elif isinstance(v, (int, float)):
+                    parts.append(str(v))
+            return ' '.join(parts)
+        return json.dumps(params, sort_keys=True, ensure_ascii=False)
+
+    # ---- 键生成 (L1/L2) ----
+
+    @staticmethod
+    def _make_key(tool_name: str, params, *, normalized: bool = False) -> str:
+        p = ToolCacheManager._normalize_params(params) if normalized else params
+        param_str = json.dumps(p, sort_keys=True, ensure_ascii=False)
+        param_hash = hashlib.md5(param_str.encode()).hexdigest()
+        return f"{ToolCacheManager.CACHE_PREFIX}:{tool_name}:{param_hash}"
+
+    # ---- 后端读写 ----
+
+    @staticmethod
+    def _read_field(redis_client, key: str) -> Optional[str]:
+        if hasattr(redis_client, 'hget'):
+            return redis_client.hget(key, "result")
+        return redis_client.get(key)
+
+    # ---- 语义向量 (L3) ----
+
+    @staticmethod
+    def _bigram_vector(text: str) -> dict[str, float]:
+        """字符 bigram TF 向量 — 零依赖语义指纹.
+        中文: "杭州旅游" → [杭州,州旅,旅游] 捕获词语模式
+        """
+        text = re.sub(r'\s+', '', text).lower()
+        vec: dict[str, float] = {}
+        for i in range(len(text) - 1):
+            gram = text[i:i+2]
+            vec[gram] = vec.get(gram, 0.0) + 1.0
+        return vec
+
+    @staticmethod
+    def _cosine_sim(a: dict[str, float], b: dict[str, float]) -> float:
+        """稀疏向量余弦相似度"""
+        if not a or not b:
+            return 0.0
+        keys = set(a) & set(b)
+        if not keys:
+            return 0.0
+        dot = sum(a[k] * b[k] for k in keys)
+        na = math.sqrt(sum(v * v for v in a.values()))
+        nb = math.sqrt(sum(v * v for v in b.values()))
+        return dot / (na * nb) if na and nb else 0.0
+
+    @staticmethod
+    def _scan_semantic(redis_client, prefix: str, query_vec: dict[str, float],
+                       threshold: float) -> Optional[str]:
+        """扫描同工具缓存, 返回语义最匹配 (且超阈值) 的结果."""
+        best_score = 0.0
+        best_result = None
+        scanned = 0
+
+        if hasattr(redis_client, 'hashes'):
+            for key, entry in redis_client.hashes.items():
+                if not key.startswith(prefix):
+                    continue
+                emb_str = entry.get("embedding", "")
+                if not emb_str:
+                    continue
+                try:
+                    vec = json.loads(emb_str)
+                    score = ToolCacheManager._cosine_sim(query_vec, vec)
+                    if score > best_score:
+                        best_score = score
+                        best_result = entry.get("result")
+                except (json.JSONDecodeError, TypeError):
+                    continue
+                scanned += 1
+                if scanned >= ToolCacheManager.MAX_SCAN:
+                    break
+        elif hasattr(redis_client, 'scan_iter'):
+            try:
+                for key in redis_client.scan_iter(match=f"{prefix}*", count=50):
+                    emb_str = redis_client.hget(key, "embedding")
+                    if not emb_str:
+                        continue
+                    try:
+                        vec = json.loads(emb_str)
+                        score = ToolCacheManager._cosine_sim(query_vec, vec)
+                        if score > best_score:
+                            best_score = score
+                            best_result = redis_client.hget(key, "result")
+                    except (json.JSONDecodeError, TypeError):
+                        continue
+                    scanned += 1
+                    if scanned >= ToolCacheManager.MAX_SCAN:
+                        break
+            except Exception:
+                pass
+
+        return best_result if best_score >= threshold else None
+
+    # ---- Public API ----
+
+    @staticmethod
+    def get_tool_result(redis_client, tool_name: str, params) -> Optional[str]:
+        # L1: 精确哈希
+        exact_key = ToolCacheManager._make_key(tool_name, params)
+        result = ToolCacheManager._read_field(redis_client, exact_key)
+        if result is not None:
+            return result
+
+        # L2: 归一哈希 (空格/大小写/排序变体)
+        norm_key = ToolCacheManager._make_key(tool_name, params, normalized=True)
+        if norm_key != exact_key:
+            result = ToolCacheManager._read_field(redis_client, norm_key)
+            if result is not None:
+                return result
+
+        # L3: 语义向量 (同义换说, 字符 bigram 余弦相似度)
+        query_text = ToolCacheManager._params_to_text(params)
+        query_vec = ToolCacheManager._bigram_vector(query_text)
+        prefix = f"{ToolCacheManager.CACHE_PREFIX}:{tool_name}:"
+        return ToolCacheManager._scan_semantic(
+            redis_client, prefix, query_vec, ToolCacheManager.SEMANTIC_THRESHOLD
+        )
+
+    @staticmethod
+    def set_tool_result(redis_client, tool_name: str, params,
+                        result: str, expire: int = 3600) -> None:
+        key = ToolCacheManager._make_key(tool_name, params)
+        param_str = json.dumps(params, sort_keys=True, ensure_ascii=False)
+        # 存储语义向量 (L3 检索用)
+        query_text = ToolCacheManager._params_to_text(params)
+        embedding_str = json.dumps(
+            ToolCacheManager._bigram_vector(query_text), ensure_ascii=False)
+
+        if hasattr(redis_client, 'hset'):
+            redis_client.hset(key, mapping={
+                "tool_name": tool_name,
+                "params": param_str,
+                "result": result,
+                "embedding": embedding_str,
+            })
+            redis_client.expire(key, expire)
+        else:
+            redis_client.setex(key, expire, result)

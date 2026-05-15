@@ -1,0 +1,252 @@
+[
+    {
+        "TrainID": "T101",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "深圳站",
+        "BeginTime": "15:11",
+        "EndTime": "07:35",
+        "Duration": 16.53,
+        "Cost": 525.99
+    },
+    {
+        "TrainID": "T211",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "深圳东站",
+        "BeginTime": "13:42",
+        "EndTime": "06:10",
+        "Duration": 16.57,
+        "Cost": 525.99
+    },
+    {
+        "TrainID": "D2283",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "12:23",
+        "EndTime": "22:26",
+        "Duration": 10.1,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D2289",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳坪山站",
+        "BeginTime": "10:18",
+        "EndTime": "19:58",
+        "Duration": 9.73,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D3125",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "11:32",
+        "EndTime": "21:20",
+        "Duration": 9.85,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D377",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "09:08",
+        "EndTime": "18:48",
+        "Duration": 9.73,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "G997",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "深圳站",
+        "BeginTime": "08:02",
+        "EndTime": "14:05",
+        "Duration": 6.08,
+        "Cost": 683.79
+    },
+    {
+        "TrainID": "D2281",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳坪山站",
+        "BeginTime": "10:13",
+        "EndTime": "19:48",
+        "Duration": 9.7,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D2287",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "08:12",
+        "EndTime": "18:17",
+        "Duration": 10.18,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D3107",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "11:21",
+        "EndTime": "21:25",
+        "Duration": 10.17,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D3111",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "07:30",
+        "EndTime": "17:54",
+        "Duration": 10.4,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D3123",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "07:20",
+        "EndTime": "17:33",
+        "Duration": 10.22,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D3307",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "08:21",
+        "EndTime": "18:32",
+        "Duration": 10.18,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D2293",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "12:47",
+        "EndTime": "22:35",
+        "Duration": 9.87,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "G697",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "16:49",
+        "EndTime": "22:59",
+        "Duration": 6.17,
+        "Cost": 683.79
+    },
+    {
+        "TrainID": "G1665",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "深圳站",
+        "BeginTime": "10:45",
+        "EndTime": "18:10",
+        "Duration": 7.52,
+        "Cost": 683.79
+    },
+    {
+        "TrainID": "D2113",
+        "TrainType": "动车",
+        "From": "杭州西站",
+        "To": "深圳北站",
+        "BeginTime": "10:18",
+        "EndTime": "19:18",
+        "Duration": 9.12,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D3122",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "07:20",
+        "EndTime": "17:33",
+        "Duration": 10.22,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D2292",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "10:18",
+        "EndTime": "20:22",
+        "Duration": 10.13,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D2286",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "12:23",
+        "EndTime": "22:26",
+        "Duration": 10.1,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D941",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "20:53",
+        "EndTime": "06:21",
+        "Duration": 9.53,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D931",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "20:59",
+        "EndTime": "06:26",
+        "Duration": 9.53,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D935",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "21:04",
+        "EndTime": "06:33",
+        "Duration": 9.57,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "D907",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "21:15",
+        "EndTime": "06:45",
+        "Duration": 9.6,
+        "Cost": 631.19
+    },
+    {
+        "TrainID": "G99",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "深圳北站",
+        "BeginTime": "15:01",
+        "EndTime": "21:32",
+        "Duration": 6.57,
+        "Cost": 683.79
+    }
+]

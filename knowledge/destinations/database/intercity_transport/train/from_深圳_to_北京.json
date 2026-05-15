@@ -1,0 +1,92 @@
+[
+    {
+        "TrainID": "K106",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "北京西站",
+        "BeginTime": "11:08",
+        "EndTime": "16:36",
+        "Duration": 29.47,
+        "Cost": 777.26
+    },
+    {
+        "TrainID": "G82",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "北京西站",
+        "BeginTime": "07:50",
+        "EndTime": "16:27",
+        "Duration": 8.62,
+        "Cost": 1263.04
+    },
+    {
+        "TrainID": "D28",
+        "TrainType": "动车",
+        "From": "深圳站",
+        "To": "北京丰台站",
+        "BeginTime": "14:16",
+        "EndTime": "12:24",
+        "Duration": 22.13,
+        "Cost": 1165.89
+    },
+    {
+        "TrainID": "Z182",
+        "TrainType": "直达特快",
+        "From": "深圳东站",
+        "To": "北京丰台站",
+        "BeginTime": "09:46",
+        "EndTime": "08:46",
+        "Duration": 23.0,
+        "Cost": 971.57
+    },
+    {
+        "TrainID": "D910",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "北京西站",
+        "BeginTime": "19:50",
+        "EndTime": "07:00",
+        "Duration": 11.17,
+        "Cost": 1165.89
+    },
+    {
+        "TrainID": "D902",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "北京西站",
+        "BeginTime": "19:34",
+        "EndTime": "06:33",
+        "Duration": 10.98,
+        "Cost": 1165.89
+    },
+    {
+        "TrainID": "D904",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "北京西站",
+        "BeginTime": "19:39",
+        "EndTime": "06:52",
+        "Duration": 11.22,
+        "Cost": 1165.89
+    },
+    {
+        "TrainID": "D928",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "北京西站",
+        "BeginTime": "19:55",
+        "EndTime": "07:10",
+        "Duration": 11.25,
+        "Cost": 1165.89
+    },
+    {
+        "TrainID": "G80",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "北京西站",
+        "BeginTime": "11:21",
+        "EndTime": "19:30",
+        "Duration": 8.2,
+        "Cost": 1263.04
+    }
+]

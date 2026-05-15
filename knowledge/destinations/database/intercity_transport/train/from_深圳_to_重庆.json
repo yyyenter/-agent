@@ -1,0 +1,82 @@
+[
+    {
+        "TrainID": "K487",
+        "TrainType": "快速",
+        "From": "深圳站",
+        "To": "重庆北站",
+        "BeginTime": "09:48",
+        "EndTime": "09:15",
+        "Duration": 23.45,
+        "Cost": 432.71
+    },
+    {
+        "TrainID": "G2930",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "重庆西站",
+        "BeginTime": "14:44",
+        "EndTime": "22:00",
+        "Duration": 7.27,
+        "Cost": 703.15
+    },
+    {
+        "TrainID": "K486",
+        "TrainType": "快速",
+        "From": "深圳站",
+        "To": "重庆北站",
+        "BeginTime": "09:48",
+        "EndTime": "09:15",
+        "Duration": 23.45,
+        "Cost": 432.71
+    },
+    {
+        "TrainID": "G320",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "重庆西站",
+        "BeginTime": "12:17",
+        "EndTime": "18:55",
+        "Duration": 6.7,
+        "Cost": 703.15
+    },
+    {
+        "TrainID": "G2942",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "重庆西站",
+        "BeginTime": "07:09",
+        "EndTime": "13:25",
+        "Duration": 6.27,
+        "Cost": 703.15
+    },
+    {
+        "TrainID": "G2944",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "重庆西站",
+        "BeginTime": "08:29",
+        "EndTime": "15:11",
+        "Duration": 6.7,
+        "Cost": 703.15
+    },
+    {
+        "TrainID": "Z586",
+        "TrainType": "直达特快",
+        "From": "深圳东站",
+        "To": "重庆北站",
+        "BeginTime": "20:58",
+        "EndTime": "15:27",
+        "Duration": 18.48,
+        "Cost": 540.88
+    },
+    {
+        "TrainID": "K356",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "重庆北站",
+        "BeginTime": "11:38",
+        "EndTime": "12:01",
+        "Duration": 24.38,
+        "Cost": 432.71
+    }
+]

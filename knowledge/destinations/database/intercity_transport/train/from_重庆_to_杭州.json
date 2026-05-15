@@ -1,0 +1,122 @@
+[
+    {
+        "TrainID": "Z258",
+        "TrainType": "直达特快",
+        "From": "重庆北站",
+        "To": "杭州南站",
+        "BeginTime": "14:10",
+        "EndTime": "05:49",
+        "Duration": 15.65,
+        "Cost": 656.33
+    },
+    {
+        "TrainID": "D658",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "杭州东站",
+        "BeginTime": "07:19",
+        "EndTime": "18:38",
+        "Duration": 11.32,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "D2248",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "杭州东站",
+        "BeginTime": "08:16",
+        "EndTime": "20:00",
+        "Duration": 11.73,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "D2224",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "杭州东站",
+        "BeginTime": "09:41",
+        "EndTime": "21:35",
+        "Duration": 12.0,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "K73",
+        "TrainType": "快速",
+        "From": "重庆北站",
+        "To": "杭州南站",
+        "BeginTime": "08:32",
+        "EndTime": "09:33",
+        "Duration": 25.02,
+        "Cost": 525.06
+    },
+    {
+        "TrainID": "D2274",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "杭州西站",
+        "BeginTime": "08:04",
+        "EndTime": "19:28",
+        "Duration": 11.4,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "G1339",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "杭州东站",
+        "BeginTime": "11:36",
+        "EndTime": "22:11",
+        "Duration": 10.58,
+        "Cost": 853.23
+    },
+    {
+        "TrainID": "G1335",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "杭州东站",
+        "BeginTime": "08:17",
+        "EndTime": "19:53",
+        "Duration": 11.6,
+        "Cost": 853.23
+    },
+    {
+        "TrainID": "K1154",
+        "TrainType": "快速",
+        "From": "重庆北站",
+        "To": "杭州站",
+        "BeginTime": "12:14",
+        "EndTime": "12:38",
+        "Duration": 24.4,
+        "Cost": 525.06
+    },
+    {
+        "TrainID": "G1338",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "杭州东站",
+        "BeginTime": "11:36",
+        "EndTime": "22:11",
+        "Duration": 10.58,
+        "Cost": 853.23
+    },
+    {
+        "TrainID": "D655",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "杭州东站",
+        "BeginTime": "07:19",
+        "EndTime": "18:38",
+        "Duration": 11.32,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "G1334",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "杭州东站",
+        "BeginTime": "08:17",
+        "EndTime": "19:53",
+        "Duration": 11.6,
+        "Cost": 853.23
+    }
+]

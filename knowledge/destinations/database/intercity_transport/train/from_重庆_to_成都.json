@@ -1,0 +1,1102 @@
+[
+    {
+        "TrainID": "G331",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:19",
+        "EndTime": "21:01",
+        "Duration": 1.8,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G388",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "08:38",
+        "EndTime": "10:14",
+        "Duration": 1.6,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G3428",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "20:29",
+        "EndTime": "22:03",
+        "Duration": 1.67,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D953",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "18:56",
+        "EndTime": "20:52",
+        "Duration": 2.0,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D3057",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:29",
+        "EndTime": "22:04",
+        "Duration": 2.68,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D2223",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:47",
+        "EndTime": "21:58",
+        "Duration": 2.3,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D2263",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "20:52",
+        "EndTime": "23:16",
+        "Duration": 2.47,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D3077",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "17:41",
+        "EndTime": "19:43",
+        "Duration": 2.13,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D353",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "18:15",
+        "EndTime": "20:34",
+        "Duration": 2.42,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D637",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "18:38",
+        "EndTime": "20:40",
+        "Duration": 2.17,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D2207",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:37",
+        "EndTime": "21:53",
+        "Duration": 2.38,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D2373",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "16:56",
+        "EndTime": "19:16",
+        "Duration": 2.45,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G1476",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "20:50",
+        "EndTime": "22:25",
+        "Duration": 1.87,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D2255",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "18:33",
+        "EndTime": "20:28",
+        "Duration": 2.1,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G3466",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:03",
+        "EndTime": "20:45",
+        "Duration": 1.78,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D633",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "13:51",
+        "EndTime": "16:16",
+        "Duration": 2.52,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D6191",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "10:43",
+        "EndTime": "13:05",
+        "Duration": 2.48,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D5101",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "07:37",
+        "EndTime": "10:09",
+        "Duration": 2.53,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D5105",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "20:23",
+        "EndTime": "22:18",
+        "Duration": 2.02,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D5103",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "17:03",
+        "EndTime": "19:29",
+        "Duration": 2.43,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G8502",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "07:34",
+        "EndTime": "09:14",
+        "Duration": 1.67,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8504",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "07:30",
+        "EndTime": "09:36",
+        "Duration": 2.1,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8686",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "14:38",
+        "EndTime": "16:23",
+        "Duration": 1.75,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8712",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "13:13",
+        "EndTime": "15:43",
+        "Duration": 2.6,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D6195",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "16:05",
+        "EndTime": "18:39",
+        "Duration": 2.57,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G8702",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "08:21",
+        "EndTime": "10:08",
+        "Duration": 1.85,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8674",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "17:29",
+        "EndTime": "18:50",
+        "Duration": 1.35,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8608",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "09:13",
+        "EndTime": "10:19",
+        "Duration": 1.1,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8614",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "10:38",
+        "EndTime": "11:55",
+        "Duration": 1.28,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "K143",
+        "TrainType": "快速",
+        "From": "重庆西站",
+        "To": "成都西站",
+        "BeginTime": "09:07",
+        "EndTime": "12:32",
+        "Duration": 3.78,
+        "Cost": 105.66
+    },
+    {
+        "TrainID": "G1984",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "21:16",
+        "EndTime": "22:54",
+        "Duration": 1.8,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G2886",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "12:57",
+        "EndTime": "14:28",
+        "Duration": 1.73,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G2870",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "20:10",
+        "EndTime": "21:40",
+        "Duration": 1.58,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G2884",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "20:00",
+        "EndTime": "21:25",
+        "Duration": 1.53,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G2890",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "18:09",
+        "EndTime": "19:40",
+        "Duration": 1.65,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G2882",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "21:50",
+        "EndTime": "23:07",
+        "Duration": 1.38,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G2164",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "14:05",
+        "EndTime": "15:37",
+        "Duration": 1.65,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G1888",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "10:01",
+        "EndTime": "11:44",
+        "Duration": 1.72,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G2206",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "11:31",
+        "EndTime": "12:57",
+        "Duration": 1.43,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G1832",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "10:14",
+        "EndTime": "12:05",
+        "Duration": 1.85,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G1976",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "09:20",
+        "EndTime": "10:53",
+        "Duration": 1.55,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G2234",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "09:51",
+        "EndTime": "11:25",
+        "Duration": 1.57,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G1836",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "08:00",
+        "EndTime": "09:26",
+        "Duration": 1.43,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8566",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "08:15",
+        "EndTime": "09:49",
+        "Duration": 1.57,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8586",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "06:50",
+        "EndTime": "08:35",
+        "Duration": 1.75,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8588",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "06:13",
+        "EndTime": "07:37",
+        "Duration": 1.4,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8680",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都南站",
+        "BeginTime": "12:21",
+        "EndTime": "13:42",
+        "Duration": 1.58,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8768",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都南站",
+        "BeginTime": "17:00",
+        "EndTime": "19:04",
+        "Duration": 2.15,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D1826",
+        "TrainType": "动车",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "18:58",
+        "EndTime": "20:59",
+        "Duration": 2.17,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G2852",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "16:09",
+        "EndTime": "17:42",
+        "Duration": 1.62,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D1821",
+        "TrainType": "动车",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "12:23",
+        "EndTime": "20:09",
+        "Duration": 8.27,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G318",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:09",
+        "EndTime": "20:51",
+        "Duration": 1.77,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D2222",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:47",
+        "EndTime": "21:58",
+        "Duration": 2.3,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D2262",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "20:52",
+        "EndTime": "23:16",
+        "Duration": 2.47,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D3076",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "17:41",
+        "EndTime": "19:43",
+        "Duration": 2.13,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G2372",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "19:35",
+        "EndTime": "21:06",
+        "Duration": 1.7,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D367",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "14:47",
+        "EndTime": "17:06",
+        "Duration": 2.43,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G3425",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "20:29",
+        "EndTime": "22:03",
+        "Duration": 1.67,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "K1256",
+        "TrainType": "快速",
+        "From": "重庆北站",
+        "To": "成都西站",
+        "BeginTime": "05:15",
+        "EndTime": "08:58",
+        "Duration": 3.87,
+        "Cost": 105.66
+    },
+    {
+        "TrainID": "D3056",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:29",
+        "EndTime": "22:04",
+        "Duration": 2.68,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D352",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "18:15",
+        "EndTime": "20:34",
+        "Duration": 2.42,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D636",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "18:38",
+        "EndTime": "20:40",
+        "Duration": 2.17,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D361",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:07",
+        "EndTime": "21:05",
+        "Duration": 2.13,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G2369",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "19:35",
+        "EndTime": "21:06",
+        "Duration": 1.7,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G2161",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "14:05",
+        "EndTime": "15:37",
+        "Duration": 1.65,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D952",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "18:56",
+        "EndTime": "20:52",
+        "Duration": 2.0,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G3467",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:03",
+        "EndTime": "20:45",
+        "Duration": 1.78,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "K872",
+        "TrainType": "快速",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "09:27",
+        "EndTime": "12:42",
+        "Duration": 3.45,
+        "Cost": 105.66
+    },
+    {
+        "TrainID": "G1981",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "21:16",
+        "EndTime": "22:54",
+        "Duration": 1.8,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G3463",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "14:13",
+        "EndTime": "16:09",
+        "Duration": 2.03,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G315",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:09",
+        "EndTime": "20:51",
+        "Duration": 1.77,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D2242",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "20:05",
+        "EndTime": "22:12",
+        "Duration": 2.23,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D2259",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "17:24",
+        "EndTime": "19:38",
+        "Duration": 2.33,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "C71",
+        "TrainType": "城际动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "06:28",
+        "EndTime": "09:15",
+        "Duration": 2.78,
+        "Cost": 118.87
+    },
+    {
+        "TrainID": "G8681",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都南站",
+        "BeginTime": "12:21",
+        "EndTime": "13:42",
+        "Duration": 1.58,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D2206",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "19:37",
+        "EndTime": "21:53",
+        "Duration": 2.38,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D2254",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "18:33",
+        "EndTime": "20:28",
+        "Duration": 2.1,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G1757",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "17:41",
+        "EndTime": "19:21",
+        "Duration": 1.75,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "K502",
+        "TrainType": "快速",
+        "From": "重庆北站",
+        "To": "成都西站",
+        "BeginTime": "06:41",
+        "EndTime": "10:52",
+        "Duration": 4.38,
+        "Cost": 105.66
+    },
+    {
+        "TrainID": "G3421",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "13:26",
+        "EndTime": "14:53",
+        "Duration": 1.55,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D1820",
+        "TrainType": "动车",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "12:23",
+        "EndTime": "20:09",
+        "Duration": 8.27,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G8713",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "13:13",
+        "EndTime": "15:43",
+        "Duration": 2.6,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8703",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "08:21",
+        "EndTime": "10:08",
+        "Duration": 1.85,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D366",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "14:47",
+        "EndTime": "17:06",
+        "Duration": 2.43,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "D618",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "16:31",
+        "EndTime": "18:50",
+        "Duration": 2.38,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "K142",
+        "TrainType": "快速",
+        "From": "重庆西站",
+        "To": "成都西站",
+        "BeginTime": "09:07",
+        "EndTime": "12:32",
+        "Duration": 3.78,
+        "Cost": 105.66
+    },
+    {
+        "TrainID": "G1756",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "17:41",
+        "EndTime": "19:21",
+        "Duration": 1.75,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G1518",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "15:00",
+        "EndTime": "16:41",
+        "Duration": 1.78,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8512",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "07:04",
+        "EndTime": "08:50",
+        "Duration": 1.77,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8762",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都南站",
+        "BeginTime": "10:49",
+        "EndTime": "13:18",
+        "Duration": 2.48,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8764",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "13:03",
+        "EndTime": "14:35",
+        "Duration": 1.62,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8763",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都南站",
+        "BeginTime": "10:49",
+        "EndTime": "13:18",
+        "Duration": 2.48,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8765",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "13:03",
+        "EndTime": "14:35",
+        "Duration": 1.62,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8769",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都南站",
+        "BeginTime": "17:00",
+        "EndTime": "19:04",
+        "Duration": 2.15,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8650",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都南站",
+        "BeginTime": "06:32",
+        "EndTime": "07:53",
+        "Duration": 1.35,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G3740",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "15:26",
+        "EndTime": "17:10",
+        "Duration": 1.8,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G2942",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "13:29",
+        "EndTime": "14:47",
+        "Duration": 1.38,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G3586",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "21:45",
+        "EndTime": "23:02",
+        "Duration": 1.48,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G3594",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "20:44",
+        "EndTime": "22:08",
+        "Duration": 1.55,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8660",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "08:21",
+        "EndTime": "10:00",
+        "Duration": 1.65,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "Z586",
+        "TrainType": "直达特快",
+        "From": "重庆北站",
+        "To": "成都西站",
+        "BeginTime": "15:57",
+        "EndTime": "18:44",
+        "Duration": 3.28,
+        "Cost": 132.08
+    },
+    {
+        "TrainID": "G3584",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "16:04",
+        "EndTime": "17:21",
+        "Duration": 1.38,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G3712",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "20:54",
+        "EndTime": "22:20",
+        "Duration": 1.77,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G3582",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "12:13",
+        "EndTime": "13:29",
+        "Duration": 1.35,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D49",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "05:27",
+        "EndTime": "07:55",
+        "Duration": 2.63,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G8644",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "06:38",
+        "EndTime": "08:03",
+        "Duration": 1.42,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "D5109",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "成都东站",
+        "BeginTime": "10:55",
+        "EndTime": "13:24",
+        "Duration": 2.48,
+        "Cost": 158.49
+    },
+    {
+        "TrainID": "G8574",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "08:57",
+        "EndTime": "11:07",
+        "Duration": 2.17,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8576",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "07:21",
+        "EndTime": "09:19",
+        "Duration": 1.97,
+        "Cost": 171.7
+    },
+    {
+        "TrainID": "G8572",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "成都东站",
+        "BeginTime": "16:23",
+        "EndTime": "17:53",
+        "Duration": 1.5,
+        "Cost": 171.7
+    }
+]

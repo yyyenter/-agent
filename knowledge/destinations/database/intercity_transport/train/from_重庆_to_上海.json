@@ -1,0 +1,232 @@
+[
+    {
+        "TrainID": "D2218",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:38",
+        "EndTime": "21:33",
+        "Duration": 13.92,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "Z258",
+        "TrainType": "直达特快",
+        "From": "重庆北站",
+        "To": "上海南站",
+        "BeginTime": "14:10",
+        "EndTime": "07:57",
+        "Duration": 17.78,
+        "Cost": 721.0
+    },
+    {
+        "TrainID": "D638",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:29",
+        "EndTime": "22:15",
+        "Duration": 12.87,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "D3074",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "06:21",
+        "EndTime": "18:25",
+        "Duration": 12.07,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "D2270",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:32",
+        "EndTime": "21:19",
+        "Duration": 13.78,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "D2214",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:09",
+        "EndTime": "19:20",
+        "Duration": 12.18,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "D2208",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:22",
+        "EndTime": "23:16",
+        "Duration": 12.98,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "K73",
+        "TrainType": "快速",
+        "From": "重庆北站",
+        "To": "上海南站",
+        "BeginTime": "08:32",
+        "EndTime": "12:23",
+        "Duration": 27.85,
+        "Cost": 576.8
+    },
+    {
+        "TrainID": "D354",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:07",
+        "EndTime": "22:21",
+        "Duration": 12.3,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "D954",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海站",
+        "BeginTime": "09:53",
+        "EndTime": "20:21",
+        "Duration": 10.65,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "D3058",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海站",
+        "BeginTime": "08:38",
+        "EndTime": "21:18",
+        "Duration": 12.77,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "G1534",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:58",
+        "EndTime": "19:32",
+        "Duration": 11.57,
+        "Cost": 937.31
+    },
+    {
+        "TrainID": "D958",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海站",
+        "BeginTime": "07:51",
+        "EndTime": "18:25",
+        "Duration": 10.57,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "G1339",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:36",
+        "EndTime": "23:00",
+        "Duration": 11.4,
+        "Cost": 937.31
+    },
+    {
+        "TrainID": "G1335",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "上海虹桥站",
+        "BeginTime": "08:17",
+        "EndTime": "20:55",
+        "Duration": 12.63,
+        "Cost": 937.31
+    },
+    {
+        "TrainID": "G1976",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:20",
+        "EndTime": "22:32",
+        "Duration": 13.2,
+        "Cost": 937.31
+    },
+    {
+        "TrainID": "G1338",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:36",
+        "EndTime": "23:00",
+        "Duration": 11.4,
+        "Cost": 937.31
+    },
+    {
+        "TrainID": "G1334",
+        "TrainType": "高铁",
+        "From": "重庆西站",
+        "To": "上海虹桥站",
+        "BeginTime": "08:17",
+        "EndTime": "20:55",
+        "Duration": 12.63,
+        "Cost": 937.31
+    },
+    {
+        "TrainID": "D3055",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海站",
+        "BeginTime": "08:38",
+        "EndTime": "21:18",
+        "Duration": 12.77,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "D635",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:29",
+        "EndTime": "22:15",
+        "Duration": 12.87,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "D955",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海站",
+        "BeginTime": "07:51",
+        "EndTime": "18:25",
+        "Duration": 10.57,
+        "Cost": 865.21
+    },
+    {
+        "TrainID": "G1475",
+        "TrainType": "高铁",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:26",
+        "EndTime": "20:01",
+        "Duration": 10.7,
+        "Cost": 937.31
+    },
+    {
+        "TrainID": "D2267",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:32",
+        "EndTime": "21:19",
+        "Duration": 13.78,
+        "Cost": 865.21
+    }
+]

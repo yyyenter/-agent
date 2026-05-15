@@ -1,0 +1,722 @@
+[
+    {
+        "TrainID": "G15",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "14:00",
+        "EndTime": "17:22",
+        "Duration": 3.37,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G1",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "07:00",
+        "EndTime": "10:24",
+        "Duration": 3.4,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G21",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "17:00",
+        "EndTime": "20:14",
+        "Duration": 3.23,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G141",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "13:34",
+        "EndTime": "18:00",
+        "Duration": 4.43,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G153",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "16:30",
+        "EndTime": "21:08",
+        "Duration": 4.63,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G105",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "07:17",
+        "EndTime": "11:45",
+        "Duration": 4.47,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G121",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "10:05",
+        "EndTime": "14:14",
+        "Duration": 4.15,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G157",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "16:53",
+        "EndTime": "21:37",
+        "Duration": 4.73,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G119",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "09:24",
+        "EndTime": "13:59",
+        "Duration": 4.58,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G147",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "14:27",
+        "EndTime": "19:07",
+        "Duration": 4.67,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G7",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "10:00",
+        "EndTime": "13:24",
+        "Duration": 3.4,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G9",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "11:00",
+        "EndTime": "14:32",
+        "Duration": 3.53,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G103",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "06:20",
+        "EndTime": "10:40",
+        "Duration": 4.33,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G39",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "19:04",
+        "EndTime": "22:17",
+        "Duration": 3.22,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G139",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "13:04",
+        "EndTime": "17:12",
+        "Duration": 4.13,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G193",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "16:07",
+        "EndTime": "20:47",
+        "Duration": 4.67,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G13",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "13:00",
+        "EndTime": "16:30",
+        "Duration": 3.5,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G5",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "09:00",
+        "EndTime": "12:24",
+        "Duration": 3.4,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G27",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "19:00",
+        "EndTime": "22:13",
+        "Duration": 3.22,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G3",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "08:00",
+        "EndTime": "11:23",
+        "Duration": 3.38,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G23",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "18:00",
+        "EndTime": "21:33",
+        "Duration": 3.55,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G11",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "12:00",
+        "EndTime": "15:33",
+        "Duration": 3.55,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G195",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "16:17",
+        "EndTime": "20:59",
+        "Duration": 4.7,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G161",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "17:33",
+        "EndTime": "22:06",
+        "Duration": 4.55,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G2585",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "18:41",
+        "EndTime": "23:11",
+        "Duration": 4.5,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G183",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "12:43",
+        "EndTime": "17:08",
+        "Duration": 4.42,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G17",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "15:00",
+        "EndTime": "18:24",
+        "Duration": 3.4,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G109",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "07:45",
+        "EndTime": "12:10",
+        "Duration": 4.42,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G113",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "08:39",
+        "EndTime": "13:08",
+        "Duration": 4.48,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G117",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "09:20",
+        "EndTime": "13:44",
+        "Duration": 4.4,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G125",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "10:48",
+        "EndTime": "15:22",
+        "Duration": 4.57,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G129",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "11:18",
+        "EndTime": "15:56",
+        "Duration": 4.63,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G133",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "11:49",
+        "EndTime": "16:13",
+        "Duration": 4.4,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G111",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "08:16",
+        "EndTime": "12:41",
+        "Duration": 4.42,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G149",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "15:08",
+        "EndTime": "19:39",
+        "Duration": 4.52,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G169",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "09:38",
+        "EndTime": "14:04",
+        "Duration": 4.43,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G191",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "15:18",
+        "EndTime": "20:07",
+        "Duration": 4.82,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G33",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "08:56",
+        "EndTime": "12:20",
+        "Duration": 3.4,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G135",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "12:12",
+        "EndTime": "16:49",
+        "Duration": 4.62,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G123",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "10:14",
+        "EndTime": "14:54",
+        "Duration": 4.67,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G151",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "15:49",
+        "EndTime": "20:25",
+        "Duration": 4.6,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G143",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "14:08",
+        "EndTime": "18:28",
+        "Duration": 4.33,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G137",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "12:47",
+        "EndTime": "17:04",
+        "Duration": 4.28,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G19",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "16:00",
+        "EndTime": "19:24",
+        "Duration": 3.4,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G107",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "07:25",
+        "EndTime": "11:54",
+        "Duration": 4.48,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G127",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "11:05",
+        "EndTime": "15:37",
+        "Duration": 4.53,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G177",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "07:49",
+        "EndTime": "12:45",
+        "Duration": 4.93,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G35",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "09:56",
+        "EndTime": "13:20",
+        "Duration": 3.4,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G179",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "08:29",
+        "EndTime": "12:59",
+        "Duration": 4.5,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G159",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "17:19",
+        "EndTime": "21:50",
+        "Duration": 4.52,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G181",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "10:42",
+        "EndTime": "15:18",
+        "Duration": 4.6,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G31",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "07:56",
+        "EndTime": "11:19",
+        "Duration": 3.38,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G115",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "09:10",
+        "EndTime": "13:29",
+        "Duration": 4.32,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G37",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "10:56",
+        "EndTime": "14:28",
+        "Duration": 3.53,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G173",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "07:04",
+        "EndTime": "11:35",
+        "Duration": 4.52,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G185",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "13:20",
+        "EndTime": "17:51",
+        "Duration": 4.52,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G187",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "13:38",
+        "EndTime": "18:10",
+        "Duration": 4.53,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G145",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "14:14",
+        "EndTime": "18:51",
+        "Duration": 4.62,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G189",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "15:12",
+        "EndTime": "19:43",
+        "Duration": 4.52,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G197",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "08:12",
+        "EndTime": "12:35",
+        "Duration": 4.38,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "T109",
+        "TrainType": "特快",
+        "From": "北京站",
+        "To": "南京站",
+        "BeginTime": "20:03",
+        "EndTime": "07:43",
+        "Duration": 11.67,
+        "Cost": 449.1
+    },
+    {
+        "TrainID": "1461",
+        "TrainType": "快速",
+        "From": "北京站",
+        "To": "南京站",
+        "BeginTime": "11:56",
+        "EndTime": "02:56",
+        "Duration": 15.0,
+        "Cost": null
+    },
+    {
+        "TrainID": "Z281",
+        "TrainType": "直达特快",
+        "From": "北京丰台站",
+        "To": "南京站",
+        "BeginTime": "19:21",
+        "EndTime": "05:11",
+        "Duration": 10.25,
+        "Cost": 449.1
+    },
+    {
+        "TrainID": "G171",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "06:30",
+        "EndTime": "11:10",
+        "Duration": 4.67,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G131",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "11:27",
+        "EndTime": "15:52",
+        "Duration": 4.42,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "G101",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "南京南站",
+        "BeginTime": "06:10",
+        "EndTime": "10:44",
+        "Duration": 4.57,
+        "Cost": 583.83
+    },
+    {
+        "TrainID": "Z284",
+        "TrainType": "直达特快",
+        "From": "北京丰台站",
+        "To": "南京站",
+        "BeginTime": "19:21",
+        "EndTime": "05:11",
+        "Duration": 10.25,
+        "Cost": 449.1
+    },
+    {
+        "TrainID": "D17",
+        "TrainType": "动车",
+        "From": "北京站",
+        "To": "南京站",
+        "BeginTime": "19:16",
+        "EndTime": "04:46",
+        "Duration": 9.5,
+        "Cost": 538.92
+    },
+    {
+        "TrainID": "D11",
+        "TrainType": "动车",
+        "From": "北京站",
+        "To": "南京站",
+        "BeginTime": "21:15",
+        "EndTime": "06:57",
+        "Duration": 9.7,
+        "Cost": 538.92
+    },
+    {
+        "TrainID": "D9",
+        "TrainType": "动车",
+        "From": "北京南站",
+        "To": "南京站",
+        "BeginTime": "19:36",
+        "EndTime": "05:05",
+        "Duration": 9.48,
+        "Cost": 538.92
+    },
+    {
+        "TrainID": "D7",
+        "TrainType": "动车",
+        "From": "北京站",
+        "To": "南京站",
+        "BeginTime": "19:22",
+        "EndTime": "04:52",
+        "Duration": 9.5,
+        "Cost": 538.92
+    },
+    {
+        "TrainID": "D5",
+        "TrainType": "动车",
+        "From": "北京站",
+        "To": "南京站",
+        "BeginTime": "21:21",
+        "EndTime": "06:46",
+        "Duration": 9.42,
+        "Cost": 538.92
+    }
+]

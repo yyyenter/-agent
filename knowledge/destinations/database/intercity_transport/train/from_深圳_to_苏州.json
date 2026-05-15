@@ -1,0 +1,72 @@
+[
+    {
+        "TrainID": "G2783",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "苏州站",
+        "BeginTime": "13:02",
+        "EndTime": "22:30",
+        "Duration": 9.47,
+        "Cost": 759.35
+    },
+    {
+        "TrainID": "D2282",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "苏州站",
+        "BeginTime": "09:39",
+        "EndTime": "21:53",
+        "Duration": 12.23,
+        "Cost": 700.94
+    },
+    {
+        "TrainID": "G2787",
+        "TrainType": "高铁",
+        "From": "深圳站",
+        "To": "苏州站",
+        "BeginTime": "06:33",
+        "EndTime": "15:46",
+        "Duration": 9.22,
+        "Cost": 759.35
+    },
+    {
+        "TrainID": "K34",
+        "TrainType": "快速",
+        "From": "深圳站",
+        "To": "苏州站",
+        "BeginTime": "12:16",
+        "EndTime": "12:53",
+        "Duration": 24.62,
+        "Cost": 467.29
+    },
+    {
+        "TrainID": "G2786",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "苏州站",
+        "BeginTime": "13:02",
+        "EndTime": "22:30",
+        "Duration": 9.47,
+        "Cost": 759.35
+    },
+    {
+        "TrainID": "G2790",
+        "TrainType": "高铁",
+        "From": "深圳站",
+        "To": "苏州站",
+        "BeginTime": "06:33",
+        "EndTime": "15:46",
+        "Duration": 9.22,
+        "Cost": 759.35
+    },
+    {
+        "TrainID": "K35",
+        "TrainType": "快速",
+        "From": "深圳站",
+        "To": "苏州站",
+        "BeginTime": "12:16",
+        "EndTime": "12:53",
+        "Duration": 24.62,
+        "Cost": 467.29
+    }
+]

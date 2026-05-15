@@ -1,0 +1,369 @@
+id,name,hotelname_en,featurehoteltype,lat,lon,price,numbed
+0,臻程酒店(武汉汉阳江滩国博店),Yucheng Hotel (Wuhan Hanyang Jiangtan Guobo),免费停车,30.533848,114.271243,308,1
+1,武汉江滩好百年美仑国际酒店,Grand Madison Wuhan Hankou on the Bund,江河景房,30.57657,114.297248,499,1
+2,武汉汉口温德姆花园酒店,Wyndham Garden Wuhan Hankou,免费停车,30.613822,114.247295,498,1
+3,武汉会议中心,Wuhan Conference Center,免费停车,30.612458,114.29597,518,1
+4,武汉江滩世茂凡象酒店,Ethos Hotel Wuhan Riverside,免费停车,30.586202,114.302012,471,1
+5,武汉万科瞻云酒店,The Yun Hotel Hankou,泳池,30.626677,114.23768,469,1
+6,水云岚酒店(武汉江汉路步行街店),Shuiyunlan Hotel,机器人服务,30.580917,114.288128,361,1
+7,武汉中交五洲皇冠酒店,V-Continent WuHan Hotel,行政酒廊,30.505159,114.202726,410,2
+8,武汉洪山宾馆,Hongshan Hotel,泳池,30.54656,114.336871,496,2
+9,开元大酒店(武汉高铁站欢乐谷店),"New Century Hotel (Wuhan High-speed Railway Station, Happy Valley)",管家服务,30.630145,114.391357,439,2
+10,臻程酒店(武汉汉口火车站泛海CBD店),Zhencheng Hotel (Wuhan Hankou Railway Station Fanhai CBD Branch),免费停车,30.610597,114.252982,322,1
+11,武汉高铁站希尔顿欢朋酒店,Hampton by Hilton Wuhan railway Station,免费停车,30.60948,114.411733,428,1
+12,武汉汉口江滩保安洋行漫心府,Wuhan Hankou River Beach Security Foreign Travel Man Xinfu,管家服务,30.581779,114.298373,493,1
+13,瑞景凯瑞精选酒店(武商梦时代街道口店),Ruijing Kairui Collection Hotel (Wu Shang Meng Times Street Branch),管家服务,30.525723,114.337171,379,1
+14,武汉欧亚会展国际酒店,Eurasia Convention International Hotel,泳池,30.639813,114.207022,449,2
+15,武汉汉口火车站希尔顿惠庭酒店,Home2 Suites By Hilton Wuhan Hankou Railway Station,免费停车,30.617046,114.259267,401,1
+16,武汉王家湾郁锦香酒店(国博中心店),Golden Tulip Wuhan Wangjiawan,智能客控,30.558393,114.224851,351,1
+17,丽橙酒店·逸(武汉楚河汉街岳家嘴地铁站店),Licheng Hotel Yi (Wuhan Chuhe Han Street Yuejiazui Subway Station),免费停车,30.575427,114.361691,448,1
+18,武汉车都金盾大酒店(沌口体育中心店),Wuhan Chedu Kingdom Plaza Hotel (Zhuankou Sports Center),SPA,30.490753,114.159245,456,2
+19,武汉光谷大道希尔顿欢朋酒店,Hampton by Hilton Wuhan Guanggu Avenue,免费停车,30.507412,114.424435,469,1
+20,陌上轻雅酒店(武汉汉口火车站万科广场店),Moshang Qingya Hotel (Wuhan Hankou Railway Station),家庭房,30.619849,114.249897,287,1
+21,珞珈山宾馆(武汉大学东湖店),LuoJia Hills Hotel,窗外好景,30.531469,114.374127,438,2
+22,武汉硚口古田希尔顿欢朋酒店,Hampton by Hilton Wuhan Qiaokou Gutian,免费停车,30.584868,114.188888,451,1
+23,武汉一宝华美达酒店(汉口火车站竹叶山地铁站店),YIbao Ramada Wuhan,江河景房,30.627039,114.295267,339,1
+24,武汉中南路隆森美仑国际酒店,Longsen Meilun International Hotel (Yellow Crane Tower Zhongnan Road Subway Station),自营亲子房,30.532681,114.330818,370,1
+25,武汉汉口金融中心美仑酒店,"Madison  Hotel Hankou Financial Center, Wuhan",免费停车,30.594169,114.272919,496,1
+26,武汉青莲·景合酒店(武汉动物园国际博览中心店),Wuhan JING Hotel (Wuhan Zoo International Expo Center),窗外好景,30.537834,114.247787,348,1
+27,武汉经开希尔顿欢朋酒店,Hampton by Hilton Wuhan Jingkai,免费停车,30.488339,114.157718,535,1
+28,武汉黄鹤楼首义广场漫心酒店,Wuhan Huanghelou Shouyi square MANXIN Hotel,免费停车,30.539711,114.307009,396,2
+29,武汉光谷蔚景温德姆酒店,Wingate by Wyndham Wuhan Optics Valley,免费停车,30.487355,114.515016,381,2
+30,武汉街道口珞珈山亚朵酒店,Atour Hotel Wuhan Jiedaokou Luojia Mountain,免费停车,30.536249,114.349569,456,1
+31,纽宾凯N+国际酒店(武汉中山公园雪松路店),Wuhan Zhongshan Park Xuesong Road,免费停车,30.592134,114.273104,388,1
+32,武汉天河机场奥特莱斯亚朵酒店,Wuhan Tianhe Airport Outlets Atour Hotel,免费停车,30.721717,114.260539,334,1
+33,武汉江城明珠豪生大酒店,Howard Johnson Pearl Plaza Wuhan,江河景房,30.590778,114.304157,589,2
+34,万信至格酒店(武汉天河机场航空总部地铁站店),Wassim Hotel (Wuhan Tianhe Airport Aviation Headquarters Subway Station),免费停车,30.73043,114.215932,358,1
+35,武汉温德姆花园酒店(光谷会展中心大悦城店),Wyndham Garden Wuhan Optics Valley Hotel,网红泳池,30.482965,114.492426,498,1
+36,武汉汇豪大酒店(江汉路步行街店),Wuhan Huihao Hotel (Jianghan Road Pedestrian Street),免费停车,30.585868,114.287032,399,1
+37,武汉广场汉口金融中心亚朵酒店,ATOUR HOTEL,免费停车,30.594283,114.273187,558,1
+38,俪居花园酒店(武汉体育中心江汉大学店),Wuhan Liju Garden Hotel,免费停车,30.513558,114.190643,484,1
+39,武汉汉口金融中心枫渡酒店,FONTOO Hotel Wuhan Hankou IFC( International Financial Center),SPA,30.588498,114.279518,329,1
+40,武汉青山希尔顿惠庭酒店(武汉高铁站店),Home2 Suites by Hilton Wuhan Qingshan,免费停车,30.622951,114.387811,387,1
+41,武汉沌口体育中心枫渡酒店,FONTOO Hotel Wuhan Zhuankou Sport Center,SPA,30.496617,114.178477,498,1
+42,武汉汉口金融中心万象城漫心酒店,Wuhan Hankou Financial Center MixC Manxin Hotel,免费停车,30.598286,114.276928,510,1
+43,武汉光谷科技会展中心大悦城丽芮酒店,Radisson Red Wuhan Optics Valley Science & Technology Exhibition Center Grand Joy City,自营亲子房,30.488355,114.505611,372,1
+44,武汉光谷关山大道城际酒店,Wuhan Optics Valley Guanshan Avenue Intercity Hotel,窗外好景,30.494778,114.412521,370,1
+45,武汉高铁站西广场亚朵X酒店,"Atour X Hotel, West Plaza, Wuhan High-speed Railway Station",免费停车,30.603852,114.422403,403,2
+46,武汉国际广场希尔顿欢朋酒店,Hampton by Hilton Wuhan International Plaza,家庭房,30.571598,114.268809,480,1
+47,武汉光谷漫心酒店,MANXIN Hotel (Wuhan Optical Valley Software Park store),免费停车,30.478779,114.392003,458,1
+48,武汉恺德光谷城际酒店,IntercityHotel,免费停车,30.486446,114.500787,396,1
+49,武汉黄鹤楼美仑酒店,Wuhan Yellow Crane Tower Meilun Hotel,免费停车,30.545536,114.318794,378,1
+50,武汉江滩江汉路步行街轻居酒店,Wuhan Jiangtan Jianghan Road Pedestrian Street Qingju Hotel,家庭房,30.578339,114.293392,412,1
+51,武汉喜瑞得大酒店(沌口体育中心店),Xiruide Hotel Wuhan (Zhuankou Sports Center),桑拿,30.495236,114.159368,377,1
+52,武汉关山大道光谷软件园亚朵酒店,"Yaduo Hotel, Optic Valley Software Park, Guanshan Avenue, Wuhan",免费停车,30.484683,114.409325,394,2
+53,武汉东方建国大酒店,Oriental Jianguo Hotel,管家服务,30.615841,114.258204,298,2
+54,朗丽兹酒店(武汉光谷金融港工程大学店),Lang Liz Hotel (Wuhan Optics Valley Financial Port Engineering University),机器人服务,30.460503,114.429109,364,1
+55,武汉国博中心汉阳永旺亚朵酒店,"Hanyang Yongwang   Atour  Hotel, Wuhan International Expo Center",免费停车,30.507041,114.202446,412,1
+56,武汉汉口泛海CBD新华路漫心酒店,Wuhan Hankou Railway Station Xinhua Road Manxin Hotel,影音房,30.605875,114.269501,362,1
+57,武汉金银湖亚朵酒店,Atour Hotel Jinyin Lake Wuhan,免费停车,30.647251,114.199619,403,1
+58,武汉万达瑞华酒店,Wanda Reign Wuhan,湖畔美居,30.552806,114.347532,991,2
+59,武汉沌口东风大道体育中心亚朵酒店,Atour Hotel(Wuhan Zhuankou Dongfeng Avenue Sports Center Store),免费停车,30.483171,114.152711,449,1
+60,捷尼天空大酒店(武汉天河国际机场店),J.SKY HOTEL,停车场,30.78978,114.234843,371,1
+61,武汉晴川假日酒店,Holiday Inn Wuhan Riverisde,免费停车,30.558054,114.285627,448,1
+62,武汉盛捷未来中心酒店公寓,Somerset Future Center Wuhan,桑拿,30.554071,114.243087,432,2
+63,武汉泛海费尔蒙酒店,Fairmont Wuhan,桑拿,30.598954,114.250409,1413,1
+64,武汉潮漫凯瑞国际酒店(文华学院华科大店),Zmax Carrey Internat i onal Hotel,免费停车,30.491589,114.430171,498,2
+65,武汉武昌火车站中南亚朵轻居酒店,Atour Light Hotel (Wuhan Wuchang Railway Station Zhongnan Store),免费停车,30.530497,114.323248,394,1
+66,武汉王家湾华美达酒店(人信汇店),Ramada Wuhan Wangjiawan (Renxinhui),自营舒睡房,30.56111,114.211594,418,2
+67,武汉东湖宾馆,East Lake Hotel,停车场,30.551478,114.366547,657,1
+68,武汉黄鹤楼长江大桥亚朵X酒店,Atour X Hotel Wuhan Yellow Crane Tower Yangtze River Bridge,空调,30.548657,114.298059,399,1
+69,武汉山水富丽华酒店,Furama Shanshui Hotel,免费停车,30.532809,114.309851,678,1
+70,武汉松庐凯瑞酒店(武大东湖店),Wuhan Songlu  Hotel (Wuda Donghu Branch),免费停车,30.529306,114.370389,440,2
+71,武汉光谷凯悦酒店,Hyatt Regency Wuhan Optics Valley,泳池,30.507178,114.423197,564,1
+72,武汉汉口喜来登大酒店,Sheraton Grand Wuhan Hankou Hotel,泳池,30.602536,114.255114,649,2
+73,武汉富力威斯汀酒店,the Westin Wuhan Wuchang,SPA,30.564554,114.307987,799,1
+74,武汉富力万达嘉华酒店,Wanda Realm Wuhan,桑拿,30.552511,114.346344,798,2
+75,武汉汉口恒信希尔顿花园酒店,Hilton Garden Inn Wuhan Hankou,免费停车,30.623137,114.239742,407,1
+76,武汉世茂希尔顿酒店,Hilton Wuhan Riverside,桑拿,30.538866,114.27401,845,1
+77,憬黎公寓酒店(武汉国际广场武胜路地铁站店),Jingli Apartment Hotel (Wuhan International Plaza Wusheng Road Subway Station),窗外好景,30.571795,114.268882,304,1
+78,武汉马哥孛罗酒店,Marco Polo Wuhan,桑拿,30.585298,114.301677,798,1
+79,武汉江夏希尔顿欢朋酒店,Hampton by Hilton Wuhan Jiangxia,家庭房,30.356298,114.345863,359,2
+80,武汉江汉路步行街怡程酒店,"Yicheng Hotel, Jianghan Road Pedestrian Street, Wuhan",家庭房,30.580646,114.297369,428,1
+81,武汉丹枫白露酒店,Wuhan Royal Suites & Towers Hotel,桑拿,30.598796,114.302516,588,2
+82,武汉香格里拉大酒店,Shangri-La Hotel Wuhan,泳池,30.602505,114.283031,616,2
+83,武汉光谷希尔顿酒店,Hilton Wuhan Optics Valley,湖畔美居,30.55128,114.490424,615,1
+84,静观雅宿酒店(武汉光谷广场店),Jingguan Yasu Hotel (Wuhan Optics Valley Plaza),免费停车,30.508801,114.399074,347,1
+85,凯里亚德酒店(武汉天地江滩店),Kyriad Hotel (Wuhan Tiandi Jiangtan Branch),家庭房,30.614127,114.306061,379,2
+86,武汉光谷希尔顿惠庭酒店,Home2 Suites by Hilton Wuhan Optics Valley,停车场,30.487744,114.512207,437,1
+87,武汉光谷皇冠假日酒店,Crowne Plaza Wuhan Optics Valley Hotel,泳池,30.485647,114.479633,649,1
+88,武汉卓尔万豪酒店,Wuhan Marriott Hotel Hankou,桑拿,30.669487,114.279376,549,1
+89,武汉新世界酒店,New World Wuhan Hotel,泳池,30.579234,114.265483,567,2
+90,武汉万象城新华路轻居酒店,Wuhan Vientiane Xinhua Road Light  Hotel,停车场,30.605951,114.269637,350,1
+91,武汉经开希尔顿惠庭酒店,Home2 Suites by Hilton Wuhan Eco-Tech Development Zone,自营亲子房,30.507829,114.201153,416,1
+92,AMIX安迷酒店(黄鹤楼音乐学院店),Amix Hotel,影音房,30.539949,114.29299,329,1
+93,武汉江汉路步行街美仑酒店,MADISON Hotel jianghan Road Pedestrian Street Wuhan,家庭房,30.576872,114.289037,420,1
+94,武汉山水富丽华酒店(王家湾人信汇店),WuHan Shanshui Furama Hotel ( Wangjiawan Renxinhui Branch),SPA,30.549937,114.205597,329,2
+95,武汉锦江国际大酒店,Wuhan Jin Jiang International Hotel,泳池,30.59635,114.270669,565,2
+96,武汉襄投万豪酒店,Wuhan Marriott Hotel Wuchang,泳池,30.56403,114.348813,899,2
+97,武汉新华voco酒店,voco Wuhan Xinhua Hotel,湖景房,30.594116,114.268923,619,2
+98,思瀚天斯酒店(武汉天河机场天阳路地铁站店),Silu Tiansi Hotel,桑拿,30.767948,114.270377,367,1
+99,武汉友谊国际酒店,You Yi International Hotel,湖景房,30.560473,114.316504,598,2
+100,武汉天河机场东希尔顿欢朋酒店,Hampton by Hilton Wuhan Tianhe Airport East,免费停车,30.712129,114.255154,353,2
+101,武汉华美达光谷大酒店,Ramada Plaza by Wyndham Optics Valley Wuhan,泳池,30.506329,114.396594,655,1
+102,秋果酒店(武汉香港路儿童医院店),Qiuguo Hotel (Wuhan Hong Kong Road Children's Hospital Branch),免费停车,30.60891,114.278427,303,1
+103,秋果酒店(武汉光谷虎泉杨家湾地铁站店),True go Hotel (Wuhan Optics Valley Huquan Yangjiawan Metro Station),儿童乐园,30.507409,114.377585,281,1
+104,武汉汉阳威斯汀酒店,The Westin Wuhan Hanyang,桑拿,30.559309,114.20586,599,1
+105,兰斯伯瑞国际酒店(武汉大学街道口地铁站店),The Lanesborough International Hotel,家庭房,30.527695,114.347832,351,1
+106,长青一号酒店(汉口火车站泛海CBD店),Evergreen Hotel No. 1,管家服务,30.613557,114.247648,227,1
+107,YES花园酒店(汉口火车站泛海CBD店),YES Garden Hotel (Hankou Railway Station Fanhai CBD),免费停车,30.613571,114.24762,234,1
+108,武汉保利大酒店,Poly Hotel,管家服务,30.543175,114.334789,247,2
+109,星空花园酒店(武汉四新国际博览中心店),Starry Sky Garden Hotel (Wuhan Sixin International Expo Center),免费停车,30.520887,114.219778,234,1
+110,武汉保和皇冠假日酒店,Crowne Plaza Wuhan,泳池,30.50909,114.175209,858,2
+111,武汉光明万丽酒店,Renaissance Wuhan Hotel,泳池,30.579774,114.356062,600,2
+112,武汉万达颐华酒店,Wanda Yi Wuhan,停车场,30.587804,114.292544,548,1
+113,武汉楚河汉街亚朵S酒店,Atour S Hotel,免费停车,30.558922,114.344836,599,2
+114,武汉天地汉口江滩亚朵酒店,Wuhan Tiandi Hankou jiangtan Yaduo Hotel,管家服务,30.600209,114.307651,526,2
+115,维也纳国际酒店(武汉解放大道同济医学院店),Vienna International Hotel (Wuhan Jiefang Avenue Tongji Medical College),免费停车,30.57683,114.254011,269,1
+116,武汉维景酒店,Metropark Hotel Wuhan,免费停车,30.564436,114.063581,338,1
+117,武汉洲际酒店,Intercontinental Wuhan,桑拿,30.505179,114.245446,725,1
+118,曼居酒店(徐东销品茂湖北大学店),Manju Hotel (Xudong Sales Pinmao Hubei University Shop),免费停车,30.586835,114.339179,295,1
+119,武汉青年路希尔顿欢朋酒店,Hampton by Hilton Wuhan Qingnian Road,免费停车,30.603162,114.260829,559,1
+120,维也纳国际酒店(武汉楚河汉街积玉桥店),Vienna International Hotel (Wuhan Chuhe HanStreet Jiyuqiao Store),免费停车,30.564289,114.315027,305,1
+121,维也纳国际酒店(武汉光谷广场店),"Vienna International Hotel (Optics Valley Plaza, Wuhan)",免费停车,30.495945,114.396872,314,1
+122,武汉黄鹤楼希尔顿欢朋酒店,Hampton by Hilton Wuhan Yellow Crane Tower,窗外好景,30.534079,114.299096,531,1
+123,麗枫酒店(武汉沌口体育中心店),Lavande Hotel (Wuhan Zhuankou Sports Center Branch),免费停车,30.496912,114.179565,499,1
+124,艾隐酒店(武汉江汉路步行街吉庆街店),Ainnker Hotel (Wuhan Jianghan Road Pedestrian Street Jiqing Street),机器人服务,30.58548,114.292473,289,1
+125,武汉江汉路步行街漫心酒店,Wuhan Jianghan Road Pedestrian Street Manxin Hotel,空调,30.578755,114.291273,465,1
+126,武汉武昌中南路亚朵S酒店,Atour S Hotel Wuhan Zhong Nan Road Dream Plaza,免费停车,30.534003,114.332462,469,1
+127,全季酒店(武汉街道口地铁站店),Ji Hotel (Wuhan Jiedaokou),免费停车,30.528661,114.35359,403,1
+128,臻程酒店(武汉徐东销品茂湖北大学店),Zhencheng Hotel (Wuhan Xudong Xiaopinmao Hubei University store),免费停车,30.586458,114.34028,314,1
+129,清能清江饭店(武汉黄鹤楼昙华林店),Qingneng Qingjiang Hotel (Wuhan Yellow Crane Tower Tanhualin),免费停车,30.549754,114.298823,323,1
+130,全季酒店(武汉火车站店),All Seasons Hotel (Wuhan Railway Station),免费停车,30.603755,114.422904,388,1
+131,维也纳国际酒店(武汉天河机场宋家岗地铁站店),Vienna International Hotel (Wuhan Tianhe Airport Songjiagang Subway Station),免费停车,30.721996,114.237855,221,1
+132,桔子酒店(武汉光谷创业街店),Orange Wuhan Optics Valley Chuangye Street Hotel,免费停车,30.500525,114.418916,350,2
+133,星程酒店(武汉天河机场T3航站楼店),Starway Hotel (Wuhan Tianhe Airport T3 Terminal),多功能厅,30.770771,114.218694,442,2
+134,昊颐酒店(武汉江汉路恒隆广场店),Haoyi Hotel,机器人服务,30.574297,114.269477,246,1
+135,武汉光谷广场杨家湾卡缪酒店,"Yangjiawan Kamil Hotel, Optic Valley Plaza, Wuhan",免费停车,30.506351,114.380705,334,1
+136,裕和夫子山度假俱乐部(木兰店),Yuhe Confucius Mountain Resort Club (Mulan Branch),日光浴场,31.132649,114.388125,488,2
+137,武汉白沙洲大道希尔顿欢朋酒店,Hampton by Hilton Wuhan Baishazhou Avenue Hotel,免费停车,30.489396,114.28632,393,2
+138,维也纳国际酒店(武汉黄鹤楼彭刘杨地铁站店),Vienna International Hotel (Wuhan Yellow Crane Tower Pengliuyang Subway Station),免费停车,30.540479,114.301005,315,1
+139,隐居伴山(黄鹤楼昙华林店),Hidden Residence Banshan (Yellow Crane Tower Yuhualin Branch),管家服务,30.552851,114.310237,507,1
+140,桔子酒店(武汉青年路店),Orange Hotel (Wuhan Qingnian Road),免费停车,30.589227,114.263248,322,1
+141,全季酒店(武汉华中农业大学店),Ji Hotel (Wuhan Huazhong Agricultural University),免费停车,30.483762,114.332191,330,1
+142,武汉莱斯丽呈华廷酒店,Grand Rezen Hotel,免费停车,30.569409,114.353987,708,2
+143,武汉武钢宾馆(武汉高铁站科技大学青山校区店),Wugang Hotel,免费停车,30.620485,114.367439,254,1
+144,桔子酒店(武汉光谷科技会展中心店),Orange Hotel (Wuhan Optical Valley Science and Technology Exhibition Center store),免费停车,30.486512,114.509366,357,1
+145,桔子酒店(武汉江汉路步行街店),Orange Hotel (Wuhan Jianghan Road Pedestrian Street),位置超好,30.58445,114.288596,382,2
+146,桔子酒店(武汉中南梦时代店),Orange Hotel (Wuhan Zhongnan Dream Times),停车场,30.534111,114.332406,346,1
+147,桔子酒店(武汉汉口站泛海CBD店),Orange Hotel (Wuhan Hankou Station Fanhai CBD Store),免费停车,30.611177,114.258827,299,1
+148,全季酒店(武汉汉口新华路店),JI Hotel XinHua Road,免费停车,30.597987,114.272059,310,1
+149,汉正瑞鑫大酒店(汉口火车站汉西一路地铁站店),Roing Hotel Wuhan,免费停车,30.586106,114.216842,347,1
+150,维也纳酒店(湖北大学武昌江滩徐家棚地铁站店),"Vienna Hotel (Wuchang Jiangtan Xujiapeng Subway Station, Hubei University)",机器人服务,30.586029,114.329943,268,1
+151,全季酒店(武汉理工大学店),JI Hotel (Wuhan University of Science and Technology),免费停车,30.516381,114.345595,358,1
+152,ZMAX满兮酒店(武汉东湖湖北省博物馆店),ZMAX Manxi Hotel(Wuhan Donghu Branch),免费停车,30.566709,114.372192,296,2
+153,武汉国际博览中心四新亚朵酒店,Atour Hotel International Expo Center Sixin Wuhan,免费停车,30.521119,114.22974,376,1
+154,全季酒店(武汉中南佳兆业广场店),Ji Hotel (Wuhan Zhongnan Kaisa Plaza),免费停车,30.536757,114.325155,322,1
+155,半岛民宿,Peninsula Manor Hotel,窗外好景,30.659957,114.181604,458,1
+156,宜尚酒店(沌口体育中心南太子湖店),ECHARM HOTEL (WuHan Economic Development Zone Aeon Sports Center Branch),免费停车,30.482714,114.193648,403,1
+157,武汉楚河汉街洪山广场亚朵酒店,"Atour Hotel Hongshan Square, Chuhe Han Street, Wuhan",窗外好景,30.548652,114.334984,447,1
+158,柏适酒店(武汉国博中心北地铁站店),Bo Shi Hotel (Wuhan International Expo Center North Subway Station),免费停车,30.511734,114.243348,308,1
+159,全季酒店(武汉光谷六路地铁站店),All Seasons Hotel (Wuhan Guanggu 6th Road Subway Station),免费停车,30.480491,114.513619,330,1
+160,全季酒店(武汉光谷珞喻路店),Ji Hotel (Wuhan Guanggu & Luoyu Road),免费停车,30.517782,114.376946,346,1
+161,武汉光谷科技会展中心会展酒店,Wuhan Optics Valley Technology Exhibition Center Exhibition Hotel,免费停车,30.491648,114.50851,519,2
+162,维克多云享酒店(武汉汉口金融中心万松园店),Victor Cloud Enjoy Hotel (Wuhan Hankou Financial Center Wansongyuan Branch),家庭房,30.594482,114.268505,249,2
+163,东湖八九间民宿,Eight or nine residential rooms in East Lake,免费停车,30.540936,114.415108,398,1
+164,武汉东西湖合正艺品酒店(五环体育中心店),Hazens Hotel Dongxihu Wuhan,免费停车,30.639364,114.138937,288,1
+165,知住·东湖翠民宿,Zhizhu·East Lake Green Homestay,免费停车,30.53945,114.416241,388,1
+166,纽宾凯新宜大酒店(武汉黄鹤楼中南财经大学店),New Beacon SUNYEE HOTEL(Wuhan Yellow Crane Tower Zhongnan University of Finance and Economics Hotel),智能客控,30.539622,114.317701,449,2
+167,全季酒店(武汉光谷生物城同济医院店),JI Hotel (Wuhan Optics Valley Biocity Tongji Hospital),免费停车,30.487098,114.470869,322,1
+168,ME隐和国际酒店(武汉光谷科技港华中科技大学科技园店),ME Yinhe International Hotel (Wuhan University Yuan Road Optics Valley Financial Port),免费停车,30.454298,114.400414,220,2
+169,AK电竞概念酒店(武汉江汉路步行街店),AK E-sports Concept Hotel (Wuhan Jianghan Road Pedestrian Street),江河景房,30.567651,114.290089,303,1
+170,全季酒店(武汉白沙洲龙湖天街店),All Seasons Hotel (Wuhan Baishazhou Longhu Tianjie Branch),免费停车,30.4666,114.292752,314,1
+171,帅府铂颂饭店(武汉大学西门店),bosong hotei,免费停车,30.53666,114.347598,228,2
+172,武汉益合美墅,Wuhan Yihe Villa,棋牌室,30.509472,114.423715,436,1
+173,武汉江汉路步行街亚朵酒店,"56th floor, ping an building, 888 Zhongshan Road, Jianghan District, Wuhan Province",窗外好景,30.579066,114.291164,559,1
+174,武汉啦哩啦谷民宿,Wuhan La Lilagu B&B,免费停车,31.075413,114.459165,488,2
+175,维也纳国际酒店(武汉阳逻新港店),Vienna International Hotel (Wuhan Yangluo new port),免费停车,30.668645,114.557791,246,1
+176,武汉紫阳湖宾馆(首义广场复兴路地铁站店),Wuhan Ziyang Lake Hotel,多功能厅,30.533797,114.302474,279,2
+177,同興·木子公馆(武汉黎黄陂路步行街巴公房子旧址店),Muzi Homestay,家庭房,30.588503,114.300742,458,1
+178,武汉美联假日酒店(武汉江汉路步行街循礼门地铁站店),Wuhan Meilian Holiday Hotel,免费停车,30.583965,114.282328,332,1
+179,武汉山水有相逢酒店,Shanshui Youxiangfeng Hotel,茶室,30.582373,114.365,349,1
+180,武汉东家西舍民宿(东湖风景区店),Dongjia Xishe Homestay,免费停车,30.540039,114.422293,466,1
+181,爱电竞酒店(武汉大学街道口地铁站店),I Electronic sports Hotel (Wuhan University Jiedaokou Subway Station),影音房,30.527634,114.34797,403,1
+182,武汉东湖小白民宿,Little White Homestay,小而美,30.531515,114.434806,507,2
+183,斜阳耒筑民宿·木兰店,Xieyang Leizhu Homestay Magnolia Branch,桑拿,31.107197,114.466418,938,1
+184,中青·秋果酒店(武汉关山大道光谷软件园店),China Youth Qiuguo Hotel (Wuhan Guanshan Avenue Optics Valley Software Park),影音房,30.482731,114.410809,268,1
+185,丽怡酒店(武汉光谷科技会展中心店),Liyi Hotel (Wuhan Optics Valley Technology Convention and Exhibition Center),免费停车,30.487734,114.503302,334,1
+186,武汉添雅1911酒店(汉口火车站店),Tianya 1911 Hotel,免费停车,30.614654,114.262642,309,2
+187,武汉风貌安坻酒店,HOTEL ANDI TOWNSCAPE WUHAN,管家服务,30.577284,114.296056,579,1
+188,格雷斯精选酒店(武汉白沙洲杨泗港长江大桥店),Grace Select Hotel (Wuhan Baishazhou Yangsigang Yangtze River Bridge),免费停车,30.489604,114.283963,226,1
+189,如家睿柏·云酒店(武汉体育中心协和车谷院区店),Home Inn Yubai Yun Hotel,家庭房,30.496151,114.163521,360,1
+190,武汉卓玺创新谷酒店(体育中心车城东路地铁站店),Wuhan Zhuojing Innovative Valley Hotel,管家服务,30.493083,114.18167,435,2
+191,武汉光谷安朴酒店,The Amber House Wuhan Optics Valley,停车场,30.496621,114.533473,528,1
+192,武汉光谷美居酒店,Mercure Hotel,免费停车,30.4806,114.402862,370,2
+193,极乐汤(武汉极地海洋公园店),Gokurakuyu (Jin Yin Tan) Spa Hotel (Wuhan Polar Ocean World),桑拿,30.665328,114.279281,299,1
+194,雅斯特酒店(武汉沌口体育中心东风公司地铁站店),Yasite Hotel (Wuhan Zhuankou Sports Center Dongfeng Company Subway Station Branch),停车场,30.498123,114.168243,383,2
+195,乐游苑(武汉东湖生态风景区店),Leyouyuan (Wuhan Donghu Ecological Scenic Area),免费停车,30.516912,114.434411,463,2
+196,搏胜大酒店(武汉理工大学街道口店),Bossheng Hotel (Wuhan University of Technology Street Entrance Branch),免费停车,30.516557,114.33324,297,2
+197,武汉云泊城市度假酒店(东湖风景区店),Wuhan Yunbo City Resort Hotel (East Lake Scenic Area),家庭房,30.540621,114.421175,444,2
+198,维也纳国际酒店(武汉街道口理工店),Vienna International Hotel (Wuhan jiejiekou science and technology store),免费停车,30.52317,114.352555,332,1
+199,二妃山庄(武汉光谷生物城同济医院店),QUEENS VILLA,免费停车,30.482979,114.479291,311,1
+200,憬黎公寓酒店(武汉泛海CBD汉口火车站店),TULIP LODJ Apartment Hotel (Wuhan Fanhai CBD Hankou Railway Station Branch),自营亲子房,30.600616,114.254464,256,1
+201,武汉光谷二路楚天丽芮酒店,Wuhan Optics Valley 2nd Road Chutian Radisson Hotel,自营亲子房,30.461654,114.45171,274,2
+202,绿树电竞酒店(绿地缤纷城店),Green Tree E-sports Hotel (Greenland Binfencheng Branch),棋牌室,30.583126,114.322191,437,2
+203,凯莱熙酒店(武汉黄鹤楼昙华林店),Kailaixi Hotel (Wuhan Yellow Crane Tower Tanhualin),儿童乐园,30.54938,114.300639,278,2
+204,锦江都城酒店(武汉武昌江滩积玉桥地铁站店),Metropolo Jinjiang Hotel,免费停车,30.565443,114.310921,258,1
+205,锦江都城酒店(武汉华科大光谷创业街店),Metropolo Jinjiang Hotels,免费停车,30.496882,114.421181,271,1
+206,悦酒店(武汉汉口火车站园博园店),Yue Hotel,免费停车,30.622359,114.233139,223,1
+207,华美达安可酒店(武汉国际广场协和医院店),Ramada Encore Hotel (Wuhan International Plaza Union Hospital),影音房,30.579906,114.272402,321,2
+208,武汉高铁站杨春湖亚朵酒店,Atour Hotel Wuhan High Speed ​​Railway Station Yangchun Lake,窗外好景,30.618813,114.414548,288,1
+209,清能苏美道森酒店(武汉王家湾国博中心店),Qingneng Sume Douson Hotel (Wangjiawan Hanyang Wuhan Subway Station),免费停车,30.564893,114.213487,311,1
+210,莫尔空间·春深·度假民宿,More Space,儿童泳池,30.412302,114.132107,428,1
+211,林隐酒店(武汉归元寺钟家村地铁站店),The LinYin Hotel of Wuhan International Expo Center,管家服务,30.547747,114.260419,220,1
+212,武汉王家湾美仑酒店,Wuhan Wangjiawan Meilun Hotel,窗外好景,30.548527,114.198847,347,1
+213,斜阳耒筑民宿·索河店,Sunset Villa Suohe,免费停车,30.512475,113.893616,748,2
+214,武汉西兰蒂亚酒店(绿地国际金融城武昌万象城店),The Zealandia Hotel,免费停车,30.583273,114.321952,316,2
+215,曼陀罗智能酒店(武汉体育中心地铁站万达广场经开店),"Mandala Smart Hotel (Wanda Plaza, Wuhan Sports Center Metro Station)",免费停车,30.50578,114.175355,539,1
+216,丽怡酒店(武汉常福工业园店),Liyi Hotel (Wuhan Changfu Industrial Park),免费停车,30.450694,114.028256,262,1
+217,莱亚中庭酒店(武汉高铁站店),LFIA ATRUIUM HOTEL,停车场,30.618914,114.39675,258,1
+218,纽宾凯国际酒店(汉阳四新北路店),New Binkai International Hotel (Hanyang Sixin North Road Branch),影音房,30.522368,114.220736,238,1
+219,F天下会议中心酒店(武汉天河机场巨龙大道地铁站店),F World Conference Center Hotel (Wuhan Tianhe Airport Julong Avenue Subway Station Branch),免费停车,30.718266,114.251117,298,1
+220,KennysHouse公寓(ICC武汉环贸中心店),Kennys House Apartment,影音房,30.589815,114.261865,376,1
+221,纵横奥莱酒店(武汉天河机场奥特莱斯店),Zongheng Outlets Hotel,免费停车,30.733063,114.257833,218,1
+222,丽怡酒店(武汉东吴大道机电城店),Country Inn & Suites Hotel (Wuhan Dongwu Avenue Electromechanical City),窗外好景,30.624377,114.107266,239,1
+223,艺龙安云酒店(武汉高铁站欢乐谷店),Campanile Hotel (Wuhan high-speed Railway Station Happy Valley),免费停车,30.614696,114.377095,189,2
+224,奈思酒店(武汉体育中心地铁站万达广场经开店),Nice Hotel (Wuhan Sports Center Metro Station Wanda Plaza Economic Development),酒店公寓,30.50689,114.173908,359,1
+225,武汉蔡甸华美达酒店,RAMADA BY WYNDHAM,免费停车,30.450185,114.045247,237,1
+226,武汉江岸华美达酒店(汉口火车站店),Ramada Wuhan Jiang'an (Hankou Railway Station),免费停车,30.651804,114.281204,305,1
+227,蔚徕酒店(武汉汉口火车站长港路地铁站店),Vyluk hotel,免费停车,30.626444,114.252456,188,2
+228,禾木民宿(武汉东湖风景区店),Hemer Inns,日光浴场,30.54146,114.414452,258,1
+229,上海邨五号洋房(武汉江汉路步行街地铁站店),Wuhan Village 5 Shanghai estate The Republic of China Amorous feelings Guesthouse,民宿,30.579131,114.29437,271,1
+230,白玉兰酒店(武汉江滩南京路科技馆店),Magnotel Hotel (Wuhan jiangtan science and Technology Museum),免费停车,30.579641,114.29829,256,1
+231,捷尼天空大酒店(武汉汉口火车站园博园店),Jini Sky Hotel (Wuhan Hankou Railway Station Garden Expo Park Branch),家庭房,30.620964,114.224787,245,1
+232,枫雨酒店(武汉汉口火车站泛海CBD店),Fengyu Hotel (Wuhan Hankou Railway Station Fanhai CBD Store),窗外好景,30.599996,114.254323,179,1
+233,白玉兰酒店(武汉武商梦时代梅苑小区地铁站店),Baiyulan Hotel (Wuhan Meiyuan Community Subway Station Dream Times Branch),免费停车,30.530166,114.333505,201,1
+234,星程酒店(武汉江汉路吉庆街店),Starway Hotel (Wuhan Jianghan Road Jiqing Street),机器人服务,30.588384,114.2952,210,1
+235,麗枫酒店(武汉光谷三路店),Yu Feng Hotel (Wuhan Guanggu Three Roads Shop),免费停车,30.462132,114.477716,263,1
+236,喆啡酒店(武汉华中科技大学佳园路地铁站店),James Joyce Coffetel (Wuhan University of Science and TechnologJiayuan Road Subway Station),免费停车,30.502008,114.4315,268,1
+237,麗枫酒店(武汉金银湖地铁站店),LAVANDE Hotel (Wuhan Jinyin Lake Subway Station Store),免费停车,30.638838,114.198083,320,1
+238,曼居酒店(楚河汉街地铁站SKP店),Manju Hotel (Chuhe Han Street Subway Station Hubei Provincial Museum),充电桩,30.55822,114.336508,286,1
+239,莫林锦尚酒店(武汉汉口火车站店),morningup hotel,家庭房,30.616851,114.263959,242,1
+240,麗枫酒店(武汉五环体育中心临空港大道店),Lavande Hotel(Wuhan Wuhuan Sports Center Lin Konggang Avenue Store),免费停车,30.651111,114.145739,223,1
+241,麗枫酒店(武汉华中科技大学佳园路地铁站店),Lavande Hotel (Wuhan Huazhong University of Science and Technology Jiayuan Road Subway Station),情侣房,30.50442,114.430596,221,1
+242,武汉黄鹤楼帛尚酒店(彭刘杨地铁站店),Yushang Zhongyang Hotel (Wuhan Yellow Crane Tower Conservatory of Music),免费停车,30.535744,114.296675,251,1
+243,如家精选酒店(武汉站欢乐谷店),Home Inn (Wuhan Station Happy Valley),家庭房,30.61609,114.381323,195,1
+244,艺龙瑞云酒店(武汉大智路地铁站店),Elong Ruiyun Hotel (Wuhan Dazhi Road Subway Station Branch),停车场,30.594588,114.291965,190,1
+245,BUFF电竞酒店(武汉积玉桥店),BUFF E-sports Hotel (Wuhan Jiyuqiao Branch),情侣房,30.564288,114.315016,313,1
+246,贝壳酒店(拦江路地铁站世贸锦绣长江店),Shell Hotel (World Trade Fair Yangtze River at Lanjiang Road Metro Station),江河景房,30.538983,114.27388,345,2
+247,金泰酒店(武汉世界城光谷步行街华中科技大学店),Jintai Hotel,免费停车,30.497151,114.405323,148,1
+248,楠璟花园酒店(武汉五环体育中心店),Yuanyuan Hotel (Wuhan 5th Ring Road Sports Center),影音房,30.644103,114.142982,161,2
+249,宜尚酒店(武汉光谷大学园路店),Echarm Hotel (Wuhan Guanggu University Yuan Road Branch),免费停车,30.458397,114.399867,210,1
+250,柏曼酒店(武汉光谷佛祖岭高新四路店),Berman Hotel (Wuhan Optics Valley Fozuling Gaoxin 4th Road),免费停车,30.457495,114.465555,203,1
+251,豪绅酒店(武汉百步亭店),Allson Hotel (Wuhan Baibuting),免费停车,30.644209,114.320587,171,1
+252,麗枫酒店(武汉光谷雄楚大道店),Lavande Hotel (Wuhan Optical Valley Chuxiong Avenue),免费停车,30.497714,114.391144,207,2
+253,喆啡酒店(武汉大智路地铁站店),James Joyce Coffetel (Wuhan Dazhi Road),家庭房,30.59439,114.296274,194,2
+254,柒禧云江景酒店(武汉绿地国际金融城武昌万象城店),Riverview Executive Apartment (Wuhan Greenland Primrose Mansion Branch),窗外好景,30.583284,114.322033,227,1
+255,宜尚酒店(武汉文化大道中百广场店),Echarm Hotel (Cultural Avenue Zhongbai Square Branch),免费停车,30.364722,114.321863,212,2
+256,维也纳3好酒店(武汉洪山广场民主路店),"Vienna 3 Best Hotel (Wuhan Hongshan Square,Minzhu Road)",免费停车,30.54616,114.324715,178,1
+257,宜尚酒店(武汉汉西三路店),Yishang Hotel (Wuhan Hanxi 3rd Road Branch),免费停车,30.589931,114.222974,219,1
+258,宜尚酒店(武汉光谷生物城店),ECHARM Hotel (Wuhan Guanggu Biology City),免费停车,30.49612,114.484099,203,1
+259,星程酒店(武汉光谷百度大厦店),Starway Hotel (Wuhan Optics Valley baidu edifice),免费停车,30.434108,114.42321,216,1
+260,麗枫酒店(武汉天河机场巨龙大道店),Lavande Hotel (Wuhan Tianhe Airport Julong Avenue),免费停车,30.697966,114.299493,206,1
+261,宜尚酒店(武汉黄浦路二七小路地铁口店),Echarm Hotel (Wuhan Erqi Road),免费停车,30.630174,114.307031,230,1
+262,如家商旅酒店(武汉徐东销品茂理工大学店),Home Inn Selected (Wuhan Xudong Shopping Mall Youyi Avenue),免费停车,30.5976,114.350912,176,1
+263,武汉七月公寓(光谷广场店),Qiyue Hotel,民宿,30.504339,114.398354,78,2
+264,天雅之星酒店(武汉天河机场店),Tianya Zhixing Hotel,穿梭机场班车,30.798756,114.216811,97,1
+265,武汉泊雅沃德酒店(中国光谷科技会展中心光谷六路地铁站店),Wuhan Park Yaward Hotel (China Optics Valley Technology Convention and Exhibition Center ),免费停车,30.487179,114.509782,156,1
+266,米萝影院公寓(武汉钟家村地铁站归元寺店),Milo Apartment (Guiyuan Temple Branch of Guobo Center),24小时前台,30.549291,114.260381,140,1
+267,武汉希诺轻奢酒店(光谷科技会展中心店),Wuhan Xinuo Light Luxury Homestay,棋牌室,30.488327,114.515019,144,1
+268,武汉Smile+影院酒店,WuHan Simer Apart Hotel. Cinema Apartment,24小时前台,30.49704,114.420858,138,1
+269,橙悦智能酒店(南太子湖地铁站店),Orange Smart Hotel (Nantaizihu Subway Station),免费停车,30.477249,114.220808,149,1
+270,易佰酒店(武汉汉口火车站店),100 Inn Wuhan Hankou Railway Station Huanan Haixian Market,24小时前台,30.617069,114.264824,73,1
+271,食全氿美酒店(武汉站欢乐谷店),Shiquan Yumei Hotel,家庭房,30.643503,114.414452,143,1
+272,花田梦艺术酒店(武汉天河机场店),Huatian Dream Art Hotel (Tianhe Airport),穿梭机场班车,30.800057,114.226463,110,1
+273,福缘百合连锁酒店(王家湾地铁站海天欢乐购店),Fuyuan Lily Hotel (Wangjiawan Subway Station Haitian Happy Shopping),棋牌室,30.562422,114.211557,90,2
+274,中瑞路行酒店(光谷广场工程大学店),Zhongrui Road Hang Hotel (Optics Valley Plaza Engineering University),棋牌室,30.507883,114.393529,144,1
+275,江之城酒店式公寓(武汉工程大学杨家湾地铁站店),Jiangzhicheng Serviced Apartment (Wuhan Engineering University Yangjiawan Metro Station),24小时前台,30.504627,114.382099,129,2
+276,兆丰商旅酒店(武汉大学省妇幼店),Zhaofeng Business Hotel (Wuhan University Provincial Women's and Children's Branch),24小时前台,30.52803,114.349574,144,1
+277,荷香田里(菱角湖壹号店),Wuhan Xiangtian Homestay (Lingjiao Lake No.1 Branch),棋牌室,30.605116,114.273171,247,1
+278,空杯酒店(武汉汉口火车站广场店),Empty Cup Hotel (Wuhan Hankou Railway Station Plaza),24小时前台,30.614182,114.253482,98,1
+279,木兮酒店(武汉拦江路地铁站店),Muxi Hotel (Wuhan Lanjiang Road Subway Station),免费停车,30.544746,114.266753,173,2
+280,精途酒店(武汉汉正街武胜路地铁站店),Jtour Inn (Wuhan Wusheng Road Metro Station Capital Plaza),免费停车,30.567766,114.265598,147,1
+281,兰悦·诗风酒店(白沙洲大道中医药大学地铁站店),Lanyue Shifeng Hotel (Huangjiahu University Town Chinese Medicine University Subway Station Branch),电竞房,30.449728,114.262769,184,2
+282,铭雅酒店公寓(武汉楚河汉街地铁站店),Mingya Hotel Apartment (Wuhan Chuhe Han Street Subway Station),民宿,30.555771,114.34185,76,1
+283,遇见东湖公寓(武汉站店),Meet Donghu Apartment (Wuhan Station),空调,30.60136,114.428247,89,1
+284,武汉斯威特酒店(光谷步行街华中科技大学店),Sweet Hotel,棋牌室,30.507347,114.410637,88,1
+285,尚缘·影院酒店(钟家村地铁站归元寺店),Shangyuan Holiday Cinema Hotel (Wuhan Zhongjia Village Metro Station),山景房,30.549505,114.260508,157,2
+286,农啡假日酒店(武汉大学园路光谷物联港店),Nongcoffee Holiday Hotel (Wuhan University Yuanluguang Grain Lianggang Branch),免费停车,30.439928,114.37868,118,1
+287,庭然酒店(武汉体育中心地铁站经开万达广场店),Tingran Hotel,湖景房,30.506475,114.175766,346,1
+288,如家商旅酒店(武汉高铁火车站店),Home Inn Selected (Wuhan High-speed Railway Station),免费停车,30.609385,114.420832,206,1
+289,悦晨民宿酒店(武汉街道口武汉大学店),Yuechen,宠物友好,30.52457,114.35389,97,2
+290,麗枫酒店(武汉光谷步行街华科地铁站店),"Lavande Hotel (Wuhan Guanggu Pedestrian Street ,Huake MTR Station)",洗衣房,30.500941,114.409755,244,1
+291,睿铂云酒店(武汉江汉路步行街店),Jinyun Hotel (Wuhan Jianghan Road Pedestrian Street),棋牌室,30.584412,114.292075,100,1
+292,优程酒店(武汉江汉路协和医院店),Youcheng Hotel,免费停车,30.58005,114.280889,160,2
+293,柏曼酒店(武汉光谷科技会展中心大悦城店),Borman Hotel (Wuhan Optics Valley Science and Technology Exhibition Center Joy City Branch),停车场,30.486389,114.502298,236,1
+294,武汉藏龙大道高铁凯瑞国际酒店,Wuhan Canglong Avenue High-speed Railway Kerry International Hotel,免费停车,30.428829,114.410846,215,1
+295,武汉天禄酒店(武广同济医院店),Tianlu Hotel,免费停车,30.581322,114.26593,106,2
+296,宜尚酒店(武汉汉南店),ECHARM Hotel (Wuhan Hannan Branch),免费停车,30.310068,114.082235,179,1
+297,7天酒店(武汉汉阳四新大道地铁站店),7-day Chain Hotel (Wuhan Hanyang  SiXinDaDaoDian),免费停车,30.531595,114.19225,154,1
+298,柏曼酒店(武汉第一医院汉正街地铁站店),Baiman Hotel (Wuhan No.1 Hospital Hanzheng Street Subway Station),免费停车,30.572071,114.271059,216,1
+299,轻住·华庭精选酒店(五环大道地铁站店),Qingzhu·Huating Select Hotel,棋牌室,30.616802,114.128729,91,1
+300,麗枫酒店(武汉东湖徐东地铁站店),Lavande Hotel (Wuhan Xudong),免费停车,30.584268,114.338773,221,1
+301,简洛澜山酒店(武汉光谷科技会展中心店),Jianluolan Mountain Hotel,24小时前台,30.490015,114.519098,159,1
+302,武汉佳悦酒店(武汉汉口火车站泛海店),Wuhan Jiayue Hotel (Wuhan Hankou Railway Station Oceanwide Branch),家庭房,30.600286,114.254022,221,2
+303,坤泰美寓酒店(武汉香港路儿童医院店),Kuntai Meiyu Hotel (Wuhan Children's Hospital),免费停车,30.597508,114.290677,122,1
+304,宜尚酒店(武汉黄陂向阳大街店),Yishang Hotel (Wuhan Huangpi Xiangyang Street),免费停车,30.873959,114.364103,153,1
+305,秘境·西汐影院酒店公寓(武汉大学街道口地铁站店),Mystery·Xixi Cinema Hotel Apartment (Wuhan University Jiedaokou Subway Station Branch),充电桩,30.525023,114.353336,161,2
+306,如家商旅酒店(武汉高铁工业四路武钢博物馆店),Home Inn Selected (Wuhan High-speed ​​Railway Gongye 4th Road Wuhan Iron and Steel Museum),免费停车,30.629004,114.405614,147,1
+307,城市便捷酒店(武汉国际广场协和医院店),City Comfort Inn (Wuhan International Plaza Xiehe Hospital),24小时前台,30.581649,114.274191,198,1
+308,宜尚酒店(武汉蔡甸大街临嶂大道地铁站店),Yishang Hotel (Wuhan Caidian Street Linyi Avenue Subway Station),免费停车,30.575005,114.019009,181,1
+309,7天连锁酒店(武汉亚贸广场军区总医院地铁站店),7 days chain Hotel Wuhan Asian Trade Plaza military general hospital subway station store,24小时前台,30.528715,114.344335,152,1
+310,7天酒店(武汉国际会展中心协和医院店),7 Days Inn (Wuhan International Exhibition Center),24小时前台,30.579012,114.276118,153,1
+311,雅斯特酒店(武汉天河机场横店街店),Yeste Hotel (Wuhan Tianhe Airport),免费停车,30.798819,114.294554,151,1
+312,精途酒店(武汉汉口火车站西广场店),Jtour Inn (Wuhan Hankou Railway Station West Square),24小时前台,30.617211,114.254243,142,1
+313,桔子酒店(武汉市民之家店),Orange Hotel (Wuhan Citizen's Home),停车场,30.651629,114.290183,282,2
+314,城市精选酒店(武汉百步亭兴业路地铁站店),City Collection Hotel (Wuhan Baibuting Xingye Road Subway Station),免费停车,30.643252,114.315004,166,1
+315,城市便捷酒店(武汉万松园王家墩东地铁站店),"City Express Hotel Wangjiadun East Subway Station, Wansongyuan, Wuhan",24小时前台,30.591472,114.263788,174,1
+316,凯嘉酒店(光谷未来科技城光谷六路地铁站店),Kaijia Hotel (Optics Valley Future Technology City Optics Valley 6th Road Subway Station),免费停车,30.480182,114.513538,125,1
+317,城市便捷酒店(武汉八大家和平公园地铁站店),CCINN (Wuhan Bajia Heping Park Metro Station),免费停车,30.630284,114.387447,185,1
+318,雅斯特酒店(武汉楚河汉街东湖岳家嘴地铁站店),Yeste Hotel (Wuhan Yuejiazui subway station of East Lake),停车场,30.575409,114.359879,177,1
+319,城市便捷酒店(武汉东吴大道轻轨站店),City Comfort Inn Wuhan Dongwu Avenue Light Rail Station,免费停车,30.624383,114.133133,135,1
+320,武汉木兰草原酒店,Mulan Caoyuan Holiday Hotel,免费停车,30.955715,114.460907,398,1
+321,宜尚酒店(武汉光谷科技会展中心店),Echarm Hotel (Wuhan Optical Valley Technology Convention and Exhibition Center),免费停车,30.487245,114.50958,284,1
+322,武汉健吾假日酒店(高铁站和平公园地铁站店),Holiday Inn Wuhan Jianwu (High-speed Railway Station Heping Park Subway Station),免费停车,30.632208,114.392009,175,2
+323,悦途轻居·影院酒店(武汉极地海洋公园常青城地铁站店),Yuetu Qingju Cinema Hotel (Wuhan Changqingcheng Subway Station),24小时前台,30.65885,114.253199,129,1
+324,如归轩宾馆(武汉天河国际机场店),Ruguixuan Hotel (Wuhan Tianhe International Airport),穿梭机场班车,30.80144,114.223502,117,1
+325,雅斯特国际酒店(武汉汉口北轻轨站店),YESTE  INTERNATIONAL HOTEL,停车场,30.713636,114.335759,160,2
+326,柏曼酒店(武汉吴家山店),BORRMAN,免费停车,30.612425,114.128079,154,1
+327,城市便捷酒店(武汉百步亭店),City Comfort Inn (Wuhan Baibuting),免费停车,30.643343,114.321939,144,1
+328,麗枫酒店(武汉高铁店),Lavande Hotel (Wuhan High-speed Railway Station),空气净化器,30.609581,114.421007,253,2
+329,亦间影院民宿(江汉路步行街店),Yijian Cinema Homestay (Jianghan Road Pedestrian Street),空调,30.586104,114.296784,88,2
+330,铂顿国际全套房公寓(武汉高铁站西广场店),Padun International All Suite Apartment (Wuhan High-speed Railway Station West Square),免费停车,30.602603,114.422716,257,1
+331,城市便捷酒店(武汉宜家店),CITY COMFORT INN,免费停车,30.621416,114.171521,164,1
+332,星空酒店(武汉国际博览中心永旺店),Wuhan Star Hotel,免费停车,30.512686,114.2176,188,2
+333,漫行酒店(武汉国际会展中心协和医院店),Manhang Hotel (Wuhan International Convention and Exhibition Center Union Hospital),空调,30.578547,114.277848,96,2
+334,维也纳酒店(武汉红钢城地铁站店),Vienna Hotel (Wuhan Honggangcheng),多功能厅,30.639081,114.403718,266,1
+335,麗枫酒店(武汉金银湖轻工大学店),Li Feng Hotel (Wuhan Jinyinhu store),免费停车,30.656768,114.226375,221,1
+336,象牙国际青年旅舍(武汉大学华中师范大学店),Ivory International Youth Hostel (Wuhan University Huazhong Normal University Shop),24小时前台,30.522751,114.363274,37,2
+337,丽呈睿轩武汉汉口火车站酒店,Rezen Select Wuhan Hankou Railway Station,管家服务,30.616923,114.258754,194,1
+338,武汉鑫瑞达商务酒店(理工大学武昌火车站店),"Wuhan Xinruida Business Hotel (Wuchang Railway Station, University of Technology)",棋牌室,30.513379,114.323015,126,1
+339,橘子民宿(武汉站店),Orange B&B (Wuhan Railway Station),24小时前台,30.602006,114.427188,63,2
+340,陌上轻居酒店(武汉理工大学街道口店),"Moshang Qingju Hotel (Wuhan University of Technology, Jiedaokou)",免费停车,30.513902,114.345618,300,1
+341,星空花园酒店(武汉国际广场协和医院店),Starry Sky Hotel (Wuhan International Plaza Union Hospital),24小时前台,30.581951,114.274073,259,2
+342,怡尚花园酒店(武汉东湖风景区欢乐谷店),Meiermei Hotel,窗外好景,30.589047,114.377689,146,1
+343,豪庭商旅酒店(武汉国际博览中心永旺店),Haoting Hotel (Wuhan International Expo Center),免费停车,30.511113,114.217845,139,2
+344,武汉里克民宿(ICC武汉环贸中心店),Wuhan Rick B&B (ICC Wuhan Huanmao Center Branch),停车场,30.5898,114.261725,475,1
+345,金泰酒店(武汉光谷华师一附中枫叶国际学校店),KING TAI HOTEL,免费停车,30.451274,114.379267,185,1
+346,艺选酒店(武汉理工大学马房山地铁站店),Yixuan Hotel (Wuhan University of Technology Mafangshan Subway Station),免费停车,30.508244,114.349089,164,1
+347,吴家花园(武汉江汉路步行街店),Wujia Garden ( Wuhan Jianghan Road Pedestrian Street),管家服务,30.584791,114.29035,584,2
+348,青朴水居民宿(木兰湖旅游度假区店),Qingpu Shuiju Xiaomu Homestay (Mulan Lake Tourist Resort),免费停车,31.108163,114.467119,848,1
+349,宜庭酒店(武汉江汉路吉庆街店),Yiting Hotel,免费停车,30.586875,114.293016,179,1
+350,枫雁精选酒店(武汉黄鹤楼公园店),Fengyan Select Hotel (Wuhan Yellow Crane Tower Park Branch),免费停车,30.536577,114.324882,227,2
+351,武汉青曦·望云民宿,Qingxi Wangyun Guesthouse,民宿,31.092798,114.409679,780,2
+352,武汉大隐至乐民宿,Joy Villa,充电桩,30.486648,114.07662,2988,2
+353,纽宾凯·尚居酒店(武汉江汉路吉庆街店),"New Bingkai Shangju Hotel (Jiqing Street, Jianghan Road, Wuhan)",家庭房,30.587507,114.292308,181,1
+354,白玉兰酒店(武汉高铁站东广场店),Magnotel Hotel (Wuhan high-speed railway station),免费停车,30.604349,114.428459,195,1
+355,武汉壹號苑民宿,Wuhan Back Garden B&B,棋牌室,30.35846,114.340409,401,2
+356,爱豪国际酒店(武汉高铁站东广场店),Wuhan Ihow International Hotel,免费停车,30.605376,114.426952,179,1
+357,墟里·十余间民宿(东湖店),Xuli·More than ten B&Bs (Donghu Branch),家庭房,30.542432,114.414088,290,1
+358,武汉樾和林泉白玉兰民宿,Wuhan Aquatree Resort,泳池,31.094858,114.403765,936,1
+359,全季酒店(武汉东湖欢乐谷店),Ji Hotel (Wuhan Donghu Happy Valley Branch),免费停车,30.592874,114.379533,502,1
+360,南航明珠酒店(武汉汉口火车站南航大厦店),Southern Airlines Pearl Hotel,免费停车,30.62695,114.238642,182,2
+361,汇庭酒店(楚河汉街skp店),Huiting Hotel (Chuhe Han Street Subway Station Provincial Museum),酒店公寓,30.558121,114.336658,198,2
+362,全季酒店(武汉香港路店),All Seasons Hotel (Wuhan Hong Kong Road Branch),免费停车,30.601942,114.287387,632,1
+363,伴儿小院民宿(武汉东湖景区店),BeAll,免费停车,30.541152,114.413582,208,1
+364,喜来筑智能影院民宿(武汉高铁火车站店),Xilaizhu Intelligent Cinema Homestay,免费停车,30.603431,114.422362,328,1
+365,武汉禧朵儿·再续酒店(市政府汉口江滩店),Zaixu Hotel,窗外好景,30.590184,114.304301,256,1
+366,速8酒店(武汉汉口火车站泛海CBD店),Super 8 Hotel (Wuhan Hankou Railway Station Oceanwide CBD),24小时前台,30.616785,114.258329,169,1
+367,东湖派吹克旮旯民宿(磨山生态旅游风景区店),Donghu Paibu Keqi Homestay (Moshan Ecological Tourism Scenic Area),免费停车,30.542512,114.412803,352,1

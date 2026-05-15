@@ -1,0 +1,499 @@
+id,name,hotelname_en,featurehoteltype,lat,lon,price,numbed
+0,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+1,深圳南山美爵酒店,Grand Mercure Shenzhen Nanshan,管家服务,22.521164,113.918912,572,1
+2,深圳罗湖地王亚朵酒店,Atour Hotel (Shenzhen Luohu Diwang),管家服务,22.544854,114.11107,517,1
+3,秋果S酒店(深圳会展中心联合广场店),Shenzhen Convention and Exhibition Center Union Plaza Qiuguo S Hotel,免费停车,22.529522,114.06968,499,1
+4,深圳坂田希尔顿欢朋酒店,Hampton by Hilton Shenzhen Bantian,免费停车,22.64597,114.065743,545,2
+5,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+6,深圳汉普斯酒店,Hamps hotel ShenZhen,动人夜景,22.532653,113.941615,574,2
+7,深圳世纪花园酒店(南山科技园店),Shenzhen Century Garden Hotel (Nanshan Science and Technology Park),健身室,22.534199,113.964544,325,1
+8,深圳圣淘沙酒店(南山桃园店),Sentosa Hotel (Taoyuan  Branch),机器人服务,22.533047,113.927509,488,2
+9,高新富悦酒店(深圳南山科技园店),FuYue Hotel Shenzhen,SPA,22.542402,113.935079,547,1
+10,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+11,秋果酒店(深圳会展中心福民地铁站店),Shenzhen Convention and Exhibition Center Fumin Subway Station Qiuguo Hotel,管家服务,22.524363,114.064996,448,1
+12,深圳大浪希尔顿惠庭酒店,Home2 Suites By Hilton Shenzhen Dalang,泳池,22.696714,113.991054,475,1
+13,深圳福田上沙地铁站秋果酒店,Shenzhen Futian Shangsha Metro Station Qiuguo Hotel,免费停车,22.523392,114.039096,434,1
+14,荟语酒店(深圳福田口岸会展中心店),Eeril hotel (Shenzhen Futian Convention and Exhibition Center Branch),日光浴场,22.522552,114.05032,486,1
+15,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+16,深圳罗湖东门亚朵X酒店,"Yaduo X Hotel, East Gate, Luohu, Shenzhen",机器人服务,22.546214,114.121982,403,1
+17,深圳南山亚朵S酒店,Atour S Hotel Nanshan  Shenzhen,管家服务,22.553211,113.921042,679,1
+18,深圳维景酒店,Metropark Hotel Shenzhen,免费停车,22.549074,114.123002,387,2
+19,深圳璟峯酒店(西丽大学城店),Jingfeng Hotel,免费停车,22.58316,113.964444,429,1
+20,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+21,深圳宝安西乡亚朵酒店,AtourHotel Xixiang  Bao＇an Shenzhen,免费停车,22.58681,113.8608,458,1
+22,深圳南山科技园CitiGO欢阁酒店,CitiGO Shenzhen Nanshan Technology Park Hotel,充电桩,22.524857,113.936746,465,2
+23,深圳前海宝安中心亚朵酒店,Atour Hotel(Shenzhen Qianhai Bao'an center),免费停车,22.560059,113.892721,508,2
+24,深圳T酒店公寓(南山科技园店),Shenzhen T Hotel Apartment ( Nanshan Science & Technology Park),厨房,22.524625,113.936903,358,1
+25,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+26,丽呈東谷酒店(深圳华强北店),Rezen Dong Hotel (Shenzhen Huaqiangbei),免费停车,22.538304,114.083587,420,2
+27,深圳安蒂娅美兰酒店,ANTHEA HOTEL,泳池,22.592481,113.882845,598,2
+28,深圳会展中心岗厦地铁站秋果酒店,"Qiuguo Hotel, Gangxia Subway Station, Shenzhen Convention and Exhibition Center",管家服务,22.537511,114.068481,489,1
+29,深圳南山万科云城亚朵酒店,Atour Hotel (Shenzhen Nanshan Vanke Yuncheng),免费停车,22.573918,113.94298,544,1
+30,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+31,宜尚PLUS酒店(深圳福田会展中心店),ECHARM PLUS Hotel (Shenzhen Futian Convention and Exhibition Center),免费停车,22.529877,114.070628,429,1
+32,深圳滨河时代ICON LAB艾垦酒店,ICON LAB Hotel Shenzhen Futian,设计师酒店,22.520634,114.036371,569,1
+33,深圳圣淘沙酒店(翡翠店),Sentosa Hotel (Feicui),泳池,22.534123,113.92392,498,1
+34,深圳VON Hotel万和酒店(南山万象天地店),"VON Hotel, Shenzhen Nanshan The MixC",免费停车,22.537785,113.948164,380,1
+35,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+36,深圳福田竹子林博园秋果酒店,Shenzhen Futian Bamboo Forest Expo Park Qiuguo Hotel,免费停车,22.53385,114.005939,369,1
+37,深圳南山蛇口亚朵酒店,Atour Hotel (Shenzhen Nanshan Shekou),免费停车,22.502839,113.920293,508,1
+38,深圳兰赫美特酒店,Shenzhen Nanshan L'Hermitage,管家服务,22.54258,113.931339,588,2
+39,深圳罗湖万象城亚朵酒店,Atour Hotel Shenzhen Luohu Vientiane City,免费停车,22.538508,114.115806,544,2
+40,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+41,深圳宝安希尔顿惠庭酒店,Home 2 Suites by Hilton Shenzhen Baoan,管家服务,22.557851,113.866167,469,1
+42,深圳宝安前海Pagoda君亭设计酒店,"Pagoda  Hotel, Baoan,Qianhai, Shenzhen",管家服务,22.557232,113.909531,443,1
+43,东莞嘉辉会丽呈华廷酒店,GRAND REZEN HOTEL CASTFAST DONG GUAN,家庭房,22.715136,114.190861,398,1
+44,格兰云天·阅酒店(深圳中心公园店),The Skytel (Shenzhen Central Park Branch),免费停车,22.539471,114.078528,440,1
+45,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+46,深圳大梅沙中兴和泰海景酒店,CZD Hotel,泳池,22.584779,114.294375,432,2
+47,深圳海上世界殿影酒店,MOVIETEL SHENZHEN,免费停车,22.48336,113.913271,409,1
+48,深圳华安国际大酒店,Hua'an International Hotel,免费停车,22.543909,114.11055,531,1
+49,深圳湾科技园丽雅查尔顿酒店,Lia Charlton Hotel Shenzhen,管家服务,22.535739,113.949312,598,1
+50,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+51,深圳中洲圣廷苑酒店,the Pavilion Shenzhen,泳池,22.549404,114.087387,416,1
+52,深圳嘉朵酒店(深圳大学粤海校区店),Shenzhen Jiadou Hotel (Shenzhen University Branch),SPA,22.535012,113.94166,538,1
+53,深圳龙华温德姆花园酒店,WYNDHAM GARDEN SHENZHEN LONGHUA,免费停车,22.723554,114.033017,469,1
+54,深圳福田皇岗口岸秋果酒店,True Go Hotel,免费停车,22.52762,114.07765,391,1
+55,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+56,深圳摩登克斯酒店,Modern Classic Hotel,免费停车,22.539502,114.112077,637,1
+57,深圳东门智选假日酒店,Holiday Inn Express Shenzhen Dongmen,免费停车,22.552707,114.133119,515,1
+58,深圳东门希尔顿欢朋酒店,Hampton by Hilton Shenzhen Dongmen,免费停车,22.543006,114.123736,564,1
+59,清能楚天大酒店(深圳福田口岸会展中心店),Qingneng Chutian Hotel (Shenzhen Futian Port Convention and Exhibition Center),免费停车,22.52777,114.047436,386,1
+60,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+61,深圳龙岗中海信亚朵S酒店,Atour Hotel,免费停车,22.648401,114.118867,439,2
+62,深圳方格雅仕酒店(南山科技园店),Fang Yashi Hotel,免费停车,22.510525,113.932089,383,1
+63,深圳东门壹棠服务公寓,Dongmen Yitang Service Apartment,充电桩,22.546261,114.117279,370,1
+64,万澳酒店(深圳宝能中心店),Wan'ao Hotel (Shenzhen Baoneng Center),免费停车,22.567589,114.110159,384,1
+65,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+66,桔子水晶深圳南山新豪方酒店,Crystal Orange Hotel (Shenzhen Nanshan Xinhaofang Branch),免费停车,22.540982,113.926056,514,1
+67,深圳观澜高新园亚朵酒店,"Aduo Hotel, Shenzhen Guanlan High-tech Park",免费停车,22.687773,114.060208,429,1
+68,深圳绿景酒店,L.GEM Hotel,免费停车,22.521009,114.047771,536,1
+69,深圳宝安国际机场亚朵酒店,Atour Hotel (Shenzhen Bao'an International Airport),免费停车,22.624381,113.860302,579,1
+70,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+71,奈威S酒店(深圳海岸城南油店),Naive S Hotel (Shenzhen Coastal City),免费停车,22.512721,113.929052,409,1
+72,深圳南山科技园逸扉酒店,UrCove by HYATT Shenzhen Nanshan Science and Technology Park,健身室,22.549265,113.937104,514,1
+73,深圳湾秋果S1979酒店,Shenzhen Bay QiuGuo S1979 Hotel,免费停车,22.49072,113.935232,409,1
+74,深圳喜悦假日酒店(罗湖口岸黄贝岭地铁站店),Joy Holiday Hotel Shenzhen (Luohu Port Huangbeiling Subway Station),免费停车,22.544933,114.140359,498,1
+75,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+76,深圳华强北亚朵酒店,Shenzhen Huaqiangbei Atour Hotel,充电桩,22.547206,114.095367,544,1
+77,维也纳国际酒店(深圳北站店),Vienna International Hotel (Shenzhen North Railway Station),免费停车,22.606627,114.027738,486,2
+78,深圳科技园ICON LAB艾垦酒店,ICON LAB Hotel Shenzhen (Science and Technology Park),免费停车,22.543673,113.95894,499,1
+79,深圳南山大新地铁站汉豪酒店,Hanhao Hotel Shenzhen Nanshan Daxin Metro Station,影音房,22.532639,113.916449,293,1
+80,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+81,深圳福田香蜜湖公园秋果酒店,Shenzhen Futian Xiangmihu Park Qiuguo Hotel,家庭房,22.539877,114.01594,549,1
+82,深圳南山海岸城亚朵酒店,Atour Hotel (Shenzhen Nanshan Coastal City),免费停车,22.515751,113.926697,561,1
+83,深圳宝安机场西湾红树林亚朵X酒店,"Atour X Hotel, Xiwan Mangrove, Bao'an Airport, Shenzhen",免费停车,22.585614,113.843347,491,1
+84,中濠悦际酒店(深圳宝安中心西乡店),CNHOL RADIENT HOTEL(Shenzhen Bao'an Center Xixiang Branch),免费停车,22.582756,113.874119,310,2
+85,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+86,深圳南山科技园希尔顿惠庭酒店,Home2 Suites by Hilton Shenzhen Nanshan Science & Technology Park,免费停车,22.561152,113.944084,538,1
+87,深圳憬居酒店,JINGJU HOTEL SHENZHEN,免费停车,22.552738,114.044293,530,1
+88,深圳南山西丽大学城亚朵酒店,Atour Hotel (Shenzhen Nanshan Xili University Town),免费停车,22.580881,113.962441,500,1
+89,深圳悦霁酒店(南山科技园店),REALJOY HOTEL,免费停车,22.535899,113.95249,399,1
+90,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+91,深圳立年酒店,Shenzhen Linian Hotel,免费停车,22.49569,113.891695,388,1
+92,美豪丽致酒店深圳宝安机场(怀德地铁站店),Mehood Lestie Hotel (Shenzhen Bao'an Airport Huaide Metro Station Branch),免费停车,22.672004,113.826334,384,2
+93,深圳龙岗石芽岭地铁站亚朵酒店,Atour Hotel Shenzhen Longgang Shiyaling Metro Station,免费停车,22.631847,114.133138,419,2
+94,XW Hotel 玺程设计酒店(深圳华侨城创意园店),XW Hotel (Shenzhen OCT),机器人服务,22.54051,113.994187,376,1
+95,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+96,深圳南山西丽地铁站亚朵酒店,Atour Hotel Shenzhen Nanshan Xili Metro Station,免费停车,22.584469,113.947505,500,2
+97,中濠悦际酒店(深圳前海店),Zhonghao Yueji Hotel (Shenzhen Qianhai Branch),免费停车,22.574553,113.911282,391,2
+98,深圳坂田中成亚朵S酒店,Atour S Hotel,免费停车,22.662474,114.058894,561,2
+99,麗枫酒店(深圳南山科技园万科云城店),Lavande Hotel (Shenzhen Nanshan Science and Technology Park Vanke Cloud City),多功能厅,22.567384,113.939582,409,1
+100,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+101,深圳海上世界九州瑾程酒店,Kyushu Joycheng Hotel Shenzhen,SPA,22.483485,113.91345,648,1
+102,深圳南山科技园科苑路亚朵酒店,Atour Hotel (Shenzhen Nanshan Science and Technology Park),免费停车,22.54785,113.945921,544,2
+103,深圳福田华强北步行街亚朵酒店,Atour Hotel Shenzhen Futian Huaqiangnorth Pedestrian Street,家庭房,22.544638,114.085035,578,1
+104,启悦国际酒店(龙岗大运店),Qiyue International Hotel (Longgang Dayun Branch),免费停车,22.697457,114.246344,392,1
+105,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+106,深圳海岸城购物中心南山地铁站亚朵酒店,Shenzhen Coastal City Shopping Center Nanshan Subway Station Atour Hotel,停车场,22.521951,113.927611,544,1
+107,深圳阳光酒店,Sunshine Hotel of Shenzhen,泳池,22.53991,114.122819,558,1
+108,深圳南山深圳湾亚朵轻居酒店,Shenzhen Nanshan Shenzhen Bay Yaduo Qingju Hotel,管家服务,22.488652,113.938906,491,1
+109,深圳中洲圣廷苑酒店世纪楼,Pavilion Hotel Century Tower,免费停车,22.550849,114.087442,398,2
+110,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+111,前海服务公寓(桂湾地铁站前海卓悦·壹方汇购物中心店),Qianhai Service Apartment,24小时前台,22.528118,113.898134,499,1
+112,深圳天安云谷华为基地怡程酒店,Echeng Hotel (Huawei base store in Shenzhen),免费停车,22.669434,114.063568,545,1
+113,深圳罗湖笋岗亚朵X酒店,Atour X Hotel,家庭房,22.555514,114.109961,456,1
+114,深圳南山科技园若玺轻居酒店,Royce Light,免费停车,22.526325,113.942208,498,1
+115,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+116,慕思健康睡眠酒店(深圳东站布吉地铁站店),Musi Healthy Sleep Hotel (Shenzhen East Railway Station Buji Subway Station),免费停车,22.607734,114.124544,399,1
+117,深圳南山科技园水星花园酒店,Mercury Garden Hotel Shenzhen Nanshan Science Park,免费停车,22.54394,113.94935,650,2
+118,深圳蛇口海上世界开元名庭酒店,Maison New Century Hotel(Shekou Shenzhen),窗外好景,22.487485,113.919016,398,1
+119,深圳南山科技园澳特科兴亚朵S酒店,Atour S hotel Kexing Science Park Shenzhen Nanshan,亲子主题房,22.551355,113.948058,632,2
+120,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+121,南香楼艺术酒店(华侨城甘坑古镇店),Nanxianglou Art Hotel,多功能厅,22.657457,114.103391,328,1
+122,禾尖S酒店(深圳科技园店),Apex & Hotel (Shenzhen Science and Technology Park),免费停车,22.522171,113.936948,392,1
+123,深圳上海宾馆,Shanghai Hotel,免费停车,22.541208,114.082032,544,2
+124,禾晶酒店(深圳福田口岸会展中心店),HEJING HOTEL (ShenzhenFutianPort Convention and Exhibition Center Store),免费停车,22.520063,114.04538,398,2
+125,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+126,深圳南山科技园漫心酒店,Shenzhen Nanshan Science Park Manxin Hotel,家庭房,22.5466,113.925768,487,1
+127,深圳大梅沙京基洲际度假酒店,InterContinental Shenzhen Dameisha Resort,私人泳池,22.597504,114.314252,1418,2
+128,深圳富苑皇冠假日套房酒店,Crowne Plaza Hotel & Suites Landmark Shenzhen,SPA,22.542259,114.120798,673,1
+129,深圳中油阳光大酒店(南山科技园店),Grand Soluxe Zhongyou Hotel Shenzhen,免费停车,22.519441,113.923007,518,1
+130,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+131,深圳英威斯顿酒店,Investon Hotel Shenzhen,免费停车,22.726152,114.046273,484,1
+132,深圳龙岗漫心酒店,Longgang Manxin Hotel Shenzhen,免费停车,22.720425,114.214168,422,2
+133,深圳蛇口希尔顿南海酒店,Hilton Shenzhen Shekou Nanhai,SPA,22.479354,113.916033,1104,2
+134,深圳大中华喜来登酒店,Sheraton Shenzhen Futian Hotel,泳池,22.535567,114.062005,1107,1
+135,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+136,金茂深圳JW万豪酒店,JW Marriott Shenzhen,SPA,22.536401,114.032354,1199,1
+137,塘厦三正半山温泉酒店,Tangxia Goodview Hot Spring Hotel,SPA,22.813375,114.066262,943,1
+138,深圳福田中洲湾城际酒店,Intercity Hotel Futian Zhongzhou Bay,网红泳池,22.528608,114.027929,793,2
+139,深圳坪山高铁站坪山迎宾馆,Pingshan Guest House (Shenzhen Pingshan High Speed Railway Station),免费停车,22.677575,114.341409,394,1
+140,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+141,深圳大梅沙雅兰酒店,Airland Hotel,免费停车,22.595553,114.308265,477,2
+142,梧桐酒店公寓(宝安中心店),Wutong Hotel Apartment (Bao'an Center),桑拿,22.550305,113.890213,467,2
+143,深圳佳兆业万豪酒店,Shenzhen Marriott Hotel Golden Bay,泳池,22.569632,114.459151,1051,1
+144,深圳悦林酒店,Shenzhen Yuelin Hotel,免费停车,22.55962,114.236039,480,1
+145,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+146,深圳南山智选假日酒店,Holiday Inn Express Shenzhen Nanshan,免费停车,22.524939,113.92071,522,1
+147,深圳安伴环保酒店(南山华侨城科技园店),Shenzhen Anban Hotel,免费停车,22.556197,113.974259,427,1
+148,维也纳国际酒店(深圳国际会展中心南门店),Vienna International Hotel (South Gate of Shenzhen International Convention and Exhibition Center),免费停车,22.675545,113.792909,568,1
+149,深圳华侨城洲际大酒店,InterContinental Shenzhen,日光浴场,22.532612,113.984686,1539,2
+150,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+151,深圳深铁铂尔曼酒店,Pullman Shenzhen North,桑拿,22.612383,114.030736,986,2
+152,深圳海源城智选假日酒店,Holiday Inn Express Shenzhen Haiyuan City,免费停车,22.682508,114.125736,496,1
+153,锦龙富华酒店(坪山高铁站店),Jinlong Fuhua Hotel (Pingshan High-speed Railway Station),免费停车,22.680678,114.324089,382,1
+154,建国璞隐酒店(深圳华强店),Jianguo Puyin Hotel (Shenzhen Huaqiang North Branch),停车场,22.540059,114.088595,477,1
+155,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+156,深圳深铁皇冠假日酒店,Crowne Plaza Shenzhen Nanshan,泳池,22.539067,113.944633,1004,2
+157,深圳桔钓沙莱华度假酒店,"Lavenna Resort Judiaosha, Shenzhen",泳池,22.555429,114.552785,1349,1
+158,精明雅谷酒店,ARGO HOTEL,免费停车,22.751444,113.962872,428,1
+159,深圳福田皇岗城际酒店,Intercity Shenzhen Futian Huanggang,免费停车,22.52356,114.06038,643,1
+160,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+161,深圳六月海酒店,June Sea Hotel,免费停车,22.562474,114.465109,588,2
+162,深圳温德姆至尊酒店,Wyndham Grand Shenzhen,泳池,22.533696,114.067574,855,1
+163,深圳京基晶都酒店,Kingkey Oriental Regent Hotel,免费停车,22.539423,114.105825,386,2
+164,深圳南山智谷亚朵酒店,"Atour Hotel Nanshan Zhigu, Shenzhen",停车场,22.569078,113.950791,526,1
+165,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+166,深圳颐朵朵酒店(宝安体育馆店),Shenzhen EDORER Hotel (Bao'an Gymnasium),停车场,22.563369,113.876837,502,1
+167,深圳南悦智慧酒店(南山万科云城店),Shenzhen Nanyue Smart Hotel (Nanshan Vanke Yuncheng Branch),免费停车,22.569103,113.948897,426,1
+168,深圳湾安达仕酒店,Andaz Shenzhen Bay,泳池,22.514867,113.94715,2565,1
+169,深圳大中华希尔顿酒店,Hilton Shenzhen Futian,桑拿,22.539312,114.069748,1017,2
+170,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+171,秋果S酒店(深圳南山南头古城店),Qiuguo S Apartment(Shenzhen Nanshan District Nantou Ancient City ),停车场,22.537757,113.917768,411,2
+172,深圳鹏瑞莱佛士酒店,Raffles Shenzhen,泳池,22.505956,113.942411,2775,2
+173,深圳云谷安朴酒店,THE AMBER HOUSE SHENZHEN,免费停车,22.662802,114.060818,498,1
+174,深圳前海宝安中心CitiGO RESERVE欢阁臻选酒店,Citigo reserve Huange Zhenxuan Hotel  Baoan center QianhaiShenzhen,免费停车,22.550189,113.887553,551,1
+175,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+176,桔子酒店(深圳北站店),Orange Hotel (Shenzhen North Railway Station),免费停车,22.62233,114.039925,404,1
+177,深圳技术大学国际学术交流中心1034酒店,Shenzhen Technology University 1034 Hotel-Managed by Grand Skylight Hotels,免费停车,22.701393,114.394804,420,2
+178,维纳斯皇家酒店(深圳国际会展中心海上田园店),Venus Royal Hotel (Shenzhen International Convention and Exhibition Center Shajing),免费停车,22.741572,113.787062,435,1
+179,深圳INNOGYM楹诺酒店(南山科技园店),Shenzhen INNOGYM Hotel (Nanshan Science and Technology Park Branch),停车场,22.542496,113.933734,478,1
+180,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+181,深圳文华东方酒店,Mandarin Oriental Shenzhen,泳池,22.556715,114.071963,3806,1
+182,深圳硬石酒店,Hard Rock Hotel Shenzhen,网红泳池,22.720836,114.07469,817,1
+183,深圳大梅沙京基海湾大酒店,Kingkey Palace Hotel Shenzhen,泳池,22.598115,114.310461,694,2
+184,深圳好日子皇冠假日酒店,Crowne Plaza Shenzhen Futian,网红泳池,22.537196,114.05373,997,1
+185,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+186,深圳柏悦酒店,Park Hyatt Shenzhen,SPA,22.532026,114.055616,2475,1
+187,深圳彭年万丽酒店,Renaissance Shenzhen Luohu Hotel,泳池,22.540989,114.122665,738,2
+188,深圳宝利来国际大酒店,Baolilai International Hotel,桑拿,22.672867,113.826793,680,1
+189,深圳海德酒店,Hyde Hotel,泳池,22.51838,113.941484,680,2
+190,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+191,深圳光明中集行政酒店,Shenzhen Guangming CIMC Executive Hotel,免费停车,22.747879,113.929786,497,1
+192,深圳瑞吉酒店,The St. Regis Shenzhen,桑拿,22.544629,114.106184,1355,1
+193,深圳福田香格里拉大酒店,"Futian Shangri-La, Shenzhen",泳池,22.536188,114.057259,1199,1
+194,深圳浪骑瞻云度假酒店,The YUN Resort Shenzhen Longcheer,泳池,22.553601,114.561922,882,1
+195,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+196,深圳熙湾酒店,Shenzhen SeaOne Hotel,充电桩,22.526123,113.939768,436,1
+197,深圳东海朗廷酒店,"The Langham, Shenzhen",桑拿,22.536128,114.020126,1089,1
+198,深圳君悦酒店,Grand Hyatt Shenzhen,桑拿,22.537248,114.111182,1166,2
+199,深圳光明天安云谷逸衡酒店,Shenzhen Guangming Tianan Cloud Industrial EVEN HOTELS,网红泳池,22.792208,113.965796,547,1
+200,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+201,深圳益田威斯汀酒店,The Westin Shenzhen Nanshan,泳池,22.537254,113.976116,890,1
+202,锦森酒店(深圳国际会展中心店),Jinsen Hotel (Shenzhen International Convention and Exhibition Center),免费停车,22.706634,113.800105,489,1
+203,深铁前海君璞书院,"Genpla Hotel, Shenzhen Qianhai",管家服务,22.531419,113.903725,659,1
+204,深圳凯宾斯基酒店,Kempinski Hotel Shenzhen,桑拿,22.518235,113.939406,959,2
+205,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+206,深圳栖酒店(水贝珠宝城店),Starry Hotel,免费停车,22.579994,114.119632,537,1
+207,深圳光明天安云谷智选假日酒店,Shenzhen Guangming Tianan Cloud Industrial Park Holiday Inn Express,免费停车,22.792167,113.965456,471,1
+208,深圳四季酒店,Four Seasons Hotel Shenzhen,桑拿,22.533278,114.058098,1399,1
+209,深圳南山希尔顿逸林酒店及公寓,DoubleTree by Hilton Shenzhen Nanshan Hotel & Residences,泳池,22.54368,113.913837,942,1
+210,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+211,深圳湾木棉花酒店,Hotel Kapok Shenzhen Bay,动人夜景,22.518974,113.947312,901,2
+212,深圳机场凯悦酒店,Hyatt Regency Shenzhen Airport,泳池,22.622358,113.812342,793,2
+213,深圳湾万丽酒店,Renaissance Shenzhen Bay Hotel,泳池,22.531674,113.951882,1450,1
+214,HydePark国际公寓酒店(南山后海地铁站店),HydePark International Residence(Nanshan Houhai Subway Station),免费停车,22.51838,113.941484,471,1
+215,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+216,深圳小凉帽之家酒店(甘坑古镇店),Little Hakka Hotel,免费停车,22.657927,114.100676,398,2
+217,深圳康莱德酒店,Conrad Shenzhen,泳池,22.527884,113.897017,1845,1
+218,深圳华强广场酒店(华强北地铁站店),Shenzhen Huaqiang Plaza hotel (Huaqiangbei Metro Station),动人夜景,22.543918,114.085978,699,2
+219,深圳前海华侨城JW万豪酒店,JW Marriott Hotel Shenzhen Bao'an,泳池,22.546791,113.880925,1282,2
+220,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+221,深圳深航国际酒店,Shenzhenair International Hotel,泳池,22.534659,114.01937,738,1
+222,深圳湾海尚酒店,Hisoar Hotel,桑拿,22.504154,113.943385,663,2
+223,深圳香格里拉大酒店,Shangri-La Shenzhen Hotel,桑拿,22.53343,114.118752,701,1
+224,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+225,深圳博林天瑞喜来登酒店,Sheraton Shenzhen Nanshan,SPA,22.582918,113.97219,1045,1
+226,深圳滨河时代亚朵S酒店,Atour S Hotel,管家服务,22.528206,114.026353,852,1
+227,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+228,维也纳国际酒店(深圳国际会展中心马安山地铁站店),Vienna International Hotel (International Convention and Exhibition Center Ma'anshan Subway Station),免费停车,22.716198,113.807795,455,2
+229,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+230,深圳万德诺富特酒店(福田科学馆地铁站店),Novotel Shenzhen Watergate (Futian Huaqiangbei),健身室,22.540382,114.102621,474,1
+231,骏逸凯迪酒店(深圳国际会展中心店),Jun Yi  Kai Di Hotel (Shenzhen International Convention and Exhibition Center),免费停车,22.713415,113.804774,487,1
+232,深圳塘朗城君璞酒店,Shenzhen Nanshan Genpla Hotel,桑拿,22.589218,114.000613,720,2
+233,深圳中海凯骊酒店,The COLI Hotel Shenzhen,泳池,22.703586,114.215284,626,2
+234,深圳宝安翻身路秋果酒店,"Qiuguo Hotel, Bao'an, Shenzhen",免费停车,22.556326,113.900691,312,1
+235,华怡酒店(深圳北站店),HUA YI Hotel (Shenzhen North Railway Station),机器人服务,22.623724,114.029255,343,1
+236,希岸Deluxe酒店(深圳国贸地铁站店),Xana Deluxe Hotel (Shenzhen International Trade metro station store),管家服务,22.541797,114.117054,389,2
+237,华怡酒店(深圳宝安坪洲地铁站店),Huayi Hotel (Shenzhen Bao'an Pingzhou Subway Station),免费停车,22.573949,113.871677,338,1
+238,深圳星河丽思卡尔顿酒店,The Ritz-Carlton Shenzhen,泳池,22.533612,114.061582,1497,2
+239,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+240,菲酒店(深圳北站人民路店),Fei Hotel,充电桩,22.635814,114.025951,279,1
+241,深圳光明美爵酒店,Grand Mercure Shenzhen Guangming,行政酒廊,22.747833,113.931843,595,2
+242,阿卡那拉·深圳橘子海度假美宿,AKANARA · Shenzhen Orange Sea Holiday,自营亲子房,22.508807,114.482142,399,1
+243,深圳南山前海亚朵S酒店,ShenZhen NanShan QianHai ATOUR S Hotel,免费停车,22.52731,113.915626,661,1
+244,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+245,深圳云海酒店,YunHai Hotel Shenzhen,免费停车,22.556288,114.46867,479,2
+246,深圳福田车公庙亚朵X酒店,Atour X Hotel Futian Chegong Temple Shenzhen,免费停车,22.529239,114.022149,667,1
+247,深圳福田口岸希尔顿欢朋酒店,Hampton by Hilton Shenzhen Futian Port,家庭房,22.516785,114.07214,684,1
+248,深圳皇庭V国际公寓,Wongtee V International Apartment,酒店公寓,22.531209,114.063981,940,2
+249,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+250,熹遇·见岛私藏度假美宿,Hey Island•Peninsula Holiday,海景房,22.608206,114.373625,2180,2
+251,深圳国际会展中心洲际酒店,InterContinental Shenzhen WECC,泳池,22.702831,113.782455,1435,2
+252,深圳龙岗珠江皇冠假日酒店,Crowne Plaza Shenzhen Longgang City Centre,泳池,22.722941,114.250002,722,2
+253,深圳南山香格里拉酒店,"Shangri-La Nanshan,Shenzhen",窗外好景,22.524443,113.970659,2234,2
+254,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+255,深圳回酒店,Hui Hotel,设计师酒店,22.548555,114.081999,878,1
+256,深圳安琰酒店,AYEARN HOTEL,泳池,22.506787,113.932716,932,1
+257,深圳罗湖木棉花酒店, THE MUMIAN HOTEL Shenzhen luohu,设计师酒店,22.536519,114.109372,799,1
+258,苫也·深圳不若林度假民宿,Sanyea · Shenzhen Bu Ruolin Resort B&B,日光浴场,22.538215,114.491387,1077,2
+259,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+260,深圳后海木棉花酒店,The Mumian Hotel,设计师酒店,22.49776,113.938974,968,1
+261,雅斯特国际酒店(深圳宝安国际机场店),Astor International Hotel Shenzhen Bao'an International Airport,免费停车,22.613827,113.841877,257,1
+262,深圳隐秀山居酒店,Castle Hotel Shenzhen,桑拿,22.694096,114.259132,846,1
+263,深圳花园格兰云天大酒店,Grand Skylight Garden Hotel Shenzhen,泳池,22.541311,114.076352,724,2
+264,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+265,深圳机场希尔顿逸林公寓,DoubleTree by Hilton Shenzhen Airport Residences,泳池,22.607337,113.852523,664,2
+266,深圳福田口岸亚朵S酒店,Shenzhen Futian Port Yaduo S Hotel,免费停车,22.521591,114.043508,658,1
+267,深圳蓝汐精品酒店,Bay Breeze Hotel,泳池,22.524394,113.992351,1088,1
+268,朗华影音(深圳福田会展中心店),Langhua Audio & Video Hotel (Shenzhen Futian Convention and Exhibition Center),情侣房,22.533963,114.066771,349,1
+269,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+270,深圳欢乐海岸万豪行政公寓,"The OCT Harbour, Shenzhen - Marriott Executive Apartments",泳池,22.525863,113.988399,1458,2
+271,深圳官湖秘野礁石海景酒店,Secret Field · Shenzhen Kamakura Maze Reef Sea View Hotel,家庭房,22.60316,114.419487,1318,1
+272,深圳蓝楹湾度假酒店,Bay Breeze Resort,免费停车,22.520851,113.986374,2687,2
+273,深圳湾万怡酒店,Courtyard Shenzhen Bay,管家服务,22.531101,113.950615,849,2
+274,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+275,深圳尔邸酒店式公寓,Artisse Place,泳池,22.552125,113.98063,1267,2
+276,中濠S酒店(深圳福田会展中心店),CNHŌL S Hotel   (Shenzhen Futian Convention and Exhibition Center),管家服务,22.527662,114.046359,530,1
+277,深圳富临大酒店,Shenzhen Felicity Hotel,泳池,22.530801,114.115246,389,1
+278,深圳美高梅酒店,MGM Shenzhen,家庭房,22.602589,114.329755,1768,1
+279,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+280,深圳同泰万怡酒店,Courtyard by Marriott Shenzhen Northwest,行政酒廊,22.678266,113.805017,970,1
+281,深圳前海华侨城艾美酒店,"Le Méridien Shenzhen, Bao'an",家庭房,22.558441,113.870773,1085,1
+282,深圳罗湖盛业逸扉酒店,UrCove by HYATT Shenzhen Luohu,免费停车,22.562521,114.106982,538,1
+283,深圳澔悦格兰云天国际酒店(国际会展中心海上田园东地铁站店),Grand Skylight International Hotel Haoyue (Shenzhen World & WaterLands Resort East Metro Station),泳池,22.735528,113.785398,647,1
+284,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+285,深圳五洲宾馆,Wuzhou Guest House,管家服务,22.537688,114.046967,698,2
+286,深圳联投东方万怡酒店,Courtyard Shenzhen Bao'An,行政酒廊,22.760655,113.856701,688,2
+287,深圳龙岗永湖希尔顿欢朋酒店,Hampton by Hilton Shenzhen Longgang Yonghu,免费停车,22.66076,114.219689,471,2
+288,深圳会展中心石厦地铁站秋果酒店x,Shenzhen Convention and Exhibition Center Shixia Metro Station Qiuguo Hotelx,机器人服务,22.520964,114.052621,469,2
+289,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+290,深圳乐酒店,O Hotel,湖景房,22.567172,114.141935,836,2
+291,深圳G公寓,Residence G Shenzhen,泳池,22.509782,113.920097,848,2
+292,蜜悦·深圳蓝白圣岛悬崖泡池美宿,Shenzhen Blue and White Shengdao Cliff Pool Beauty Hotel,免费停车,22.538395,114.485723,543,1
+293,深圳福田CBD逸扉酒店,UrCove by HYATT Futian CBD,免费停车,22.542245,114.050754,699,2
+294,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+295,橙果酒店(前海宝安中心店),Orange Fruit Hotel (Qianhai Bao'an Center),家庭房,22.556861,113.898294,303,1
+296,深圳福田华强北希尔顿欢朋酒店,Hampton by Hilton Shenzhen Futian Huaqiangbei,家庭房,22.544657,114.091201,658,1
+297,花园宾舍酒店(深圳福田会展中心岗厦地铁站店),Garden Hotel by LuxCabins (Shenzhen Futian Convention and Exhibition Center Gangxia Subway Station),日光浴场,22.529507,114.068734,361,1
+298,深圳罗湖水贝IBC亚朵酒店,Atour Hotel (Shenzhen Luohu Shuibei IBC),免费停车,22.574804,114.124489,596,1
+299,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+300,深圳福田香蜜湖亚朵酒店,Atour Hotel Shenzhen Futian Xiangmi Lake,免费停车,22.540262,114.023427,728,1
+301,深圳鹏威酒店,Proud Way Hotel Shenzhen,免费停车,22.546289,114.109344,286,1
+302,深圳新南山酒店,Xinnanshan Hotel,充电桩,22.552467,113.979882,565,2
+303,深圳北站Moxy酒店,Moxy Shenzhen North Station,充电桩,22.621376,114.025392,599,1
+304,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+305,深圳西丽创新谷亚朵酒店,Atour Hotel (Shenzhen Innovation Valley),免费停车,22.640034,113.923951,676,2
+306,全季酒店(深圳北站地铁站店),All Seasons Hotel (Shenzhen North Subway Station),停车场,22.605356,114.034682,446,1
+307,深圳中洲万豪酒店,Shenzhen Marriott Hotel Nanshan,SPA,22.517293,113.933785,25769,2
+308,深圳南山深圳湾美居酒店,Mercure Shenzhen Nanshan Shenzhen Bay,免费停车,22.494115,113.932006,431,1
+309,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+310,深圳北站希尔顿欢朋酒店,Hampton by Hilton Shenzhen North Station,充电桩,22.630292,114.018922,700,2
+311,美誉酒店公寓(深圳笋岗艺展中心店),Meiyu Hotel Apartment (Shenzhen Sungang Art Exhibition Center),免费停车,22.566292,114.103465,339,2
+312,深圳悦海酒店(南山科技园店),Shenzhen HAPPYOCEAN Hotel,免费停车,22.538872,113.923637,265,1
+313,维也纳酒店(深圳福永地铁站店),Vienna Hotel (Shenzhen Fuyong Metro Station),免费停车,22.6725,113.805388,570,1
+314,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+315,维展湾酒店(深圳国际会展中心店),Weizhan Bay Hotel (Shenzhen International Convention and Exhibition Center Branch),免费停车,22.688832,113.787043,608,1
+316,深圳美景酒店,MeiJing Hotel Shenzhen,免费停车,22.617051,114.022997,398,1
+317,Amigo米阁睡眠酒店(龙华观澜店),Amigo Mige Sleep Hotel (Longhua Guanlan Branch),免费停车,22.721847,114.034594,331,1
+318,深圳长城大酒店,Great Wall Hotel Shenzhen,免费停车,22.550064,114.106903,346,1
+319,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+320,蜜悦·深圳波西塔诺悬崖海景美宿,Miyue ·Shenzhen Positano Cliff Seaview Beauty Hotel,免费停车,22.540047,114.485442,1117,1
+321,深圳大鹏较场尾亚朵X酒店,Atour X Hotel  Shenzhen Jiaochangwei,免费停车,22.58943,114.508101,420,2
+322,深圳海上世界君兰白露酒店,Shenzhen Sea World Grand Orchid White Dew Hotel,山景房,22.489031,113.919136,373,1
+323,深圳宝安国际会展中心亚朵酒店,Atour Hotel (Shenzhen Bao'an International Convention and Exhibition Center),免费停车,22.674123,113.807883,1010,1
+324,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+325,深圳奈威S酒店(西丽地铁站店),Shenzhen Naive S Hotel(Xili Subway Station Store),免费停车,22.581875,113.957484,418,1
+326,维也纳好眠国际酒店(深圳新机场旗舰店),Vienna Best Sleep International Hotel (Shenzhen Airport flagship),多功能厅,22.622796,113.836519,288,2
+327,深圳美景雅悦酒店,MJ Grand Park Hotel,免费停车,22.615968,114.025099,250,1
+328,希岸酒店(深圳罗湖东门店),Xi 'an Hotel (Shenzhen Luohu East Store),免费停车,22.550278,114.130316,295,1
+329,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+330,深圳南山科技园若玺酒店,Royce Hotel,免费停车,22.526477,113.941505,685,1
+331,慢可可海景公馆(深圳较场尾沙滩店),Maan Coco Flagship Seaview Hotel,日光浴场,22.587792,114.510225,518,2
+332,深圳罗湖水贝亚朵S酒店,Shenzhen Luohu Shuibei Atour S Hotel,自营亲子房,22.570893,114.124058,684,1
+333,Amigo米阁睡眠酒店(深圳北站店),Amigo Sleeping Hotel (Shenzhen North Railway Station),免费停车,22.610573,114.044913,399,2
+334,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+335,明天酒店(深圳宝安国际机场黄田地铁站店),Tomorrow Hotel (Bao'an International Airport Huangtian Subway Station),免费停车,22.624025,113.849305,242,1
+336,维也纳酒店(深圳国际会展中心福永凤凰山店),"Vienna Hotel (Phoenix Hill, Fuyong, Shenzhen International Convention and Exhibition Center)",免费停车,22.683999,113.846024,448,1
+337,希岸酒店(深圳会展中心岗厦地铁口店),Xana Hotelle (Shenzhen Convention and Exhibition Center Gangxia Metro Station),管家服务,22.535457,114.068794,354,1
+338,建国璞隐酒店(深圳宝安国际会展中心店),Jianguo Hidden Hotel-Shenzhen International Convention&Exhibition Center Hotel,免费停车,22.722285,113.78432,555,2
+339,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+340,ALLIN·拾间堂酒店(深圳福田会展中心设计师空间体验店),GTALLIN Shijiantang (Shenzhen Futian Designer Space),桑拿,22.531629,114.068722,846,1
+341,麗枫酒店(深圳宝安国际会展中心店),Lavande Hotel (Shenzhen Bao'an International Convention and Exhibition Center),免费停车,22.708097,113.784249,610,2
+342,深圳INNONOW楹诺·小半城民宿,INNONOW,多功能厅,22.543375,113.922889,528,1
+343,麗枫酒店(深圳湾后海大道店),Lavande Hotel (Shenzhenwan Houhai Avenue),免费停车,22.487375,113.935535,398,1
+344,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+345,深圳珀丽酒店,ROSEDALE HOTEL SHENZHEN,免费停车,22.572164,114.125442,987,2
+346,雅斯特酒店(深圳国际会展中心宝安机场店),"Yeste Hotel (Shenzhen International Convention and Exhibition Center, Bao'an Airport)",充电桩,22.683595,113.806479,343,2
+347,缘·文化朝代酒店(深圳宝安国际会展中心店),Yuan·Culture Dynasty Hotel (Shenzhen Baoan International Convention and Exhibition Center),免费停车,22.721355,113.799581,440,1
+348,深圳罗湖万澳行政酒店,Shenzhen Luohu Wan'ao Executive Hotel,家庭房,22.567304,114.110052,568,2
+349,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+350,城市名人酒店公寓(会展湾水岸店),City Celebrity Hotel Apartment (Exhibition Bay Waterfront Branch),充电桩,22.700984,113.782428,464,2
+351,盈舍轻奢S酒店(深圳蛇口海上世界地铁站店),Insio Hotel (Shenzhen Shekou Maritime World),山景房,22.482591,113.91326,336,1
+352,深圳福田华强北秋果酒店,Shenzhen Futian Huaqiang North Qiuguo Hotel,家庭房,22.563777,114.099844,298,1
+353,巢里巢外民宿(深圳巡乡小院店),Chaoli Chaowai Hostel (Shenzhen Xunxiang Courtyard),充电桩,22.587435,114.507228,618,1
+354,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+355,深圳INNOBAY楹诺·小半湾民宿,INNOBAY Homestay Shenzhen,免费停车,22.562017,114.465566,1478,1
+356,深圳悦如酒店,YUERU Hotel,茶室,22.53679,114.023844,367,1
+357,WESU微宿设计公寓(深圳福田八卦岭店),WESU Apartment (Shenzhen Futian Bagualing Branch),24小时前台,22.563117,114.100883,405,1
+358,深圳沙井国际会展中心亚朵酒店,Atour Hotel shajing International Convention and Exhibition Center shenzhen,免费停车,22.709028,113.806405,869,2
+359,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+360,深圳宝安福朋喜来登酒店,Four Points by Sheraton Shenzhen Bao'an,免费停车,22.562209,113.902031,748,1
+361,蜜悦·深圳天麓秘野仙踪度假美宿,Miyue Shenzhen Tianlu Secret Wild Wizard Holiday Meisu,免费停车,22.616746,114.302616,531,1
+362,归隐酒店(深圳福田香蜜湖店),Greeninn Hotel (Shenzhen Futian Xiangmihu Branch),免费停车,22.547179,114.00995,482,1
+363,拈花·心舍民宿(深圳较场尾店),Nianhua Xinshe Homestay (Shenzhen Jiaochangwei Branch),儿童俱乐部,22.59012,114.5123,679,1
+364,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+365,深圳科技园高新中亚朵S酒店,Shenzhen Nanshan Science Park high-tech Central ATOURS Hotel,窗外好景,22.546016,113.947642,684,2
+366,深圳泊寓富瑞斯国际公寓,FURUIS Residence Nanshan,免费停车,22.552857,113.978394,610,1
+367,苫也·深圳未名海海景民宿,Sanyea · Shenzhen Weiminghai Seaview Homestay,免费停车,22.545045,114.570102,996,1
+368,维也纳国际酒店(深圳会展湾中心店),Vienna International Hotel (Shenzhen Huizhanwan Center),免费停车,22.686189,113.781961,607,2
+369,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+370,维也纳酒店(深圳南山科技园店),"Nanshan Science Park, Vienna",免费停车,22.544912,113.950955,412,1
+371,铂尔顿公寓(深圳国际会展中心店),Platton Apartments,酒店公寓,22.70676,113.778316,433,1
+372,美豪酒店(深圳宝安国际会展中心店),Meihao Hotel (Shenzhen Bao'an International Convention and Exhibition Center),免费停车,22.70662,113.78378,654,2
+373,维也纳国际酒店(深圳前海欢乐港湾店),Vienna International Hotel (Shenzhen Qianhai Happy Bay Hotel),健身室,22.559939,113.865324,278,1
+374,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+375,深圳深兰华亭·梵麓海滨度假酒店(较场尾店),Shenzhen Shenlan Huating FanLu Seaside Resort,SPA,22.59406,114.519882,746,1
+376,全季酒店(深圳南山科技园长园酒店),Ji Hotel (Shenzhen Nanshan Science and Technology Park Changyuan Hotel),免费停车,22.550832,113.943003,421,1
+377,华轩里酒店(深圳大运中心店),Huaxuanli Hotel (Shenzhen Universiade Center),免费停车,22.702747,114.218969,357,1
+378,艺龙酒店(深圳华南城店),Elong Hotel Shenzhen South China City,影音房,22.667588,114.144133,302,1
+379,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+380,深圳福田岚珊酒店(福田站店),Shenzhen Futian Sushan Hotel (Futian Station),管家服务,22.546375,114.055355,518,1
+381,深圳丹枫凯丽度假村,Danfeng Kaili Resort,免费停车,22.528753,114.529493,644,1
+382,深圳听海云居海景度假酒店(较场尾悦暻店),Shenzhen Tinghai Yunju Seaview Resort Hotel (Jiaochangwei Banyan Tree),充电桩,22.590524,114.512687,563,1
+383,深圳耘境·见山度假美宿,Doesli Hotel,拍照出片,22.527594,114.520632,578,2
+384,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+385,深圳福田CBD市民中心亚朵酒店,Atour Hotel Shenzhen Futian CBD Civic Center,影音房,22.547374,114.067328,726,1
+386,深圳清溪乡舍民宿,Qingxi Xiangshe Hostel,免费停车,22.662567,114.417543,550,2
+387,深圳芮法娜酒店(宝安坪洲地铁站店),Revana Hotel,免费停车,22.570399,113.868388,289,1
+388,深圳慢可可海景别墅(较场尾海岸线店),Shenzhen Maancoco Seaview Villa (Jiaochangwei Coastline),日光浴场,22.581961,114.505764,520,2
+389,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+390,深圳花半垄民宿,Shenzhen Huabanlong Homestay,迷人海景,22.610503,114.416772,455,2
+391,优范酒店(深圳宝安中心翻身地铁站店),U FUN HOTEL(Shenzhen Qianhai Baoan Center),管家服务,22.55947,113.89607,298,1
+392,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+393,红海大酒店(深圳国际会展中心国展南地铁站店),Honghai Hotel (Shenzhen International Convention and Exhibition Center Guozhan South Subway Station),影音房,22.683104,113.784459,486,2
+394,深圳南山大道希尔顿花园酒店,Hilton Garden Inn Shenzhen Nanshan Avenue,免费停车,22.517155,113.920636,642,2
+395,美球M酒店(南头古城大新地铁站店),Meiqiu M Hotel,管家服务,22.537145,113.916478,276,1
+396,东枫·山海轻居(深圳福田华强北地铁站店),Dongfeng Shanhai Light Residence (Shenzhen Futian Huaqiangbei Subway Station),影音房,22.545343,114.08516,379,1
+397,深圳海边有星光别墅(深圳较场尾店),STARS&SEA Villa (Shenzhen Jiaochangwei),充电桩,22.588477,114.508842,600,1
+398,深圳大梅沙湾游艇度假酒店,Shenzhen Dameisha Bay Yacht Resort Hotel,日光浴场,22.598313,114.312213,705,2
+399,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+400,全季酒店(深圳南山朗山路店),JI Hotel (Shenzhen Nanshan Langshan Road),停车场,22.555649,113.9499,403,1
+401,深圳辰礼精品酒店,Shenzhen CHANLEE Boutique Hotel,设计师酒店,22.588,114.510558,558,1
+402,HEY VILLA·熹遇见私汤别墅,Hey Villa • Private Spring Resorts,免费停车,22.538865,114.483493,1195,2
+403,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+404,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+405,蓬客精品酒店(深圳海岸城科技园店),Pengke Boutique Hotel (Shenzhen Science Park Coast City),免费停车,22.514029,113.934497,318,1
+406,深圳半天云海岸度假村,Bantianyun Coast Resort Shenzhen,免费停车,22.519373,114.486939,569,1
+407,全季酒店(深圳宝安机场怀德地铁站店),JI Hotel (Shenzhen Bao'an Airport Huaide Subway Station),停车场,22.668714,113.817666,542,1
+408,深圳南山逸衡酒店,EVEN Hotel Shenzhen Nanshan (under the IHG),免费停车,22.52375,113.914043,608,1
+409,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+410,深圳太子伊敦睿选酒店,Aden  Select,机器人服务,22.483461,113.913762,578,2
+411,维也纳国际酒店(深圳宝龙地铁站店),Vienna International Hotel (Shenzhen Baolong Metro Station),机器人服务,22.695312,114.290971,318,2
+412,深圳一粟山溪美宿,Shenzhen Yisu Mountain Ximeisu,免费停车,22.660976,114.41417,618,1
+413,汉庭酒店(深圳宝安国际会展中心店),Hanting Hotel (Shenzhen Bao'an International Convention and Exhibition Center),免费停车,22.717434,113.80005,527,1
+414,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+415,深圳奥登国际酒店,Auden International Hotel Shenzhen,免费停车,22.584331,114.482576,448,2
+416,深圳观澜亚朵酒店,Atour Hotel Shenzhen Guanlan,免费停车,22.70737,114.043967,442,1
+417,深圳松岗满京华樂品酒店,Shenzhen Songgang Manjinghua Lepin Hotel,免费停车,22.785441,113.833846,358,1
+418,深圳湾超级总部斐瑞酒店,Shenzhen Bay Super Headquarters Feria Hotel,窗外好景,22.531782,113.970917,579,1
+419,深圳南山大道希尔顿花园酒店,Hilton Garden Inn Shenzhen Nanshan Avenue,免费停车,22.517155,113.920636,642,2
+420,深圳北站智选假日酒店,Holiday Inn Express Shenzhen North Station,SPA,22.596667,114.044066,367,1
+421,深圳南山科技园长园轻居酒店,Shenzhen Nanshan Science and Technology Park Changyuan Light Hotel,停车场,22.551098,113.944138,438,1
+422,深圳南海颂酒店,NanhaiSong hotel,免费停车,22.484263,113.914218,1088,2
+423,雅斯特国际酒店(宝安国际会展中心店),Yester International Hotel,免费停车,22.694885,113.782784,652,2
+424,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+425,麗枫酒店(深圳东门水贝翠竹地铁站店),Lavande Hotel (Shenzhen Dongmen Shuibei Cuizhu Subway Station),多功能厅,22.551301,114.131021,378,1
+426,FunGee X 欢致酒店(深圳福田八卦路店),FunGee X Joy Hotel (Shenzhen Futian Bagua Road),影音房,22.564868,114.099417,393,1
+427,廷泊酒店(深圳宝安机场固戍地铁站店),Thimble Hotel (Shenzhen Bao 'an Airport Branch),免费停车,22.604176,113.835692,263,1
+428,维也纳国际酒店(深圳南山科技园科兴店),Vienna International Hotel (Shenzhen Nanshan Science and Technology Park Kexing Branch),影音房,22.553855,113.951654,401,1
+429,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+430,苫也·深圳阅夕岛海景民宿,Sanyea · Shenzhen Yuexi Island Seaview Homestay,免费停车,22.538747,114.483951,1381,2
+431,苫也·深圳溪上屿海景民宿,Sanyea · Shenzhen Xishangyu Seaview Homestay,海景房,22.491614,114.585924,1679,1
+432,宜尚酒店(深圳国际会展中心机场店),"Echarm Hotel (Shenzhen International Convention and Exhibition Center, Airport)",免费停车,22.678322,113.792947,620,1
+433,东莞万阁酒店(长安万达广场店),WINGO HOTEL,免费停车,22.810798,113.81288,289,2
+434,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+435,栎宜酒店(深圳国际会展中心塘尾地铁站店),Suiton By Paxton,免费停车,22.695798,113.828856,278,1
+436,深圳湾城际酒店,Intercity Shenzhen  Bay Hotel,海景房,22.522457,113.940394,634,1
+437,深圳较场尾怡舍精品酒店,Shenzhen Jiaochangwei Yishe Boutique Hotel,停车场,22.58728,114.50991,470,1
+438,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+439,世纪花园酒店(深圳国际会展中心国展北地铁站店),Century Garden Hotel,免费停车,22.706446,113.783777,637,1
+440,南洋客栈(华侨城甘坑古镇店),Overseas Chinese Town Nanyang Inn (Gankeng Ancient Town Shop),山景房,22.65457,114.105951,231,1
+441,深圳南头有熊酒店,Jiangnan House Nantou,免费停车,22.543397,113.920849,787,1
+442,客赞公寓(深圳国际会展中心店),Kezan Apartment,智能客控,22.706685,113.777654,473,2
+443,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+444,樱曼海景度假美宿(大梅沙店),Yingman Sea View Holiday Inn (Dameisha Store),日光浴场,22.598849,114.311274,445,1
+445,秋果酒店(深圳南山南新路店),Shenzheng Nanshan Nanxin Road Qiuguo Hotel,家庭房,22.530565,113.919105,294,1
+446,雅斯菲尔酒店(深圳宝安国际机场店),Yesfel Hotel (Shenzhen Bao'an International Airport),免费停车,22.605912,113.843877,421,1
+447,维也纳国际酒店(深圳北站元芬地铁站店),Vienna International Hotel (Shenzhen North Railway Station Yuanfen Subway Station),免费停车,22.652186,114.007395,358,1
+448,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+449,佳兆业可域精选酒店(深圳大鹏店),Kaisa Keyu Resort (Shenzhen Dapeng),免费停车,22.594966,114.474029,425,1
+450,桔子水晶深圳宝安国际会展中心酒店,Crystal Orange Hotel Shenzhen World Exhibitiion & Convention Center,免费停车,22.69307,113.78849,969,1
+451,深圳湾北邮逸扉酒店,UrCove by HYATT Shenzhen Bay Eco-Tech Park,停车场,22.531573,113.947661,768,1
+452,夜岛·绿洲海景民宿(较场尾大鹏所城店),Yedao Oasis Seaview Homestay,网红泳池,22.591243,114.513731,679,1
+453,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+454,海岛日记民宿(深圳玫瑰海岸店),Island diary B & B (Shenzhen rose coast store),充电桩,22.610301,114.380652,610,1
+455,悠然·观夏酒店(深圳较场尾店),Youran Guanxia Hotel (Shenzhen Jiaochangwei Branch),窗外好景,22.590392,114.512215,477,1
+456,九间房民宿(南头古城店),Jiujianfang B&B (Nantou Ancient City Branch),智能客控,22.543345,113.920528,488,2
+457,深圳第一太平戴维斯赛嘉服务式公寓,Savills Residence,酒店公寓,22.490722,113.939452,765,1
+458,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+459,格林东方酒店(深圳平湖华南城禾花地铁站店),Green Oriental Hotel (Shenzhen Pinghu South China City Hehua subway station),免费停车,22.682892,114.121834,293,1
+460,深圳D House梦想家酒店公寓(福田上梅林地铁站店),D House International Service Apartment,酒店公寓,22.570233,114.061462,406,1
+461,维也纳好眠国际酒店(深圳大学城塘朗地铁站店),Vienna Good Sleep International Hotel (Shenzhen University Town Tanglang Subway Station),免费停车,22.585924,113.993138,408,2
+462,凯里亚德酒店(深圳龙华大浪商业中心店),Kyriad Marvelous Hotel Shenzhen Longhua Dalang Business Center,免费停车,22.66764,114.003522,273,2
+463,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+464,铂斯登行政公寓(深圳卓越前海壹号店),Platinum Stearns Hotel,酒店公寓,22.52891,113.89907,471,2
+465,望桐露营地,Wangtong Campground,免费停车,22.592896,114.192276,520,1
+466,桔子酒店(深圳南山荔林地铁站店),Orange Hotel (Shenzhen Nanshan Lilin Subway Station Branch),停车场,22.511442,113.910238,434,1
+467,深圳富瑞斯国际公寓(福田会展中心店),Fietser International Residence,酒店公寓,22.540772,114.044037,590,1
+468,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+469,深圳一粟悬崖海景酒店,Shenzhen Yisu Cliff Seaview Hotel,免费停车,22.53907,114.483397,940,1
+470,深圳大梅沙万枫酒店,Fairfield by Marriott Shenzhen Dameisha,海景房,22.596007,114.307915,638,1
+471,深圳波托菲诺国际公寓,Portofino International Apartment,酒店公寓,22.546873,113.974761,680,2
+472,锦江都城酒店(深圳龙岗中心城龙城广场店),Metropolo Hotels (Shenzhen Longgang Central City Longcheng Plaza),免费停车,22.730705,114.243158,314,1
+473,铂尔登美瑾酒店(深圳南山西丽地铁站店),Dalden Meijin Hotel,停车场,22.581022,113.953854,331,1
+474,岚惜·汤泉泡池酒店,LANNIX HOTEL,家庭房,22.529065,114.528487,698,1
+475,登喜路酒店(蛇口花果山地铁站店),Dayhello Hotel,免费停车,22.495659,113.918383,309,1
+476,桔子酒店(深圳南山西丽地铁站店),Orange Hotel Shenzhen Nanshan Xili Subway Station,停车场,22.58428,113.950351,354,1
+477,维也纳酒店(深圳国际会展中心福永新田店),Vienna Hotel (Shenzhen Fuyong Xintian),免费停车,22.687898,113.83058,364,1
+478,深圳蛇口太子湾逸扉酒店,UrCove by HYATT Shenzhen Shekou Cruise Center,自营影音房,22.472324,113.911549,518,1
+479,深圳中宸国际酒店(深圳坪山高铁站宝龙地铁站店),Shenzhen Zhongchen International Hotel,影音房,22.693443,114.291826,349,1
+480,深圳山海朗华酒店(南山科技园店),Shenzhen Shanhai Langhua Hotel (Nanshan Science Park Branch),管家服务,22.529107,113.910552,379,2
+481,深圳晚风·岚汀海景民宿(较场尾店),Shenzhen Wanfeng Puting Seaview Homestay (Jiaochangwei Branch),充电桩,22.591284,114.513806,635,1
+482,蓝图美季酒店(深圳国际会展中心店),Blueprint Meji Hotel (Shenzhen International Convention and Exhibition Center),免费停车,22.700604,113.799604,440,1
+483,深圳皇悦豪生酒店,Howard Johnson  Royal Hotel Shenzhen,网红泳池,22.74192,113.828399,565,1
+484,岩也的窄酒店,Zhai Hotel,设计师酒店,22.542239,113.920948,487,2
+485,绿景景临会展行政公寓(深圳国际会展中心店),Gemlan Exhibition Executive Apartment,停车场,22.701165,113.781046,446,2
+486,禾尖S酒店(深圳高新园店),Apex & Hotel (Shenzhen Hi-tech Park),免费停车,22.53841,113.95156,398,1
+487,桔子酒店(深圳宝安海雅缤纷城店),Orange Shenzhen Baoan Haiya Splendid City Hotel,停车场,22.564172,113.904325,338,1
+488,丽呈朗誉酒店(深圳龙岗中心大运新城店),Rezen Longuu Hotel (Shenzhen Longgang Universiade Center Station),免费停车,22.722441,114.221198,335,1
+489,深圳龙华智选假日酒店(大浪商业中心店),Holiday Inn Express Shenzhen Longhua (Dalang Business District),免费停车,22.69027,113.989206,369,2
+490,阿卡那拉·深圳洋畴秘境度假美宿,AKANARA Yangchou Secret Land Meisu,家庭房,22.508667,114.482811,499,1
+491,深圳半山壹棠服务公寓,CM+ Serviced Apartment Shenzhen Hillside,厨房,22.486996,113.912519,718,2
+492,天和酒店(深圳宝安机场店),Tianhe Hotel (Shenzhen Bao'an Airport),棋牌室,22.638995,113.826829,379,1
+493,深圳南山芒果网大厦亚朵酒店,"Mangonet Building, No. 3955 Baishi Road, Nanshan District, Shenzhen, Guangdong, China",停车场,22.523888,113.935467,684,1
+494,东莞凤岗希尔顿欢朋酒店,Hampton by Hilton Dongguan Fenggang,免费停车,22.727464,114.146468,341,2
+495,深圳阿普萨拉斯酒店,Apsaras Hotel Shenzhen,免费停车,22.565724,114.540223,838,1
+496,中惠·悠雅酒店(深圳南山科技园店),Zhonghui · Elegant Hotel,免费停车,22.531952,113.929786,277,2
+497,君德假日酒店(深圳华侨城店),JunDe holiday inn,免费停车,22.540267,113.995765,349,2

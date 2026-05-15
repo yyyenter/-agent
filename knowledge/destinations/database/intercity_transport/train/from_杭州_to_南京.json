@@ -1,0 +1,1732 @@
+[
+    {
+        "TrainID": "G198",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "12:45",
+        "EndTime": "14:19",
+        "Duration": 1.63,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G32",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "07:48",
+        "EndTime": "08:56",
+        "Duration": 1.13,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G34",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "13:00",
+        "EndTime": "14:08",
+        "Duration": 1.13,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G40",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "18:58",
+        "EndTime": "20:03",
+        "Duration": 1.2,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G158",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "16:13",
+        "EndTime": "18:43",
+        "Duration": 2.5,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G172",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "06:50",
+        "EndTime": "08:19",
+        "Duration": 1.48,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G176",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "08:57",
+        "EndTime": "10:21",
+        "Duration": 1.5,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G178",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "09:48",
+        "EndTime": "11:03",
+        "Duration": 1.32,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G192",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "14:41",
+        "EndTime": "16:04",
+        "Duration": 1.38,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G36",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "16:54",
+        "EndTime": "18:03",
+        "Duration": 1.18,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G182",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "11:24",
+        "EndTime": "12:26",
+        "Duration": 1.08,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G196",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:17",
+        "EndTime": "16:42",
+        "Duration": 1.48,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G38",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "18:00",
+        "EndTime": "19:01",
+        "Duration": 1.05,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G174",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "08:49",
+        "EndTime": "10:06",
+        "Duration": 1.35,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G180",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "10:32",
+        "EndTime": "12:12",
+        "Duration": 1.77,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G184",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "11:39",
+        "EndTime": "13:13",
+        "Duration": 1.65,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G190",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "13:29",
+        "EndTime": "15:10",
+        "Duration": 1.75,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G194",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:43",
+        "EndTime": "17:01",
+        "Duration": 1.33,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "Z283",
+        "TrainType": "直达特快",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "16:55",
+        "EndTime": "22:44",
+        "Duration": 5.82,
+        "Cost": 118.47
+    },
+    {
+        "TrainID": "D2223",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "08:08",
+        "EndTime": "09:45",
+        "Duration": 1.62,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "D2273",
+        "TrainType": "动车",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "09:25",
+        "EndTime": "10:59",
+        "Duration": 1.57,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "K48",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "13:43",
+        "EndTime": "21:48",
+        "Duration": 8.08,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "K1806",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "11:30",
+        "EndTime": "18:17",
+        "Duration": 6.78,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "K336",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "南京站",
+        "BeginTime": "17:55",
+        "EndTime": "01:15",
+        "Duration": 7.43,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "T136",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "南京站",
+        "BeginTime": "19:58",
+        "EndTime": "02:15",
+        "Duration": 6.38,
+        "Cost": 118.47
+    },
+    {
+        "TrainID": "D3136",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "16:40",
+        "EndTime": "20:19",
+        "Duration": 3.88,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "D3142",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "14:56",
+        "EndTime": "18:08",
+        "Duration": 3.32,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G1510",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "18:01",
+        "EndTime": "20:51",
+        "Duration": 2.93,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7192",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "17:02",
+        "EndTime": "19:46",
+        "Duration": 2.77,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7314",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "19:29",
+        "EndTime": "22:37",
+        "Duration": 3.17,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7372",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "08:07",
+        "EndTime": "11:30",
+        "Duration": 3.42,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7376",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:40",
+        "EndTime": "18:31",
+        "Duration": 2.9,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7492",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "07:44",
+        "EndTime": "11:10",
+        "Duration": 3.57,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7764",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "09:28",
+        "EndTime": "12:11",
+        "Duration": 2.85,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7310",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "17:43",
+        "EndTime": "20:59",
+        "Duration": 3.4,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1866",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "07:26",
+        "EndTime": "10:25",
+        "Duration": 3.05,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7520",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京站",
+        "BeginTime": "17:24",
+        "EndTime": "20:27",
+        "Duration": 3.15,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7590",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "17:39",
+        "EndTime": "20:41",
+        "Duration": 3.18,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1228",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "10:01",
+        "EndTime": "12:48",
+        "Duration": 2.82,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7350",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "20:43",
+        "EndTime": "23:24",
+        "Duration": 2.87,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7432",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "18:09",
+        "EndTime": "21:03",
+        "Duration": 2.97,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7566",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "19:12",
+        "EndTime": "21:43",
+        "Duration": 2.55,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7572",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "09:45",
+        "EndTime": "13:11",
+        "Duration": 3.52,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7588",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京站",
+        "BeginTime": "19:05",
+        "EndTime": "22:00",
+        "Duration": 2.97,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7592",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:01",
+        "EndTime": "18:26",
+        "Duration": 3.45,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7792",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "16:54",
+        "EndTime": "20:07",
+        "Duration": 3.27,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7391",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "南京南站",
+        "BeginTime": "19:54",
+        "EndTime": "21:37",
+        "Duration": 2.02,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7395",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "南京南站",
+        "BeginTime": "08:47",
+        "EndTime": "10:29",
+        "Duration": 2.0,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D2282",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "20:00",
+        "EndTime": "23:19",
+        "Duration": 3.35,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "K348",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "01:55",
+        "EndTime": "07:09",
+        "Duration": 5.43,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "K552",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "20:12",
+        "EndTime": "02:02",
+        "Duration": 6.17,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "G2621",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "08:32",
+        "EndTime": "10:11",
+        "Duration": 1.65,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G442",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "14:46",
+        "EndTime": "16:09",
+        "Duration": 1.42,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1221",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "08:29",
+        "EndTime": "10:00",
+        "Duration": 1.67,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1545",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "07:19",
+        "EndTime": "08:39",
+        "Duration": 1.33,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1380",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "19:10",
+        "EndTime": "20:19",
+        "Duration": 1.22,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1482",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "13:41",
+        "EndTime": "14:56",
+        "Duration": 1.32,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1484",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "16:18",
+        "EndTime": "17:33",
+        "Duration": 1.33,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G2336",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "19:25",
+        "EndTime": "20:53",
+        "Duration": 1.57,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1504",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "20:43",
+        "EndTime": "22:11",
+        "Duration": 1.5,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1676",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "14:24",
+        "EndTime": "15:52",
+        "Duration": 1.57,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1662",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "19:05",
+        "EndTime": "20:39",
+        "Duration": 1.62,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1672",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "10:37",
+        "EndTime": "12:07",
+        "Duration": 1.57,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D2294",
+        "TrainType": "动车",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "18:18",
+        "EndTime": "20:09",
+        "Duration": 1.88,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G3106",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:48",
+        "EndTime": "17:17",
+        "Duration": 1.48,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G3110",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "07:41",
+        "EndTime": "09:08",
+        "Duration": 1.45,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7752",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "17:49",
+        "EndTime": "19:11",
+        "Duration": 1.37,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7756",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "12:21",
+        "EndTime": "14:00",
+        "Duration": 1.65,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7478",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:22",
+        "EndTime": "16:30",
+        "Duration": 1.22,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G2808",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "14:02",
+        "EndTime": "15:23",
+        "Duration": 1.42,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7682",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "17:57",
+        "EndTime": "19:38",
+        "Duration": 1.72,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7686",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "16:08",
+        "EndTime": "17:44",
+        "Duration": 1.7,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7796",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "10:42",
+        "EndTime": "12:17",
+        "Duration": 1.65,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G595",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "08:25",
+        "EndTime": "09:55",
+        "Duration": 1.5,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D2189",
+        "TrainType": "动车",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "15:33",
+        "EndTime": "17:07",
+        "Duration": 1.57,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G7603",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "09:53",
+        "EndTime": "11:07",
+        "Duration": 1.3,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D2197",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "13:51",
+        "EndTime": "15:14",
+        "Duration": 1.45,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G7679",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "13:05",
+        "EndTime": "14:26",
+        "Duration": 1.45,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G591",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "09:13",
+        "EndTime": "10:42",
+        "Duration": 1.57,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7610",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "18:13",
+        "EndTime": "19:51",
+        "Duration": 1.73,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G344",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "17:52",
+        "EndTime": "19:34",
+        "Duration": 1.8,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G282",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "14:14",
+        "EndTime": "15:40",
+        "Duration": 1.43,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G2816",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "16:23",
+        "EndTime": "17:49",
+        "Duration": 1.43,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7604",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "11:57",
+        "EndTime": "13:30",
+        "Duration": 1.55,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7696",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "16:48",
+        "EndTime": "18:13",
+        "Duration": 1.5,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1732",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "18:43",
+        "EndTime": "20:24",
+        "Duration": 1.73,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7470",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:58",
+        "EndTime": "18:02",
+        "Duration": 2.18,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7582",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "19:33",
+        "EndTime": "21:12",
+        "Duration": 1.75,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7626",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "18:22",
+        "EndTime": "19:43",
+        "Duration": 1.42,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7628",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "21:47",
+        "EndTime": "22:57",
+        "Duration": 1.28,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7642",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "19:20",
+        "EndTime": "20:44",
+        "Duration": 1.48,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7650",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "10:25",
+        "EndTime": "11:42",
+        "Duration": 1.4,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7666",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "19:56",
+        "EndTime": "21:23",
+        "Duration": 1.5,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7690",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:53",
+        "EndTime": "17:22",
+        "Duration": 1.6,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1666",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "17:23",
+        "EndTime": "18:46",
+        "Duration": 1.48,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "T112",
+        "TrainType": "特快",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "10:17",
+        "EndTime": "15:20",
+        "Duration": 5.05,
+        "Cost": 118.47
+    },
+    {
+        "TrainID": "K8352",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "19:10",
+        "EndTime": "01:02",
+        "Duration": 5.87,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "G2668",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "07:57",
+        "EndTime": "09:20",
+        "Duration": 1.43,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7608",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "12:27",
+        "EndTime": "13:47",
+        "Duration": 1.42,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G254",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "08:48",
+        "EndTime": "10:16",
+        "Duration": 1.47,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D5502",
+        "TrainType": "动车",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "15:15",
+        "EndTime": "17:53",
+        "Duration": 2.63,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G1862",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "07:05",
+        "EndTime": "08:35",
+        "Duration": 1.5,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D2114",
+        "TrainType": "动车",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "20:50",
+        "EndTime": "22:21",
+        "Duration": 1.6,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G7576",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "10:51",
+        "EndTime": "14:15",
+        "Duration": 3.43,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D3240",
+        "TrainType": "动车",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "21:01",
+        "EndTime": "22:47",
+        "Duration": 1.8,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G1668",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "20:53",
+        "EndTime": "22:36",
+        "Duration": 1.75,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G170",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "11:34",
+        "EndTime": "12:57",
+        "Duration": 1.45,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G296",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "17:33",
+        "EndTime": "19:16",
+        "Duration": 1.77,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1606",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "20:32",
+        "EndTime": "22:00",
+        "Duration": 1.53,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1496",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "12:03",
+        "EndTime": "13:35",
+        "Duration": 1.6,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1492",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "11:04",
+        "EndTime": "12:37",
+        "Duration": 1.6,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D3236",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "13:20",
+        "EndTime": "14:44",
+        "Duration": 1.48,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G186",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "12:40",
+        "EndTime": "14:13",
+        "Duration": 1.55,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D2196",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "13:51",
+        "EndTime": "15:14",
+        "Duration": 1.45,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G1224",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "08:29",
+        "EndTime": "10:00",
+        "Duration": 1.67,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D2246",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "10:20",
+        "EndTime": "11:47",
+        "Duration": 1.45,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "D2222",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "08:08",
+        "EndTime": "09:45",
+        "Duration": 1.62,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G590",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "09:13",
+        "EndTime": "10:42",
+        "Duration": 1.57,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G446",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "17:14",
+        "EndTime": "18:32",
+        "Duration": 1.3,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7678",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "13:05",
+        "EndTime": "14:26",
+        "Duration": 1.45,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7482",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "18:48",
+        "EndTime": "19:56",
+        "Duration": 1.18,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7662",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "13:15",
+        "EndTime": "14:49",
+        "Duration": 1.67,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7674",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "10:15",
+        "EndTime": "11:36",
+        "Duration": 1.42,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7602",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "09:53",
+        "EndTime": "11:07",
+        "Duration": 1.3,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7486",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "12:08",
+        "EndTime": "13:24",
+        "Duration": 1.32,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "K1512",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "南京站",
+        "BeginTime": "13:10",
+        "EndTime": "20:24",
+        "Duration": 7.35,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "G7398",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "南京南站",
+        "BeginTime": "08:47",
+        "EndTime": "10:29",
+        "Duration": 2.0,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "Z176",
+        "TrainType": "直达特快",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "13:35",
+        "EndTime": "18:24",
+        "Duration": 4.82,
+        "Cost": 118.47
+    },
+    {
+        "TrainID": "Z282",
+        "TrainType": "直达特快",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "16:55",
+        "EndTime": "22:44",
+        "Duration": 5.82,
+        "Cost": 118.47
+    },
+    {
+        "TrainID": "G7394",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "南京南站",
+        "BeginTime": "19:54",
+        "EndTime": "21:37",
+        "Duration": 2.02,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D2192",
+        "TrainType": "动车",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "16:06",
+        "EndTime": "17:58",
+        "Duration": 1.87,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G1544",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "07:19",
+        "EndTime": "08:39",
+        "Duration": 1.33,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G594",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "08:25",
+        "EndTime": "09:55",
+        "Duration": 1.5,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G2624",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "08:32",
+        "EndTime": "10:11",
+        "Duration": 1.65,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D2272",
+        "TrainType": "动车",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "09:25",
+        "EndTime": "10:59",
+        "Duration": 1.57,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "D2188",
+        "TrainType": "动车",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "15:33",
+        "EndTime": "17:07",
+        "Duration": 1.57,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G2669",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "07:57",
+        "EndTime": "09:20",
+        "Duration": 1.43,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7793",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "16:54",
+        "EndTime": "20:07",
+        "Duration": 3.27,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7765",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "09:28",
+        "EndTime": "12:11",
+        "Duration": 2.85,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "K49",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "13:43",
+        "EndTime": "21:48",
+        "Duration": 8.08,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "K345",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "01:55",
+        "EndTime": "07:09",
+        "Duration": 5.43,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "G7493",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "07:44",
+        "EndTime": "11:10",
+        "Duration": 3.57,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7593",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:01",
+        "EndTime": "18:26",
+        "Duration": 3.45,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G283",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "14:14",
+        "EndTime": "15:40",
+        "Duration": 1.43,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "K553",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "20:12",
+        "EndTime": "02:02",
+        "Duration": 6.17,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "K337",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "南京站",
+        "BeginTime": "17:55",
+        "EndTime": "01:15",
+        "Duration": 7.43,
+        "Cost": 94.78
+    },
+    {
+        "TrainID": "D3137",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "16:40",
+        "EndTime": "20:19",
+        "Duration": 3.88,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G7479",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:22",
+        "EndTime": "16:30",
+        "Duration": 1.22,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7687",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "16:08",
+        "EndTime": "17:44",
+        "Duration": 1.7,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7577",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "10:51",
+        "EndTime": "14:15",
+        "Duration": 3.43,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7683",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "17:57",
+        "EndTime": "19:38",
+        "Duration": 1.72,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1663",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "19:05",
+        "EndTime": "20:39",
+        "Duration": 1.62,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7697",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "16:48",
+        "EndTime": "18:13",
+        "Duration": 1.5,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7797",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "10:42",
+        "EndTime": "12:17",
+        "Duration": 1.65,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7377",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "15:40",
+        "EndTime": "18:31",
+        "Duration": 2.9,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D3143",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "14:56",
+        "EndTime": "18:08",
+        "Duration": 3.32,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "D12",
+        "TrainType": "动车",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "19:48",
+        "EndTime": "00:02",
+        "Duration": 4.23,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G7568",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "11:52",
+        "EndTime": "13:07",
+        "Duration": 1.28,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G3192",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "07:30",
+        "EndTime": "08:44",
+        "Duration": 1.3,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7652",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "17:04",
+        "EndTime": "18:27",
+        "Duration": 1.48,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G7616",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "南京南站",
+        "BeginTime": "12:26",
+        "EndTime": "13:42",
+        "Duration": 1.32,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D182",
+        "TrainType": "动车",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "20:05",
+        "EndTime": "00:31",
+        "Duration": 4.43,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "D196",
+        "TrainType": "动车",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "16:43",
+        "EndTime": "21:06",
+        "Duration": 4.38,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G7622",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "10:19",
+        "EndTime": "11:54",
+        "Duration": 1.58,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G1424",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "14:16",
+        "EndTime": "15:57",
+        "Duration": 1.82,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D183",
+        "TrainType": "动车",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "20:05",
+        "EndTime": "00:31",
+        "Duration": 4.43,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "D18",
+        "TrainType": "动车",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "17:25",
+        "EndTime": "21:32",
+        "Duration": 4.12,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G3090",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "13:15",
+        "EndTime": "14:39",
+        "Duration": 1.47,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G3072",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "20:29",
+        "EndTime": "21:46",
+        "Duration": 1.37,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "G3094",
+        "TrainType": "高铁",
+        "From": "杭州西站",
+        "To": "南京南站",
+        "BeginTime": "19:52",
+        "EndTime": "21:17",
+        "Duration": 1.5,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "D197",
+        "TrainType": "动车",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "16:43",
+        "EndTime": "21:06",
+        "Duration": 4.38,
+        "Cost": 142.17
+    },
+    {
+        "TrainID": "G7668",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "南京南站",
+        "BeginTime": "21:26",
+        "EndTime": "22:52",
+        "Duration": 1.47,
+        "Cost": 154.02
+    },
+    {
+        "TrainID": "K5838",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "南京站",
+        "BeginTime": "19:02",
+        "EndTime": "02:35",
+        "Duration": 7.83,
+        "Cost": 94.78
+    }
+]

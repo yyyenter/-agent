@@ -1,0 +1,342 @@
+[
+    {
+        "TrainID": "D2218",
+        "TrainType": "动车",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "15:24",
+        "EndTime": "19:21",
+        "Duration": 4.02,
+        "Cost": 274.02
+    },
+    {
+        "TrainID": "G3119",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "10:12",
+        "EndTime": "14:12",
+        "Duration": 4.32,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "D3089",
+        "TrainType": "动车",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "15:44",
+        "EndTime": "19:45",
+        "Duration": 4.02,
+        "Cost": 274.02
+    },
+    {
+        "TrainID": "G1715",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "09:32",
+        "EndTime": "12:04",
+        "Duration": 2.88,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1775",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "09:37",
+        "EndTime": "12:33",
+        "Duration": 2.98,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1554",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "10:56",
+        "EndTime": "13:33",
+        "Duration": 2.73,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G638",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "19:32",
+        "EndTime": "22:32",
+        "Duration": 3.12,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1550",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "17:47",
+        "EndTime": "20:34",
+        "Duration": 2.92,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1546",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "15:49",
+        "EndTime": "18:35",
+        "Duration": 2.9,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G596",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "14:10",
+        "EndTime": "16:58",
+        "Duration": 2.8,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G593",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "14:10",
+        "EndTime": "16:58",
+        "Duration": 2.8,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G3123",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "13:19",
+        "EndTime": "17:33",
+        "Duration": 4.23,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G2817",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "08:27",
+        "EndTime": "12:28",
+        "Duration": 4.02,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1774",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "15:09",
+        "EndTime": "17:53",
+        "Duration": 2.82,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G588",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "16:39",
+        "EndTime": "19:08",
+        "Duration": 2.62,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1778",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "09:37",
+        "EndTime": "12:33",
+        "Duration": 2.98,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G2820",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "08:27",
+        "EndTime": "12:28",
+        "Duration": 4.02,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G3122",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "10:12",
+        "EndTime": "14:12",
+        "Duration": 4.32,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G3126",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "13:19",
+        "EndTime": "17:33",
+        "Duration": 4.23,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G678",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "13:25",
+        "EndTime": "16:22",
+        "Duration": 2.95,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1788",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "18:56",
+        "EndTime": "21:43",
+        "Duration": 2.78,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1722",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "08:00",
+        "EndTime": "10:27",
+        "Duration": 2.45,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "D3044",
+        "TrainType": "动车",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "10:15",
+        "EndTime": "13:20",
+        "Duration": 3.08,
+        "Cost": 274.02
+    },
+    {
+        "TrainID": "G1738",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "08:25",
+        "EndTime": "11:10",
+        "Duration": 2.75,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G600",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "15:04",
+        "EndTime": "17:31",
+        "Duration": 2.45,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "D2183",
+        "TrainType": "动车",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "12:31",
+        "EndTime": "16:30",
+        "Duration": 4.07,
+        "Cost": 274.02
+    },
+    {
+        "TrainID": "D2186",
+        "TrainType": "动车",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "12:31",
+        "EndTime": "16:30",
+        "Duration": 4.07,
+        "Cost": 274.02
+    },
+    {
+        "TrainID": "G1730",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "10:48",
+        "EndTime": "14:06",
+        "Duration": 3.45,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G3271",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "15:10",
+        "EndTime": "19:03",
+        "Duration": 3.88,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1542",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "18:25",
+        "EndTime": "21:26",
+        "Duration": 3.27,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G3592",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "19:47",
+        "EndTime": "22:58",
+        "Duration": 3.42,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1428",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "19:52",
+        "EndTime": "22:37",
+        "Duration": 2.88,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G1784",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "09:59",
+        "EndTime": "12:47",
+        "Duration": 2.85,
+        "Cost": 296.86
+    },
+    {
+        "TrainID": "G2386",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "南京南站",
+        "BeginTime": "09:56",
+        "EndTime": "13:35",
+        "Duration": 3.85,
+        "Cost": 296.86
+    }
+]

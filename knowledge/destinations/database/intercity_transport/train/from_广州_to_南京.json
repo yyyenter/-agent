@@ -1,0 +1,42 @@
+[
+    {
+        "TrainID": "G1554",
+        "TrainType": "高铁",
+        "From": "广州南站",
+        "To": "南京南站",
+        "BeginTime": "06:31",
+        "EndTime": "13:33",
+        "Duration": 7.03,
+        "Cost": 736.07
+    },
+    {
+        "TrainID": "G638",
+        "TrainType": "高铁",
+        "From": "广州南站",
+        "To": "南京南站",
+        "BeginTime": "15:00",
+        "EndTime": "22:32",
+        "Duration": 7.53,
+        "Cost": 736.07
+    },
+    {
+        "TrainID": "T152",
+        "TrainType": "特快",
+        "From": "广州站",
+        "To": "南京站",
+        "BeginTime": "10:45",
+        "EndTime": "08:47",
+        "Duration": 22.03,
+        "Cost": 566.21
+    },
+    {
+        "TrainID": "G3072",
+        "TrainType": "高铁",
+        "From": "广州东站",
+        "To": "南京南站",
+        "BeginTime": "11:41",
+        "EndTime": "21:46",
+        "Duration": 10.08,
+        "Cost": 736.07
+    }
+]

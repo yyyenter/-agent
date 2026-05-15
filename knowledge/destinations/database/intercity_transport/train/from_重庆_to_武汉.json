@@ -1,0 +1,112 @@
+[
+    {
+        "TrainID": "D620",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "09:06",
+        "EndTime": "16:01",
+        "Duration": 6.98,
+        "Cost": 452.8
+    },
+    {
+        "TrainID": "D2218",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "07:38",
+        "EndTime": "15:20",
+        "Duration": 7.7,
+        "Cost": 452.8
+    },
+    {
+        "TrainID": "D2378",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "06:03",
+        "EndTime": "12:35",
+        "Duration": 6.53,
+        "Cost": 452.8
+    },
+    {
+        "TrainID": "D368",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "13:08",
+        "EndTime": "20:22",
+        "Duration": 7.33,
+        "Cost": 452.8
+    },
+    {
+        "TrainID": "D2244",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "08:54",
+        "EndTime": "16:24",
+        "Duration": 7.57,
+        "Cost": 452.8
+    },
+    {
+        "TrainID": "D2234",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "08:33",
+        "EndTime": "15:33",
+        "Duration": 7.0,
+        "Cost": 452.8
+    },
+    {
+        "TrainID": "D2228",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "08:49",
+        "EndTime": "15:45",
+        "Duration": 6.93,
+        "Cost": 452.8
+    },
+    {
+        "TrainID": "D3254",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "09:20",
+        "EndTime": "16:53",
+        "Duration": 7.55,
+        "Cost": 452.8
+    },
+    {
+        "TrainID": "D3251",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "09:20",
+        "EndTime": "16:53",
+        "Duration": 7.55,
+        "Cost": 452.8
+    },
+    {
+        "TrainID": "D2225",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "08:49",
+        "EndTime": "15:45",
+        "Duration": 6.93,
+        "Cost": 452.8
+    },
+    {
+        "TrainID": "D2231",
+        "TrainType": "动车",
+        "From": "重庆北站",
+        "To": "武汉站",
+        "BeginTime": "08:33",
+        "EndTime": "15:33",
+        "Duration": 7.0,
+        "Cost": 452.8
+    }
+]

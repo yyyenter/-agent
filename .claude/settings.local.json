@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/Scripts/python test_redis.py)",
+      "Bash(claude mcp *)",
+      "Bash(Get-ChildItem -Path \"E:\\\\Python\\\\agent_test0\\\\test_redis.py\" -ErrorAction SilentlyContinue)",
+      "Bash(Get-ChildItem -Path \"E:\\\\Python\\\\agent_test0\\\\tests\" -ErrorAction SilentlyContinue)",
+      "Bash(uv run *)",
+      "Bash(nslookup geoapi.qweather.com)",
+      "Bash(nslookup devapi.qweather.com)",
+      "mcp__filesystem__directory_tree",
+      "PowerShell(Join-Path *)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\知\\\\.claude\\\\plugins\\\\cache\\\\claude-plugins-official\" -Directory | ForEach-Object { Write-Output $_.Name })",
+      "PowerShell(claude plugins *)",
+      "PowerShell(claude marketplace *)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "GitHub",
+    "Terminal MCP Server",
+    "memory-mcp",
+    "search"
+  ]
+}

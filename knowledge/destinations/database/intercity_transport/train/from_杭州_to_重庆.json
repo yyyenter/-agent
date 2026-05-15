@@ -1,0 +1,182 @@
+[
+    {
+        "TrainID": "K74",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "重庆北站",
+        "BeginTime": "16:51",
+        "EndTime": "15:35",
+        "Duration": 22.8,
+        "Cost": 525.06
+    },
+    {
+        "TrainID": "Z257",
+        "TrainType": "直达特快",
+        "From": "杭州南站",
+        "To": "重庆北站",
+        "BeginTime": "21:37",
+        "EndTime": "12:46",
+        "Duration": 15.25,
+        "Cost": 656.33
+    },
+    {
+        "TrainID": "D2223",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "重庆北站",
+        "BeginTime": "08:08",
+        "EndTime": "19:40",
+        "Duration": 11.53,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "D2263",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "重庆北站",
+        "BeginTime": "09:07",
+        "EndTime": "20:48",
+        "Duration": 11.68,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "D2273",
+        "TrainType": "动车",
+        "From": "杭州西站",
+        "To": "重庆北站",
+        "BeginTime": "09:25",
+        "EndTime": "21:13",
+        "Duration": 11.8,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "D657",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "重庆北站",
+        "BeginTime": "08:19",
+        "EndTime": "20:33",
+        "Duration": 12.32,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "K1153",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "重庆北站",
+        "BeginTime": "13:55",
+        "EndTime": "14:39",
+        "Duration": 24.73,
+        "Cost": 525.06
+    },
+    {
+        "TrainID": "G1340",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "重庆西站",
+        "BeginTime": "09:26",
+        "EndTime": "19:58",
+        "Duration": 10.6,
+        "Cost": 853.23
+    },
+    {
+        "TrainID": "K71",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "重庆北站",
+        "BeginTime": "16:51",
+        "EndTime": "15:35",
+        "Duration": 22.8,
+        "Cost": 525.06
+    },
+    {
+        "TrainID": "D656",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "重庆北站",
+        "BeginTime": "08:19",
+        "EndTime": "20:33",
+        "Duration": 12.32,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "G1333",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "重庆西站",
+        "BeginTime": "12:39",
+        "EndTime": "23:03",
+        "Duration": 10.53,
+        "Cost": 853.23
+    },
+    {
+        "TrainID": "D2246",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "重庆北站",
+        "BeginTime": "10:20",
+        "EndTime": "21:40",
+        "Duration": 11.33,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "D2222",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "重庆北站",
+        "BeginTime": "08:08",
+        "EndTime": "19:40",
+        "Duration": 11.53,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "D2262",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "重庆北站",
+        "BeginTime": "09:07",
+        "EndTime": "20:48",
+        "Duration": 11.68,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "G1337",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "重庆西站",
+        "BeginTime": "09:26",
+        "EndTime": "19:58",
+        "Duration": 10.6,
+        "Cost": 853.23
+    },
+    {
+        "TrainID": "K1152",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "重庆北站",
+        "BeginTime": "13:55",
+        "EndTime": "14:39",
+        "Duration": 24.73,
+        "Cost": 525.06
+    },
+    {
+        "TrainID": "D2272",
+        "TrainType": "动车",
+        "From": "杭州西站",
+        "To": "重庆北站",
+        "BeginTime": "09:25",
+        "EndTime": "21:13",
+        "Duration": 11.8,
+        "Cost": 787.59
+    },
+    {
+        "TrainID": "Z256",
+        "TrainType": "直达特快",
+        "From": "杭州南站",
+        "To": "重庆北站",
+        "BeginTime": "21:37",
+        "EndTime": "12:46",
+        "Duration": 15.25,
+        "Cost": 656.33
+    }
+]

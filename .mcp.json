@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "GitHub": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    },
+    "search": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-search"
+      ],
+      "env": {}
+    }
+  }
+}

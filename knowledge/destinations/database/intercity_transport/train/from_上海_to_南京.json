@@ -1,0 +1,3812 @@
+[
+    {
+        "TrainID": "G2",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "07:00",
+        "EndTime": "08:11",
+        "Duration": 1.18,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G14",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "11:53",
+        "EndTime": "13:08",
+        "Duration": 1.25,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G16",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "12:55",
+        "EndTime": "14:06",
+        "Duration": 1.18,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G26",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "17:55",
+        "EndTime": "19:06",
+        "Duration": 1.18,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G128",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "11:15",
+        "EndTime": "12:40",
+        "Duration": 1.42,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G158",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:20",
+        "EndTime": "18:43",
+        "Duration": 1.52,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G6",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:00",
+        "EndTime": "09:00",
+        "Duration": 1.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G8",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:00",
+        "EndTime": "09:59",
+        "Duration": 0.98,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G10",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "10:00",
+        "EndTime": "10:59",
+        "Duration": 0.98,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G12",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:00",
+        "EndTime": "12:00",
+        "Duration": 1.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G18",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:00",
+        "EndTime": "15:00",
+        "Duration": 1.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G20",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:00",
+        "EndTime": "15:59",
+        "Duration": 0.98,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G22",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:00",
+        "EndTime": "16:59",
+        "Duration": 0.98,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G24",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:00",
+        "EndTime": "18:07",
+        "Duration": 1.12,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G28",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "19:00",
+        "EndTime": "20:00",
+        "Duration": 1.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G102",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:37",
+        "EndTime": "07:58",
+        "Duration": 1.35,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G104",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:27",
+        "EndTime": "08:30",
+        "Duration": 2.05,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G106",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:22",
+        "EndTime": "08:44",
+        "Duration": 1.37,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G110",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:38",
+        "EndTime": "09:12",
+        "Duration": 1.57,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G112",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:05",
+        "EndTime": "09:26",
+        "Duration": 1.35,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G114",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:15",
+        "EndTime": "09:42",
+        "Duration": 1.45,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G116",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:26",
+        "EndTime": "10:49",
+        "Duration": 1.38,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G118",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:43",
+        "EndTime": "11:21",
+        "Duration": 1.63,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G122",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "10:34",
+        "EndTime": "11:54",
+        "Duration": 1.33,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G124",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "10:44",
+        "EndTime": "12:07",
+        "Duration": 1.38,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G130",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:16",
+        "EndTime": "13:44",
+        "Duration": 1.47,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G132",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:21",
+        "EndTime": "13:48",
+        "Duration": 1.45,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G134",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:26",
+        "EndTime": "13:53",
+        "Duration": 1.45,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G138",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:29",
+        "EndTime": "14:49",
+        "Duration": 1.33,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G140",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:34",
+        "EndTime": "15:10",
+        "Duration": 1.6,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G142",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:16",
+        "EndTime": "15:35",
+        "Duration": 1.32,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G144",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:43",
+        "EndTime": "16:15",
+        "Duration": 1.53,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G146",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:21",
+        "EndTime": "16:34",
+        "Duration": 1.22,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G148",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:25",
+        "EndTime": "17:13",
+        "Duration": 1.8,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G150",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:04",
+        "EndTime": "17:24",
+        "Duration": 1.33,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G152",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:19",
+        "EndTime": "17:33",
+        "Duration": 1.23,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G154",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:11",
+        "EndTime": "18:25",
+        "Duration": 1.23,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G156",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:16",
+        "EndTime": "18:29",
+        "Duration": 1.22,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G160",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:41",
+        "EndTime": "18:55",
+        "Duration": 1.23,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G108",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:27",
+        "EndTime": "09:05",
+        "Duration": 1.75,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "1462",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "12:15",
+        "EndTime": "15:58",
+        "Duration": 3.72,
+        "Cost": null
+    },
+    {
+        "TrainID": "T110",
+        "TrainType": "特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "16:30",
+        "EndTime": "19:58",
+        "Duration": 3.47,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "Z283",
+        "TrainType": "直达特快",
+        "From": "上海南站",
+        "To": "南京站",
+        "BeginTime": "19:27",
+        "EndTime": "22:44",
+        "Duration": 3.95,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "D953",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "08:30",
+        "EndTime": "10:12",
+        "Duration": 1.7,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3057",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "07:23",
+        "EndTime": "09:37",
+        "Duration": 2.23,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D353",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:12",
+        "EndTime": "08:30",
+        "Duration": 2.3,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D637",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:32",
+        "EndTime": "08:46",
+        "Duration": 2.23,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D2217",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:34",
+        "EndTime": "09:52",
+        "Duration": 2.3,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3073",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:02",
+        "EndTime": "09:11",
+        "Duration": 2.15,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G1476",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:51",
+        "EndTime": "11:29",
+        "Duration": 1.63,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D2213",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:42",
+        "EndTime": "10:17",
+        "Duration": 2.7,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G1975",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:17",
+        "EndTime": "08:40",
+        "Duration": 1.38,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "Z40",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "16:48",
+        "EndTime": "19:47",
+        "Duration": 2.98,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "G222",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "07:05",
+        "EndTime": "08:26",
+        "Duration": 1.35,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G266",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "15:21",
+        "EndTime": "16:39",
+        "Duration": 1.3,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "K152",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "22:00",
+        "EndTime": "01:21",
+        "Duration": 3.35,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K188",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "20:08",
+        "EndTime": "23:40",
+        "Duration": 3.53,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K234",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "11:10",
+        "EndTime": "15:00",
+        "Duration": 3.83,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K282",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "20:45",
+        "EndTime": "00:46",
+        "Duration": 4.02,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K360",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "09:29",
+        "EndTime": "13:08",
+        "Duration": 3.65,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K464",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "14:57",
+        "EndTime": "19:09",
+        "Duration": 4.2,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K560",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "15:52",
+        "EndTime": "19:32",
+        "Duration": 3.67,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K738",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "12:42",
+        "EndTime": "17:09",
+        "Duration": 4.45,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K850",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "23:21",
+        "EndTime": "04:34",
+        "Duration": 5.22,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "T116",
+        "TrainType": "特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "15:38",
+        "EndTime": "18:48",
+        "Duration": 3.17,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "T132",
+        "TrainType": "特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "14:36",
+        "EndTime": "17:37",
+        "Duration": 3.02,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "Z164",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "18:33",
+        "EndTime": "21:13",
+        "Duration": 2.67,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "Z172",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "19:34",
+        "EndTime": "22:20",
+        "Duration": 2.77,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "Z196",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "18:00",
+        "EndTime": "20:48",
+        "Duration": 2.8,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "Z268",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "14:49",
+        "EndTime": "17:43",
+        "Duration": 2.9,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "Z376",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "13:55",
+        "EndTime": "16:52",
+        "Duration": 2.95,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "C3852",
+        "TrainType": "城际动车",
+        "From": "上海西站",
+        "To": "南京站",
+        "BeginTime": "07:58",
+        "EndTime": "11:50",
+        "Duration": 3.88,
+        "Cost": 121.35
+    },
+    {
+        "TrainID": "C3856",
+        "TrainType": "城际动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "08:49",
+        "EndTime": "12:48",
+        "Duration": 3.98,
+        "Cost": 121.35
+    },
+    {
+        "TrainID": "C3860",
+        "TrainType": "城际动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "09:53",
+        "EndTime": "13:53",
+        "Duration": 4.0,
+        "Cost": 121.35
+    },
+    {
+        "TrainID": "C3864",
+        "TrainType": "城际动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "10:20",
+        "EndTime": "14:17",
+        "Duration": 3.95,
+        "Cost": 121.35
+    },
+    {
+        "TrainID": "C3868",
+        "TrainType": "城际动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "13:32",
+        "EndTime": "17:35",
+        "Duration": 4.05,
+        "Cost": 121.35
+    },
+    {
+        "TrainID": "C3872",
+        "TrainType": "城际动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "17:40",
+        "EndTime": "21:28",
+        "Duration": 3.8,
+        "Cost": 121.35
+    },
+    {
+        "TrainID": "G1468",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "07:31",
+        "EndTime": "09:44",
+        "Duration": 2.22,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G2784",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "06:55",
+        "EndTime": "09:04",
+        "Duration": 2.15,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G2788",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "12:50",
+        "EndTime": "14:50",
+        "Duration": 2.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G3120",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "13:49",
+        "EndTime": "15:52",
+        "Duration": 2.05,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7002",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "06:48",
+        "EndTime": "08:42",
+        "Duration": 1.9,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7004",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "08:00",
+        "EndTime": "09:40",
+        "Duration": 1.67,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7006",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "09:00",
+        "EndTime": "10:41",
+        "Duration": 1.68,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7008",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "10:00",
+        "EndTime": "11:40",
+        "Duration": 1.67,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7010",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "11:00",
+        "EndTime": "12:39",
+        "Duration": 1.65,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7012",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "12:05",
+        "EndTime": "13:45",
+        "Duration": 1.67,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7014",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "13:00",
+        "EndTime": "14:39",
+        "Duration": 1.65,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7016",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "14:00",
+        "EndTime": "15:41",
+        "Duration": 1.68,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7018",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "15:00",
+        "EndTime": "16:45",
+        "Duration": 1.75,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7020",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "16:00",
+        "EndTime": "17:39",
+        "Duration": 1.65,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7022",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "17:00",
+        "EndTime": "18:39",
+        "Duration": 1.65,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7024",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "18:00",
+        "EndTime": "19:46",
+        "Duration": 1.77,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7026",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "19:00",
+        "EndTime": "20:49",
+        "Duration": 1.82,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7028",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "20:00",
+        "EndTime": "21:46",
+        "Duration": 1.77,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7030",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "20:36",
+        "EndTime": "22:34",
+        "Duration": 1.97,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7040",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "09:37",
+        "EndTime": "11:45",
+        "Duration": 2.13,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7050",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "14:28",
+        "EndTime": "16:29",
+        "Duration": 2.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7052",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "15:47",
+        "EndTime": "17:34",
+        "Duration": 1.78,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7054",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "16:13",
+        "EndTime": "18:16",
+        "Duration": 2.05,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7056",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "17:24",
+        "EndTime": "19:37",
+        "Duration": 2.22,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7058",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "18:14",
+        "EndTime": "20:21",
+        "Duration": 2.12,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7060",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "10:41",
+        "EndTime": "12:42",
+        "Duration": 2.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7064",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "20:26",
+        "EndTime": "22:19",
+        "Duration": 1.88,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7066",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "20:15",
+        "EndTime": "22:09",
+        "Duration": 1.9,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7070",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "20:46",
+        "EndTime": "22:48",
+        "Duration": 2.03,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7076",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "16:41",
+        "EndTime": "18:35",
+        "Duration": 1.9,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7080",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "06:19",
+        "EndTime": "08:33",
+        "Duration": 2.23,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7084",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "08:36",
+        "EndTime": "10:37",
+        "Duration": 2.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7098",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "21:05",
+        "EndTime": "22:59",
+        "Duration": 1.9,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7222",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "16:49",
+        "EndTime": "18:52",
+        "Duration": 2.05,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7226",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "19:18",
+        "EndTime": "21:12",
+        "Duration": 1.9,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7232",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "08:15",
+        "EndTime": "10:26",
+        "Duration": 2.18,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7236",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "10:28",
+        "EndTime": "12:38",
+        "Duration": 2.17,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7240",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "10:54",
+        "EndTime": "12:57",
+        "Duration": 2.05,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7244",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "11:58",
+        "EndTime": "13:40",
+        "Duration": 1.7,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7248",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "13:14",
+        "EndTime": "15:10",
+        "Duration": 1.93,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7256",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "17:29",
+        "EndTime": "18:38",
+        "Duration": 1.15,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7260",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "18:33",
+        "EndTime": "21:05",
+        "Duration": 2.53,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7264",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "11:20",
+        "EndTime": "13:06",
+        "Duration": 1.77,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7268",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "08:05",
+        "EndTime": "09:58",
+        "Duration": 1.88,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7276",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "14:20",
+        "EndTime": "15:33",
+        "Duration": 1.22,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7282",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "11:33",
+        "EndTime": "13:29",
+        "Duration": 1.93,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7290",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "18:39",
+        "EndTime": "20:49",
+        "Duration": 2.17,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7292",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "17:43",
+        "EndTime": "19:22",
+        "Duration": 1.65,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7296",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "12:37",
+        "EndTime": "14:12",
+        "Duration": 1.58,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7300",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "19:55",
+        "EndTime": "21:35",
+        "Duration": 1.67,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7768",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "12:10",
+        "EndTime": "13:56",
+        "Duration": 1.77,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7772",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "13:39",
+        "EndTime": "15:39",
+        "Duration": 2.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7784",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "06:24",
+        "EndTime": "08:38",
+        "Duration": 2.23,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "K1048",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "22:23",
+        "EndTime": "02:08",
+        "Duration": 3.75,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K1102",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "13:40",
+        "EndTime": "18:09",
+        "Duration": 4.48,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K1156",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "10:57",
+        "EndTime": "15:06",
+        "Duration": 4.15,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K1506",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "23:39",
+        "EndTime": "03:26",
+        "Duration": 3.78,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K1556",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "10:13",
+        "EndTime": "14:24",
+        "Duration": 4.18,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K2186",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "08:57",
+        "EndTime": "12:39",
+        "Duration": 3.7,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K8362",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "23:30",
+        "EndTime": "03:05",
+        "Duration": 3.58,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K8366",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "22:33",
+        "EndTime": "02:23",
+        "Duration": 3.83,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K8482",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "22:10",
+        "EndTime": "01:27",
+        "Duration": 3.28,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "D3022",
+        "TrainType": "动车",
+        "From": "上海南站",
+        "To": "南京南站",
+        "BeginTime": "08:35",
+        "EndTime": "11:42",
+        "Duration": 3.12,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3060",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:46",
+        "EndTime": "11:56",
+        "Duration": 2.23,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3068",
+        "TrainType": "动车",
+        "From": "上海南站",
+        "To": "南京南站",
+        "BeginTime": "09:27",
+        "EndTime": "12:30",
+        "Duration": 3.05,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "K48",
+        "TrainType": "快速",
+        "From": "上海南站",
+        "To": "南京站",
+        "BeginTime": "16:29",
+        "EndTime": "21:48",
+        "Duration": 5.8,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K1806",
+        "TrainType": "快速",
+        "From": "上海南站",
+        "To": "南京站",
+        "BeginTime": "14:19",
+        "EndTime": "18:17",
+        "Duration": 4.52,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K336",
+        "TrainType": "快速",
+        "From": "上海南站",
+        "To": "南京站",
+        "BeginTime": "21:06",
+        "EndTime": "01:15",
+        "Duration": 4.67,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "T136",
+        "TrainType": "特快",
+        "From": "上海南站",
+        "To": "南京站",
+        "BeginTime": "22:39",
+        "EndTime": "02:15",
+        "Duration": 4.02,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "D3136",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:46",
+        "EndTime": "20:19",
+        "Duration": 2.62,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3142",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:01",
+        "EndTime": "18:08",
+        "Duration": 2.18,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G1510",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "19:10",
+        "EndTime": "20:51",
+        "Duration": 1.85,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7192",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:04",
+        "EndTime": "19:46",
+        "Duration": 1.87,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7314",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "20:33",
+        "EndTime": "22:37",
+        "Duration": 2.18,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7372",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:26",
+        "EndTime": "11:30",
+        "Duration": 2.12,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7376",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:36",
+        "EndTime": "18:31",
+        "Duration": 1.97,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7492",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:11",
+        "EndTime": "11:10",
+        "Duration": 2.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7764",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "10:39",
+        "EndTime": "12:11",
+        "Duration": 1.6,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7310",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "19:03",
+        "EndTime": "20:59",
+        "Duration": 2.05,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1866",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:46",
+        "EndTime": "10:25",
+        "Duration": 1.88,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7520",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "18:34",
+        "EndTime": "20:27",
+        "Duration": 1.92,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7590",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:52",
+        "EndTime": "20:41",
+        "Duration": 1.93,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1228",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:24",
+        "EndTime": "12:48",
+        "Duration": 1.67,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7350",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "21:42",
+        "EndTime": "23:24",
+        "Duration": 1.78,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7432",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "19:15",
+        "EndTime": "21:03",
+        "Duration": 2.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7566",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "20:13",
+        "EndTime": "21:43",
+        "Duration": 1.63,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7572",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:08",
+        "EndTime": "13:11",
+        "Duration": 2.1,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7588",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "20:09",
+        "EndTime": "22:00",
+        "Duration": 1.97,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7592",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:24",
+        "EndTime": "18:26",
+        "Duration": 2.08,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7792",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:29",
+        "EndTime": "20:07",
+        "Duration": 1.85,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G234",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:32",
+        "EndTime": "17:45",
+        "Duration": 1.22,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G264",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:07",
+        "EndTime": "16:28",
+        "Duration": 1.35,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G268",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:39",
+        "EndTime": "18:02",
+        "Duration": 1.38,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G298",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:09",
+        "EndTime": "19:31",
+        "Duration": 1.37,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G360",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:55",
+        "EndTime": "09:54",
+        "Duration": 0.98,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G368",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "19:05",
+        "EndTime": "20:12",
+        "Duration": 1.12,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G378",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:14",
+        "EndTime": "10:45",
+        "Duration": 1.52,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G380",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:28",
+        "EndTime": "15:48",
+        "Duration": 1.33,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G586",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:25",
+        "EndTime": "10:06",
+        "Duration": 1.68,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G598",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:55",
+        "EndTime": "08:56",
+        "Duration": 1.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G676",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:38",
+        "EndTime": "10:23",
+        "Duration": 1.75,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "C3772",
+        "TrainType": "城际动车",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "15:09",
+        "EndTime": "19:09",
+        "Duration": 4.0,
+        "Cost": 121.35
+    },
+    {
+        "TrainID": "D3006",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:53",
+        "EndTime": "16:03",
+        "Duration": 2.17,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3010",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:42",
+        "EndTime": "16:42",
+        "Duration": 2.0,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3014",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:06",
+        "EndTime": "18:20",
+        "Duration": 2.23,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3026",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:27",
+        "EndTime": "15:45",
+        "Duration": 2.3,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3032",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:16",
+        "EndTime": "17:19",
+        "Duration": 2.05,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3042",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:45",
+        "EndTime": "19:06",
+        "Duration": 2.35,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3046",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:52",
+        "EndTime": "20:10",
+        "Duration": 2.3,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3090",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:00",
+        "EndTime": "11:15",
+        "Duration": 2.25,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G1204",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:33",
+        "EndTime": "11:04",
+        "Duration": 1.52,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1214",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "10:05",
+        "EndTime": "11:33",
+        "Duration": 1.47,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1232",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:47",
+        "EndTime": "09:22",
+        "Duration": 1.58,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1236",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:04",
+        "EndTime": "10:32",
+        "Duration": 1.47,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1252",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:10",
+        "EndTime": "12:34",
+        "Duration": 1.4,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1464",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:03",
+        "EndTime": "16:07",
+        "Duration": 2.07,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1716",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:51",
+        "EndTime": "13:31",
+        "Duration": 1.67,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1720",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:54",
+        "EndTime": "14:55",
+        "Duration": 1.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1724",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:40",
+        "EndTime": "12:56",
+        "Duration": 1.27,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1728",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:55",
+        "EndTime": "17:56",
+        "Duration": 1.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1736",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:36",
+        "EndTime": "17:07",
+        "Duration": 1.52,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1764",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:43",
+        "EndTime": "20:28",
+        "Duration": 1.75,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1776",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:14",
+        "EndTime": "16:45",
+        "Duration": 1.52,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1802",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:15",
+        "EndTime": "07:42",
+        "Duration": 1.45,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1806",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:09",
+        "EndTime": "10:37",
+        "Duration": 1.47,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1810",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:52",
+        "EndTime": "14:29",
+        "Duration": 1.62,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1814",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:05",
+        "EndTime": "15:05",
+        "Duration": 1.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1818",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:33",
+        "EndTime": "16:04",
+        "Duration": 1.52,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1822",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:32",
+        "EndTime": "16:47",
+        "Duration": 1.25,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1826",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:14",
+        "EndTime": "19:36",
+        "Duration": 1.37,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1920",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:20",
+        "EndTime": "10:41",
+        "Duration": 1.35,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1924",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:29",
+        "EndTime": "12:46",
+        "Duration": 1.28,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1928",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:36",
+        "EndTime": "13:57",
+        "Duration": 1.35,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1932",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:38",
+        "EndTime": "15:19",
+        "Duration": 1.68,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1940",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:07",
+        "EndTime": "18:21",
+        "Duration": 1.23,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1948",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "10:15",
+        "EndTime": "11:42",
+        "Duration": 1.45,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1956",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:03",
+        "EndTime": "13:36",
+        "Duration": 1.55,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1970",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:10",
+        "EndTime": "07:38",
+        "Duration": 1.47,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G2662",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:45",
+        "EndTime": "13:22",
+        "Duration": 1.62,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G2812",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:26",
+        "EndTime": "17:50",
+        "Duration": 1.4,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G2818",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "16:22",
+        "EndTime": "18:45",
+        "Duration": 2.38,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G3152",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:34",
+        "EndTime": "13:16",
+        "Duration": 1.7,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G3164",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:38",
+        "EndTime": "11:14",
+        "Duration": 1.6,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G3180",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:41",
+        "EndTime": "08:10",
+        "Duration": 1.48,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G3230",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:42",
+        "EndTime": "09:00",
+        "Duration": 2.3,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G3252",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:46",
+        "EndTime": "15:40",
+        "Duration": 1.9,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7106",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "11:03",
+        "EndTime": "12:55",
+        "Duration": 1.87,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7120",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:03",
+        "EndTime": "20:04",
+        "Duration": 2.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7124",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "19:41",
+        "EndTime": "21:34",
+        "Duration": 1.88,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7132",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:41",
+        "EndTime": "11:35",
+        "Duration": 1.9,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7144",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:05",
+        "EndTime": "19:11",
+        "Duration": 2.1,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7160",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:26",
+        "EndTime": "20:50",
+        "Duration": 2.4,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7164",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:09",
+        "EndTime": "14:56",
+        "Duration": 1.78,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7168",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:52",
+        "EndTime": "16:25",
+        "Duration": 1.55,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7176",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "19:55",
+        "EndTime": "20:56",
+        "Duration": 1.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7180",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:30",
+        "EndTime": "10:14",
+        "Duration": 1.73,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7182",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:10",
+        "EndTime": "14:39",
+        "Duration": 1.48,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7186",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:14",
+        "EndTime": "17:30",
+        "Duration": 1.27,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7190",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "19:38",
+        "EndTime": "21:25",
+        "Duration": 1.78,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7196",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:44",
+        "EndTime": "18:16",
+        "Duration": 1.53,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7206",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:31",
+        "EndTime": "19:31",
+        "Duration": 2.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7386",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "10:52",
+        "EndTime": "12:18",
+        "Duration": 1.43,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7391",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:17",
+        "EndTime": "21:37",
+        "Duration": 3.33,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7395",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:25",
+        "EndTime": "10:29",
+        "Duration": 3.07,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7570",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "19:43",
+        "EndTime": "21:49",
+        "Duration": 2.1,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7596",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "19:28",
+        "EndTime": "21:18",
+        "Duration": 1.83,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7726",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:08",
+        "EndTime": "20:14",
+        "Duration": 2.1,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7788",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:24",
+        "EndTime": "19:53",
+        "Duration": 1.48,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1952",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:10",
+        "EndTime": "09:34",
+        "Duration": 1.58,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D2282",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "21:25",
+        "EndTime": "23:19",
+        "Duration": 2.0,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D122",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "14:13",
+        "EndTime": "16:59",
+        "Duration": 2.77,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D123",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "14:13",
+        "EndTime": "16:59",
+        "Duration": 2.77,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G7576",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:12",
+        "EndTime": "14:15",
+        "Duration": 2.08,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7032",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "05:46",
+        "EndTime": "07:39",
+        "Duration": 1.88,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "K1512",
+        "TrainType": "快速",
+        "From": "上海南站",
+        "To": "南京站",
+        "BeginTime": "16:02",
+        "EndTime": "20:24",
+        "Duration": 4.77,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "G7398",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:25",
+        "EndTime": "10:29",
+        "Duration": 3.07,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "Z282",
+        "TrainType": "直达特快",
+        "From": "上海南站",
+        "To": "南京站",
+        "BeginTime": "19:27",
+        "EndTime": "22:44",
+        "Duration": 3.95,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "G7394",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:17",
+        "EndTime": "21:37",
+        "Duration": 3.33,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G162",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:46",
+        "EndTime": "19:12",
+        "Duration": 1.43,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G270",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:28",
+        "EndTime": "18:47",
+        "Duration": 1.32,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G2785",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "06:55",
+        "EndTime": "09:04",
+        "Duration": 2.15,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G2789",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "12:50",
+        "EndTime": "14:50",
+        "Duration": 2.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1465",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:03",
+        "EndTime": "16:07",
+        "Duration": 2.07,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D2212",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:42",
+        "EndTime": "10:17",
+        "Duration": 2.7,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3072",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:02",
+        "EndTime": "09:11",
+        "Duration": 2.15,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D3056",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "07:23",
+        "EndTime": "09:37",
+        "Duration": 2.23,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G376",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:32",
+        "EndTime": "09:16",
+        "Duration": 1.73,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D352",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:12",
+        "EndTime": "08:30",
+        "Duration": 2.3,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D636",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:32",
+        "EndTime": "08:46",
+        "Duration": 2.23,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G3124",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "06:06",
+        "EndTime": "08:13",
+        "Duration": 2.12,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7218",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "15:28",
+        "EndTime": "17:13",
+        "Duration": 1.75,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7042",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "10:05",
+        "EndTime": "12:07",
+        "Duration": 2.03,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "Z377",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "13:55",
+        "EndTime": "16:52",
+        "Duration": 2.95,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "K2187",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "08:57",
+        "EndTime": "12:39",
+        "Duration": 3.7,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "Z305",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "17:46",
+        "EndTime": "20:42",
+        "Duration": 2.93,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "G3181",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:41",
+        "EndTime": "08:10",
+        "Duration": 1.48,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G3165",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:38",
+        "EndTime": "11:14",
+        "Duration": 1.6,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1971",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:10",
+        "EndTime": "07:38",
+        "Duration": 1.47,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7793",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "18:29",
+        "EndTime": "20:07",
+        "Duration": 1.85,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "Z165",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "18:33",
+        "EndTime": "21:13",
+        "Duration": 2.67,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "G1811",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:52",
+        "EndTime": "14:29",
+        "Duration": 1.62,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7293",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "17:43",
+        "EndTime": "19:22",
+        "Duration": 1.65,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7765",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "10:39",
+        "EndTime": "12:11",
+        "Duration": 1.6,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1777",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:14",
+        "EndTime": "16:45",
+        "Duration": 1.52,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G587",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:25",
+        "EndTime": "10:06",
+        "Duration": 1.68,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "K49",
+        "TrainType": "快速",
+        "From": "上海南站",
+        "To": "南京站",
+        "BeginTime": "16:29",
+        "EndTime": "21:48",
+        "Duration": 5.8,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K189",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "20:08",
+        "EndTime": "23:40",
+        "Duration": 3.53,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "G1769",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:51",
+        "EndTime": "17:20",
+        "Duration": 1.48,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1953",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:10",
+        "EndTime": "09:34",
+        "Duration": 1.58,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7773",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "13:39",
+        "EndTime": "15:39",
+        "Duration": 2.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D952",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "08:30",
+        "EndTime": "10:12",
+        "Duration": 1.7,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "Z304",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "17:46",
+        "EndTime": "20:42",
+        "Duration": 2.93,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "G7156",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "20:14",
+        "EndTime": "22:04",
+        "Duration": 1.83,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7068",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "21:50",
+        "EndTime": "23:23",
+        "Duration": 1.55,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "Z269",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "14:49",
+        "EndTime": "17:43",
+        "Duration": 2.9,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "K1557",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "10:13",
+        "EndTime": "14:24",
+        "Duration": 4.18,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "G2819",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "16:22",
+        "EndTime": "18:45",
+        "Duration": 2.38,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1469",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "07:31",
+        "EndTime": "09:44",
+        "Duration": 2.22,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G3125",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "06:06",
+        "EndTime": "08:13",
+        "Duration": 2.12,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7283",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "11:33",
+        "EndTime": "13:29",
+        "Duration": 1.93,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7081",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "06:19",
+        "EndTime": "08:33",
+        "Duration": 2.23,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7133",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:41",
+        "EndTime": "11:35",
+        "Duration": 1.9,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7493",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:11",
+        "EndTime": "11:10",
+        "Duration": 2.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7219",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "15:28",
+        "EndTime": "17:13",
+        "Duration": 1.75,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7077",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "16:41",
+        "EndTime": "18:35",
+        "Duration": 1.9,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7207",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:31",
+        "EndTime": "19:31",
+        "Duration": 2.0,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7593",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:24",
+        "EndTime": "18:26",
+        "Duration": 2.08,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7769",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "12:10",
+        "EndTime": "13:56",
+        "Duration": 1.77,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "T133",
+        "TrainType": "特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "14:36",
+        "EndTime": "17:37",
+        "Duration": 3.02,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "K337",
+        "TrainType": "快速",
+        "From": "上海南站",
+        "To": "南京站",
+        "BeginTime": "21:06",
+        "EndTime": "01:15",
+        "Duration": 4.67,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "G1229",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:47",
+        "EndTime": "09:22",
+        "Duration": 1.58,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D2216",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:34",
+        "EndTime": "09:52",
+        "Duration": 2.3,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D956",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "09:30",
+        "EndTime": "11:21",
+        "Duration": 1.85,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G136",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:47",
+        "EndTime": "14:20",
+        "Duration": 1.55,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1974",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "07:17",
+        "EndTime": "08:40",
+        "Duration": 1.38,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "K1157",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "10:57",
+        "EndTime": "15:06",
+        "Duration": 4.15,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K557",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "15:52",
+        "EndTime": "19:32",
+        "Duration": 3.67,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "K283",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "20:45",
+        "EndTime": "00:46",
+        "Duration": 4.02,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "G1925",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:29",
+        "EndTime": "12:46",
+        "Duration": 1.28,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1933",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:38",
+        "EndTime": "15:19",
+        "Duration": 1.68,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1941",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:07",
+        "EndTime": "18:21",
+        "Duration": 1.23,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G3177",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:32",
+        "EndTime": "07:55",
+        "Duration": 1.38,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "K235",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "11:10",
+        "EndTime": "15:00",
+        "Duration": 3.83,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "D3137",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:46",
+        "EndTime": "20:19",
+        "Duration": 2.62,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G1787",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:00",
+        "EndTime": "07:29",
+        "Duration": 1.48,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7249",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "13:14",
+        "EndTime": "15:10",
+        "Duration": 1.93,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7577",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:12",
+        "EndTime": "14:15",
+        "Duration": 2.08,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1929",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:36",
+        "EndTime": "13:57",
+        "Duration": 1.35,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1729",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:55",
+        "EndTime": "17:56",
+        "Duration": 1.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D3061",
+        "TrainType": "动车",
+        "From": "上海南站",
+        "To": "南京南站",
+        "BeginTime": "09:11",
+        "EndTime": "11:56",
+        "Duration": 2.75,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G1725",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "11:40",
+        "EndTime": "12:56",
+        "Duration": 1.27,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D3047",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:52",
+        "EndTime": "20:10",
+        "Duration": 2.3,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G7241",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "10:54",
+        "EndTime": "12:57",
+        "Duration": 2.05,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1721",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:54",
+        "EndTime": "14:55",
+        "Duration": 1.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1957",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:03",
+        "EndTime": "13:36",
+        "Duration": 1.55,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7177",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "19:55",
+        "EndTime": "20:56",
+        "Duration": 1.02,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7257",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "17:29",
+        "EndTime": "18:38",
+        "Duration": 1.15,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7377",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:36",
+        "EndTime": "18:31",
+        "Duration": 1.97,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7253",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "15:42",
+        "EndTime": "16:57",
+        "Duration": 1.25,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "K8363",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "23:30",
+        "EndTime": "03:05",
+        "Duration": 3.58,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "C3861",
+        "TrainType": "城际动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "09:53",
+        "EndTime": "13:53",
+        "Duration": 4.0,
+        "Cost": 121.35
+    },
+    {
+        "TrainID": "D3143",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:01",
+        "EndTime": "18:08",
+        "Duration": 2.18,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G7272",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "18:43",
+        "EndTime": "20:38",
+        "Duration": 1.92,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7036",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "08:10",
+        "EndTime": "10:13",
+        "Duration": 2.05,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7108",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "11:38",
+        "EndTime": "13:40",
+        "Duration": 2.03,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7110",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "12:46",
+        "EndTime": "14:32",
+        "Duration": 1.77,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7118",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "17:11",
+        "EndTime": "19:13",
+        "Duration": 2.03,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7148",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "13:33",
+        "EndTime": "15:28",
+        "Duration": 1.92,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D5662",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "21:35",
+        "EndTime": "23:37",
+        "Duration": 2.03,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G3176",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:32",
+        "EndTime": "07:55",
+        "Duration": 1.38,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1768",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:51",
+        "EndTime": "17:20",
+        "Duration": 1.48,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1772",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:53",
+        "EndTime": "08:22",
+        "Duration": 1.48,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G1786",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "06:00",
+        "EndTime": "07:29",
+        "Duration": 1.48,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "K372",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "16:03",
+        "EndTime": "20:06",
+        "Duration": 4.05,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "G7062",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "19:12",
+        "EndTime": "21:15",
+        "Duration": 2.05,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7126",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "11:24",
+        "EndTime": "13:10",
+        "Duration": 1.77,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7152",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:43",
+        "EndTime": "17:37",
+        "Duration": 1.9,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "K666",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "18:09",
+        "EndTime": "22:35",
+        "Duration": 4.43,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "Z516",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "15:32",
+        "EndTime": "18:30",
+        "Duration": 2.97,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "G7252",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "15:42",
+        "EndTime": "16:57",
+        "Duration": 1.25,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "Z517",
+        "TrainType": "直达特快",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "15:32",
+        "EndTime": "18:30",
+        "Duration": 2.97,
+        "Cost": 134.83
+    },
+    {
+        "TrainID": "G7128",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:52",
+        "EndTime": "11:56",
+        "Duration": 2.07,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7172",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "10:32",
+        "EndTime": "12:49",
+        "Duration": 2.28,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D8",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "19:08",
+        "EndTime": "21:38",
+        "Duration": 2.5,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G7114",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "17:57",
+        "EndTime": "20:14",
+        "Duration": 2.28,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7134",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "12:22",
+        "EndTime": "14:26",
+        "Duration": 2.07,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G3272",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:34",
+        "EndTime": "10:38",
+        "Duration": 2.07,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7138",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "15:32",
+        "EndTime": "17:28",
+        "Duration": 1.93,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7140",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "20:03",
+        "EndTime": "22:16",
+        "Duration": 2.22,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D5566",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "08:45",
+        "EndTime": "10:54",
+        "Duration": 2.15,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D92",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "18:19",
+        "EndTime": "20:58",
+        "Duration": 2.65,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G1916",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "16:09",
+        "EndTime": "17:37",
+        "Duration": 1.47,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G2384",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "14:54",
+        "EndTime": "16:57",
+        "Duration": 2.05,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7088",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "09:21",
+        "EndTime": "11:29",
+        "Duration": 2.13,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D216",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "16:54",
+        "EndTime": "19:39",
+        "Duration": 2.75,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "G1426",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "10:48",
+        "EndTime": "12:23",
+        "Duration": 1.58,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "D6",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "21:15",
+        "EndTime": "23:50",
+        "Duration": 2.58,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D10",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "21:21",
+        "EndTime": "23:56",
+        "Duration": 2.58,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "D217",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "16:54",
+        "EndTime": "19:39",
+        "Duration": 2.75,
+        "Cost": 161.8
+    },
+    {
+        "TrainID": "K5838",
+        "TrainType": "快速",
+        "From": "上海南站",
+        "To": "南京站",
+        "BeginTime": "21:46",
+        "EndTime": "02:35",
+        "Duration": 5.37,
+        "Cost": 107.86
+    },
+    {
+        "TrainID": "G7046",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "南京南站",
+        "BeginTime": "20:15",
+        "EndTime": "22:43",
+        "Duration": 2.47,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7122",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京站",
+        "BeginTime": "18:03",
+        "EndTime": "19:59",
+        "Duration": 1.93,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "G7129",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "南京南站",
+        "BeginTime": "09:52",
+        "EndTime": "11:56",
+        "Duration": 2.07,
+        "Cost": 175.28
+    },
+    {
+        "TrainID": "Y46",
+        "TrainType": "旅游列车",
+        "From": "上海站",
+        "To": "南京站",
+        "BeginTime": "23:00",
+        "EndTime": "03:17",
+        "Duration": 4.28,
+        "Cost": null
+    }
+]

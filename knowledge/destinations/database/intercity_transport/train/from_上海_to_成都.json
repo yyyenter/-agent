@@ -1,0 +1,272 @@
+[
+    {
+        "TrainID": "D953",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "成都东站",
+        "BeginTime": "08:30",
+        "EndTime": "20:52",
+        "Duration": 12.37,
+        "Cost": 996.42
+    },
+    {
+        "TrainID": "D3057",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "成都东站",
+        "BeginTime": "07:23",
+        "EndTime": "22:04",
+        "Duration": 14.68,
+        "Cost": 996.42
+    },
+    {
+        "TrainID": "D353",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "06:12",
+        "EndTime": "20:34",
+        "Duration": 14.37,
+        "Cost": 996.42
+    },
+    {
+        "TrainID": "D637",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "06:32",
+        "EndTime": "20:40",
+        "Duration": 14.13,
+        "Cost": 996.42
+    },
+    {
+        "TrainID": "D2207",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "06:01",
+        "EndTime": "21:53",
+        "Duration": 15.87,
+        "Cost": 996.42
+    },
+    {
+        "TrainID": "G1476",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "09:51",
+        "EndTime": "22:25",
+        "Duration": 12.57,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "G3289",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "07:49",
+        "EndTime": "19:57",
+        "Duration": 12.13,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "G1975",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "07:17",
+        "EndTime": "18:28",
+        "Duration": 11.18,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "K282",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "成都西站",
+        "BeginTime": "20:45",
+        "EndTime": "08:44",
+        "Duration": 35.98,
+        "Cost": 664.28
+    },
+    {
+        "TrainID": "K1156",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "成都西站",
+        "BeginTime": "10:57",
+        "EndTime": "17:55",
+        "Duration": 30.97,
+        "Cost": 664.28
+    },
+    {
+        "TrainID": "K351",
+        "TrainType": "快速",
+        "From": "上海南站",
+        "To": "成都西站",
+        "BeginTime": "10:13",
+        "EndTime": "19:56",
+        "Duration": 33.72,
+        "Cost": 664.28
+    },
+    {
+        "TrainID": "G2189",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "07:28",
+        "EndTime": "20:45",
+        "Duration": 13.28,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "G2193",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "10:48",
+        "EndTime": "23:25",
+        "Duration": 12.62,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "G3284",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "10:37",
+        "EndTime": "23:03",
+        "Duration": 12.43,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "G3292",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "08:24",
+        "EndTime": "20:53",
+        "Duration": 12.48,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "D3056",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "成都东站",
+        "BeginTime": "07:23",
+        "EndTime": "22:04",
+        "Duration": 14.68,
+        "Cost": 996.42
+    },
+    {
+        "TrainID": "D352",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "06:12",
+        "EndTime": "20:34",
+        "Duration": 14.37,
+        "Cost": 996.42
+    },
+    {
+        "TrainID": "D636",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "06:32",
+        "EndTime": "20:40",
+        "Duration": 14.13,
+        "Cost": 996.42
+    },
+    {
+        "TrainID": "G3288",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "07:49",
+        "EndTime": "19:57",
+        "Duration": 12.13,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "G3285",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "10:37",
+        "EndTime": "23:03",
+        "Duration": 12.43,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "D952",
+        "TrainType": "动车",
+        "From": "上海站",
+        "To": "成都东站",
+        "BeginTime": "08:30",
+        "EndTime": "20:52",
+        "Duration": 12.37,
+        "Cost": 996.42
+    },
+    {
+        "TrainID": "G1974",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "07:17",
+        "EndTime": "18:28",
+        "Duration": 11.18,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "K1157",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "成都西站",
+        "BeginTime": "10:57",
+        "EndTime": "17:55",
+        "Duration": 30.97,
+        "Cost": 664.28
+    },
+    {
+        "TrainID": "K283",
+        "TrainType": "快速",
+        "From": "上海站",
+        "To": "成都西站",
+        "BeginTime": "20:45",
+        "EndTime": "08:44",
+        "Duration": 35.98,
+        "Cost": 664.28
+    },
+    {
+        "TrainID": "G3293",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "08:24",
+        "EndTime": "20:53",
+        "Duration": 12.48,
+        "Cost": 1079.46
+    },
+    {
+        "TrainID": "D2206",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "06:01",
+        "EndTime": "21:53",
+        "Duration": 15.87,
+        "Cost": 996.42
+    },
+    {
+        "TrainID": "G2196",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "成都东站",
+        "BeginTime": "10:48",
+        "EndTime": "23:25",
+        "Duration": 12.62,
+        "Cost": 1079.46
+    }
+]

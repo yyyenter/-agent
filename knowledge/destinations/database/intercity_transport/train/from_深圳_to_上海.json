@@ -1,0 +1,212 @@
+[
+    {
+        "TrainID": "G2783",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "上海站",
+        "BeginTime": "13:02",
+        "EndTime": "22:59",
+        "Duration": 9.95,
+        "Cost": 788.63
+    },
+    {
+        "TrainID": "T102",
+        "TrainType": "特快",
+        "From": "深圳站",
+        "To": "上海南站",
+        "BeginTime": "16:10",
+        "EndTime": "11:08",
+        "Duration": 18.97,
+        "Cost": 606.64
+    },
+    {
+        "TrainID": "T212",
+        "TrainType": "特快",
+        "From": "深圳东站",
+        "To": "上海南站",
+        "BeginTime": "15:50",
+        "EndTime": "10:06",
+        "Duration": 18.27,
+        "Cost": 606.64
+    },
+    {
+        "TrainID": "D3108",
+        "TrainType": "动车",
+        "From": "深圳坪山站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:51",
+        "EndTime": "22:35",
+        "Duration": 10.77,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "G998",
+        "TrainType": "高铁",
+        "From": "深圳站",
+        "To": "上海虹桥站",
+        "BeginTime": "14:30",
+        "EndTime": "21:25",
+        "Duration": 6.92,
+        "Cost": 788.63
+    },
+    {
+        "TrainID": "D2282",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:39",
+        "EndTime": "21:19",
+        "Duration": 11.67,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "D2290",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:14",
+        "EndTime": "20:38",
+        "Duration": 11.4,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "D2424",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:17",
+        "EndTime": "22:31",
+        "Duration": 11.37,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "D2284",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:31",
+        "EndTime": "21:59",
+        "Duration": 11.47,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "D388",
+        "TrainType": "动车",
+        "From": "深圳坪山站",
+        "To": "上海虹桥站",
+        "BeginTime": "08:48",
+        "EndTime": "19:57",
+        "Duration": 11.18,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "G2787",
+        "TrainType": "高铁",
+        "From": "深圳站",
+        "To": "上海虹桥站",
+        "BeginTime": "06:33",
+        "EndTime": "16:23",
+        "Duration": 9.83,
+        "Cost": 788.63
+    },
+    {
+        "TrainID": "D3126",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:06",
+        "EndTime": "18:42",
+        "Duration": 11.6,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "G2786",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "上海站",
+        "BeginTime": "13:02",
+        "EndTime": "22:59",
+        "Duration": 9.95,
+        "Cost": 788.63
+    },
+    {
+        "TrainID": "G2790",
+        "TrainType": "高铁",
+        "From": "深圳站",
+        "To": "上海虹桥站",
+        "BeginTime": "06:33",
+        "EndTime": "16:23",
+        "Duration": 9.83,
+        "Cost": 788.63
+    },
+    {
+        "TrainID": "D2421",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:17",
+        "EndTime": "22:31",
+        "Duration": 11.37,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "D385",
+        "TrainType": "动车",
+        "From": "深圳坪山站",
+        "To": "上海虹桥站",
+        "BeginTime": "08:48",
+        "EndTime": "19:57",
+        "Duration": 11.18,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "D942",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:15",
+        "EndTime": "07:00",
+        "Duration": 10.88,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "D933",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:05",
+        "EndTime": "06:50",
+        "Duration": 10.87,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "G100",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:59",
+        "EndTime": "19:25",
+        "Duration": 7.52,
+        "Cost": 788.63
+    },
+    {
+        "TrainID": "D908",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:25",
+        "EndTime": "06:45",
+        "Duration": 10.33,
+        "Cost": 727.96
+    },
+    {
+        "TrainID": "D937",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:10",
+        "EndTime": "06:55",
+        "Duration": 10.88,
+        "Cost": 727.96
+    }
+]

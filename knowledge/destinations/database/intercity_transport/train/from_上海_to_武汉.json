@@ -1,0 +1,252 @@
+[
+    {
+        "TrainID": "D2217",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "07:34",
+        "EndTime": "14:40",
+        "Duration": 7.1,
+        "Cost": 412.44
+    },
+    {
+        "TrainID": "G3120",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "武汉站",
+        "BeginTime": "13:49",
+        "EndTime": "20:00",
+        "Duration": 6.18,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G586",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "08:25",
+        "EndTime": "13:26",
+        "Duration": 5.02,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G676",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "08:38",
+        "EndTime": "13:31",
+        "Duration": 4.88,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "D3042",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "16:45",
+        "EndTime": "22:15",
+        "Duration": 5.5,
+        "Cost": 412.44
+    },
+    {
+        "TrainID": "D3090",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "09:00",
+        "EndTime": "15:22",
+        "Duration": 6.37,
+        "Cost": 412.44
+    },
+    {
+        "TrainID": "G1720",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "13:54",
+        "EndTime": "17:26",
+        "Duration": 3.53,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G1728",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "16:55",
+        "EndTime": "20:25",
+        "Duration": 3.5,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G1736",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "15:36",
+        "EndTime": "20:00",
+        "Duration": 4.4,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G1776",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "15:14",
+        "EndTime": "19:38",
+        "Duration": 4.4,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G2818",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "武汉站",
+        "BeginTime": "16:22",
+        "EndTime": "22:22",
+        "Duration": 6.0,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G3124",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "武汉站",
+        "BeginTime": "06:06",
+        "EndTime": "12:35",
+        "Duration": 6.48,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G1777",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "15:14",
+        "EndTime": "19:38",
+        "Duration": 4.4,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G587",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "08:25",
+        "EndTime": "13:26",
+        "Duration": 5.02,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G2819",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "武汉站",
+        "BeginTime": "16:22",
+        "EndTime": "22:22",
+        "Duration": 6.0,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G3125",
+        "TrainType": "高铁",
+        "From": "上海站",
+        "To": "武汉站",
+        "BeginTime": "06:06",
+        "EndTime": "12:35",
+        "Duration": 6.48,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "D2216",
+        "TrainType": "动车",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "07:34",
+        "EndTime": "14:40",
+        "Duration": 7.1,
+        "Cost": 412.44
+    },
+    {
+        "TrainID": "G1787",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "06:00",
+        "EndTime": "10:45",
+        "Duration": 4.75,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G1729",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "16:55",
+        "EndTime": "20:25",
+        "Duration": 3.5,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G1721",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "13:54",
+        "EndTime": "17:26",
+        "Duration": 3.53,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G1772",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "06:53",
+        "EndTime": "11:11",
+        "Duration": 4.3,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G1786",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "06:00",
+        "EndTime": "10:45",
+        "Duration": 4.75,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G3272",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "08:34",
+        "EndTime": "14:34",
+        "Duration": 6.0,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G2384",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "14:54",
+        "EndTime": "20:23",
+        "Duration": 5.48,
+        "Cost": 446.81
+    },
+    {
+        "TrainID": "G1426",
+        "TrainType": "高铁",
+        "From": "上海虹桥站",
+        "To": "武汉站",
+        "BeginTime": "10:48",
+        "EndTime": "15:21",
+        "Duration": 4.55,
+        "Cost": 446.81
+    }
+]

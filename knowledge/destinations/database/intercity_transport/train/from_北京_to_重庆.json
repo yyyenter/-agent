@@ -1,0 +1,112 @@
+[
+    {
+        "TrainID": "K507",
+        "TrainType": "快速",
+        "From": "北京西站",
+        "To": "重庆西站",
+        "BeginTime": "07:12",
+        "EndTime": "08:58",
+        "Duration": 25.77,
+        "Cost": 583.42
+    },
+    {
+        "TrainID": "T9",
+        "TrainType": "特快",
+        "From": "北京西站",
+        "To": "重庆西站",
+        "BeginTime": "15:06",
+        "EndTime": "15:43",
+        "Duration": 24.62,
+        "Cost": 729.27
+    },
+    {
+        "TrainID": "G51",
+        "TrainType": "高铁",
+        "From": "北京西站",
+        "To": "重庆北站",
+        "BeginTime": "06:55",
+        "EndTime": "13:57",
+        "Duration": 7.03,
+        "Cost": 948.05
+    },
+    {
+        "TrainID": "G53",
+        "TrainType": "高铁",
+        "From": "北京西站",
+        "To": "重庆北站",
+        "BeginTime": "15:05",
+        "EndTime": "22:00",
+        "Duration": 6.92,
+        "Cost": 948.05
+    },
+    {
+        "TrainID": "G331",
+        "TrainType": "高铁",
+        "From": "北京西站",
+        "To": "重庆北站",
+        "BeginTime": "09:45",
+        "EndTime": "19:13",
+        "Duration": 9.47,
+        "Cost": 948.05
+    },
+    {
+        "TrainID": "G351",
+        "TrainType": "高铁",
+        "From": "北京西站",
+        "To": "重庆北站",
+        "BeginTime": "11:10",
+        "EndTime": "20:49",
+        "Duration": 9.65,
+        "Cost": 948.05
+    },
+    {
+        "TrainID": "G371",
+        "TrainType": "高铁",
+        "From": "北京西站",
+        "To": "重庆北站",
+        "BeginTime": "08:26",
+        "EndTime": "17:21",
+        "Duration": 8.92,
+        "Cost": 948.05
+    },
+    {
+        "TrainID": "G387",
+        "TrainType": "高铁",
+        "From": "北京丰台站",
+        "To": "重庆西站",
+        "BeginTime": "09:29",
+        "EndTime": "20:41",
+        "Duration": 11.2,
+        "Cost": 948.05
+    },
+    {
+        "TrainID": "D3",
+        "TrainType": "动车",
+        "From": "北京西站",
+        "To": "重庆北站",
+        "BeginTime": "18:05",
+        "EndTime": "12:02",
+        "Duration": 17.95,
+        "Cost": 875.13
+    },
+    {
+        "TrainID": "D95",
+        "TrainType": "动车",
+        "From": "北京西站",
+        "To": "重庆北站",
+        "BeginTime": "17:53",
+        "EndTime": "11:27",
+        "Duration": 17.57,
+        "Cost": 875.13
+    },
+    {
+        "TrainID": "D49",
+        "TrainType": "动车",
+        "From": "北京西站",
+        "To": "重庆北站",
+        "BeginTime": "11:08",
+        "EndTime": "05:17",
+        "Duration": 18.15,
+        "Cost": 875.13
+    }
+]

@@ -1,0 +1,242 @@
+[
+    {
+        "TrainID": "G15",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "14:00",
+        "EndTime": "18:08",
+        "Duration": 4.13,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G121",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "10:05",
+        "EndTime": "15:05",
+        "Duration": 5.0,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G157",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "16:53",
+        "EndTime": "22:47",
+        "Duration": 5.9,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G119",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "09:24",
+        "EndTime": "14:59",
+        "Duration": 5.58,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G147",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "14:27",
+        "EndTime": "20:16",
+        "Duration": 5.82,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G5",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "09:00",
+        "EndTime": "13:10",
+        "Duration": 4.17,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G25",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "18:04",
+        "EndTime": "22:32",
+        "Duration": 4.47,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G109",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "07:45",
+        "EndTime": "13:16",
+        "Duration": 5.52,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G129",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "11:18",
+        "EndTime": "17:09",
+        "Duration": 5.85,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G133",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "11:49",
+        "EndTime": "17:33",
+        "Duration": 5.73,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G111",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "08:16",
+        "EndTime": "13:46",
+        "Duration": 5.5,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G149",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "15:08",
+        "EndTime": "20:45",
+        "Duration": 5.62,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G135",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "12:12",
+        "EndTime": "17:56",
+        "Duration": 5.73,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G151",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "15:49",
+        "EndTime": "21:35",
+        "Duration": 5.77,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G143",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "14:08",
+        "EndTime": "19:41",
+        "Duration": 5.55,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G137",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "12:47",
+        "EndTime": "18:31",
+        "Duration": 5.73,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G115",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "09:10",
+        "EndTime": "14:23",
+        "Duration": 5.22,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "T109",
+        "TrainType": "特快",
+        "From": "北京站",
+        "To": "苏州站",
+        "BeginTime": "20:03",
+        "EndTime": "10:04",
+        "Duration": 14.02,
+        "Cost": 514.19
+    },
+    {
+        "TrainID": "1461",
+        "TrainType": "快速",
+        "From": "北京站",
+        "To": "苏州站",
+        "BeginTime": "11:56",
+        "EndTime": "05:37",
+        "Duration": 17.68,
+        "Cost": null
+    },
+    {
+        "TrainID": "Z281",
+        "TrainType": "直达特快",
+        "From": "北京丰台站",
+        "To": "苏州站",
+        "BeginTime": "19:21",
+        "EndTime": "07:03",
+        "Duration": 12.12,
+        "Cost": 514.19
+    },
+    {
+        "TrainID": "G131",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "11:27",
+        "EndTime": "16:57",
+        "Duration": 5.5,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "G101",
+        "TrainType": "高铁",
+        "From": "北京南站",
+        "To": "苏州北站",
+        "BeginTime": "06:10",
+        "EndTime": "11:43",
+        "Duration": 5.55,
+        "Cost": 668.44
+    },
+    {
+        "TrainID": "Z284",
+        "TrainType": "直达特快",
+        "From": "北京丰台站",
+        "To": "苏州站",
+        "BeginTime": "19:21",
+        "EndTime": "07:03",
+        "Duration": 12.12,
+        "Cost": 514.19
+    },
+    {
+        "TrainID": "D9",
+        "TrainType": "动车",
+        "From": "北京南站",
+        "To": "苏州站",
+        "BeginTime": "19:36",
+        "EndTime": "06:50",
+        "Duration": 11.23,
+        "Cost": 617.02
+    }
+]

@@ -1,0 +1,392 @@
+[
+    {
+        "TrainID": "G335",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "13:16",
+        "EndTime": "17:56",
+        "Duration": 4.73,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G79",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "13:58",
+        "EndTime": "18:10",
+        "Duration": 4.25,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G81",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "18:14",
+        "EndTime": "22:44",
+        "Duration": 4.55,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G305",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "16:36",
+        "EndTime": "21:17",
+        "Duration": 4.85,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1189",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "12:56",
+        "EndTime": "17:50",
+        "Duration": 5.02,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1191",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "16:52",
+        "EndTime": "21:53",
+        "Duration": 5.1,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1309",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "16:00",
+        "EndTime": "21:22",
+        "Duration": 5.5,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G279",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "14:03",
+        "EndTime": "19:03",
+        "Duration": 5.3,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1009",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "13:40",
+        "EndTime": "18:43",
+        "Duration": 5.05,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1011",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "14:47",
+        "EndTime": "19:41",
+        "Duration": 4.9,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1175",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "14:08",
+        "EndTime": "19:08",
+        "Duration": 5.0,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1017",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "09:27",
+        "EndTime": "14:44",
+        "Duration": 5.62,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1019",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "17:38",
+        "EndTime": "22:39",
+        "Duration": 5.02,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G881",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "09:00",
+        "EndTime": "13:20",
+        "Duration": 4.33,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G883",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "10:07",
+        "EndTime": "14:40",
+        "Duration": 4.55,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1031",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "11:26",
+        "EndTime": "16:46",
+        "Duration": 5.42,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1003",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "07:55",
+        "EndTime": "12:47",
+        "Duration": 4.87,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1021",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "17:08",
+        "EndTime": "22:03",
+        "Duration": 4.92,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1007",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "12:11",
+        "EndTime": "17:03",
+        "Duration": 4.87,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G341",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "14:37",
+        "EndTime": "20:17",
+        "Duration": 5.77,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G825",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "15:55",
+        "EndTime": "20:52",
+        "Duration": 5.07,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G2281",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "09:23",
+        "EndTime": "16:41",
+        "Duration": 7.35,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1013",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "17:23",
+        "EndTime": "22:30",
+        "Duration": 5.12,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G2707",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "10:44",
+        "EndTime": "17:23",
+        "Duration": 6.65,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G2705",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳站",
+        "BeginTime": "08:00",
+        "EndTime": "15:40",
+        "Duration": 7.67,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1034",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "11:26",
+        "EndTime": "16:46",
+        "Duration": 5.42,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1030",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "10:22",
+        "EndTime": "16:05",
+        "Duration": 5.85,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G531",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "09:43",
+        "EndTime": "15:00",
+        "Duration": 5.28,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G829",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "17:49",
+        "EndTime": "23:05",
+        "Duration": 5.37,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1314",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "14:24",
+        "EndTime": "19:36",
+        "Duration": 5.27,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1005",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "08:12",
+        "EndTime": "13:08",
+        "Duration": 4.93,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1042",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "15:43",
+        "EndTime": "20:47",
+        "Duration": 5.13,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1001",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "07:25",
+        "EndTime": "12:14",
+        "Duration": 4.82,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1188",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "10:57",
+        "EndTime": "16:09",
+        "Duration": 5.3,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G816",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "13:53",
+        "EndTime": "18:05",
+        "Duration": 4.25,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G832",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "17:49",
+        "EndTime": "23:05",
+        "Duration": 5.37,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G828",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "15:55",
+        "EndTime": "20:52",
+        "Duration": 5.07,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G824",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "14:52",
+        "EndTime": "20:11",
+        "Duration": 5.45,
+        "Cost": 582.03
+    },
+    {
+        "TrainID": "G1020",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "深圳北站",
+        "BeginTime": "09:27",
+        "EndTime": "14:44",
+        "Duration": 5.62,
+        "Cost": 582.03
+    }
+]

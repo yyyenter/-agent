@@ -1,0 +1,2152 @@
+[
+    {
+        "TrainID": "G158",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:13",
+        "EndTime": "17:12",
+        "Duration": 0.98,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "Z283",
+        "TrainType": "直达特快",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "16:55",
+        "EndTime": "18:47",
+        "Duration": 1.87,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "Z258",
+        "TrainType": "直达特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "05:55",
+        "EndTime": "07:57",
+        "Duration": 2.13,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "K73",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "09:39",
+        "EndTime": "12:23",
+        "Duration": 2.83,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "G1339",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "22:15",
+        "EndTime": "23:00",
+        "Duration": 0.82,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1335",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:55",
+        "EndTime": "20:55",
+        "Duration": 1.03,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7304",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "12:37",
+        "EndTime": "13:36",
+        "Duration": 1.08,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7318",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:48",
+        "EndTime": "16:48",
+        "Duration": 1.08,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7358",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "上海虹桥站",
+        "BeginTime": "06:10",
+        "EndTime": "07:07",
+        "Duration": 0.95,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7360",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:00",
+        "EndTime": "21:00",
+        "Duration": 1.0,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "T382",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "09:03",
+        "EndTime": "11:27",
+        "Duration": 2.5,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "K80",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "02:56",
+        "EndTime": "05:25",
+        "Duration": 2.58,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K740",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "11:41",
+        "EndTime": "14:26",
+        "Duration": 2.93,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K512",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "04:31",
+        "EndTime": "07:23",
+        "Duration": 2.98,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K352",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "05:30",
+        "EndTime": "08:14",
+        "Duration": 2.83,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K1108",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "09:45",
+        "EndTime": "12:36",
+        "Duration": 3.3,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K470",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "06:28",
+        "EndTime": "08:54",
+        "Duration": 2.53,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K288",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "04:04",
+        "EndTime": "06:20",
+        "Duration": 2.37,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K1128",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "04:52",
+        "EndTime": "07:09",
+        "Duration": 2.38,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "T102",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "08:55",
+        "EndTime": "11:08",
+        "Duration": 2.32,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "K1374",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "12:21",
+        "EndTime": "15:11",
+        "Duration": 2.93,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "T212",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "07:55",
+        "EndTime": "10:06",
+        "Duration": 2.28,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "Z248",
+        "TrainType": "直达特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "04:42",
+        "EndTime": "06:39",
+        "Duration": 2.05,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "K576",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "08:25",
+        "EndTime": "11:51",
+        "Duration": 3.53,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K808",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "10:05",
+        "EndTime": "12:42",
+        "Duration": 2.72,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K112",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "10:48",
+        "EndTime": "13:18",
+        "Duration": 2.6,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K496",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "13:47",
+        "EndTime": "16:28",
+        "Duration": 2.78,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "T26",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "12:28",
+        "EndTime": "15:05",
+        "Duration": 2.72,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "T82",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "11:28",
+        "EndTime": "13:32",
+        "Duration": 2.22,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "T78",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "07:48",
+        "EndTime": "09:59",
+        "Duration": 2.28,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "K48",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "13:43",
+        "EndTime": "16:00",
+        "Duration": 2.28,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "C402",
+        "TrainType": "城际动车",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "07:39",
+        "EndTime": "09:21",
+        "Duration": 1.8,
+        "Cost": 74.19
+    },
+    {
+        "TrainID": "C404",
+        "TrainType": "城际动车",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "12:19",
+        "EndTime": "14:06",
+        "Duration": 1.88,
+        "Cost": 74.19
+    },
+    {
+        "TrainID": "C406",
+        "TrainType": "城际动车",
+        "From": "杭州东站",
+        "To": "上海南站",
+        "BeginTime": "19:59",
+        "EndTime": "21:43",
+        "Duration": 1.83,
+        "Cost": 74.19
+    },
+    {
+        "TrainID": "C412",
+        "TrainType": "城际动车",
+        "From": "杭州东站",
+        "To": "上海南站",
+        "BeginTime": "18:20",
+        "EndTime": "20:10",
+        "Duration": 1.93,
+        "Cost": 74.19
+    },
+    {
+        "TrainID": "C414",
+        "TrainType": "城际动车",
+        "From": "杭州东站",
+        "To": "上海南站",
+        "BeginTime": "11:26",
+        "EndTime": "13:11",
+        "Duration": 1.85,
+        "Cost": 74.19
+    },
+    {
+        "TrainID": "C482",
+        "TrainType": "城际动车",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "19:42",
+        "EndTime": "21:25",
+        "Duration": 1.9,
+        "Cost": 74.19
+    },
+    {
+        "TrainID": "C496",
+        "TrainType": "城际动车",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "13:01",
+        "EndTime": "14:51",
+        "Duration": 1.93,
+        "Cost": 74.19
+    },
+    {
+        "TrainID": "K1806",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "11:30",
+        "EndTime": "13:46",
+        "Duration": 2.27,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K336",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "17:55",
+        "EndTime": "20:35",
+        "Duration": 2.77,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "T136",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "19:58",
+        "EndTime": "22:14",
+        "Duration": 2.37,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "G1674",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:29",
+        "EndTime": "18:04",
+        "Duration": 1.62,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1690",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:14",
+        "EndTime": "11:13",
+        "Duration": 1.03,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D3206",
+        "TrainType": "动车",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:36",
+        "EndTime": "20:52",
+        "Duration": 1.33,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "D382",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "12:41",
+        "EndTime": "13:49",
+        "Duration": 1.22,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G1652",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "13:44",
+        "EndTime": "14:32",
+        "Duration": 0.85,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D3136",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:40",
+        "EndTime": "17:42",
+        "Duration": 1.27,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G1384",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:23",
+        "EndTime": "12:16",
+        "Duration": 0.92,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1386",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "12:07",
+        "EndTime": "13:06",
+        "Duration": 1.03,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D3324",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:24",
+        "EndTime": "11:36",
+        "Duration": 1.27,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "D3104",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "13:39",
+        "EndTime": "15:24",
+        "Duration": 1.8,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "D3202",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:20",
+        "EndTime": "21:46",
+        "Duration": 1.5,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G1382",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:29",
+        "EndTime": "11:16",
+        "Duration": 0.82,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D3142",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "14:56",
+        "EndTime": "15:57",
+        "Duration": 1.13,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G1654",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:34",
+        "EndTime": "20:21",
+        "Duration": 0.82,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1634",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "12:46",
+        "EndTime": "13:39",
+        "Duration": 0.95,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1584",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "13:07",
+        "EndTime": "13:59",
+        "Duration": 0.9,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1390",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:36",
+        "EndTime": "17:37",
+        "Duration": 1.05,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1510",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "18:01",
+        "EndTime": "19:00",
+        "Duration": 1.08,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1632",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:40",
+        "EndTime": "12:34",
+        "Duration": 1.02,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1636",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:51",
+        "EndTime": "16:58",
+        "Duration": 1.17,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7192",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "17:02",
+        "EndTime": "17:54",
+        "Duration": 0.9,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7194",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:13",
+        "EndTime": "10:05",
+        "Duration": 0.92,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7306",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:27",
+        "EndTime": "12:31",
+        "Duration": 1.1,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7308",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "14:47",
+        "EndTime": "15:47",
+        "Duration": 1.03,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7312",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:09",
+        "EndTime": "20:08",
+        "Duration": 1.07,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7314",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:29",
+        "EndTime": "20:26",
+        "Duration": 0.98,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7316",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:08",
+        "EndTime": "11:27",
+        "Duration": 1.35,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7320",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "13:29",
+        "EndTime": "14:18",
+        "Duration": 0.85,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7366",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:14",
+        "EndTime": "21:09",
+        "Duration": 0.95,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7372",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "08:07",
+        "EndTime": "09:23",
+        "Duration": 1.3,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7376",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:40",
+        "EndTime": "16:33",
+        "Duration": 0.93,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7382",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "08:53",
+        "EndTime": "09:53",
+        "Duration": 1.13,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7390",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "13:34",
+        "EndTime": "14:28",
+        "Duration": 0.93,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7492",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:44",
+        "EndTime": "09:09",
+        "Duration": 1.55,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7524",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:32",
+        "EndTime": "10:49",
+        "Duration": 1.32,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7552",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:15",
+        "EndTime": "08:21",
+        "Duration": 1.15,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7554",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:55",
+        "EndTime": "08:55",
+        "Duration": 1.05,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7560",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:29",
+        "EndTime": "16:24",
+        "Duration": 0.92,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7764",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:28",
+        "EndTime": "10:35",
+        "Duration": 1.25,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7310",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "17:43",
+        "EndTime": "18:56",
+        "Duration": 1.35,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D2160",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:37",
+        "EndTime": "09:00",
+        "Duration": 1.48,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G1866",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:26",
+        "EndTime": "08:32",
+        "Duration": 1.17,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7502",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "08:00",
+        "EndTime": "09:29",
+        "Duration": 1.55,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7510",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "12:26",
+        "EndTime": "13:26",
+        "Duration": 1.03,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7512",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "13:24",
+        "EndTime": "14:37",
+        "Duration": 1.3,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7514",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "14:19",
+        "EndTime": "15:20",
+        "Duration": 1.08,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7518",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:26",
+        "EndTime": "17:25",
+        "Duration": 1.07,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7520",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "17:24",
+        "EndTime": "18:32",
+        "Duration": 1.23,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7522",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "18:32",
+        "EndTime": "19:53",
+        "Duration": 1.38,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7562",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:25",
+        "EndTime": "20:18",
+        "Duration": 0.92,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7584",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "17:53",
+        "EndTime": "19:11",
+        "Duration": 1.45,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7590",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "17:39",
+        "EndTime": "18:45",
+        "Duration": 1.25,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1228",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:01",
+        "EndTime": "11:08",
+        "Duration": 1.15,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7322",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "14:43",
+        "EndTime": "15:43",
+        "Duration": 1.05,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7324",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:44",
+        "EndTime": "12:43",
+        "Duration": 1.1,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7326",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:24",
+        "EndTime": "16:28",
+        "Duration": 1.1,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7330",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:04",
+        "EndTime": "10:14",
+        "Duration": 1.2,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7332",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:47",
+        "EndTime": "11:46",
+        "Duration": 1.02,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7334",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "13:55",
+        "EndTime": "15:07",
+        "Duration": 1.28,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7336",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:58",
+        "EndTime": "17:51",
+        "Duration": 0.98,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7338",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:23",
+        "EndTime": "21:29",
+        "Duration": 1.15,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7344",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:00",
+        "EndTime": "09:56",
+        "Duration": 1.02,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7348",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "13:11",
+        "EndTime": "14:03",
+        "Duration": 0.9,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7350",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:43",
+        "EndTime": "21:37",
+        "Duration": 1.08,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7364",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:51",
+        "EndTime": "11:50",
+        "Duration": 1.02,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7368",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:01",
+        "EndTime": "11:59",
+        "Duration": 1.05,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7432",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "17:55",
+        "EndTime": "19:03",
+        "Duration": 1.22,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7504",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:18",
+        "EndTime": "10:17",
+        "Duration": 1.03,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7506",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:53",
+        "EndTime": "10:38",
+        "Duration": 0.78,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7508",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:31",
+        "EndTime": "12:25",
+        "Duration": 0.93,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7516",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:05",
+        "EndTime": "16:10",
+        "Duration": 1.23,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7528",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:28",
+        "EndTime": "22:13",
+        "Duration": 0.8,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7530",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "08:38",
+        "EndTime": "09:38",
+        "Duration": 1.05,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7532",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:42",
+        "EndTime": "10:56",
+        "Duration": 1.35,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7536",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "22:23",
+        "EndTime": "23:08",
+        "Duration": 0.8,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7540",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "12:04",
+        "EndTime": "12:56",
+        "Duration": 0.93,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7546",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "14:30",
+        "EndTime": "15:31",
+        "Duration": 1.07,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7550",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "18:30",
+        "EndTime": "19:50",
+        "Duration": 1.37,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7566",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:00",
+        "EndTime": "20:05",
+        "Duration": 1.12,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7572",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:57",
+        "EndTime": "11:05",
+        "Duration": 1.17,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7586",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "10:43",
+        "EndTime": "11:43",
+        "Duration": 1.03,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7588",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:05",
+        "EndTime": "20:02",
+        "Duration": 1.0,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7592",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:01",
+        "EndTime": "16:21",
+        "Duration": 1.37,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7792",
+        "TrainType": "高铁",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:54",
+        "EndTime": "18:16",
+        "Duration": 1.42,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7396",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:23",
+        "EndTime": "21:22",
+        "Duration": 1.43,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7352",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:37",
+        "EndTime": "16:52",
+        "Duration": 1.53,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1376",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "22:09",
+        "EndTime": "22:54",
+        "Duration": 0.88,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1372",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "18:59",
+        "EndTime": "19:44",
+        "Duration": 0.78,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1374",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:05",
+        "EndTime": "22:08",
+        "Duration": 1.12,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1378",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "18:28",
+        "EndTime": "19:20",
+        "Duration": 0.9,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D3108",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:40",
+        "EndTime": "22:35",
+        "Duration": 0.98,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G2366",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:58",
+        "EndTime": "22:50",
+        "Duration": 0.9,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1302",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:55",
+        "EndTime": "21:51",
+        "Duration": 1.07,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G998",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:40",
+        "EndTime": "21:25",
+        "Duration": 0.82,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1362",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "18:05",
+        "EndTime": "19:06",
+        "Duration": 1.08,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G818",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "14:02",
+        "EndTime": "14:48",
+        "Duration": 0.8,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1352",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:14",
+        "EndTime": "16:06",
+        "Duration": 0.92,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1342",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:12",
+        "EndTime": "12:13",
+        "Duration": 1.05,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1348",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "12:56",
+        "EndTime": "13:42",
+        "Duration": 0.82,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1350",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "13:49",
+        "EndTime": "14:54",
+        "Duration": 1.15,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1344",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:52",
+        "EndTime": "12:51",
+        "Duration": 1.02,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D2282",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:00",
+        "EndTime": "21:19",
+        "Duration": 1.35,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "D2290",
+        "TrainType": "动车",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:26",
+        "EndTime": "20:38",
+        "Duration": 1.45,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "D2424",
+        "TrainType": "动车",
+        "From": "杭州南站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:11",
+        "EndTime": "22:31",
+        "Duration": 1.37,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G1346",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "12:19",
+        "EndTime": "13:17",
+        "Duration": 1.0,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G2142",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:08",
+        "EndTime": "17:02",
+        "Duration": 0.97,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D2284",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:02",
+        "EndTime": "21:59",
+        "Duration": 1.03,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G1306",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "22:19",
+        "EndTime": "23:04",
+        "Duration": 0.8,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D388",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:02",
+        "EndTime": "19:57",
+        "Duration": 1.12,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "D3126",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "17:29",
+        "EndTime": "18:42",
+        "Duration": 1.33,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G1370",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:34",
+        "EndTime": "16:36",
+        "Duration": 1.07,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1322",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "17:15",
+        "EndTime": "18:22",
+        "Duration": 1.15,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1328",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:33",
+        "EndTime": "21:40",
+        "Duration": 1.27,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1502",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:10",
+        "EndTime": "21:13",
+        "Duration": 1.15,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7576",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:04",
+        "EndTime": "12:10",
+        "Duration": 1.15,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "K124",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "07:17",
+        "EndTime": "10:39",
+        "Duration": 3.47,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K254",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "10:11",
+        "EndTime": "13:00",
+        "Duration": 2.92,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K752",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "02:48",
+        "EndTime": "05:18",
+        "Duration": 2.67,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "G1394",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:11",
+        "EndTime": "22:04",
+        "Duration": 0.92,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1388",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "18:49",
+        "EndTime": "19:41",
+        "Duration": 0.93,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1472",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "22:27",
+        "EndTime": "23:12",
+        "Duration": 0.78,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1658",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:53",
+        "EndTime": "22:45",
+        "Duration": 0.92,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1656",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:45",
+        "EndTime": "20:41",
+        "Duration": 1.0,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D3102",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "13:00",
+        "EndTime": "14:13",
+        "Duration": 1.27,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G1338",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "22:15",
+        "EndTime": "23:00",
+        "Duration": 0.82,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1334",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:55",
+        "EndTime": "20:55",
+        "Duration": 1.03,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1506",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:48",
+        "EndTime": "22:40",
+        "Duration": 0.93,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "K1512",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "13:10",
+        "EndTime": "15:38",
+        "Duration": 2.58,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "Z282",
+        "TrainType": "直达特快",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "16:55",
+        "EndTime": "18:47",
+        "Duration": 1.87,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "G7793",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "17:06",
+        "EndTime": "18:16",
+        "Duration": 1.2,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7765",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:28",
+        "EndTime": "10:35",
+        "Duration": 1.25,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "K753",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "02:48",
+        "EndTime": "05:18",
+        "Duration": 2.67,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K49",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "13:43",
+        "EndTime": "16:00",
+        "Duration": 2.28,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "G7493",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "07:44",
+        "EndTime": "09:09",
+        "Duration": 1.55,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7593",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:01",
+        "EndTime": "16:21",
+        "Duration": 1.37,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "K337",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "17:55",
+        "EndTime": "20:35",
+        "Duration": 2.77,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "D3137",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:40",
+        "EndTime": "17:42",
+        "Duration": 1.27,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G2191",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:32",
+        "EndTime": "22:25",
+        "Duration": 0.92,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7577",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:04",
+        "EndTime": "12:10",
+        "Duration": 1.15,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G1367",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:34",
+        "EndTime": "16:36",
+        "Duration": 1.07,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "K353",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "05:30",
+        "EndTime": "08:14",
+        "Duration": 2.83,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "D2421",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "21:23",
+        "EndTime": "22:31",
+        "Duration": 1.17,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "D385",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "19:02",
+        "EndTime": "19:57",
+        "Duration": 1.12,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G7637",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:01",
+        "EndTime": "10:26",
+        "Duration": 1.7,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "K1105",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "09:45",
+        "EndTime": "12:36",
+        "Duration": 3.3,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "G2195",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "18:22",
+        "EndTime": "19:28",
+        "Duration": 1.15,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G2143",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:08",
+        "EndTime": "17:02",
+        "Duration": 0.97,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7393",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "上海虹桥站",
+        "BeginTime": "09:39",
+        "EndTime": "10:59",
+        "Duration": 1.58,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7377",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:40",
+        "EndTime": "16:33",
+        "Duration": 0.93,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7397",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:23",
+        "EndTime": "21:22",
+        "Duration": 1.43,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7353",
+        "TrainType": "高铁",
+        "From": "杭州站",
+        "To": "上海虹桥站",
+        "BeginTime": "15:37",
+        "EndTime": "16:52",
+        "Duration": 1.53,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7369",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "11:01",
+        "EndTime": "11:59",
+        "Duration": 1.05,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D3293",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "17:11",
+        "EndTime": "18:36",
+        "Duration": 1.45,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "D3143",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "14:56",
+        "EndTime": "15:57",
+        "Duration": 1.13,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "K1187",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "04:11",
+        "EndTime": "06:32",
+        "Duration": 2.45,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "K809",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "10:05",
+        "EndTime": "12:42",
+        "Duration": 2.72,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "Z245",
+        "TrainType": "直达特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "04:42",
+        "EndTime": "06:39",
+        "Duration": 2.05,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "K377",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "12:12",
+        "EndTime": "14:45",
+        "Duration": 2.65,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "G1638",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "16:20",
+        "EndTime": "17:22",
+        "Duration": 1.08,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D942",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "06:10",
+        "EndTime": "07:00",
+        "Duration": 0.93,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "D933",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "06:00",
+        "EndTime": "06:50",
+        "Duration": 0.93,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G100",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "18:38",
+        "EndTime": "19:25",
+        "Duration": 0.83,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "K150",
+        "TrainType": "快速",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "13:03",
+        "EndTime": "15:25",
+        "Duration": 2.47,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "D908",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "05:55",
+        "EndTime": "06:45",
+        "Duration": 1.18,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "D937",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "06:05",
+        "EndTime": "06:55",
+        "Duration": 0.93,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "G7542",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "14:08",
+        "EndTime": "15:16",
+        "Duration": 1.18,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7400",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "08:43",
+        "EndTime": "09:42",
+        "Duration": 1.03,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "G7340",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:58",
+        "EndTime": "21:54",
+        "Duration": 1.03,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D3147",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "20:50",
+        "EndTime": "22:01",
+        "Duration": 1.32,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "T170",
+        "TrainType": "特快",
+        "From": "杭州南站",
+        "To": "上海南站",
+        "BeginTime": "06:20",
+        "EndTime": "08:34",
+        "Duration": 2.33,
+        "Cost": 82.44
+    },
+    {
+        "TrainID": "G1440",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "22:12",
+        "EndTime": "22:57",
+        "Duration": 0.85,
+        "Cost": 107.17
+    },
+    {
+        "TrainID": "D172",
+        "TrainType": "动车",
+        "From": "杭州东站",
+        "To": "上海南站",
+        "BeginTime": "21:47",
+        "EndTime": "23:21",
+        "Duration": 1.62,
+        "Cost": 98.92
+    },
+    {
+        "TrainID": "K5838",
+        "TrainType": "快速",
+        "From": "杭州站",
+        "To": "上海南站",
+        "BeginTime": "19:02",
+        "EndTime": "21:13",
+        "Duration": 2.47,
+        "Cost": 65.95
+    },
+    {
+        "TrainID": "G7302",
+        "TrainType": "高铁",
+        "From": "杭州东站",
+        "To": "上海虹桥站",
+        "BeginTime": "06:47",
+        "EndTime": "07:40",
+        "Duration": 0.88,
+        "Cost": 107.17
+    }
+]

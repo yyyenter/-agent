@@ -1,0 +1,162 @@
+[
+    {
+        "TrainID": "K512",
+        "TrainType": "快速",
+        "From": "广州站",
+        "To": "杭州南站",
+        "BeginTime": "07:16",
+        "EndTime": "04:24",
+        "Duration": 21.38,
+        "Cost": 419.25
+    },
+    {
+        "TrainID": "G1302",
+        "TrainType": "高铁",
+        "From": "广州南站",
+        "To": "杭州东站",
+        "BeginTime": "13:22",
+        "EndTime": "20:47",
+        "Duration": 7.57,
+        "Cost": 681.28
+    },
+    {
+        "TrainID": "G818",
+        "TrainType": "高铁",
+        "From": "广州南站",
+        "To": "杭州东站",
+        "BeginTime": "08:00",
+        "EndTime": "14:00",
+        "Duration": 6.0,
+        "Cost": 681.28
+    },
+    {
+        "TrainID": "G1306",
+        "TrainType": "高铁",
+        "From": "广州北站",
+        "To": "杭州东站",
+        "BeginTime": "15:48",
+        "EndTime": "22:16",
+        "Duration": 6.57,
+        "Cost": 681.28
+    },
+    {
+        "TrainID": "G1184",
+        "TrainType": "高铁",
+        "From": "广州南站",
+        "To": "杭州西站",
+        "BeginTime": "08:36",
+        "EndTime": "17:42",
+        "Duration": 9.1,
+        "Cost": 681.28
+    },
+    {
+        "TrainID": "G1404",
+        "TrainType": "高铁",
+        "From": "广州南站",
+        "To": "杭州东站",
+        "BeginTime": "15:55",
+        "EndTime": "23:27",
+        "Duration": 7.53,
+        "Cost": 681.28
+    },
+    {
+        "TrainID": "D3124",
+        "TrainType": "动车",
+        "From": "广州东站",
+        "To": "杭州东站",
+        "BeginTime": "10:43",
+        "EndTime": "22:28",
+        "Duration": 11.75,
+        "Cost": 628.88
+    },
+    {
+        "TrainID": "G1181",
+        "TrainType": "高铁",
+        "From": "广州南站",
+        "To": "杭州西站",
+        "BeginTime": "08:36",
+        "EndTime": "17:42",
+        "Duration": 9.1,
+        "Cost": 681.28
+    },
+    {
+        "TrainID": "D3121",
+        "TrainType": "动车",
+        "From": "广州东站",
+        "To": "杭州东站",
+        "BeginTime": "10:43",
+        "EndTime": "22:28",
+        "Duration": 11.75,
+        "Cost": 628.88
+    },
+    {
+        "TrainID": "D942",
+        "TrainType": "动车",
+        "From": "广州南站",
+        "To": "杭州东站",
+        "BeginTime": "19:35",
+        "EndTime": "06:04",
+        "Duration": 10.9,
+        "Cost": 628.88
+    },
+    {
+        "TrainID": "D933",
+        "TrainType": "动车",
+        "From": "广州南站",
+        "To": "杭州东站",
+        "BeginTime": "19:20",
+        "EndTime": "05:54",
+        "Duration": 10.63,
+        "Cost": 628.88
+    },
+    {
+        "TrainID": "D937",
+        "TrainType": "动车",
+        "From": "广州南站",
+        "To": "杭州东站",
+        "BeginTime": "19:30",
+        "EndTime": "05:59",
+        "Duration": 10.48,
+        "Cost": 628.88
+    },
+    {
+        "TrainID": "G3068",
+        "TrainType": "高铁",
+        "From": "广州东站",
+        "To": "杭州西站",
+        "BeginTime": "09:09",
+        "EndTime": "15:59",
+        "Duration": 6.83,
+        "Cost": 681.28
+    },
+    {
+        "TrainID": "T170",
+        "TrainType": "特快",
+        "From": "广州站",
+        "To": "杭州南站",
+        "BeginTime": "14:56",
+        "EndTime": "06:14",
+        "Duration": 15.3,
+        "Cost": 524.06
+    },
+    {
+        "TrainID": "G3078",
+        "TrainType": "高铁",
+        "From": "广州东站",
+        "To": "杭州西站",
+        "BeginTime": "14:15",
+        "EndTime": "21:12",
+        "Duration": 6.95,
+        "Cost": 681.28
+    },
+    {
+        "TrainID": "G3072",
+        "TrainType": "高铁",
+        "From": "广州东站",
+        "To": "杭州西站",
+        "BeginTime": "11:41",
+        "EndTime": "20:24",
+        "Duration": 8.72,
+        "Cost": 681.28
+    }
+]

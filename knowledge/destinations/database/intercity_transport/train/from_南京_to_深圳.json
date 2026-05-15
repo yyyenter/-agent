@@ -1,0 +1,132 @@
+[
+    {
+        "TrainID": "G2784",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "深圳北站",
+        "BeginTime": "09:07",
+        "EndTime": "17:00",
+        "Duration": 7.93,
+        "Cost": 751.94
+    },
+    {
+        "TrainID": "G2788",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "深圳站",
+        "BeginTime": "14:53",
+        "EndTime": "22:33",
+        "Duration": 7.72,
+        "Cost": 751.94
+    },
+    {
+        "TrainID": "D2281",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "深圳坪山站",
+        "BeginTime": "06:32",
+        "EndTime": "19:48",
+        "Duration": 13.27,
+        "Cost": 694.1
+    },
+    {
+        "TrainID": "D2293",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "深圳北站",
+        "BeginTime": "10:57",
+        "EndTime": "22:35",
+        "Duration": 11.63,
+        "Cost": 694.1
+    },
+    {
+        "TrainID": "G1665",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "深圳站",
+        "BeginTime": "09:00",
+        "EndTime": "18:10",
+        "Duration": 9.27,
+        "Cost": 751.94
+    },
+    {
+        "TrainID": "D2113",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "深圳坪山站",
+        "BeginTime": "08:38",
+        "EndTime": "18:54",
+        "Duration": 10.27,
+        "Cost": 694.1
+    },
+    {
+        "TrainID": "K33",
+        "TrainType": "快速",
+        "From": "南京站",
+        "To": "深圳站",
+        "BeginTime": "17:00",
+        "EndTime": "14:52",
+        "Duration": 22.28,
+        "Cost": 462.73
+    },
+    {
+        "TrainID": "D375",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "深圳北站",
+        "BeginTime": "10:08",
+        "EndTime": "19:20",
+        "Duration": 9.28,
+        "Cost": 694.1
+    },
+    {
+        "TrainID": "G2781",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "深圳站",
+        "BeginTime": "07:31",
+        "EndTime": "15:31",
+        "Duration": 8.0,
+        "Cost": 751.94
+    },
+    {
+        "TrainID": "G2785",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "深圳北站",
+        "BeginTime": "09:07",
+        "EndTime": "17:00",
+        "Duration": 7.93,
+        "Cost": 751.94
+    },
+    {
+        "TrainID": "G2789",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "深圳站",
+        "BeginTime": "14:53",
+        "EndTime": "22:33",
+        "Duration": 7.72,
+        "Cost": 751.94
+    },
+    {
+        "TrainID": "K36",
+        "TrainType": "快速",
+        "From": "南京站",
+        "To": "深圳站",
+        "BeginTime": "17:00",
+        "EndTime": "14:52",
+        "Duration": 22.28,
+        "Cost": 462.73
+    },
+    {
+        "TrainID": "G2780",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "深圳站",
+        "BeginTime": "07:31",
+        "EndTime": "15:31",
+        "Duration": 8.0,
+        "Cost": 751.94
+    }
+]

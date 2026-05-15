@@ -38,40 +38,36 @@ class ChatRequest(BaseModel):
 def rewrite_query_lightweight(memory: MemoryManager, current_message: str) -> str:
     """
     【路由前专用】轻量级指代消解
-    - 只看最近3轮对话，不含长期记忆
+    - 只看最近5轮对话，不含长期记忆
     - 绝对不越界污染路由判断
     """
-    history = memory.get_chat_history()[-6:]  # 最近3轮
+    history = memory.get_chat_history()[-10:]  # 最近3轮
     if not history:
         return current_message
 
     history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in history])
     
     rewrite_prompt = f"""你是一个极其严格的"指代消解"组件。
-任务：将用户的【当前回复】重写为一句独立、明确的句子。
+    任务：将用户的【当前回复】重写为一句独立、明确的句子。
 
-【绝对规则】：
-1. 仅仅替换代词（如把"那里"替换为上文提到的地点）。
-2. 如果当前回复是明确的转移话题（如"你好"、"你是谁"、"讲个笑话"），【必须100%原样保留】。
-3. 只输出一句话，不加任何解释。
+    【绝对规则】：
+    1. 仅仅替换代词（如把"那里"替换为上文提到的地点）。
+    2. 如果当前回复是明确的转移话题（如"你好"、"你是谁"、"讲个笑话"），【必须100%原样保留】。
+    3. 只输出一句话，不加任何解释。
 
-【最近对话】：
-{history_text}
+    【最近对话】：
+    {history_text}
 
-【当前回复】：
-user: {current_message}
+    【当前回复】：
+    user: {current_message}
 
-【重写结果】：
-"""
+    【重写结果】：
+    """
     try:
         response = zhipu_llm.call([{"role": "user", "content": rewrite_prompt}])
         return response.strip()
     except Exception as e:
         return current_message
-
-
-
-
 
 # --- 流式 API 核心交互接口 ---
 @app.post("/api/chat_stream")

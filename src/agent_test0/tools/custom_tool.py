@@ -6,13 +6,16 @@ import sqlite3
 import requests
 from pydantic import BaseModel, Field
 from crewai.tools import BaseTool
+import redis
+# 假设 ToolCacheManager 在你的项目中正确导入
+from ..harness import ToolCacheManager 
 
 # 1. 引用全局搜索工具
 search_tool: JinaScrapeWebsiteTool = JinaScrapeWebsiteTool()
 DB_PATH = "knowledge/user_profiles.db"
 
 class WeatherInput(BaseModel):
-    location: str = Field(..., description="需要查询天气的城市名称")
+    location: str = Field(..., description="需要查询天气的城市名称，例如：北京、上海")
 
 class WeatherTool(BaseTool):
     name: str = "GetWeatherTool"
@@ -20,29 +23,52 @@ class WeatherTool(BaseTool):
     args_schema: type[BaseModel] = WeatherInput
 
     def _run(self, location: str) -> str:
-        import redis
-        from ..harness import ToolCacheManager
         redis_client = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
         
-        # 1. 先查缓存
+        # 1. 先查缓存 (基于用户输入的城市名作为 Key)
         cached = ToolCacheManager.get_tool_result(redis_client, "qweather", {"loc": location})
         if cached:
             return f"[Cache Hit] {cached}"
 
-        # 2. 调用 QWeather API
         api_key = os.getenv("QWEATHER_API_KEY")
-        url = "https://devapi.qweather.com/v7/weather/now"
-        params = {"location": location, "key": api_key, "lang": "zh"}
-        
+        api_host = os.getenv("QWEATHER_API_HOST")
+        if not api_key or not api_host:
+            return "工具调用失败：未配置 QWEATHER_API_KEY 或 QWEATHER_API_HOST 环境变量"
+
         try:
-            resp = requests.get(url, params=params)
-            data = resp.json()
-            if data["code"] != "200":
-                return f"天气查询失败: {data['code']}"
+            headers = {"X-QW-Api-Key": api_key}
+
+            # ==========================================
+            # 2. 调用 GeoAPI: 城市名称 -> LocationID
+            # ==========================================
+            geo_url = f"https://{api_host}/geo/v2/city/lookup"
+            geo_params = {"location": location}
+
+            geo_resp = requests.get(geo_url, params=geo_params, headers=headers)
+            geo_data = geo_resp.json()
+
+            if geo_data.get("code") != "200" or not geo_data.get("location"):
+                return f"天气查询失败: 无法解析城市 '{location}' 的位置信息 (Code: {geo_data.get('code')})"
+
+            # 提取排名第一的城市 LocationID 和标准城市名
+            location_id = geo_data["location"][0]["id"]
+            std_city_name = geo_data["location"][0]["name"] # 获取标准名字，比如"北京"
+
+            # ==========================================
+            # 3. 调用 WeatherAPI: LocationID -> 实时天气
+            # ==========================================
+            weather_url = f"https://{api_host}/v7/weather/now"
+            weather_params = {"location": location_id, "lang": "zh"}
+
+            weather_resp = requests.get(weather_url, params=weather_params, headers=headers)
+            data = weather_resp.json()
+            
+            if data.get("code") != "200":
+                return f"天气查询失败: 接口返回错误码 {data.get('code')}"
             
             now = data["now"]
             clean_res = {
-                "城市": location,
+                "城市": std_city_name, # 使用标准名称替代用户可能输入的别名
                 "天气": now["text"],
                 "温度": f"{now['temp']}°C",
                 "体感": f"{now['feelsLike']}°C",
@@ -52,9 +78,11 @@ class WeatherTool(BaseTool):
             }
             res_str = json.dumps(clean_res, ensure_ascii=False)
             
-            # 3. 写入缓存 (1800 秒 / 30分钟)
-            ToolCacheManager.set_tool_result(redis_client, "qweather", {"loc": location}, res_str, 1800)
+            # 4. 写入缓存 (18000 秒 / 5小时)
+            ToolCacheManager.set_tool_result(redis_client, "qweather", {"loc": location}, res_str, 18000)
+            
             return res_str
+            
         except Exception as e:
             return f"天气查询出错: {str(e)}"
 

@@ -1,0 +1,112 @@
+[
+    {
+        "TrainID": "K817",
+        "TrainType": "快速",
+        "From": "北京西站",
+        "To": "成都西站",
+        "BeginTime": "08:04",
+        "EndTime": "11:23",
+        "Duration": 27.32,
+        "Cost": 609.81
+    },
+    {
+        "TrainID": "G87",
+        "TrainType": "高铁",
+        "From": "北京西站",
+        "To": "成都东站",
+        "BeginTime": "07:00",
+        "EndTime": "14:33",
+        "Duration": 7.55,
+        "Cost": 990.94
+    },
+    {
+        "TrainID": "G89",
+        "TrainType": "高铁",
+        "From": "北京西站",
+        "To": "成都东站",
+        "BeginTime": "15:00",
+        "EndTime": "22:31",
+        "Duration": 7.52,
+        "Cost": 990.94
+    },
+    {
+        "TrainID": "G307",
+        "TrainType": "高铁",
+        "From": "北京西站",
+        "To": "成都东站",
+        "BeginTime": "09:10",
+        "EndTime": "18:55",
+        "Duration": 9.75,
+        "Cost": 990.94
+    },
+    {
+        "TrainID": "G331",
+        "TrainType": "高铁",
+        "From": "北京西站",
+        "To": "成都东站",
+        "BeginTime": "09:45",
+        "EndTime": "21:01",
+        "Duration": 11.27,
+        "Cost": 990.94
+    },
+    {
+        "TrainID": "G387",
+        "TrainType": "高铁",
+        "From": "北京丰台站",
+        "To": "成都东站",
+        "BeginTime": "09:29",
+        "EndTime": "19:00",
+        "Duration": 9.52,
+        "Cost": 990.94
+    },
+    {
+        "TrainID": "T7",
+        "TrainType": "特快",
+        "From": "北京西站",
+        "To": "成都西站",
+        "BeginTime": "16:43",
+        "EndTime": "20:57",
+        "Duration": 28.23,
+        "Cost": 762.26
+    },
+    {
+        "TrainID": "K117",
+        "TrainType": "快速",
+        "From": "北京西站",
+        "To": "成都西站",
+        "BeginTime": "11:50",
+        "EndTime": "16:33",
+        "Duration": 28.72,
+        "Cost": 609.81
+    },
+    {
+        "TrainID": "K548",
+        "TrainType": "快速",
+        "From": "北京西站",
+        "To": "成都西站",
+        "BeginTime": "13:40",
+        "EndTime": "22:21",
+        "Duration": 33.27,
+        "Cost": 609.81
+    },
+    {
+        "TrainID": "K545",
+        "TrainType": "快速",
+        "From": "北京西站",
+        "To": "成都西站",
+        "BeginTime": "13:40",
+        "EndTime": "22:21",
+        "Duration": 33.27,
+        "Cost": 609.81
+    },
+    {
+        "TrainID": "D49",
+        "TrainType": "动车",
+        "From": "北京西站",
+        "To": "成都东站",
+        "BeginTime": "11:08",
+        "EndTime": "07:55",
+        "Duration": 20.78,
+        "Cost": 914.71
+    }
+]

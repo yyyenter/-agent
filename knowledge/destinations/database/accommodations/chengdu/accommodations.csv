@@ -1,0 +1,380 @@
+id,name,hotelname_en,featurehoteltype,lat,lon,price,numbed
+0,成都东方美豪丽致酒店,Chengdu Oriental Mehood Lestie Hotel,管家服务,30.629545,103.974556,399,2
+1,索菲斯锦苑宾馆(成都春熙路文殊院店),Sofis Jinyuan Hotel,管家服务,30.67709,104.071223,416,2
+2,成都城市名人酒店,Celebrity City Hotel,桑拿,30.654071,104.06535,353,2
+3,成都悠泊豪生荟酒店,Howard Johnson Upark Business Club Chengdu,家庭房,30.6042,103.988209,408,2
+4,美豪丽致酒店成都天府新区环球中心会展店,"Meiholi Zhi Hotel (Huayang Branch, Tianfu New District)",桑拿,30.520868,104.05269,349,2
+5,成都丽呈明宇丽雅饭店(春熙太古里店),Lia! By Minyoun Chengdu Rezen Hotel (Chunxi Taikoo Li Store),SPA,30.657361,104.069198,481,1
+6,雅悦蓝天酒店,Elegant Azure Hotel,管家服务,30.631369,104.144984,367,1
+7,成都帝盛酒店(春熙路文殊院店),Dorsett Chengdu,行政酒廊,30.667408,104.067398,398,2
+8,成都璞悦天府酒店,Projoy Hotel Tianfu,泳池,30.525961,104.068655,499,2
+9,成都凯宾斯基饭店,Kempinski Hotel Chengdu,SPA,30.618637,104.066265,602,1
+10,成都宽窄人民公园地铁站亚朵S酒店,Chengdu Kuanzhai People's Park Subway Station Atour S Hotel,管家服务,30.65955,104.057812,508,1
+11,成都雅居乐豪生大酒店,Howard Johnson Agile Plaza Chengdu,桑拿,30.490282,104.136449,468,2
+12,成都恒邦天府喜来登酒店,Sheraton Chengdu Pidu,桑拿,30.788063,103.857226,588,2
+13,瓦当瓦舍酒店(成都金融环球中心店),Traveling With Hotel (Chengdu Financial Global Center),智能客控,30.585958,104.056659,288,1
+14,成都友豪锦江酒店,Youhao Jinjiang Hotel,管家服务,30.633102,103.994523,399,2
+15,成都祥宇宾馆,Xiangyu Hotel,免费停车,30.636985,104.076656,424,2
+16,成都新华宾馆,Chengdu Xinhua Hotel,山景房,30.674357,104.065188,399,2
+17,成都新希望高新中心假日酒店,Holiday Inn Chengdu High-Tech Center,茶室,30.728004,103.973285,437,2
+18,成都双流机场杰恩酒店(奥特莱斯店),Gene Hotel,免费停车,30.60387,103.939776,301,1
+19,成都东方广场假日酒店 (春熙路太古里店),Holiday Inn Chengdu Oriental Plaza,泳池,30.647978,104.088831,598,2
+20,成都雅诗阁来福士,Ascott Raffles City Chengdu,泳池,30.631362,104.067403,539,2
+21,成都新东方千禧大酒店,Millennium Hotel Chengdu,SPA,30.613025,104.0491,499,1
+22,成都缦道大酒店(金牛万达店),Chengdu Mandao Hotel (Jinniu Wanda Branch),管家服务,30.692287,104.067944,458,1
+23,成都澄舍酒店(温江大学城西南财大店),Chengdu Chengshe Hotel (Wenjiang University Town Southwest Caida Branch),免费停车,30.684472,103.825315,397,1
+24,成都雅诗阁秦皇服务公寓,Ascott Qinhuang Chengdu,泳池,30.428544,104.086043,399,2
+25,成都天新蜀域国际酒店(西博城店),TianXinshuyu INTERNATIONAL HOTEL,停车场,30.43202,104.061598,408,1
+26,成都辉盛庭国际公寓,Fraser Residence Chengdu,桑拿,30.572769,104.075912,388,2
+27,成都家园国际酒店,Homeland Hotel,桑拿,30.577755,104.011018,427,1
+28,成都世纪城假日酒店-西楼,Holiday Inn Chengdu Century City,行政酒廊,30.558004,104.073921,536,2
+29,成都中航明宇尚雅酒店,GALAXY MINYOUN CHENGDU XINDU HOTEL,自营亲子房,30.811111,104.084485,412,1
+30,成都空港云享酒店(双流机场店),CHENGDU JOYHUB AIR HOTEL,泳池,30.574848,103.960494,378,2
+31,成都保利辉盛坊国际公寓,Fraser Place Chengdu,家庭房,30.556195,104.061319,435,1
+32,丽柏酒店(成都四河地铁站新川店),Park Inn by Radisson Chengdu Convention and Exhibition Center Xinchuan,窗外好景,30.517024,104.078235,398,2
+33,成都新都豪生Life酒店,HOWARD JOHNSON Life,家庭房,30.803662,104.15995,370,1
+34,橙果酒店(成都宽窄巷子通惠门地铁站店),"Orange Fruit Hotel (Chengdu Kuanzhai Alley, Tonghuimen Metro Station)",免费停车,30.661073,104.05048,347,1
+35,丽呈東谷酒店(成都天府广场店),Rezen Dong Hotel Chengdu Tianfu Plaza Store,免费停车,30.65694,104.062184,404,1
+36,成都太古里春熙林恩国际酒店,Lyhn International Hotel,免费停车,30.659962,104.076052,398,1
+37,成都蓉城悦柳·采薇美食酒店,Chengdu willow hotel,免费停车,30.637218,104.065956,330,1
+38,隐栖堂酒店(四川大学新南门地铁站店),Yinxitang Hotel (Sichuan University Xinnanmen Subway Station Branch),免费停车,30.642922,104.074054,298,2
+39,成都宽窄巷子希尔顿欢朋酒店,Hampton by Hilton Chengdu Kuanzhai Alley,免费停车,30.68144,104.052865,458,1
+40,棠棣东方酒店,TANGDI ORIENTAL HOTEL,管家服务,30.500146,103.954927,349,2
+41,成都总府皇冠假日酒店,Crowne Plaza Chengdu City Center,泳池,30.658654,104.077996,549,2
+42,成都东大明宇豪雅饭店,Minyoun Chengdu Dongda Hotel,泳池,30.647184,104.091061,599,2
+43,四川岷山饭店,Minshan Hotel,泳池,30.648693,104.066867,497,1
+44,成都明宇尚雅饭店,Galaxy Minyoun Chengdu Hotel,桑拿,30.646081,104.064157,527,2
+45,隐栖堂酒店(成都春熙路天府广场店),The Hidden House (Chengdu Chunxi Road & Tianfu Square Branch),日光浴场,30.660659,104.071547,323,1
+46,隐栖堂美学生活酒店(成都杜甫草堂西南财大地铁站店),Yinqitang Hotel,免费停车,30.661934,104.022082,395,2
+47,四川锦江宾馆,Jinjiang Hotel,泳池,30.648101,104.0655,483,2
+48,秋果S酒店(宽窄巷子奎星楼街店),"True Go  S Hotel (Kuixinglou Food Street, Kuanzhai Alley)",机器人服务,30.669896,104.0529,309,1
+49,成都宽窄巷子亚朵酒店,Atour Hotel (Chengdu Kuanzhai Alley),管家服务,30.660832,104.057322,429,1
+50,成都太古里未来中心亚朵酒店,Atour Hotel (Chengdu Taikoo Li),免费停车,30.650757,104.095489,473,1
+51,成都Pagoda君亭设计酒店,Pagoda Hotel Chengdu Taikoo Li,管家服务,30.658736,104.081467,848,2
+52,成都万达瑞华酒店,Wanda Reign Chengdu,桑拿,30.647298,104.069665,928,1
+53,成都富力丽思卡尔顿酒店,The Ritz-Carlton Chengdu,桑拿,30.664021,104.070074,1428,1
+54,成都万达颐华酒店,"Wanda Yi, Chengdu",管家服务,30.62147,104.093632,629,1
+55,魔住智慧酒店(成都太古里IFS店),Mozhu Wisdom Hotel(Chengdu Taikoo Li Store),免费停车,30.656274,104.082926,344,1
+56,成都太古里IFS禧玥酒店,Chengdu Taikoo Li IFS Joya Hotel,管家服务,30.650551,104.083483,828,1
+57,成都环球中心MUSTEL木文缇酒店,Chengdu Global Center MUSTEL Muwenti Hotel,免费停车,30.582963,104.053471,399,2
+58,成都瑯珀·凯悦臻选酒店,"The Langbo Chengdu, in The Unbound Collection by Hyatt",桑拿,30.648532,104.083181,1008,2
+59,成都环球中心天堂洲际大饭店,InterContinental Chengdu Global Center,泳池,30.567055,104.062602,864,2
+60,成都海湾大酒店,Grand Bay Hotel Chengdu,SPA,30.530434,104.070802,894,1
+61,成都博舍,The Temple House,桑拿,30.651518,104.084473,2588,1
+62,成都太古里亚朵S酒店,Chengdu Taikoo Li Atour S Hotel,泳池,30.651379,104.083954,746,1
+63,成都锦城原舍酒店(锦里武侯祠店),Jincheng Yuanshe Hotel,免费停车,30.64047,104.042407,336,1
+64,成都木棉花酒店,MUMIAN CHENGDU,智能客控,30.648304,104.116247,899,1
+65,SFEEL设计师酒店(成都火车南站店),Sfeel Designer Hotel (Chengdu South Railway Station Branch),免费停车,30.608772,104.068875,368,2
+66,成都涧山堂酒店(宽窄巷子店),JIAN SHAN TANG,家庭房,30.675602,104.051064,383,1
+67,中建·锦江都城酒店(成都春熙路太古里店),ZhongJian·Jinjiang   Metropolo  Chengdu Chunxi Road  Tai Koo Li Hotel,免费停车,30.647186,104.069568,398,2
+68,世茂成都茂御酒店(春熙路太古里店),Yuluxe Hotel Chengdu,泳池,30.67073,104.094801,578,1
+69,成都环球中心木莲庄酒店,The Mulian Hotel,免费停车,30.582862,104.052448,378,2
+70,盛铂仕丹酒店(成都锦里武侯祠店),Senberstan Hotel (Chengdu Jinli Wuhou Temple),免费停车,30.646622,104.055042,338,1
+71,成都仁和春天酒店,Renhe Spring Hotel,桑拿,30.662428,104.019166,799,1
+72,成都浣花锦城酒店,Huanhua Jincheng Hotel,免费停车,30.656369,104.038263,329,1
+73,成都院子酒店,CD YUENCHI,免费停车,30.674016,104.074078,797,1
+74,成都钓鱼台精品酒店,Diaoyutai Boutique Hotel Chengdu,免费停车,30.664608,104.05153,2324,2
+75,城市西游里酒店(成都春熙路天府广场店),City Xiyouli Hotel,免费停车,30.670372,104.066279,349,1
+76,榛悦隆堡成都酒店,Rhombus Park Aura Chengdu Hotel,泳池,30.650237,104.082041,652,2
+77,成都科华明宇豪雅饭店,Minyoun Chengdu Kehua Hotel,SPA,30.590541,104.078716,683,2
+78,成都东安湖木棉花酒店,Mumian Chengdu Dong'an Lake,泳池,30.593399,104.244574,647,1
+79,成都铂韵·锦江宾馆,Boyun · Jinjiang Hotel,免费停车,30.622437,104.04965,399,2
+80,成都世纪城天堂洲际大饭店,Intercontinental Century City Chengdu,Boss推荐,30.55994,104.072279,971,2
+81,成都官塘安麓酒店,Ahnluh Guantang,日光浴场,30.397635,104.041209,2430,2
+82,丽呈假日S酒店(成都火车南站),Rezen Holiday S Hotel (Chengdu South Railway Station),免费停车,30.607505,104.05895,398,2
+83,成都棕榈泉费尔蒙酒店,Fairmont Chengdu,桑拿,30.553116,104.069976,1085,1
+84,成都九眼桥美居酒店(太古里店),Mercure Chengdu Jiuyanqiao (Taikoo Li Branch),机器人服务,30.643073,104.090105,362,1
+85,铂领荟酒店(成都军区总医院熊猫基地西大门地铁站店),Bolinghui Hotel (Chengdu Panda Base West Gate Subway Station Store),免费停车,30.742201,104.114973,326,1
+86,四川锦江宾馆贵宾楼,Sichuan Jinjiang Hotel VIP Building,泳池,30.648221,104.064868,825,1
+87,成都天府皇冠假日酒店,Crowne Plaza Chengdu Tianfu New Area,网红泳池,30.532473,104.047121,633,2
+88,成都西金阁全套房公寓,Xijinge Suite Apartment,免费停车,30.647782,104.083417,438,1
+89,成都上层名人酒店,Celebrity Upper Class Hotel,桑拿,30.676121,104.079537,338,2
+90,成都释玥森林酒店,Chengdu Shiyu Forest Hotel,管家服务,30.421395,104.23659,2895,1
+91,成都盛美利亚酒店,Gran Melia Chengdu,桑拿,30.575332,104.03968,887,2
+92,维也纳国际酒店(成都春熙路太古里店),Vienna International Hotel (Chengdu Chunxi Road Taikoo Li Branch),免费停车,30.665567,104.082472,350,1
+93,Sia Suites西雅轻奢公寓(成都太古里店),Sia Suites (Chengdu Tai Koo Li),动人夜景,30.652033,104.081249,428,1
+94,成都太古里春熙路地铁站亚朵轻居酒店,"Atour Light (Chengdu Taikoo Li, Chunxi Road Metro Station)",免费停车,30.654376,104.078131,394,1
+95,SFEEL设计师酒店(成都太古里店),SFEEL Designer Hotel (Chengdu Taikoo Li),私人泳池,30.65694,104.090169,368,2
+96,大魔方･云曦天际S设计师酒店(成都金融城环球中心店),Xihui Taigu Yunxi,江河景房,30.575398,104.071257,298,1
+97,成都明悦大酒店,Minya Hotel,泳池,30.625481,104.048062,452,1
+98,成都水街黉台酒店,ShuijieHongtai Hotel,管家服务,30.556067,104.049168,948,1
+99,成都禅驿·锦城院子酒店,Chengdu Chanyi Jincheng Courtyard Hotel,免费停车,30.714432,103.992672,578,1
+100,成都春熙太古里正熙美仑酒店,Zenec International Hotel (Chengdu Chunxi Tai Koo Li),棋牌室,30.653506,104.078531,405,1
+101,成都东郊记忆美居酒店(理工大学店),Chengdu Chenghua East Suburb Memory Mercure Hotel (University of Science and Technology),免费停车,30.673714,104.135074,414,1
+102,Sungold尚古酒店(成都太古里店),Sungold Hotel (Chengdu Taikoo Li),泳池,30.653506,104.086897,336,1
+103,成都春熙路天府广场合正艺品酒店,"HAZENS Hotel (Chengdu Chunxi Road, Tianfu Square)",免费停车,30.656771,104.067946,318,1
+104,成都武侯渝江皇冠假日酒店,Crowne Plaza Chengdu Wuhou,泳池,30.645311,103.98276,834,1
+105,成都C3酒店(天府艺术公园店),Chengdu C3 Hotel (Tianfu Art Park),家庭房,30.711006,104.025574,541,1
+106,成都尧棠公馆,YiuTeung Mansion,管家服务,30.563862,104.049229,1038,1
+107,成都熊猫很困酒店,P.d PANDA HOTEL,免费停车,30.644847,104.106231,335,1
+108,成都文殊坊亚朵酒店,Atour Hotel (Chengdu Wenshufang),管家服务,30.669485,104.070487,438,1
+109,成都九眼桥悦尚丽呈酒店(春熙路店),Chengdu Jiuyanqiao Yueshang Lizheng Hotel (Chunxi Road Branch),免费停车,30.641001,104.09103,447,1
+110,魔住智慧恒温汤池酒店(春熙路太古里店),Magic Live Smart Hotel(Chunxi Road Taikoo Li Branch),网红泳池,30.664783,104.084189,327,2
+111,成都尊悦豪生酒店,Howard Johnson Zunyue Hotel Chengdu,免费停车,30.70766,104.000606,518,1
+112,成都云豪高空酒店(金牛万达梁家巷地铁站店),Chengdu Yunhao High Altitude Hotel (Jinniu Wanda Liangjiaxiang Subway Station),免费停车,30.680394,104.087127,280,1
+113,成都太古里河畔亚朵酒店,Atour Hotel (Chengdu Taikoo Li),免费停车,30.654614,104.08983,447,2
+114,成都高新豪生大酒店,Howard Johnson Hi-Tech Plaza Chengdu,泳池,30.590265,104.069561,694,2
+115,成都浣花溪智选假日酒店,Holiday Inn Express Chengdu Huanhuaxi,免费停车,30.65195,104.004369,366,1
+116,成都桐梓林火车南站亚朵酒店,Atour Hotel (Chengdu Tongzilin and South Railway Station),免费停车,30.608371,104.056976,366,2
+117,成都宽窄巷子奎星楼街亚朵X酒店,Yaduo X  Hotel Chengdu Kuanzhai Kuixinglou Alley,免费停车,30.667732,104.056326,359,1
+118,成都宏鼎温德姆至尊豪廷大酒店,Wyndham Grand Plaza Royale Palace Chengdu,桑拿,30.793041,103.902315,559,1
+119,西金中心·云曦天际S公馆(春熙路西部国际金融中心店),WIFC Taikoo Yunxuan International Apartment (Chunxi Road West International Financial Center Branch),动人夜景,30.647825,104.082946,309,2
+120,成都七一世外桃源酒店,"CYNN XANADU HOTEL, CHENGDU",SPA,30.822061,104.171152,768,1
+121,成都九眼桥东大街亚朵酒店,East Street Jiuyanqiao Chengdu Atour Hotel,免费停车,30.643672,104.092472,467,1
+122,成都仁恒格蓝柏薇酒店公寓,Grand ParcVue Hotel Residence Chengdu,桑拿,30.651964,104.068001,628,2
+123,京元丽呈酒店(成都熊猫基地店),Jingyuan Licheng Hotel (Chengdu Panda Base),免费停车,30.790515,104.144088,354,1
+124,成都望江宾馆,Wangjiang Hotel (Wangjiang Jiudian),泳池,30.627009,104.113624,599,2
+125,檀香花园酒店(茶店子客运站地铁店),Muxiang Garden Hotel (Chadianzi Passenger Transport Terminal Subway Branch),免费停车,30.703994,104.008719,306,2
+126,成都玉林华西亚朵酒店,Atour Hotel Yulin Huaxi,免费停车,30.635055,104.058559,394,2
+127,维也纳国际酒店(成都东站四川师范大学店),Vienna International Hotel (Chengdu East Railway Station Sichuan Normal University Branch),免费停车,30.603957,104.119976,344,2
+128,成都九眼桥亚朵网易严选酒店,Atour Yeation Hotel (Chengdu Jiuyanqiao),免费停车,30.63528,104.107094,472,2
+129,不大酒店(成都世纪城新会展店),BUDA Hotel (Chengdu Century City New Exhibition Center),免费停车,30.531789,104.056699,326,2
+130,成都世外桃源酒店,CYNN HOTEL --Xanadu Hotel-Chinese First Han&Tang Dynasty Culture-themed hotel,泳池,30.629411,104.076995,769,2
+131,佛莱雅花园酒店(新加坡)(成都火车南站店),Flavia Garden Hotel (Singapore) (Chengdu South Railway Station),免费停车,30.601373,104.071379,349,1
+132,成都太古里瑞升芭富丽大酒店,"Rising Butterfly Hotel, Chengdu TaiKoo Li",免费停车,30.656031,104.094457,398,1
+133,成都盛铂仕丹·麓上酒店,Senberstan Lushang Hotel,免费停车,30.463884,104.057124,407,1
+134,成都城市花果山酒店(春熙路天府广场店),City Huaguoshan Hotel,免费停车,30.654198,104.065552,348,2
+135,成都新兰天地酒店,XINLAN HOTEL,免费停车,30.600463,104.057974,359,1
+136,成都世代锦江国际酒店,Jinjiang Generation International Hotel,免费停车,30.648144,104.061513,357,2
+137,朵兰达V酒店(成都太古里国金中心店),Dolanda V Hotel (Chengdu Chunxi Road Taikoo Li International Financial Center),家庭房,30.657522,104.080742,361,1
+138,笨酒店(成都太古里春熙店),Benrat Hotel,免费停车,30.654182,104.089545,367,1
+139,成都东站绿地468中心亚朵酒店,Chengdu East Railway Station Greenland 468 Center Atour Hotel,免费停车,30.603263,104.14436,412,1
+140,成都龙之梦大酒店,The Longemont Chengdu,泳池,30.629697,104.144686,588,1
+141,成都金牛西南交大亚朵酒店,Chengdu Jinniu Southwest Jiaotongda Atour Hotel,免费停车,30.688821,104.050995,403,1
+142,成都鼓楼智选假日酒店(天府广场春熙路店),Holiday Inn Express Chengdu Gulou,免费停车,30.663731,104.072817,399,1
+143,新希望武侯智选假日酒店(成都武侯祠锦里店),Holiday Inn Express Chengdu Wuhou,免费停车,30.636622,104.030028,379,2
+144,成都领事馆路川大望江校区亚朵酒店,"Chengdu Consulate Road, Sichuan University Wangjiang Campus Atour Hotel",机器人服务,30.625242,104.069787,429,1
+145,桔子水晶成都宽窄巷子酒店,Crystal Hotel(Chengdu Kuanzhai Alley),免费停车,30.671696,104.059684,329,1
+146,成都非遗博览园缇沃丽酒店,Tivoli Chengdu at Cultural Heritage Park,桑拿,30.671948,103.924161,906,2
+147,绮丽雅酒店(成都世纪城新会展环球中心天府三街店),CREYADHOTEL,机器人服务,30.547146,104.060512,388,2
+148,子语酒店(成都西站青羊万达店),Zi Yu Hotel,免费停车,30.676727,103.973696,306,1
+149,成都外双楠希尔顿欢朋酒店,Hampton by Hilton Chengdu Waishuangnan,免费停车,30.649421,103.99505,398,2
+150,坐忘·成都燭州酒店,THE ONE | ZHU HOTEL,私汤房,30.41532,104.118155,1170,2
+151,成都锦里武侯祠美居酒店,Mercure Chengdu Jinli Wuhou Temple,免费停车,30.643419,104.040453,422,1
+152,青桐城市酒店(羊犀立交茶店子客运站店),Qingyi City Hotel (Yangxi Interchange Tea Shop Zi Passenger Transport Station),免费停车,30.703894,104.004483,355,1
+153,成都春熙路文殊院地铁站亚朵S酒店,"Yaduo S Hotel, Manjushyuan Subway Station, Chunxi Road",免费停车,30.669495,104.073495,477,1
+154,成都温江悦椿酒店,Angsana Chengdu Wenjiang,泳池,30.822822,103.744352,680,1
+155,山水S酒店(成都宽窄巷子天府广场店),Shanshui S Hotel (Chengdu Kuanzhai Alley Tianfu Square),免费停车,30.654283,104.060142,478,2
+156,成都川师大地铁站亚朵酒店,Atour Hotel Sichuan Normal University Subway Station Chengdu,免费停车,30.608847,104.115038,438,2
+157,成都春熙路天府广场地铁站亚朵酒店,"Atour Hotel (Sichuan Chunxi Road, Tianfu Square Metro Station)",免费停车,30.658737,104.069891,456,1
+158,朗丽兹酒店(成都春熙路文殊院地铁站店),PALACE HOTELS,停车场,30.672495,104.069489,315,1
+159,路易城堡青桐酒店,Louis Castle Sycamore Hotel,停车场,30.594942,104.047486,754,2
+160,尚锦品酒店(成都太古里店),Shang Jin Pin Hotel (Chengdu Taikoo Li Store),免费停车,30.657463,104.092339,448,2
+161,半隐·桃源山野精品度假酒店,Arnaya,窗外好景,30.430409,104.228086,971,2
+162,成都机场假日酒店(双流国际机场店),Holiday Inn Chengdu Airport (Shuangliu International Airport),充电桩,30.567661,103.967353,427,2
+163,成都高新西区政务中心亚朵酒店,Atour Hotel Chengdu High-tech Western District Government Affairs Center,免费停车,30.725077,103.979778,394,1
+164,成都映居酒店(温江区政府光华公园地铁站店),In Dream Hotel,免费停车,30.682502,103.853778,319,1
+165,成都锦里红牌楼地铁站亚朵酒店,Chengdu Jinli Hongpailou Subway Station Atour Hotel,免费停车,30.633418,104.034451,412,1
+166,成都双楠武侯大道地铁站亚朵X酒店,Chengdu Shuangnan Wuhou Avenue Metro Station Atour X Hotel,免费停车,30.637445,104.016274,420,1
+167,成都原岛酒店(环球中心新会展店),The Island Hotel,免费停车,30.559685,104.052777,388,1
+168,成都春熙太古里漫心酒店,Manxin Hotel(Chengdu Chunxi Taikoo Li ),免费停车,30.653062,104.075483,542,1
+169,隐庐酒店(成都新会展环球中心店),the Hidden Place Hotel,免费停车,30.561371,104.050877,398,1
+170,成都安兰顿国际酒店,Anlandon International Hotel,停车场,30.883224,104.274612,674,1
+171,成都非遗博览园盛橡服务式公寓,Oaks Chengdu at Cultural Heritage Park,桑拿,30.671953,103.924551,801,2
+172,成都杜甫草堂漫心酒店,Man Xin Hotel (Chengdou Dufu Caotang),免费停车,30.662377,104.029525,376,1
+173,成都宽窄巷子漫心酒店,"Chengdu Kuanxiao Alley Man xin Hotel,",免费停车,30.662424,104.046945,378,1
+174,成都新津蓝城沐春风度假村,Mu Spring Resort,日光浴场,30.486959,103.796785,1434,2
+175,成都高新同派酒店,Chengdu High-tech Zone Tongpai Hotel,免费停车,30.557931,104.0585,539,2
+176,全季酒店(成都春熙路太古里店),Ji Hotel (Chengdu Chunxi Road Taikoo Li),充电桩,30.65221,104.079279,437,1
+177,成都蓝海御华饭店(金融城环球中心店),Chengdu Lanhai Yuhua Hotel (Financial City Global Center Branch),免费停车,30.577606,104.071649,442,1
+178,耳语花园服务公寓(成都太古里春熙路店),Whispering Garden Serviced Apartment (Chengdu Taikoo Li Chunxi Road),酒店公寓,30.652032,104.08156,338,1
+179,成都望江宾馆宏达贵宾楼,Wangjiang Hotel HongDa VIP Building,窗外好景,30.627448,104.113632,692,1
+180,成都高新会展中心福朋喜来登酒店,Four Points by Sheraton Chengdu High-tech Zone Exhibition Center,窗外好景,30.553037,104.059876,589,2
+181,成都天府广场智选假日酒店(宽窄巷子店),Holiday Inn Express Chengdu Tianfu Square (Kuanzhai Alley),免费停车,30.654092,104.061593,430,1
+182,成都星瑞美丽华酒店,Xing Rui Mei Li Hua Hotel,免费停车,30.723691,103.978601,344,1
+183,成都清水连居.设计师度假民宿(杜甫草堂龙爪堰地铁口店),Qingshui Lianju.Designer holiday Guesthouse,管家服务,30.653385,104.005654,427,2
+184,成都杜甫草堂地铁站亚朵酒店,Atour Hotel(Chengdu Dufu Thatched Cottage Metro Station),免费停车,30.662307,104.0284,385,2
+185,成都金牛逸衡酒店,Chengdu Jinniu EVEN Hotels,免费停车,30.698749,104.032413,522,2
+186,成都雅爵酒店,Yajue Hotel,免费停车,30.559095,104.046657,340,1
+187,如时(潮娃)酒店(成都春熙路天府广场地铁站店),Rushi (Chaowa) Hotel (Chengdu Chunxi Road Tianfu Square Subway Station),免费停车,30.656714,104.068004,236,1
+188,成都双流国际机场美居酒店,Mercure Chengdu Shuangliu International Airport,家庭房,30.569946,103.928202,314,1
+189,成都天府阳光酒店(春熙路太古里店),Tianfu Sunshine Hotel,免费停车,30.667834,104.079682,397,2
+190,桔子水晶酒店(成都高新西区电子科大店),Orange Crystal Hotel (Chengdu Hi-tech Western District Electronic Science University),影音房,30.759168,103.928192,439,1
+191,成都金河宾馆(宽窄巷子店),Chengdu Jinhe Hotel,亲子主题房,30.661163,104.056593,389,2
+192,成都雅莉庄园酒店,Yali Manor Hotel,免费停车,30.556815,104.04609,307,1
+193,锦居酒店(成都金融城银泰中心in99店),Jinju Hotel (Chengdu Financial City Yintai Center in99),免费停车,30.586253,104.072935,377,1
+194,成都琉璃场地铁站亚朵酒店,Atour Hotel Chengdu Liulichang Subway Station,家庭房,30.606669,104.098174,431,1
+195,成都瑞廷西郊酒店,Grand Kingtown Hotel,棋牌室,30.559292,104.046928,407,1
+196,缔希尔酒店(成都环球中心世纪城店),Dishi Hill Hotel (Chengdu Global Center Century City),免费停车,30.557377,104.061599,398,1
+197,铁港·锦江都城酒店(成都青白江铁路港店),Tiegang Jinjiang Metropolo Hotel (Chengdu Qingbaijiang Railway Port Hotel),管家服务,30.852179,104.301335,254,1
+198,成都高新天府二街亚朵酒店,Atour Hotel(Tianfu 2nd Street  Gaoxin Chengdu),免费停车,30.551779,104.064446,533,2
+199,成都太古里文殊逸扉酒店,UrCove By Hyatt Chengdu Wen Shu Monastery Taikoo Li,家庭房,30.669741,104.074539,460,1
+200,禅隐·室雅别院酒店(文殊坊梁家巷地铁站店),ChanYinShiYaBieYuanHotel,影音房,30.67947,104.081438,368,1
+201,成都新会展亚朵酒店,Chengdu New Exhibition Atour Hotel,免费停车,30.547863,104.089898,368,1
+202,成都龙潭美居酒店,Mercure Chengdu Longtan,亲子主题房,30.681843,104.163578,362,1
+203,宽融套房酒店(成都春熙路太古里店),"Kuanrong Suites Hotel (taiguli store, Chunxi Road, Chengdu)",免费停车,30.649665,104.08564,539,1
+204,石化国际酒店(成都会展中心海昌极地海洋公园店),Sinopec International Hotel,免费停车,30.495249,104.068681,345,2
+205,SUMMERISLAND服务公寓(成都太古里店),Summer Island Service Apartment (Chengdu Taikoo Li),酒店公寓,30.652401,104.081677,458,1
+206,麗枫酒店(成都温江国色天乡店),Lavande Hotel (Chengdu Wenjiang Guose Tianxiang Branch),家庭房,30.725423,103.840482,414,1
+207,宇洲国际酒店(成都世纪城会展中心店),Yuzhou International Hotel (Chengdu Century City Convention and Exhibition Centre),免费停车,30.549011,104.055804,404,1
+208,安逸·安得天馨Wellness Resort,ANYEE  Wellness Resort,免费停车,30.61271,104.074155,293,1
+209,和颐酒店(成都宽窄巷子楚天君临店),Yitel (Chengdu Chutian Junlin),免费停车,30.668869,104.032475,315,2
+210,麗枫酒店(成都春熙路店),Lavande Hotel (Chengdu Chunxi Road),免费停车,30.666399,104.080409,367,1
+211,和颐至尚酒店(成都太古里春熙路河畔店),"Heyi Zhishang Hotel (Riverside store, Chunxi Road, taiguli)",免费停车,30.656397,104.093512,316,1
+212,成都银泰中心格拉德服务公寓,Chengdu Gelade Residences Of Yintai Centre,酒店公寓,30.585354,104.069527,399,1
+213,艾克美雅阁大酒店(成都西站青羊工业园区店),Argyle Hotel,免费停车,30.683663,103.961863,394,2
+214,漫心酒店(成都火车南站店),Manxin Hotel (Chengdu South Railway Station Branch),机器人服务,30.592915,104.074955,370,1
+215,成都怡和东方酒店(成都西站中坝地铁站店),Chengdu Yihe Oriental Hotel(Chengdu West Station Zhongba Subway Station Store),家庭房,30.677124,103.957414,364,1
+216,华悦居服务式公寓(成都金融城银泰中心店),Huayueju Serviced Apartment (Chengdu Financial City Yintai Center),空气净化器,30.584466,104.06875,398,1
+217,成都川大科华北路亚朵酒店,Atour Hotel Chengdu Chuanda Kehua North Road,家庭房,30.629424,104.076103,447,2
+218,成都天府新区CBD亚朵S酒店,Atour S Hotel Chengdu Tianfu New Area,窗外好景,30.438099,104.087174,399,2
+219,成都太古里春熙美居酒店,Mercure Chengdu Chunxi Taikoo Li,免费停车,30.659057,104.075537,661,1
+220,SunGold尚古·未来酒店(太古里未来中心甄选店),SunGold Shanggu Future Hotel (Taikoo Li Future Center Selection Store),管家服务,30.6507,104.095332,344,1
+221,成都天辰楼宾馆,Tianchenlou Hotel,免费停车,30.662475,104.02399,373,2
+222,成都棠湖宾馆,Tanghu Hotel,免费停车,30.571519,103.920972,398,1
+223,成都象南里凯悦嘉轩酒店,Hyatt Place Chengdu Pebble Walk,免费停车,30.586221,104.048738,553,1
+224,大魔方·铂悦高空公馆(成都金融城环球中心店),Da Rubik's Cube Yueyue High-altitude Mansion (Chengdu Financial City Global Center Branch),自营亲子房,30.575352,104.072507,278,2
+225,成都前沿医学中心木莲庄酒店(新川路地铁站店),Mulianzhuang Hotel Chengdu Frontier Medical Center,免费停车,30.517441,104.105766,348,1
+226,成都世纪城假日酒店-东楼,Holiday Inn Chengdu Century City - East Tower,多功能厅,30.560247,104.074774,459,2
+227,全季酒店(成都金牛荷花池店),All Seasons Hotel (Chengdu Jinniu Lotus Pool),家庭房,30.694048,104.085915,330,1
+228,成都金河宾馆融羿楼(宽窄巷子人民公园店),Roeasy-Jinhe Hote,免费停车,30.662063,104.056556,415,2
+229,成都新都智选假日酒店(成都西南石油大学店),Holiday Inn Express Chengdu Xindu,管家服务,30.815457,104.183134,380,1
+230,成都世纪银泰酒店,Inn-time Century Hotel,免费停车,30.512228,104.049461,369,1
+231,成都万豪万枫酒店,Fairfield by Marriott Chengdu,停车场,30.540827,104.087355,446,1
+232,成都华西医院省体育馆地铁站亚朵S酒店,"Chengdu West China Hospital Provincial Sports Center Subway Station, Ato S Hotel",停车场,30.633637,104.062526,508,1
+233,成都新都假日酒店(熊猫基地店),Holiday Inn Chengdu Xindu,免费停车,30.809674,104.180702,445,1
+234,天使宾馆(成都武侯店),Angel Hotel,免费停车,30.637534,104.058458,368,2
+235,成都高新西区蜀西路亚朵X酒店,Yaduo X Hotel on Shuxi Road in Chengdu High tech West Zone,免费停车,30.709258,103.99475,350,1
+236,成都梨园祥酒店(文殊坊店),Li Yuan Xiang Li Ya Ge Hotel,免费停车,30.678756,104.07228,347,2
+237,全季酒店(成都人民南路省体育馆店),Ji Hotel (Chengdu Renmin South Road Provincial Stadium Branch),家庭房,30.633588,104.062542,347,1
+238,成都东郊记忆建设南路轻居酒店,Chengdu Eastern Suburb Memory Jianshe South Road Light Residence Hotel,家庭房,30.668425,104.124092,368,1
+239,成都金府华美达大酒店,Ramada by Wyndham Chengdu North,管家服务,30.71723,104.043719,358,1
+240,全季酒店(成都锦华万达店),JI Hotel Chengdu Jinhua Wanda,停车场,30.632854,104.100838,349,1
+241,SFEEL设计师酒店(成都春熙路IFS国金中心店),"SFEEL Designer Hotel (IFS Guojin Center, Chunxi Road, Chengdu)",停车场,30.659656,104.072017,328,1
+242,梵隐·花间庭院villa朴墅(成都春熙路太古里店),Faniin · Between flowers Courtyard Villa,影音房,30.675132,104.076964,328,2
+243,希岸Deluxe酒店(成都天府商务区店),Xana Deluxe Hotel Chengdu Tianfu Business District Store,窗外好景,30.438107,104.087324,346,2
+244,成都碧瑶锦庐大酒店(麓山大道地铁站店),Home Hotel,免费停车,30.480861,104.109021,363,1
+245,成都蓉城饭店(春熙路天府广场地铁站店),"Chengdu Rongcheng Hotel (Tianfu Square Subway Station, Chunxi Road)",免费停车,30.654683,104.062056,270,2
+246,漫心酒店(成都青羊工业园万达广场店),Manxin Hotel (Chengdu Qingyang Industrial Park Wanda Plaza Branch),停车场,30.67595,103.965554,396,1
+247,成都三峡公寓酒店,Three Gorges Serviced Apartments,免费停车,30.59069,104.069557,405,1
+248,成都太古里未来中心漫心酒店,ChengduTaikoo Li Future Center Manxin Hotel,家庭房,30.650592,104.095365,465,1
+249,成都邻西里宅酒店(中海国际盛大国际店),"Chengdu Neighborhood Xili Residence Hotel (near Zhonghai International, Shengda International)",免费停车,30.715586,103.982468,407,2
+250,隐栖堂美学生活酒店(宽窄巷子人民公园地铁站店),Yinxitang Hotel (Kuanzhai Alley People's Park Subway Station Branch),亲子主题房,30.659237,104.059901,324,2
+251,SFEEL设计师酒店(成都环球中心店),S Feel Designer Hotel (Global Center et),动人夜景,30.547354,104.061977,339,1
+252,成都春熙路亚朵酒店,Atour Hotel Chengdu Chunxi Road,免费停车,30.658761,104.082057,517,1
+253,成都大成宾馆(四川省人大会议中心),Dacheng Hotel (Sichuan People's Congress Center),免费停车,30.650264,104.065472,397,2
+254,凯特丽亚创意主题酒店公寓(成都春熙太古里店),Kaite Liya Creative Theme Apartment (Chengdu Chunxi Tai Koo Li),酒店公寓,30.651604,104.081452,425,1
+255,成都蜀魁永利酒店,Shukui Yongli Hotel,免费停车,30.490645,104.091039,383,1
+256,嘉泰酒店,Katai Hotel,家庭房,30.705088,104.024959,338,1
+257,成都瑞城名人酒店,Celebrity Ruicheng Hotel,免费停车,30.670387,104.065893,279,2
+258,成都象南里凯悦嘉寓酒店,Hyatt House Chengdu Pebble Walk,酒店公寓,30.586431,104.048726,593,1
+259,成都呈祥东馆酒店,Chengxiang Dongguan Hotel,免费停车,30.69305,104.17561,375,1
+260,希岸酒店(成都新会展环球中心店),XANA HOTELLE,免费停车,30.546398,104.03809,347,1
+261,来住星辰酒店(成都天府二街世豪广场店),Come to live in Star Hotel (Chengdu Tianfu 2nd Street Shihao Plaza Branch),免费停车,30.553304,104.037175,238,1
+262,桔子酒店(成都春熙路步行街店),Orange Hotel Chengdu Chunxi Road Pedestrian Street Store,智能客控,30.65288,104.075904,378,1
+263,成都东阁精品酒店(成都锦华万达店),Ophelia299 Hotel,免费停车,30.615062,104.094967,393,1
+264,成都凯斯顿黄龙大酒店,Caston Huanglong Hotel,免费停车,30.31826,103.969031,353,2
+265,成都环球中心明宇丽呈酒店,Rezen Minyoun Hotel (Chengdu Global Center),免费停车,30.578246,104.061323,320,1
+266,成都蓝城悦榕美食文化酒店(武侯祠锦里店),Lancheng Yuerong Food Culture Hotel,免费停车,30.631251,104.04993,254,1
+267,全季酒店(成都太古里滨江路店),Ji Hotel (Chengdu Taikoo Li Binjiang Road),免费停车,30.645559,104.079316,338,2
+268,全季酒店(成都高新电子科大店),Ji Hotel (Chengdu High-tech University of Electronic Technology),免费停车,30.753463,103.920621,369,1
+269,和光·ALIENSPACE外星人电竞酒店(成都武侯祠锦里店),Heguang Alien Electrosports Hotel (Jinli Wuhouxuan Shop),智能客控,30.633866,104.052644,374,2
+270,阳光成都国际会议中心,Sunshine International Conference Center,免费停车,30.757497,103.922442,399,2
+271,和光·Alienspace外星人智慧电竞酒店(成都太古里春熙路旗舰店),Heguang Alienspace Smart E-sports Hotel (Chengdu Taikoo Li Chunxi Road Flagship Store),管家服务,30.658697,104.078807,357,1
+272,太保家园·成都国际颐养社区,Pacific Care Home,停车场,30.629217,103.815402,298,2
+273,成都新元素尚精品酒店,New Sieben Hotel,免费停车,30.478682,104.108661,360,2
+274,成都灰鹦鹉酒店(宽窄巷子花牌坊地铁站店),GREY PARROT HOTELS,免费停车,30.684478,104.045729,308,1
+275,和光·ALIENSPACE外星人电竞酒店(成都天府三街银泰城店),Heguang Alienspace E-sports Hotel  (Chengdu Hi-tech Zone Tianfu 3rd Street Yintai City Branch),免费停车,30.547209,104.057346,390,1
+276,Hi Villa欢墅·香里精品酒店(春熙路太古里店),Hi Villa Xiangli (Chengdu Taikoo Li),停车场,30.653617,104.089065,344,1
+277,成都33号公馆,ChengDu33HaoGongGuan,民宿,30.580719,104.062751,435,2
+278,亚善S·设计酒店(成都太古里店),Yashan S·hotel,自营亲子房,30.652285,104.081264,478,2
+279,成都遂宁宾馆(春熙路太古里店),Suining Hotel (Chengdu Chunxi Road Taikoo Li Branch),充电桩,30.648371,104.075761,286,1
+280,成都约上云兮民宿(龙泉山风景区店),MEETING CLOUDS INN,免费停车,30.544578,104.321846,421,1
+281,成都新良大酒店(春熙路太古里店),Chengdu Xinliang Hotel (Chunxi Road Taikoo Li Branch),管家服务,30.653833,104.073752,219,1
+282,朵兰达LAB酒店(成都春熙路步行街店),Duolanda Hotel (Chengdu Chunxi Road Pedestrian Street Taikoo Li Branch),智能马桶,30.656242,104.077637,294,1
+283,大魔方·成都佑顿优享酒店(金融城演艺中心环球中心店),Youdun Light Luxury Custom Service Apartment,棋牌室,30.575239,104.071423,258,1
+284,成都太古泊悅汇套房服务式公寓,Harbour TAIKOO Suites,管家服务,30.648001,104.08294,396,1
+285,卧莲·雅新居酒店(环球中心大魔方店),Wollian Yaxinju Hotel (Global Center Da Rubik's Cube),免费停车,30.575256,104.071394,308,1
+286,SFEEL设计师酒店(成都九眼桥牛王庙地铁站店),SFEEL Designer Hotel (Chengdu Jiuyan Bridge Niuwangmiao Subway Station),免费停车,30.643,104.092651,372,1
+287,安佳高空酒店公寓(成都春熙路天府广场店),Chengdu Anjia High Altitude Hotel,管家服务,30.651268,104.069739,365,2
+288,月牙濠璟酒店(成都西站宽窄巷子店),Yueyapu Hotel (Chengdu West Railway Station Kuanzhai Alley Branch),免费停车,30.675048,104.002931,259,2
+289,心悦高空酒店(金融城演艺中心环球中心店),Xinyue High-altitude Designer Hotel (Chengdu Global Center Financial City Performing Arts Center),家庭房,30.575241,104.07077,368,1
+290,成都M5全套房酒店(金融城双子塔店),Chengdu M5 all-suite hotel,家庭房,30.583565,104.058032,351,2
+291,FILY翡丽全套房服务公寓(天府三街世豪广场店),FILY Full Suite Service Apartment (Tianfu 3rd Street Shihao Plaza),充电桩,30.54707,104.045639,448,2
+292,麓枫栖见酒店(龙泉政务中心店),Lavande Qijian Hotel,情侣房,30.567325,104.240911,360,1
+293,答案酒店(成都火车东站凯德广场店),Answer Hotel,管家服务,30.626227,104.155534,218,1
+294,翡澜·POLY宝丽泊套房服务公寓(天府三街世豪广场店),Yuanlan Polly Bo Suite Service Apartment (Tianfu 3rd Street Shihao Plaza),家庭房,30.547117,104.045669,415,1
+295,威斯凯尔凯特酒店(金融城双子塔店),Westcare Kate Hotel (Financial City Twin Towers),儿童俱乐部,30.583968,104.062178,360,2
+296,和光·ALIENSPACE外星人电竞酒店(成都宽窄巷子中医大省医院地铁站店),Heguang Alienspace Alien E-sports Hotel (Kuanzhai Alley store),免费停车,30.668768,104.040199,316,2
+297,成都中微健康·水云居(幸福田园景区),Zhongwei Health Shuiyunju,免费停车,30.769154,103.807294,361,2
+298,成都太古-维格公寓,The Atrium Weige Luxury Apartment,健身室,30.651776,104.081225,461,2
+299,西姆善居成都春熙路天府广场地铁站酒店,Theme Shanju Hotel,管家服务,30.65468,104.061775,307,1
+300,金沙大酒店(成都建设路店),JinSha Grand Hotel (Chengdu Jianshe Road),免费停车,30.670432,104.107325,352,1
+301,成都毅弘缘酒店(东郊记忆店),Chengdu Yixuyuan Hotel (Dongjiao Memory Store),行政酒廊,30.668352,104.12796,452,1
+302,尚都度假公寓(成都春熙路太古里店),Shangdu Vacation Apartment (Chengdu Chunxi Road Taikoo Li),管家服务,30.647951,104.083093,368,2
+303,KayTon服务公寓(成都太古里店),Kay Ton Service Apartment (Chengdu Tai Koo Li),管家服务,30.651821,104.08158,425,1
+304,成都之上公寓(春熙路太古里店),Chengdu Shangshang Apartment (Taikouli Branch on Chunxi Road),酒店公寓,30.65201,104.081473,416,2
+305,溪堂轻奢度假酒店(黄龙溪古镇店),Xitang Light Luxury Resort Hotel (Huanglongxi Ancient Town),免费停车,30.314408,103.972151,443,1
+306,成都宽窄巷子美居酒店(通惠门地铁站店),Mercure Hotel,免费停车,30.662248,104.049433,352,1
+307,成都见素民宿,Chengdu Jiansu Homestay,免费停车,30.484971,103.815031,342,1
+308,天荟里酒店(成都东郊记忆店),Tianhuili Hotel (Chengdu Dongjiao Memory Branch),免费停车,30.670531,104.128893,308,1
+309,成都满天星精品民宿,Chengdu Mantianxing boutique B & B,民宿,30.763735,103.740508,402,1
+310,汐玥·影院式酒店(天府新区西博城店),Yuan Cinema Hotel (Tianfu New District Xibo City Branch),影音房,30.438926,104.08444,406,2
+311,王红定制窄居(成都宽窄景区中心店),Wanghong Dingzhi Zhaiju Hotel,管家服务,30.662742,104.054834,331,2
+312,璞丽精品酒店(成都中铁产业园凤凰山体育公园店),Puli Boutique Hotel (Chengdu Jinniu China Railway Industrial Park),免费停车,30.770849,104.098672,266,2
+313,悦蓝里S酒店(成都宽窄巷子店),"LAN'S Hotel (Kuanzhai Alley, Chengdu)",家庭房,30.674292,104.045712,217,1
+314,宿泊码头共享公寓(成都麓湖店),Subo Wharf Shared Apartment (Chengdu Luhu),免费停车,30.463275,104.058192,299,1
+315,熊猫观景酒店(春熙路地铁站店),Xiongmao Viewing Hotel,停车场,30.653678,104.078642,461,1
+316,雅舍精品酒店(成都金融城地铁站双子塔店),Yashe Boutique Hotel (Chengdu Financial City Metro Station Twin Towers),免费停车,30.584127,104.061867,288,1
+317,潘兜的家园(成都天府新区店),Pando's Country Home,免费停车,30.325735,104.127415,368,2
+318,云里酒店((成都武侯祠衣冠庙地铁站店),Landing Cloud Hotel,免费停车,30.634682,104.0505,360,1
+319,成都太古泊汀高级公寓,ChengDu HarborHouse  Luxury Apartment,酒店公寓,30.651807,104.081623,453,2
+320,易宁阁宽窄别院(成都宽窄巷子地铁站店),Yining Pavilion Kuanzhai Bieyuan (Chengdu Kuanzhai Alley Subway Station),24小时前台,30.663295,104.050032,323,2
+321,TopTown国际服务式公寓,TopTown International Service Apartment,江河景房,30.575261,104.072462,284,1
+322,成都高新禧玥酒店,Joya Hotel,免费停车,30.54896,104.066611,560,1
+323,隐栖堂酒店(成都太古里合江亭店),The Hidden House(Chengdu Taikoo Li & Hejiangting)),日光浴场,30.644088,104.083064,295,2
+324,成都莱恩度假套房公寓(春熙路太古里店),Chengdu Laien holiday Suite Apartment,酒店公寓,30.664035,104.069124,411,2
+325,成都木来酒店(太古里春熙路店),Moonlight Hotel,江河景房,30.64596,104.078316,501,1
+326,成都花巅一宿民宿(339天府熊猫塔红星桥地铁站店),Chengdu Huaxuan One-night Homestay (Hongxingqiao Subway Station),窗外好景,30.67228,104.090469,340,2
+327,月溪酒店(成都建设路东郊记忆公园店),Yuexi Inn (Chengdu Jianshe Road Dongjiao Memory Store),家庭房,30.671671,104.110887,260,1
+328,全季酒店(成都西南财大地铁站店),All Season Hotel (Chengdu Southwest Caida subway station),家庭房,30.668546,104.019729,371,1
+329,羅拉丽姿公寓(成都春熙路太古里店),Lola Lizi Apartment (Chengdu Chunxi Road Taikoo Li Branch),江河景房,30.648582,104.083572,397,2
+330,成都熙熙里套房公寓(天府广场春熙路店),Chengdu Xixili Suite Apartment (Tianfu Square Chunxi Road Branch),酒店公寓,30.663915,104.069224,310,2
+331,子云·好的家酒店(成都双流机场航站楼店),Ziyun haojia Hotel,免费停车,30.57242,103.981436,209,1
+332,SFEEL设计师酒店(成都太古里天府广场店),SFEEL Designer Hotel (Chengdu Taikoo Li Tianfu Square),管家服务,30.657459,104.069319,278,1
+333,夏室·SummerFlats高空设计空寓(成都太古里店),SummerFlats High-altitude Design Apartment,家庭房,30.653511,104.086953,489,2
+334,一溪幻月酒店(成都高新金融城地铁站店),Yixi Gengetsu Hotel (Chengdu High-tech Financial City Subway Station),智能客控,30.59391,104.065098,320,2
+335,农博美宿(天府农业博览园店),Nongbo Meisu (Tianfu Agriculture Expo Garden Shop),免费停车,30.495034,103.804526,346,2
+336,维也纳国际酒店(成都火车东站西广场店),Vienna International Hotel (West square of Chengdu East Railway Station),免费停车,30.634356,104.139352,386,1
+337,来住酒店(成都太古里春熙路店),Laizhu Hotel (ChengduTaiKoo Li Chunxi Road),管家服务,30.660548,104.085034,188,1
+338,成都悦惠美酒店(文殊院店),Chengdu Yuehuimei Hotel,家庭房,30.675626,104.069486,158,1
+339,盛铂·清居国风酒店(春熙店),Shengbo Qingju Guofeng Hotel (Chunxi Branch),免费停车,30.666705,104.075379,249,1
+340,印主题浣溪沙民宿,Yinzhuti Huanxisha Homestay,家庭房,30.632494,104.010045,327,1
+341,西姆清居成都春熙路太古里酒店,Theme Hotels & Resorts (Chengdu Chunxi Taikoo Li),管家服务,30.660948,104.08618,254,1
+342,麗枫酒店(成都双流空港店),Lavande Hotel Chengdu Shuangliu International Airport of Sichuan Province,免费停车,30.552094,103.911708,274,1
+343,成都斯维登精品公寓(火车东站西广场店),Chengdu Sweetome Boutique Apartment (East Railway Station West Square Branch),免费停车,30.633769,104.138638,197,1
+344,叁山与肆民宿,Triplehills&Tavern,免费停车,30.57326,104.323815,370,2
+345,如家派柏·云酒店(成都天宇路地铁站店),Pebble Motel (Chengdu Tianyu Road Metro Station Store),免费停车,30.751449,103.952649,168,1
+346,麗枫酒店(成都温江大学城店),Lavande Hotel Chengdu Wenjiang University Town,免费停车,30.671521,103.828755,286,1
+347,轩雅酒店(成都春熙太古里店),Xuanya Hotel (Chengdu Chunxi Kai Koo Li),多功能厅,30.652725,104.075766,178,1
+348,成都索菲斯民族大酒店(宽窄巷子抚琴地铁站店),Sofis National Hotel,免费停车,30.673142,104.045759,268,1
+349,成都天府院子酒店(春熙路天府广场店),ChengDu TianFu Yard Hotel,儿童乐园,30.661047,104.067128,238,1
+350,成都东站明宇丽呈酒店,Minyoun Rezen Hotel Chengdu,免费停车,30.614039,104.136757,280,2
+351,喆啡酒店(成都双流机场海滨城万达店),JAMES JOYCE COFFETEL,免费停车,30.603659,103.92587,268,1
+352,万澳酒店(成都春熙路太古里店),Wan'ao Hotel (Chengdu Chunxi Road Taikoo Li Branch),管家服务,30.652863,104.07328,179,1
+353,安麓居酒店(西博城兴隆湖店),Anluju Hotel (Xibo City Xinglong Lake Branch),湖景房,30.387606,104.088228,341,1
+354,花悦清居酒店(成都太古里春熙路店),Flowers Pleasing Qing Ju  Hotel(Chengdu taiguli Chunxi Road store),动人夜景,30.654043,104.070932,259,1
+355,嘉立酒店·精选(成都太古里店),Jiali Hotel Select (Chengdu Taikoo Li),智能客控,30.649832,104.080101,247,1
+356,成都太古里春熙路步行街亚朵酒店,ATour Hotel chengdu Taikoo Li Chun xi,免费停车,30.658062,104.080265,552,1
+357,如家睿柏·云酒店(成都蜀汉东路一品天下地铁站店),Ripple Hotel (Chengdu Shuhan East Road Yipin Tianxia Metro Station),棋牌室,30.690627,104.01589,234,1
+358,成都天府新区华阳地铁站亚朵酒店,ATOUR  HOTEL,管家服务,30.506809,104.061163,351,2
+359,岷江书院·院落式轻奢度假酒店,minjiang College,免费停车,30.834041,103.728436,1596,2
+360,考拉酒店(成都世纪城会展中心店),Kaola Hotel,24小时前台,30.558797,104.07763,268,1
+361,成都紫源酒店,Chengdu Ziyuan Hotel,免费停车,30.770442,103.851927,234,1
+362,喆啡酒店(成都华阳会展中心海昌极地海洋公园店),James Joyce Coffetel,免费停车,30.487312,104.077787,293,1
+363,宜尚酒店(成都双流国际机场店),ECHARM Hotel (Shuangliu International Airport store),免费停车,30.565573,103.97803,314,1
+364,星程酒店(成都龙泉经济港店),Starway Hotel (Chengdu Longquan Economic Port Branch),免费停车,30.565889,104.188182,263,1
+365,成都友豪罗曼酒店(太古里店),Youhao Romance Hotel,免费停车,30.668435,104.065064,238,1
+366,美豪丽致酒店(成都高新店),Mehood Lestie Hotel (Chengdu Gaoxin),免费停车,30.593675,104.06489,491,2
+367,成都成华希尔顿花园酒店,Hilton Garden Inn Chengdu Chenghua,家庭房,30.67312,104.13545,465,1
+368,潮顽电竞影音酒店(成都金牛万达广场人民北路地铁站店),Chaowan E-sports Audio and Video Hotel (Chengdu Jinniu Wanda Plaza Renmin North Road Subway Station),24小时前台,30.687509,104.074697,353,1
+369,桔子酒店(成都武侯祠锦里中心店),Orange Hotel (Chengdu Wuhou Temple Jinli Center Branch),免费停车,30.64355,104.048946,322,1
+370,成都梵舍轻奢酒店,Fanshe Light Luxury Hotel,酒店公寓,30.632958,104.051792,229,1
+371,成都双流机场锦华路轻居酒店,ChengDu Shuangliu Airport Jinhua Light Hotel,家庭房,30.577896,103.983618,324,1
+372,青桐城市酒店(成都宽窄巷子花牌坊地铁站店),Qingtong City Hotel (Chengdu Kuanzhai Alley Huapaifang Subway Station Branch),免费停车,30.682581,104.048817,268,2
+373,希岸酒店(成都金科双楠站店),Xi'an Hotel (Chengdu Jinke Shuangxuan Station),免费停车,30.640549,104.0282,295,2
+374,成都天府高新智选假日酒店,Holiday Inn Express Chengdu High-Tech Zone,免费停车,30.514024,104.078096,399,1
+375,成都安悦原舍酒店(春熙路天府广场店),Chengdu Anyue Yuanshe Hotel (Chunxi Road Tianfu Square),管家服务,30.667384,104.07033,302,1
+376,鹊格庭院酒店(成都双流机场店),Quigg Hotel (Chengdu Shuangliu Airport),免费停车,30.608237,103.977821,167,2
+377,成都高新亚朵酒店,Atour Hotel (Chengdu Chengdu Hi-Tech Industrial Development Zone),免费停车,30.543528,104.065982,535,2
+378,麗枫酒店(成都天科广场店),Lifeng Hotel (Chengdu Tianke Plaza store),免费停车,30.52616,104.176599,298,1

@@ -1,0 +1,112 @@
+[
+    {
+        "TrainID": "G3120",
+        "TrainType": "高铁",
+        "From": "苏州站",
+        "To": "武汉站",
+        "BeginTime": "14:23",
+        "EndTime": "20:00",
+        "Duration": 5.65,
+        "Cost": 392.42
+    },
+    {
+        "TrainID": "G586",
+        "TrainType": "高铁",
+        "From": "苏州北站",
+        "To": "武汉站",
+        "BeginTime": "08:51",
+        "EndTime": "13:26",
+        "Duration": 4.63,
+        "Cost": 392.42
+    },
+    {
+        "TrainID": "G676",
+        "TrainType": "高铁",
+        "From": "苏州北站",
+        "To": "武汉站",
+        "BeginTime": "09:03",
+        "EndTime": "13:31",
+        "Duration": 4.5,
+        "Cost": 392.42
+    },
+    {
+        "TrainID": "D3042",
+        "TrainType": "动车",
+        "From": "苏州站",
+        "To": "武汉站",
+        "BeginTime": "17:22",
+        "EndTime": "22:15",
+        "Duration": 4.92,
+        "Cost": 362.23
+    },
+    {
+        "TrainID": "G1736",
+        "TrainType": "高铁",
+        "From": "苏州北站",
+        "To": "武汉站",
+        "BeginTime": "16:01",
+        "EndTime": "20:00",
+        "Duration": 4.02,
+        "Cost": 392.42
+    },
+    {
+        "TrainID": "G1776",
+        "TrainType": "高铁",
+        "From": "苏州北站",
+        "To": "武汉站",
+        "BeginTime": "15:48",
+        "EndTime": "19:38",
+        "Duration": 4.02,
+        "Cost": 392.42
+    },
+    {
+        "TrainID": "G3124",
+        "TrainType": "高铁",
+        "From": "苏州站",
+        "To": "武汉站",
+        "BeginTime": "06:40",
+        "EndTime": "12:35",
+        "Duration": 5.95,
+        "Cost": 392.42
+    },
+    {
+        "TrainID": "G1777",
+        "TrainType": "高铁",
+        "From": "苏州北站",
+        "To": "武汉站",
+        "BeginTime": "15:48",
+        "EndTime": "19:38",
+        "Duration": 4.02,
+        "Cost": 392.42
+    },
+    {
+        "TrainID": "G587",
+        "TrainType": "高铁",
+        "From": "苏州北站",
+        "To": "武汉站",
+        "BeginTime": "08:51",
+        "EndTime": "13:26",
+        "Duration": 4.63,
+        "Cost": 392.42
+    },
+    {
+        "TrainID": "G3125",
+        "TrainType": "高铁",
+        "From": "苏州站",
+        "To": "武汉站",
+        "BeginTime": "06:40",
+        "EndTime": "12:35",
+        "Duration": 5.95,
+        "Cost": 392.42
+    },
+    {
+        "TrainID": "G1426",
+        "TrainType": "高铁",
+        "From": "苏州北站",
+        "To": "武汉站",
+        "BeginTime": "11:24",
+        "EndTime": "15:21",
+        "Duration": 4.17,
+        "Cost": 392.42
+    }
+]

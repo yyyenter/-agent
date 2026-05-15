@@ -1,0 +1,312 @@
+[
+    {
+        "TrainID": "G486",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "16:19",
+        "EndTime": "21:57",
+        "Duration": 5.75,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G896",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "16:46",
+        "EndTime": "20:52",
+        "Duration": 4.15,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G72",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "15:39",
+        "EndTime": "19:35",
+        "Duration": 3.98,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G402",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "18:41",
+        "EndTime": "23:42",
+        "Duration": 5.08,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G70",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "13:40",
+        "EndTime": "17:28",
+        "Duration": 3.8,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G528",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "18:20",
+        "EndTime": "23:46",
+        "Duration": 5.43,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G506",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "10:38",
+        "EndTime": "16:08",
+        "Duration": 5.78,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G812",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "10:33",
+        "EndTime": "14:36",
+        "Duration": 4.1,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G338",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "16:02",
+        "EndTime": "21:20",
+        "Duration": 5.47,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G82",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "12:15",
+        "EndTime": "16:27",
+        "Duration": 4.25,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G508",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "18:04",
+        "EndTime": "23:29",
+        "Duration": 5.53,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G340",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "17:12",
+        "EndTime": "22:55",
+        "Duration": 5.85,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G84",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "09:21",
+        "EndTime": "13:35",
+        "Duration": 4.28,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G78",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "17:37",
+        "EndTime": "21:49",
+        "Duration": 4.25,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G502",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "08:41",
+        "EndTime": "14:12",
+        "Duration": 5.62,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G504",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "09:06",
+        "EndTime": "15:04",
+        "Duration": 6.07,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G336",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "12:20",
+        "EndTime": "17:58",
+        "Duration": 5.83,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G74",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "14:36",
+        "EndTime": "18:31",
+        "Duration": 3.97,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G422",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京站",
+        "BeginTime": "16:10",
+        "EndTime": "22:11",
+        "Duration": 6.07,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G524",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "10:20",
+        "EndTime": "15:58",
+        "Duration": 5.63,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G894",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "13:35",
+        "EndTime": "17:23",
+        "Duration": 3.85,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G526",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "16:24",
+        "EndTime": "22:17",
+        "Duration": 5.88,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G522",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "08:07",
+        "EndTime": "13:54",
+        "Duration": 5.78,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G687",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "15:44",
+        "EndTime": "21:05",
+        "Duration": 5.63,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G483",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "16:19",
+        "EndTime": "21:57",
+        "Duration": 5.75,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G479",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "12:45",
+        "EndTime": "18:03",
+        "Duration": 5.38,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G892",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "09:16",
+        "EndTime": "13:25",
+        "Duration": 4.22,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G66",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "07:40",
+        "EndTime": "11:35",
+        "Duration": 3.92,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G68",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "08:36",
+        "EndTime": "12:24",
+        "Duration": 3.8,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G80",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "15:34",
+        "EndTime": "19:30",
+        "Duration": 3.98,
+        "Cost": 684.27
+    },
+    {
+        "TrainID": "G94",
+        "TrainType": "高铁",
+        "From": "武汉站",
+        "To": "北京西站",
+        "BeginTime": "18:30",
+        "EndTime": "22:37",
+        "Duration": 4.17,
+        "Cost": 684.27
+    }
+]

@@ -1,0 +1,312 @@
+[
+    {
+        "TrainID": "D953",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "10:14",
+        "EndTime": "18:52",
+        "Duration": 8.67,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D3057",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "09:43",
+        "EndTime": "19:23",
+        "Duration": 9.77,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D2223",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "09:49",
+        "EndTime": "19:40",
+        "Duration": 9.92,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D2273",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "11:04",
+        "EndTime": "21:13",
+        "Duration": 10.23,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D3077",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "08:02",
+        "EndTime": "17:35",
+        "Duration": 9.62,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D353",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "08:37",
+        "EndTime": "18:09",
+        "Duration": 9.65,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D637",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "08:52",
+        "EndTime": "18:30",
+        "Duration": 9.73,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D2217",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "09:56",
+        "EndTime": "21:50",
+        "Duration": 11.97,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D2373",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "07:20",
+        "EndTime": "16:49",
+        "Duration": 9.48,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D3073",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "09:18",
+        "EndTime": "19:15",
+        "Duration": 10.07,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "G1476",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "11:32",
+        "EndTime": "20:33",
+        "Duration": 9.07,
+        "Cost": 780.77
+    },
+    {
+        "TrainID": "D2213",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "10:19",
+        "EndTime": "20:11",
+        "Duration": 9.9,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D2255",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "08:32",
+        "EndTime": "18:22",
+        "Duration": 9.97,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "T237",
+        "TrainType": "特快",
+        "From": "南京站",
+        "To": "重庆西站",
+        "BeginTime": "14:09",
+        "EndTime": "14:08",
+        "Duration": 24.18,
+        "Cost": 600.6
+    },
+    {
+        "TrainID": "G1887",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "重庆西站",
+        "BeginTime": "07:39",
+        "EndTime": "19:23",
+        "Duration": 11.73,
+        "Cost": 780.77
+    },
+    {
+        "TrainID": "G1975",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "重庆西站",
+        "BeginTime": "08:46",
+        "EndTime": "19:57",
+        "Duration": 11.28,
+        "Cost": 780.77
+    },
+    {
+        "TrainID": "D2246",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "11:52",
+        "EndTime": "21:40",
+        "Duration": 9.88,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D2222",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "09:49",
+        "EndTime": "19:40",
+        "Duration": 9.92,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D3076",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "08:02",
+        "EndTime": "17:35",
+        "Duration": 9.62,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D2272",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "11:04",
+        "EndTime": "21:13",
+        "Duration": 10.23,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D2212",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "10:19",
+        "EndTime": "20:11",
+        "Duration": 9.9,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D3072",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "09:18",
+        "EndTime": "19:15",
+        "Duration": 10.07,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D3056",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "09:43",
+        "EndTime": "19:23",
+        "Duration": 9.77,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D352",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "08:37",
+        "EndTime": "18:09",
+        "Duration": 9.65,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D636",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "08:52",
+        "EndTime": "18:30",
+        "Duration": 9.73,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "T236",
+        "TrainType": "特快",
+        "From": "南京站",
+        "To": "重庆西站",
+        "BeginTime": "14:09",
+        "EndTime": "14:08",
+        "Duration": 24.18,
+        "Cost": 600.6
+    },
+    {
+        "TrainID": "D952",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "10:14",
+        "EndTime": "18:52",
+        "Duration": 8.67,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D2216",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "09:56",
+        "EndTime": "21:50",
+        "Duration": 11.97,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "D956",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "11:26",
+        "EndTime": "20:05",
+        "Duration": 8.73,
+        "Cost": 720.72
+    },
+    {
+        "TrainID": "G1974",
+        "TrainType": "高铁",
+        "From": "南京南站",
+        "To": "重庆西站",
+        "BeginTime": "08:46",
+        "EndTime": "19:57",
+        "Duration": 11.28,
+        "Cost": 780.77
+    },
+    {
+        "TrainID": "D2254",
+        "TrainType": "动车",
+        "From": "南京南站",
+        "To": "重庆北站",
+        "BeginTime": "08:32",
+        "EndTime": "18:22",
+        "Duration": 9.97,
+        "Cost": 720.72
+    }
+]

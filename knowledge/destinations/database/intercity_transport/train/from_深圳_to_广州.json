@@ -1,0 +1,3042 @@
+[
+    {
+        "TrainID": "G82",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "07:50",
+        "EndTime": "08:20",
+        "Duration": 0.5,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "K487",
+        "TrainType": "快速",
+        "From": "深圳站",
+        "To": "广州北站",
+        "BeginTime": "09:48",
+        "EndTime": "11:37",
+        "Duration": 1.82,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "G2930",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "14:44",
+        "EndTime": "15:20",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "T96",
+        "TrainType": "特快",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "16:43",
+        "EndTime": "18:17",
+        "Duration": 1.57,
+        "Cost": 52.1
+    },
+    {
+        "TrainID": "K238",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "15:40",
+        "EndTime": "17:29",
+        "Duration": 1.82,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "K536",
+        "TrainType": "快速",
+        "From": "深圳站",
+        "To": "广州北站",
+        "BeginTime": "13:58",
+        "EndTime": "15:54",
+        "Duration": 1.93,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "K9218",
+        "TrainType": "快速",
+        "From": "深圳站",
+        "To": "广州北站",
+        "BeginTime": "20:55",
+        "EndTime": "22:51",
+        "Duration": 1.93,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "K9276",
+        "TrainType": "快速",
+        "From": "深圳站",
+        "To": "广州北站",
+        "BeginTime": "19:00",
+        "EndTime": "20:57",
+        "Duration": 1.95,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "K932",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "11:52",
+        "EndTime": "13:30",
+        "Duration": 1.63,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "Z230",
+        "TrainType": "直达特快",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "09:35",
+        "EndTime": "11:06",
+        "Duration": 1.52,
+        "Cost": 52.1
+    },
+    {
+        "TrainID": "K1348",
+        "TrainType": "快速",
+        "From": "深圳站",
+        "To": "广州北站",
+        "BeginTime": "08:00",
+        "EndTime": "10:00",
+        "Duration": 2.0,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "G6568",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "23:30",
+        "EndTime": "23:59",
+        "Duration": 0.48,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1006",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "09:29",
+        "EndTime": "10:06",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1004",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "08:34",
+        "EndTime": "09:10",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1010",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "13:09",
+        "EndTime": "13:52",
+        "Duration": 0.72,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1036",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:10",
+        "EndTime": "15:40",
+        "Duration": 0.5,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1192",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "16:31",
+        "EndTime": "17:07",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1040",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:25",
+        "EndTime": "10:56",
+        "Duration": 0.52,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1022",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "06:33",
+        "EndTime": "07:23",
+        "Duration": 0.83,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1016",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "17:04",
+        "EndTime": "17:40",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1028",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:32",
+        "EndTime": "13:08",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1032",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:05",
+        "EndTime": "15:35",
+        "Duration": 0.5,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1014",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "16:25",
+        "EndTime": "17:01",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G822",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "09:35",
+        "EndTime": "10:11",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G882",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "11:26",
+        "EndTime": "11:55",
+        "Duration": 0.48,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1008",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州北站",
+        "BeginTime": "11:56",
+        "EndTime": "12:55",
+        "Duration": 0.98,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G342",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "09:40",
+        "EndTime": "10:16",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1190",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:48",
+        "EndTime": "16:24",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1186",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "08:39",
+        "EndTime": "09:15",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G826",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "09:55",
+        "EndTime": "10:31",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G830",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:48",
+        "EndTime": "13:24",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G884",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "13:42",
+        "EndTime": "14:23",
+        "Duration": 0.68,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G280",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "07:34",
+        "EndTime": "08:10",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1310",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "08:20",
+        "EndTime": "08:56",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1312",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "07:24",
+        "EndTime": "08:00",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1176",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:12",
+        "EndTime": "12:48",
+        "Duration": 0.72,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6038",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "17:20",
+        "EndTime": "18:21",
+        "Duration": 1.02,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6127",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:35",
+        "EndTime": "11:11",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6022",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "14:14",
+        "EndTime": "14:50",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6018",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "11:52",
+        "EndTime": "12:29",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6004",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "09:13",
+        "EndTime": "09:50",
+        "Duration": 0.77,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6032",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:45",
+        "EndTime": "20:32",
+        "Duration": 0.78,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6020",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "14:04",
+        "EndTime": "14:40",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6008",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "16:58",
+        "EndTime": "17:28",
+        "Duration": 0.57,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6091",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "07:14",
+        "EndTime": "08:15",
+        "Duration": 1.02,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6016",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:53",
+        "EndTime": "11:29",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6026",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "18:23",
+        "EndTime": "18:59",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1609",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "13:14",
+        "EndTime": "14:13",
+        "Duration": 1.05,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D3319",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "12:43",
+        "EndTime": "13:55",
+        "Duration": 1.28,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "G1625",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "20:47",
+        "EndTime": "21:50",
+        "Duration": 1.08,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D3249",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "15:10",
+        "EndTime": "16:25",
+        "Duration": 1.33,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "D3315",
+        "TrainType": "动车",
+        "From": "深圳坪山站",
+        "To": "广州东站",
+        "BeginTime": "14:01",
+        "EndTime": "15:39",
+        "Duration": 1.67,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "D3311",
+        "TrainType": "动车",
+        "From": "深圳坪山站",
+        "To": "广州东站",
+        "BeginTime": "17:43",
+        "EndTime": "19:19",
+        "Duration": 1.63,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "D3123",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "17:44",
+        "EndTime": "18:57",
+        "Duration": 1.4,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "K1205",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州站",
+        "BeginTime": "14:29",
+        "EndTime": "16:02",
+        "Duration": 1.55,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "C7038",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "22:07",
+        "EndTime": "23:20",
+        "Duration": 1.22,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7002",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "07:40",
+        "EndTime": "09:02",
+        "Duration": 1.37,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7006",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "14:36",
+        "EndTime": "16:09",
+        "Duration": 1.55,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7024",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "21:32",
+        "EndTime": "22:46",
+        "Duration": 1.23,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7080",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "16:58",
+        "EndTime": "18:17",
+        "Duration": 1.32,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7028",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "19:37",
+        "EndTime": "20:50",
+        "Duration": 1.22,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7034",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "15:15",
+        "EndTime": "16:33",
+        "Duration": 1.3,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7082",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "10:21",
+        "EndTime": "11:46",
+        "Duration": 1.42,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7030",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "08:28",
+        "EndTime": "09:51",
+        "Duration": 1.38,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7086",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "17:03",
+        "EndTime": "18:30",
+        "Duration": 1.45,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7110",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "18:21",
+        "EndTime": "19:39",
+        "Duration": 1.3,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7044",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "15:41",
+        "EndTime": "16:55",
+        "Duration": 1.23,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C8002",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "15:00",
+        "EndTime": "16:04",
+        "Duration": 1.07,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7112",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "21:50",
+        "EndTime": "23:03",
+        "Duration": 1.22,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7016",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "16:07",
+        "EndTime": "17:21",
+        "Duration": 1.23,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7064",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "13:13",
+        "EndTime": "14:36",
+        "Duration": 1.38,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7094",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "13:54",
+        "EndTime": "15:13",
+        "Duration": 1.32,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7014",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "20:05",
+        "EndTime": "21:18",
+        "Duration": 1.22,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7078",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "13:30",
+        "EndTime": "14:57",
+        "Duration": 1.45,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7050",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "09:03",
+        "EndTime": "10:15",
+        "Duration": 1.2,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7020",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "11:35",
+        "EndTime": "12:59",
+        "Duration": 1.4,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7108",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "14:48",
+        "EndTime": "16:17",
+        "Duration": 1.48,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7036",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "18:35",
+        "EndTime": "19:48",
+        "Duration": 1.22,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7062",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "09:37",
+        "EndTime": "10:59",
+        "Duration": 1.37,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7068",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "06:47",
+        "EndTime": "08:19",
+        "Duration": 1.53,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7042",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "12:08",
+        "EndTime": "13:30",
+        "Duration": 1.37,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7092",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "10:34",
+        "EndTime": "11:57",
+        "Duration": 1.38,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7008",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "18:09",
+        "EndTime": "19:30",
+        "Duration": 1.35,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7072",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "19:50",
+        "EndTime": "21:07",
+        "Duration": 1.28,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7004",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "11:05",
+        "EndTime": "12:34",
+        "Duration": 1.48,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7018",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "07:58",
+        "EndTime": "09:20",
+        "Duration": 1.37,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7106",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "11:12",
+        "EndTime": "12:44",
+        "Duration": 1.53,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7022",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "22:25",
+        "EndTime": "23:38",
+        "Duration": 1.22,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7032",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "12:01",
+        "EndTime": "13:19",
+        "Duration": 1.3,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7052",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "12:30",
+        "EndTime": "13:50",
+        "Duration": 1.33,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7060",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "22:35",
+        "EndTime": "23:48",
+        "Duration": 1.22,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7070",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "16:30",
+        "EndTime": "17:52",
+        "Duration": 1.37,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7076",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "10:11",
+        "EndTime": "11:23",
+        "Duration": 1.2,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7096",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "17:13",
+        "EndTime": "18:35",
+        "Duration": 1.37,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7098",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "20:47",
+        "EndTime": "22:10",
+        "Duration": 1.38,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7100",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "10:47",
+        "EndTime": "12:11",
+        "Duration": 1.4,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7104",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "17:28",
+        "EndTime": "18:51",
+        "Duration": 1.38,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C8004",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "18:00",
+        "EndTime": "19:05",
+        "Duration": 1.08,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6702",
+        "TrainType": "城际动车",
+        "From": "深圳机场站",
+        "To": "广州东站",
+        "BeginTime": "09:10",
+        "EndTime": "11:06",
+        "Duration": 1.93,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6704",
+        "TrainType": "城际动车",
+        "From": "深圳机场站",
+        "To": "广州东站",
+        "BeginTime": "13:42",
+        "EndTime": "15:38",
+        "Duration": 1.93,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6710",
+        "TrainType": "城际动车",
+        "From": "深圳机场站",
+        "To": "广州东站",
+        "BeginTime": "12:28",
+        "EndTime": "14:22",
+        "Duration": 1.9,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6722",
+        "TrainType": "城际动车",
+        "From": "深圳机场站",
+        "To": "广州东站",
+        "BeginTime": "19:11",
+        "EndTime": "20:55",
+        "Duration": 1.73,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "D7181",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "20:56",
+        "EndTime": "09:05",
+        "Duration": 1.12,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "G2962",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "18:08",
+        "EndTime": "18:54",
+        "Duration": 0.77,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2916",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "17:58",
+        "EndTime": "18:34",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2918",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:22",
+        "EndTime": "12:58",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2904",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "11:41",
+        "EndTime": "12:10",
+        "Duration": 0.48,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2138",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "08:10",
+        "EndTime": "08:46",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2902",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "08:05",
+        "EndTime": "08:34",
+        "Duration": 0.48,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2908",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:59",
+        "EndTime": "13:35",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2896",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "07:29",
+        "EndTime": "08:05",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6234",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "21:32",
+        "EndTime": "22:08",
+        "Duration": 0.7,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6048",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:40",
+        "EndTime": "11:16",
+        "Duration": 0.67,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6250",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "20:00",
+        "EndTime": "20:37",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6262",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "21:02",
+        "EndTime": "21:38",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6266",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:24",
+        "EndTime": "20:00",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6242",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "21:42",
+        "EndTime": "22:18",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6230",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "14:39",
+        "EndTime": "15:15",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6244",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "18:13",
+        "EndTime": "18:44",
+        "Duration": 0.52,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6202",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "06:46",
+        "EndTime": "07:18",
+        "Duration": 0.53,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6256",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "07:58",
+        "EndTime": "08:39",
+        "Duration": 0.68,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6081",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "15:56",
+        "EndTime": "16:55",
+        "Duration": 1.1,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6208",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "09:24",
+        "EndTime": "10:01",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6339",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "14:07",
+        "EndTime": "15:10",
+        "Duration": 1.08,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6085",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:07",
+        "EndTime": "12:44",
+        "Duration": 0.73,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6226",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "11:46",
+        "EndTime": "12:22",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6053",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "13:04",
+        "EndTime": "13:40",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6076",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:31",
+        "EndTime": "16:07",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6222",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "20:35",
+        "EndTime": "21:12",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6204",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "11:15",
+        "EndTime": "11:44",
+        "Duration": 0.48,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6240",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "20:12",
+        "EndTime": "20:42",
+        "Duration": 0.5,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6024",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "20:40",
+        "EndTime": "21:17",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6212",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:43",
+        "EndTime": "13:19",
+        "Duration": 0.65,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6036",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "20:55",
+        "EndTime": "21:32",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6098",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "07:14",
+        "EndTime": "07:43",
+        "Duration": 0.48,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6314",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "19:55",
+        "EndTime": "20:52",
+        "Duration": 0.98,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6326",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "15:25",
+        "EndTime": "16:29",
+        "Duration": 1.1,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6330",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "22:45",
+        "EndTime": "23:14",
+        "Duration": 0.57,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6358",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:15",
+        "EndTime": "11:00",
+        "Duration": 0.88,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6028",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "13:48",
+        "EndTime": "14:17",
+        "Duration": 0.48,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6258",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:03",
+        "EndTime": "19:40",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6232",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "21:59",
+        "EndTime": "22:35",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6236",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "18:38",
+        "EndTime": "19:21",
+        "Duration": 0.78,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "K9260",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "20:24",
+        "EndTime": "22:14",
+        "Duration": 1.83,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "K1656",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "13:31",
+        "EndTime": "15:17",
+        "Duration": 1.77,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "C6706",
+        "TrainType": "城际动车",
+        "From": "深圳机场站",
+        "To": "广州东站",
+        "BeginTime": "18:22",
+        "EndTime": "20:18",
+        "Duration": 1.93,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6802",
+        "TrainType": "城际动车",
+        "From": "深圳坪山站",
+        "To": "广州东站",
+        "BeginTime": "08:54",
+        "EndTime": "10:31",
+        "Duration": 1.65,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6803",
+        "TrainType": "城际动车",
+        "From": "深圳坪山站",
+        "To": "广州东站",
+        "BeginTime": "08:54",
+        "EndTime": "10:31",
+        "Duration": 1.65,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6806",
+        "TrainType": "城际动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "17:18",
+        "EndTime": "18:41",
+        "Duration": 1.47,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6811",
+        "TrainType": "城际动车",
+        "From": "深圳坪山站",
+        "To": "广州东站",
+        "BeginTime": "10:54",
+        "EndTime": "12:28",
+        "Duration": 1.6,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6815",
+        "TrainType": "城际动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "09:29",
+        "EndTime": "10:44",
+        "Duration": 1.3,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6814",
+        "TrainType": "城际动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "09:29",
+        "EndTime": "10:44",
+        "Duration": 1.3,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6708",
+        "TrainType": "城际动车",
+        "From": "深圳机场站",
+        "To": "广州东站",
+        "BeginTime": "07:39",
+        "EndTime": "09:35",
+        "Duration": 1.93,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C6752",
+        "TrainType": "城际动车",
+        "From": "深圳机场站",
+        "To": "广州东站",
+        "BeginTime": "18:05",
+        "EndTime": "19:57",
+        "Duration": 1.87,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "G6104",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "14:25",
+        "EndTime": "15:01",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D2323",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "16:26",
+        "EndTime": "17:34",
+        "Duration": 1.2,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "C7102",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "14:05",
+        "EndTime": "15:23",
+        "Duration": 1.3,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7054",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "19:21",
+        "EndTime": "20:39",
+        "Duration": 1.3,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "G6347",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "08:35",
+        "EndTime": "09:39",
+        "Duration": 1.1,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D2387",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "19:59",
+        "EndTime": "21:14",
+        "Duration": 1.33,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "D2431",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "15:31",
+        "EndTime": "16:45",
+        "Duration": 1.3,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "D7147",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "22:18",
+        "EndTime": "23:31",
+        "Duration": 1.28,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "G9603",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "21:21",
+        "EndTime": "22:23",
+        "Duration": 1.12,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6005",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "09:13",
+        "EndTime": "09:50",
+        "Duration": 0.77,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6315",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "19:55",
+        "EndTime": "20:52",
+        "Duration": 0.98,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D7163",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "08:40",
+        "EndTime": "09:27",
+        "Duration": 0.85,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "G6355",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "17:37",
+        "EndTime": "18:40",
+        "Duration": 1.15,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6363",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "17:49",
+        "EndTime": "18:48",
+        "Duration": 1.02,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6319",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "23:20",
+        "EndTime": "23:49",
+        "Duration": 0.55,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6080",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "08:57",
+        "EndTime": "09:34",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "Z231",
+        "TrainType": "直达特快",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "09:35",
+        "EndTime": "11:06",
+        "Duration": 1.52,
+        "Cost": 52.1
+    },
+    {
+        "TrainID": "G1313",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "07:24",
+        "EndTime": "08:00",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1029",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:32",
+        "EndTime": "13:08",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1041",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:25",
+        "EndTime": "10:56",
+        "Duration": 0.52,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1033",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:05",
+        "EndTime": "15:35",
+        "Duration": 0.5,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "K486",
+        "TrainType": "快速",
+        "From": "深圳站",
+        "To": "广州北站",
+        "BeginTime": "09:48",
+        "EndTime": "11:37",
+        "Duration": 1.82,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "G6516",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:54",
+        "EndTime": "13:30",
+        "Duration": 0.65,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6588",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "20:30",
+        "EndTime": "21:06",
+        "Duration": 0.68,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6542",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:42",
+        "EndTime": "16:19",
+        "Duration": 0.7,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6584",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "11:36",
+        "EndTime": "12:05",
+        "Duration": 0.58,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6586",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "16:51",
+        "EndTime": "17:34",
+        "Duration": 0.77,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6552",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "08:28",
+        "EndTime": "09:43",
+        "Duration": 1.32,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6554",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "10:22",
+        "EndTime": "11:41",
+        "Duration": 1.4,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6556",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "12:50",
+        "EndTime": "14:08",
+        "Duration": 1.37,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6558",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "14:42",
+        "EndTime": "15:56",
+        "Duration": 1.3,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6560",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "17:10",
+        "EndTime": "18:24",
+        "Duration": 1.3,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6562",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "18:44",
+        "EndTime": "19:57",
+        "Duration": 1.27,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6582",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "08:50",
+        "EndTime": "09:30",
+        "Duration": 0.75,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D3248",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "15:10",
+        "EndTime": "16:25",
+        "Duration": 1.33,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "G1608",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "13:14",
+        "EndTime": "14:13",
+        "Duration": 1.05,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D3122",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "17:44",
+        "EndTime": "18:57",
+        "Duration": 1.4,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "G1012",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:20",
+        "EndTime": "15:56",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G532",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "13:32",
+        "EndTime": "14:03",
+        "Duration": 0.52,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2926",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "08:15",
+        "EndTime": "08:51",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2922",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "16:14",
+        "EndTime": "16:44",
+        "Duration": 0.5,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6056",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "13:04",
+        "EndTime": "13:40",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6050",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "14:09",
+        "EndTime": "14:45",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6336",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:00",
+        "EndTime": "10:36",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6068",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州北站",
+        "BeginTime": "16:09",
+        "EndTime": "17:10",
+        "Duration": 1.02,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6090",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "07:14",
+        "EndTime": "08:15",
+        "Duration": 1.02,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6210",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "22:04",
+        "EndTime": "22:40",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6094",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "08:44",
+        "EndTime": "09:25",
+        "Duration": 0.68,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6100",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "20:50",
+        "EndTime": "21:27",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6362",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "17:49",
+        "EndTime": "18:48",
+        "Duration": 1.02,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6058",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "07:19",
+        "EndTime": "07:48",
+        "Duration": 0.48,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6084",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "15:56",
+        "EndTime": "16:55",
+        "Duration": 1.1,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "K1232",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州站",
+        "BeginTime": "19:16",
+        "EndTime": "21:12",
+        "Duration": 1.93,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "K1208",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州站",
+        "BeginTime": "14:29",
+        "EndTime": "16:02",
+        "Duration": 1.55,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "K952",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州站",
+        "BeginTime": "13:56",
+        "EndTime": "15:34",
+        "Duration": 1.63,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "K1657",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "13:31",
+        "EndTime": "15:17",
+        "Duration": 1.77,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "D7167",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "18:20",
+        "EndTime": "18:02",
+        "Duration": 0.68,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "G6077",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:31",
+        "EndTime": "16:07",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G823",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "09:35",
+        "EndTime": "10:11",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D7179",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "16:55",
+        "EndTime": "18:09",
+        "Duration": 1.33,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "K239",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "15:40",
+        "EndTime": "17:29",
+        "Duration": 1.82,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "G831",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:48",
+        "EndTime": "13:24",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1023",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "06:33",
+        "EndTime": "07:23",
+        "Duration": 0.83,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6039",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "17:20",
+        "EndTime": "18:21",
+        "Duration": 1.02,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6327",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "15:25",
+        "EndTime": "16:29",
+        "Duration": 1.1,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6009",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "16:58",
+        "EndTime": "17:28",
+        "Duration": 0.57,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6351",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "09:50",
+        "EndTime": "10:26",
+        "Duration": 0.72,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6303",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "13:37",
+        "EndTime": "14:08",
+        "Duration": 0.58,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D941",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "06:25",
+        "EndTime": "06:58",
+        "Duration": 0.62,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "D931",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "06:30",
+        "EndTime": "07:08",
+        "Duration": 0.7,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "D935",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "06:41",
+        "EndTime": "07:13",
+        "Duration": 0.67,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "C7046",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "18:50",
+        "EndTime": "20:07",
+        "Duration": 1.28,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "D910",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:50",
+        "EndTime": "20:22",
+        "Duration": 0.53,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "D902",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:34",
+        "EndTime": "20:12",
+        "Duration": 0.63,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "D904",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:39",
+        "EndTime": "20:17",
+        "Duration": 0.63,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "D928",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:55",
+        "EndTime": "20:27",
+        "Duration": 0.53,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "G9650",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:09",
+        "EndTime": "19:45",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G9642",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:14",
+        "EndTime": "19:50",
+        "Duration": 0.72,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G9710",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "17:09",
+        "EndTime": "17:45",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G9718",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "21:19",
+        "EndTime": "21:56",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G9647",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "14:33",
+        "EndTime": "15:30",
+        "Duration": 0.95,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G306",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:10",
+        "EndTime": "10:46",
+        "Duration": 0.67,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G320",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:17",
+        "EndTime": "12:53",
+        "Duration": 0.67,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D2383",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "10:27",
+        "EndTime": "11:36",
+        "Duration": 1.27,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "C7040",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "08:37",
+        "EndTime": "10:00",
+        "Duration": 1.38,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "G80",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "11:21",
+        "EndTime": "11:50",
+        "Duration": 0.53,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6012",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "16:03",
+        "EndTime": "16:39",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6014",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "18:33",
+        "EndTime": "19:09",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6034",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州北站",
+        "BeginTime": "09:08",
+        "EndTime": "10:06",
+        "Duration": 0.97,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6042",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "17:25",
+        "EndTime": "17:55",
+        "Duration": 0.5,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6045",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:40",
+        "EndTime": "11:16",
+        "Duration": 0.67,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G1125",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "07:57",
+        "EndTime": "09:02",
+        "Duration": 1.08,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6114",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "17:40",
+        "EndTime": "18:10",
+        "Duration": 0.57,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6143",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "08:49",
+        "EndTime": "09:56",
+        "Duration": 1.12,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6172",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "10:59",
+        "EndTime": "12:00",
+        "Duration": 1.05,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6180",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "17:51",
+        "EndTime": "18:28",
+        "Duration": 0.62,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6185",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "18:31",
+        "EndTime": "19:32",
+        "Duration": 1.02,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G408",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "12:27",
+        "EndTime": "13:03",
+        "Duration": 0.65,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G418",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:58",
+        "EndTime": "16:34",
+        "Duration": 0.7,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G9532",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:16",
+        "EndTime": "15:52",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6530",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "13:56",
+        "EndTime": "14:33",
+        "Duration": 0.73,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6534",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "11:03",
+        "EndTime": "11:39",
+        "Duration": 0.65,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6536",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "14:19",
+        "EndTime": "14:55",
+        "Duration": 0.75,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6538",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "17:34",
+        "EndTime": "18:17",
+        "Duration": 0.77,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6502",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:19",
+        "EndTime": "19:55",
+        "Duration": 0.68,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6504",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "23:01",
+        "EndTime": "23:37",
+        "Duration": 0.67,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6506",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "22:38",
+        "EndTime": "23:07",
+        "Duration": 0.55,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6510",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "09:45",
+        "EndTime": "10:21",
+        "Duration": 0.7,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6512",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "16:41",
+        "EndTime": "17:17",
+        "Duration": 0.67,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6514",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "19:29",
+        "EndTime": "20:05",
+        "Duration": 0.68,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6528",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:58",
+        "EndTime": "11:34",
+        "Duration": 0.7,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6546",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "11:39",
+        "EndTime": "13:07",
+        "Duration": 1.53,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6548",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "16:14",
+        "EndTime": "17:28",
+        "Duration": 1.28,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6550",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "20:07",
+        "EndTime": "21:29",
+        "Duration": 1.43,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6564",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "21:23",
+        "EndTime": "22:30",
+        "Duration": 1.17,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6580",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "16:36",
+        "EndTime": "17:12",
+        "Duration": 0.68,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6238",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "21:27",
+        "EndTime": "22:03",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6264",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "20:25",
+        "EndTime": "20:57",
+        "Duration": 0.65,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2964",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:30",
+        "EndTime": "11:06",
+        "Duration": 0.67,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2956",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "06:59",
+        "EndTime": "07:28",
+        "Duration": 0.48,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "D2382",
+        "TrainType": "动车",
+        "From": "深圳北站",
+        "To": "广州东站",
+        "BeginTime": "10:27",
+        "EndTime": "11:36",
+        "Duration": 1.27,
+        "Cost": 62.52
+    },
+    {
+        "TrainID": "G1124",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "07:57",
+        "EndTime": "09:02",
+        "Duration": 1.08,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6142",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "08:49",
+        "EndTime": "09:56",
+        "Duration": 1.12,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G6173",
+        "TrainType": "高铁",
+        "From": "深圳坪山站",
+        "To": "广州南站",
+        "BeginTime": "10:59",
+        "EndTime": "12:00",
+        "Duration": 1.05,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "K9261",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "20:24",
+        "EndTime": "22:14",
+        "Duration": 1.83,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "G6126",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:35",
+        "EndTime": "11:11",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "C8010",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "21:00",
+        "EndTime": "22:04",
+        "Duration": 1.07,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7012",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "16:48",
+        "EndTime": "18:08",
+        "Duration": 1.33,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7048",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "22:15",
+        "EndTime": "23:28",
+        "Duration": 1.22,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7074",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "07:26",
+        "EndTime": "08:49",
+        "Duration": 1.38,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C8008",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "10:00",
+        "EndTime": "11:04",
+        "Duration": 1.07,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C8006",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "13:00",
+        "EndTime": "14:03",
+        "Duration": 1.05,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "G2942",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "07:09",
+        "EndTime": "07:38",
+        "Duration": 0.48,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G2944",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "08:29",
+        "EndTime": "09:05",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "C7090",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "07:12",
+        "EndTime": "08:35",
+        "Duration": 1.38,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7084",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "13:46",
+        "EndTime": "15:04",
+        "Duration": 1.3,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C8012",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "07:00",
+        "EndTime": "08:04",
+        "Duration": 1.07,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "G2946",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "10:05",
+        "EndTime": "10:41",
+        "Duration": 0.6,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "C7088",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "20:35",
+        "EndTime": "21:54",
+        "Duration": 1.32,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "Z586",
+        "TrainType": "直达特快",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "20:58",
+        "EndTime": "22:40",
+        "Duration": 1.7,
+        "Cost": 52.1
+    },
+    {
+        "TrainID": "G9677",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "21:37",
+        "EndTime": "22:13",
+        "Duration": 0.7,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "C7010",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "21:42",
+        "EndTime": "22:55",
+        "Duration": 1.22,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7026",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "08:18",
+        "EndTime": "09:35",
+        "Duration": 1.28,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "C7066",
+        "TrainType": "城际动车",
+        "From": "深圳站",
+        "To": "广州东站",
+        "BeginTime": "16:14",
+        "EndTime": "17:41",
+        "Duration": 1.45,
+        "Cost": 46.89
+    },
+    {
+        "TrainID": "K356",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州北站",
+        "BeginTime": "11:38",
+        "EndTime": "13:16",
+        "Duration": 1.63,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "G9695",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "05:42",
+        "EndTime": "13:44",
+        "Duration": -1.2,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "K4849",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州站",
+        "BeginTime": "13:56",
+        "EndTime": "15:34",
+        "Duration": 1.63,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "K4852",
+        "TrainType": "快速",
+        "From": "深圳东站",
+        "To": "广州站",
+        "BeginTime": "13:56",
+        "EndTime": "15:34",
+        "Duration": 1.63,
+        "Cost": 41.68
+    },
+    {
+        "TrainID": "G5678",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "15:25",
+        "EndTime": "16:02",
+        "Duration": 0.68,
+        "Cost": 67.73
+    },
+    {
+        "TrainID": "G9694",
+        "TrainType": "高铁",
+        "From": "深圳北站",
+        "To": "广州南站",
+        "BeginTime": "14:49",
+        "EndTime": "15:25",
+        "Duration": 0.6,
+        "Cost": 67.73
+    }
+]

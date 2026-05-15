@@ -1,0 +1,401 @@
+id,name,hotelname_en,featurehoteltype,lat,lon,price,numbed
+0,广州番禺万博中心舒与酒店,Guangzhou Panyu Wanbo Center Skanhem Hotel,影音房,23.009654,113.346259,493,1
+1,广州天河体育中心美居酒店,Guangzhou Tianhe Sports Center Mercure Hotel,管家服务,23.142072,113.328613,474,1
+2,广州东站城际酒店,Intercity Guangzhou East Railway Station Hotel,停车场,23.151183,113.32869,551,1
+3,广州建国酒店,"Jianguo Hotel, Guangzhou",泳池,23.147862,113.326259,502,1
+4,广州北京路天字码头亚朵S酒店,"Atour S Hotel, Beijing Road Tianzi Wharf, Guangzhou",免费停车,23.115333,113.271483,561,1
+5,宜致酒店(广州长隆野生动物世界店),Yizhi Hotel (Guangzhou Chimelong Wildlife World),家庭房,23.0087,113.308714,319,1
+6,广州珠江太古仓亚朵S酒店,Atour S Hotel Guangzhou Zhujiang Taigucang,免费停车,23.079959,113.266346,533,1
+7,广州粤大金融城国际酒店,Yueda Financial City International Hotel,亲子主题房,23.119562,113.37278,498,2
+8,广州天河太古汇喆啡锐品酒店,Guangzhou Tianhe Taikoohui - Coffee Rupin Hotel,免费停车,23.135573,113.340341,566,1
+9,美豪丽致酒店(广州东站店),Mehood LIZ Hotel(Guangzhou East Station Store),管家服务,23.150977,113.321899,535,1
+10,广州白云国际机场T1航站楼美居酒店,Mercure Hotel Guangzhou Baiyun International Airport Terminal T1,免费停车,23.42671,113.312363,387,2
+11,广州天河珠江新城澳斯特精选酒店,"Ausotel Smart Hotel Guangzhou Zhujiang New Town , Canton Fair Free Shuttle",免费停车,23.12787,113.343098,438,1
+12,城迹酒店(广州正佳太古汇石牌桥地铁站店),City Join Hotel (Guangzhou Sports Center Shipaiqiao Metro Station),免费停车,23.131209,113.331002,399,1
+13,美丽豪酒店(广州番禺店),Merlinhod Hotel,管家服务,22.951335,113.427748,468,1
+14,宜致酒店(广州珠江新城华师地铁站店),Y.Zhi Hotel,免费停车,23.136252,113.349083,333,1
+15,广州汇华希尔顿逸林酒店,DoubleTree by Hilton Guangzhou-Science City,泳池,23.1813,113.474508,561,2
+16,宜致酒店(广州珠江新城岗顶地铁站店),Y.ZHI HOTEL,免费停车,23.131091,113.343344,329,1
+17,广州云岭湖酒店,VLAMHOO HOTEL,日光浴场,23.547368,113.570676,538,2
+18,广州高铁南站亚朵酒店,Guangzhou  Railway South Station Atour Hotel,免费停车,22.985382,113.280401,491,1
+19,枫林国际公寓(广州南沙客运港天后宫店),Fenglin International Apartment (Guangzhou Nansha Zhujiang Tianhougong Branch),免费停车,22.742836,113.58452,291,1
+20,广州景阁酒店(白云国际机场T2航站楼店),Guangzhou Jingge Hotel,免费停车,23.433344,113.315728,287,1
+21,广州江泰路地铁站亚朵酒店,Atour Hotel (Guangzhou Jiangtai Road Metro Station),免费停车,23.083093,113.278927,596,2
+22,广州增城富力万达嘉华酒店(增城万达广场店),Wanda Realm Zengcheng Guangzhou,亲子主题房,23.275698,113.813424,415,2
+23,美豪雅致酒店(广州白云机场T2航站楼店),Mehood Elegant Hotel (Guangzhou Baiyun Airport T2 Terminal),家庭房,23.433538,113.302832,508,1
+24,麗枫(广州南站汉溪长隆站店),"Lavande Hotel (Guangzhou South Railway Station, Hanxi Changlong Station)",免费停车,22.970162,113.322218,356,1
+25,广州南站丽芮酒店,Radisson RED Guang Zhou South Railway Station,免费停车,22.987556,113.27554,506,1
+26,广州荔湾滘口地铁站亚朵酒店,"Atour Hotel Jiaokou subway station, Liwan, Guangzhou",免费停车,23.115958,113.208511,473,1
+27,广州增城碧桂园希尔顿逸林酒店(增城万达广场店),DoubleTree by Hilton Guangzhou Zengcheng,泳池,23.274347,113.814148,482,1
+28,广州嘉逸国际酒店,Grand International Hotel,泳池,23.140879,113.334978,489,2
+29,广州大道天河体育中心亚朵酒店,Atour Hotel Guangzhou Avenue Tianhe Sports Center,免费停车,23.136141,113.315758,503,2
+30,广州增城保利皇冠假日酒店(新塘高铁站店),Crowne Plaza Guangzhou Zengcheng,桑拿,23.108017,113.628155,459,1
+31,广州白云国际会议中心越秀源宿酒店,Element Guangzhou Baiyun,泳池,23.187596,113.272923,594,1
+32,CityNote希诺酒店(广州太古汇石牌桥地铁站店),CityNote Hotel (Guangzhou Taikoo Hui Shipaiqiao Metro Station),管家服务,23.133987,113.33021,498,1
+33,宏阳·麗悦酒店(广州塔客村地铁站琶洲会展中心店),Hongyang Liyue Hotel (Canton Tower Kecun Railway Station and Pazhou International Exhibition Center),机器人服务,23.096603,113.329632,445,1
+34,广州云来斯堡酒店,Vanburgh Hotel,免费停车,23.125463,113.341827,588,1
+35,广州增城恒大酒店,Hengda Hotel,泳池,23.299682,113.616028,438,2
+36,广州天河鼎龙希尔顿花园酒店,Hilton Garden Inn Guangzhou Tianhe,免费停车,23.155024,113.314601,510,2
+37,广州花都金融中心亚朵酒店,Guangzhou Huadu Financial Center Atour Hotel,免费停车,23.410087,113.218356,429,1
+38,广州白云山机场路亚朵X酒店,"Atour X Hotel, Baiyunshan Airport Road, Guangzhou",免费停车,23.194791,113.265822,420,2
+39,广州恒大酒店(金沙洲),Hengda Hotel (Jinshazhou),泳池,23.191975,113.204454,424,2
+40,美豪丽致酒店(广州黄埔宝能演艺中心店),LIZ  MEHOOD  GZ HP,免费停车,23.153728,113.508328,407,1
+41,城迹酒店(广州北京路步行街西门口地铁站店),CITYJOIN Hotel (Ximenkou subway station store),机器人服务,23.125689,113.257458,392,1
+42,广州融创堇山酒店,Sunac Mauve Hill Hotel Guangzhou,湖景房,23.432332,113.234746,575,1
+43,广州珠江新城骑士物语酒店,Arthur Hotel Zhuangjiang New Town Guangzhou,免费停车,23.120136,113.352948,492,2
+44,全季酒店(广州天河体育中心店),All Seasons Hotel (Guangzhou Tianhe Sports Center Branch),机器人服务,23.142126,113.329013,499,1
+45,广州塔骑士物语酒店,ARTHUR HOTEL CANTON TOWER GUANGZHOU,机器人服务,23.097627,113.319861,496,1
+46,广州华钜君悦酒店,Hj  Grand Hotel,泳池,23.376547,113.256614,415,2
+47,佛山三龙湾希尔顿欢朋酒店,Hampton by Hilton Foshan Sanlong Bay,免费停车,23.006163,113.232038,424,1
+48,礼途酒店(广州淘金地铁站店),Likto Hotel (Guangzhou Taojin Metro Station),会议厅,23.133679,113.285391,419,1
+49,广州伊士丹顿酒店,Guangzhou Estandon Hotel,免费停车,23.115352,113.373943,558,1
+50,麗枫酒店(广州健康方舟店),Lifeng Hotel (Guangzhou health ark store),免费停车,23.059975,113.260611,430,1
+51,美豪丽致酒店(广州塔琶洲会展中心店),Meihao Lizhi Hotel (Guangzhou Tower Pazhou Convention and Exhibition Center),亲子主题房,23.092613,113.333065,499,1
+52,麗枫酒店(广州太古汇广场石牌桥地铁站店),Lavande Hotel (Guangzhou Taikoo Hui Plaza Shipaiqiao Metro Station),免费停车,23.131076,113.33318,459,1
+53,宜致酒店(广州东站地铁站天河体育中心店),Yizhi Hotel (Guangzhou East Railway Station Tianhe Sports Center),家庭房,23.149659,113.333124,385,1
+54,广州番禺市桥亚朵酒店,Guangzhou Panyu Shiqiao Atour Hotel,免费停车,22.951906,113.373233,456,1
+55,麗枫酒店(广州知识城何棠下地铁站店),Lavande Hotel (Guangzhou Knowledge City Hetangxia subway station),免费停车,23.329926,113.542763,372,1
+56,广州南沙凤凰湖木莲庄酒店,The Mulian Hotel of Guangzhou Nansha Fenghuang Lake,免费停车,22.798606,113.518914,405,1
+57,总统大酒店(广州体育中心太古汇店),President Hotel (Guangzhou Sports Center Taikoo Hui),免费停车,23.133953,113.338403,477,1
+58,广州珠江新城希尔顿欢朋酒店,Hampton by Hilton Guangzhou Zhujiang New Town,免费停车,23.126797,113.342696,570,2
+59,宜尚PLUS酒店(广州区庄地铁站店),Ouzhuang Station  ECHARM PLUS Hotel,机器人服务,23.131312,113.294265,430,1
+60,广东大厦酒店(广州北京路步行街纪念堂地铁站店),Guangdong Hotel( Sun Yat-sen Memorial Hall Station),管家服务,23.131862,113.267553,478,2
+61,宜致美居(广州珠江新城地铁站五羊邨店),Yizhi Hotel (Guangzhou Zhujiang New City Metro Station Wuyang Estate Branch ),儿童乐园,23.11953,113.314415,364,1
+62,广州南沙悠方MUSTEL木文缇酒店,MUSTEL Hotel Guangzhou Nansha,免费停车,22.799101,113.51956,476,1
+63,宜致酒店(广州北京路陈家祠地铁站店),Yizhi Hotel (Guangzhou Beijing Road Chenjiaxuan Subway Station),窗外好景,23.125575,113.248482,424,1
+64,广州萝岗科学城骑士物语酒店,Arthur Hotel Luogang Guangzhou,免费停车,23.173347,113.460148,476,1
+65,广州静谧坊 HOUSE HOTEL(天河智慧城店),DRIMIN HOUSE HOTEL GUANGZHOU,免费停车,23.170602,113.407769,420,1
+66,宜尚PLUS酒店(广州珠江新城五羊邨地铁站店),Echarm PLUS Hotel (Guangzhou Zhujiang New Town Wuyangcun Subway Station),免费停车,23.119479,113.312081,408,1
+67,宜致酒店(广州江南西昌岗地铁站店),Y.ZHI HOTEL,影音房,23.088031,113.27425,396,1
+68,美豪丽致酒店(广州天河金融城店),MEHOOD LESTIE Hotel (Guangzhou Tianhe Financial City),停车场,23.117692,113.416972,432,1
+69,希岸Deluxe酒店(广州番禺汉溪长隆店),"Xana Deluxe hotel (Changlong Branch, Hanxi, Panyu, Guangzhou)",免费停车,22.977345,113.356404,430,1
+70,柏高酒店(广州东风路省政府店),Paco  Hotel (Guangzhou Dongfeng Road Provincial Government),机器人服务,23.131979,113.283028,416,1
+71,怡程酒店(广州珠江新城暨大店),Echeng Hotel (Guangzhou Zhujiang New Town),管家服务,23.12666,113.344045,460,1
+72,广州火车站越秀国际会议中心丽柏酒店,"Park Inn by Radisson Yuexiu International Conference Center, Guangzhou Railway Station",免费停车,23.147242,113.260707,447,1
+73,宜致酒店(广州琶洲会展中心海珠湿地公园店),Yizhi Hotel (Guangzhou Haizhu Wetland Park Pazhou Convention and Exhibition Center),停车场,23.079677,113.348964,352,1
+74,广州宝德国际酒店,Buddy Hotel,免费停车,23.165291,113.404413,498,1
+75,宜致酒店(广州天河公园珠江新城店),Yizhi Hotel (Guangzhou Tianhe Park Zhujiang New Town),免费停车,23.134374,113.367866,318,1
+76,宜致酒店(广州中山大学附属第一医院东山口地铁站店),"Yizhi Hotel (Dongshankou Subway Station Store, First Affiliated Hospital of Sun Yat sen University)",家庭房,23.125976,113.29617,358,1
+77,柏高酒店(广州沿江路团一大地铁站店),PACO Hotel (Guangzhou Yanjiang Road Tuanyi Metro Station),免费停车,23.117872,113.282515,341,1
+78,广州永庆坊瞻云精选酒店,The Yun Collection Guangzhou Yong Qing Fang,机器人服务,23.114634,113.238665,388,1
+79,中国市长大厦酒店(广州东站天河体育中心店),"China Mayors Plaza, Guangzhou East Station，Tianhe Sports Center",会议厅,23.142003,113.32269,469,1
+80,柏高·颂酒店(广州环市东路动物园地铁站店),Paco Hotel (Guangzhou Huanshi East Road),健身室,23.134356,113.30661,448,2
+81,丹顿行政酒店公寓(珠江新城店),Dan Executive Hotel Apartment (Zhujiang New Town),酒店公寓,23.124468,113.334428,538,2
+82,广州南沙珠江三角洲世贸中心大厦,Guangzhou Nansha Pearl River Delta World Trade Center Tower,免费停车,22.770685,113.604657,403,2
+83,广州火车站希尔顿欢朋酒店,Hampton By Hilton Guangzhou Railway Station,免费停车,23.150458,113.262014,568,1
+84,广州壹街叁號·海员宾馆(江南西昌岗地铁站店),Guangzhou Seaman Hotel,免费停车,23.094676,113.274603,397,2
+85,广州番禺市广路亚朵酒店,Atour Hotel Shiguang Road Panyu Guangzhou,免费停车,22.957689,113.351389,429,1
+86,广州逸林假日酒店,Easeland Hotel Guangzhou,桑拿,23.197959,113.288397,523,1
+87,广州北京路天字码头兰欧国际酒店,Lan Ou International Hotel (Guangzhou Beijing Road Tianzi Wharf),家庭房,23.112365,113.272683,438,1
+88,柏高酒店(广州体育西路地铁站店),Paco Hotel (Guangzhou Tiyu Xilu Metro Branch),免费停车,23.130472,113.320028,378,1
+89,隐舍酒店(广州江南西昌岗地铁站店),Hidden house Hotel (Guangzhou Jiangnanxi  Changgang Subway Station ),家庭房,23.096465,113.276231,429,1
+90,铂顿国际公寓(广州番禺政务中心店),Poltton International Apartment (Guangzhou Panyu Government Affairs Center),机器人服务,22.934977,113.410261,347,1
+91,柏高酒店(广州萝岗科学城金峰地铁站店),"Paco Hotel (Guangzhou Luogang Science City, Jinfeng Metro Station)",免费停车,23.178235,113.4532,383,1
+92,广州南湖假日酒店,Holiday Inn Guangzhou South Lake,桑拿,23.207208,113.330299,472,2
+93,锦江都城文创酒店(广州科学城演艺中心店),Jinjiang Du Cheng Cultural Innovation Hotel Guangzhou Science City Performing Arts Center store,免费停车,23.17453,113.485225,452,2
+94,广东地质山水酒店,Guangdong Geological Landscape Hotel,免费停车,23.134225,113.30536,550,1
+95,广州万国元宝酒店(珠江新城店),Guangzhou Wogo Yuanbao Hotel (Zhujiang New Town),桑拿,23.12044,113.312104,599,1
+96,丽怡酒店(广州火车站小北地铁站店),Country Inn ·Guangzhou Railway Station Xiaobei Subway Station Store,管家服务,23.142375,113.278102,432,1
+97,广州黄埔南岗万达亚朵X酒店,Atour X Hotel Nangang Wanda Huangpu Guangzhou,影音房,23.103825,113.545601,385,2
+98,广州天河公园万枫酒店,Fairfield by Marriott Guangzhou Tianhe Park,免费停车,23.131237,113.369733,508,1
+99,宜致酒店(广州北京路步行街彩虹桥地铁站店),Yizhi Hotel (Guangzhou Beijing Road Pedestrian Street Rainbow Bridge Subway Station),家庭房,23.132757,113.245061,366,1
+100,广州金融城美居酒店,Mercure Guangzhou Financial City,免费停车,23.102229,113.424083,430,2
+101,广州凯旋华美达大酒店,Ramada by Wyndham Pearl Guangzhou,桑拿,23.113974,113.313611,580,1
+102,广州白云机场西希尔顿惠庭酒店,Home2 Suites by Hilton Guangzhou Baiyun Airport West,自营亲子房,23.370763,113.234566,420,1
+103,ZMAX满兮酒店(广州珠江新城五羊邨地铁站店),ZMAX HOTELS(Guangzhou Zhujiang New Town Wuyangcun Metro Station Branch hotel ),免费停车,23.117605,113.312928,414,2
+104,广州盛捷生物岛酒店公寓,Somerset Bio-Island Guangzhou,桑拿,23.067582,113.375717,466,1
+105,广州沙面岛逸里优居,Guangzhou Shamian Island YATLAND,家庭房,23.097014,113.24379,397,1
+106,广州白水寨嘉华温泉酒店,Regal Palace Resort & Spa,私人泳池,23.555423,113.770145,860,1
+107,广州卓美亚酒店,Jumeirah Guangzhou,SPA,23.119474,113.326919,1436,1
+108,广州设计之都郡雅酒店,Junluxe Guangzhou Baiyun,泳池,23.22121,113.284196,580,1
+109,广州富力丽思卡尔顿酒店,"The Ritz-Carlton, Guangzhou",泳池,23.116276,113.327325,1458,1
+110,丽呈熹玥·思薇娜酒店(广州太古仓沙园地铁站店),Lichengxiyue Siweina Hotel(Guangzhou Taikoo Cangshayuan Subway Station),影音房,23.087472,113.26092,516,2
+111,花城中心酒店(广州体育中心林和西地铁站店),HC Hotel (Sports Center Linhexi Metro Station),家庭房,23.141759,113.323388,408,1
+112,诺盟酒店(省人民医院东山口地铁站店),Nuomo Hotel,免费停车,23.120007,113.286576,276,1
+113,广州新塘希尔顿欢朋酒店,Hampton by Hilton Guangzhou Xintang,自营亲子房,23.119828,113.573259,479,2
+114,广州南沙美豪丽致酒店,Guangzhou Nansha Meihao Lizhi Hotel,免费停车,22.759933,113.603869,379,1
+115,广州文华东方酒店,Mandarin Oriental Guangzhou,桑拿,23.134668,113.33323,1469,2
+116,广州上水精品设计酒店,Shangshui Boutique Design Hotel,管家服务,23.697493,113.725088,799,2
+117,广州环贸中心越秀星廷公寓,Star Residence ICC Guangzhou,多功能厅,23.142084,113.327751,474,2
+118,广州康莱德酒店,Conrad Guangzhou,桑拿,23.115708,113.332552,1145,2
+119,广州星河湾酒店,Chateau Star River Guangzhou,网红泳池,23.027146,113.337765,691,1
+120,雅致酒店(珠江新城广州塔店),Elegant Hotel (Zhujiang New Town Canton Tower),窗外好景,23.113753,113.332838,1172,1
+121,广州W酒店,W Guangzhou,桑拿,23.121885,113.32847,1274,1
+122,广州增城同派酒店(新塘高铁站店),Guangzhou Zengcheng Tongpai Hotel,窗外好景,23.134675,113.598195,376,2
+123,广州粤海喜来登酒店,Sheraton Guangzhou Hotel,桑拿,23.132583,113.322227,1166,1
+124,维也纳国际酒店(广州萝岗万达广场店),Vienna International Hotel (Guangzhou Luogang Wanda Plaza),免费停车,23.159507,113.475761,343,1
+125,广州花园酒店,LN Garden Hotel Guangzhou,泳池,23.135249,113.286297,923,1
+126,广州太古汇岗顶地铁站亚朵酒店,Atour Hotel (Gangding Metro Station TaiKoo Hui Guangzhou),管家服务,23.133236,113.338203,632,1
+127,卡尔顿·星越酒店(广州黄边地铁站设计之都店),Kardon Hotel ·Star (Guangzhou Huangbian Metro Station Design Capital),免费停车,23.217735,113.28665,379,2
+128,广州白云宾馆,Guangzhou Baiyun Hotel,泳池,23.137684,113.286237,605,2
+129,外商·艺龙酒店(广州珠江新城店),IMPERIAL TRADERS ELONG HOTEL,SPA,23.12478,113.314586,590,2
+130,广州万晟·品未酒店(北京路步行街店),Guangzhou Wansheng Pinwei Hotel,健身室,23.120067,113.2676,349,1
+131,广州白云嘉禾鹤边亚朵酒店,Atour Hotel Guangzhou Baiyun Jiaxuan Hebian,影音房,23.213433,113.266343,438,1
+132,广州万富希尔顿酒店,Hilton Guangzhou Baiyun,SPA,23.175602,113.268462,754,2
+133,广州南沙美居酒店,Mercure Guangzhou Nansha,免费停车,22.798488,113.581621,396,1
+134,维也纳国际酒店(广州科学城金峰地铁站店),Vienna International Hotel (Guangzhou Science City Jinfeng subway station),免费停车,23.185918,113.445912,355,1
+135,广州珠江新城华轩里酒店,H'Elite Hotel,免费停车,23.122586,113.322618,639,2
+136,广州天河希尔顿酒店,Hilton Guangzhou Tianhe,桑拿,23.146269,113.320725,776,2
+137,广州南航明珠空港大酒店,Southern Airlines Pearl Airport Hotel,免费停车,23.425011,113.313499,384,1
+138,广州希尔顿逸林酒店,DoubleTree by Hilton Guangzhou,动人夜景,23.131523,113.270839,749,1
+139,广州四季酒店,Four Seasons Hotel Guangzhou,Boss推荐,23.117279,113.322927,1667,1
+140,广州三英温泉度假酒店,Sanying Spa Resort Hotel,桑拿,23.558841,113.782602,575,1
+141,广州圣丰索菲特大酒店,Sofitel Guangzhou Sunrich,泳池,23.138155,113.315885,875,1
+142,广州白云机场丽呈睿轩酒店,Rezen Select Hotel Guangzhou Baiyun Airport,免费停车,23.425872,113.316984,332,1
+143,广州瑰丽酒店,Rosewood Guangzhou,泳池,23.117761,113.326031,1556,2
+144,葡新酒店(广州知识城旺村地铁站店),Portuguese Hotel (Guangzhou Knowledge City Wangcun Subway Station),免费停车,23.325618,113.549776,324,1
+145,广州长隆熊猫酒店,Chimelong Panda Hotel,管家服务,23.005313,113.332062,1463,1
+146,广州柏悦酒店,Park Hyatt Guangzhou,免费停车,23.118599,113.321593,1446,1
+147,广州保利假日酒店,Holiday Inn Guangzhou Science City,桑拿,23.165407,113.457682,511,2
+148,广州番禺大石智选假日酒店,Holiday Inn Express GUANGZHOU PANYU DASHI,家庭房,23.016036,113.322057,429,1
+149,广州白云太和民营科技园亚朵酒店,"Atour Hotel,No.2 Ke Yuan Rd,Guangzhou Minke Park, No.1633 Beitai Rd,Baiyun District,Guangzhou",窗外好景,23.296358,113.335695,447,2
+150,宜致酒店(广州番禺南村店),Yizhi Hotel (Guangzhou Panyu South Village),家庭房,23.001507,113.38228,357,1
+151,黄埔瑞季美仑国际酒店(广州萝岗科学城店),Relins GrandMadison,免费停车,23.166983,113.489123,414,1
+152,广州黄埔希尔顿惠庭酒店,Home2 Suites by Hilton Guangzhou Huangpu Science City,窗外好景,23.16385,113.499091,458,1
+153,广州正佳广场万豪酒店,Guangzhou Marriott Hotel Tianhe,桑拿,23.132842,113.326281,1108,2
+154,粤城公馆(广州珠江新城五羊邨地铁站店),Guangdong Mansion (Guangzhou Zhujiang New Town Wuyangcun Metro Station Store),免费停车,23.124489,113.314403,323,1
+155,广州悦嵘山房庄园,"YueRong Mountain House Manor, Guangzhou",泳池,23.490327,113.187166,421,2
+156,广州白云机场铂尔曼大酒店(T1航站楼店),Pullman Guangzhou Baiyun Airport (Terminal 1),SPA,23.389093,113.303757,898,1
+157,广州海航威斯汀酒店,the Westin Guangzhou,泳池,23.143572,113.326228,875,1
+158,广州白天鹅宾馆,White Swan Hotel,设计师酒店,23.105826,113.242564,931,2
+159,广州中国大酒店,China Hotel,桑拿,23.140135,113.259897,706,2
+160,广州科学城科湃酒店(伴河路店),KEYPAI HOTEL(Banhe Road),免费停车,23.159505,113.506599,387,2
+161,广州钧明欢乐世界宜尚PLUS酒店,"Jun Ming Happy World Yishang PLUS Hotel, Guangzhou",免费停车,23.191374,113.593224,337,1
+162,广州南沙辉盛名致服务公寓,Modena by Fraser Nansha Guangzhou,窗外好景,22.789047,113.518888,468,2
+163,广州文轩苑温泉度假酒店,Wenxuan Garden Hot Spring Resort Hotel,免费停车,23.697551,113.713732,410,2
+164,广州空港万豪万枫酒店(白云机场店),Fairfield by Marriott Guangzhou Konggang,自营亲子房,23.369061,113.293709,472,1
+165,广州锦绣香江温泉城,Guangzhou Jinxiu Xiangjiang Hot Spring City,桑拿,23.56489,113.777327,719,2
+166,广州花都木莲庄酒店,The Mulian Urban Resort Hotels Huadu,泳池,23.45251,113.445862,554,1
+167,广州奥园喜来登酒店,Sheraton Guangzhou Panyu,SPA,23.008469,113.346881,1050,2
+168,广州图南生活美学酒店,Guangzhou Tunan Live Art Hotel,免费停车,22.967919,113.368555,418,1
+169,广州富力空港假日酒店,Holiday Inn Guangzhou Airport Zone,桑拿,23.4567,113.359439,421,1
+170,美豪(广州番禺万博中心店),MeiHao Hotle,家庭房,23.012195,113.336473,318,1
+171,广州香格里拉大酒店,Shangri-La Guangzhou,桑拿,23.102535,113.370184,1310,1
+172,广州东方宾馆,Dong Fang Hotel,泳池,23.139322,113.258604,608,1
+173,广州从都国际庄园,Imperial Springs,SPA,23.685444,113.678487,2088,1
+174,广州1978艺术村落民宿,Guangzhou 1978 Art Village Homestay,免费停车,23.300741,113.844091,628,1
+175,广州华厦国际商务酒店(火车东站天河体育中心店),Landmark International Hotel(East Railway Station Tianhe Sport Center Branch),免费停车,23.143405,113.329148,398,2
+176,广州九龙湖公主酒店,Dragon Lake Princess Hotel,管家服务,23.460909,113.415338,618,2
+177,广州高新国羽木莲庄酒店,GHIC The Mulian Hotel Of Guangzhou Guoyu,免费停车,23.166357,113.445058,418,1
+178,广州一江戴斯酒店,Days Inn Guangzhou Yijiang,免费停车,22.95727,113.373744,408,1
+179,广州卓思道酒店(番禺雅居乐店),Just Stay Hotel,免费停车,23.011086,113.361351,405,2
+180,广州祈福酒店,Clifford Hotel Resort Centre Panyu,免费停车,22.971098,113.335578,467,2
+181,美华航空主题酒店,Meihua Aviation Theme Hotel,家庭房,23.418438,113.24747,474,1
+182,广州白云湖畔酒店(南湖旅游中心店),Baiyun Lakeside Hotel (Nanhu Tourism Center),泳池,23.217254,113.326211,388,2
+183,广州白云国际机场美豪丽致酒店(T1航站楼店),Guangzhou Baiyun International Airport MeHood Liz Hotel (T1 Terminal),免费停车,23.427516,113.312697,338,1
+184,拾静山房酒店,SHI  JING HOTEL,亲子主题房,22.907942,113.345509,334,2
+185,广州星河湾半岛酒店,Chateau Star River Peninsula,泳池,23.032462,113.351207,669,1
+186,宜致酒店(广州太古汇广场石牌桥地铁站店),Yizhi Hotel (Guangzhou Taikoo Hui Plaza Shipaiqiao Subway Station Branch),家庭房,23.132954,113.332153,359,1
+187,广州保利洲际酒店,Intercontinental Guangzhou Exhibition Center,泳池,23.103924,113.384172,1267,2
+188,花筑·安舍(广州番禺市广路地铁站店),Floral Hotel·anshe,停车场,22.964664,113.343642,427,1
+189,广州富力君悦大酒店,Grand Hyatt Guangzhou,桑拿,23.122178,113.323457,1073,2
+190,广州朗豪酒店,Langham Place Guangzhou,桑拿,23.096729,113.360079,1225,2
+191,洲至奢选广州香岚官洲酒店,"THE XANADU GUANGZHOU,VIGNETTE COLLECTION AN IHG HOTEL",行政酒廊,23.073722,113.386779,840,1
+192,佛山金沙洲温德姆花园酒店,Wyndham Garden Hotel Foshan Sands Island,网红泳池,23.174209,113.206207,431,2
+193,广州威珀斯酒店,Vaperse Hotel,免费停车,23.124675,113.318162,780,1
+194,广州花都皇冠假日酒店,Crowne Plaza Guangzhou Huadu,网红泳池,23.373849,113.261701,617,2
+195,宜致酒店(广州十三行西门口地铁站店),Y.ZHI Hotel,机器人服务,23.123612,113.252823,356,1
+196,广州珠江新城华轩美仑美奂酒店,MaxX by Steigenberger Guangzhou Zhujiang New Town,免费停车,23.122293,113.32258,739,1
+197,华泰宾馆(广州区庄地铁站店),Huatai Hotel,桑拿,23.133248,113.290123,363,2
+198,广州东圃合景福朋喜来登酒店,"Four Points by Sheraton Guangzhou, Dongpu",泳池,23.111868,113.417827,641,1
+199,广州中心皇冠假日酒店,Crowne Plaza Guangzhou City Centre,桑拿,23.138269,113.282562,785,2
+200,广州十甫voco酒店,voco Guangzhou Shifu,泳池,23.113032,113.245309,643,2
+201,广州盛雅服务公寓,Springdale Serviced Residence,儿童乐园,23.135166,113.321166,516,2
+202,广州南沙金茂万豪酒店,Guangzhou Marriott Hotel Nansha,泳池,22.777748,113.522069,805,1
+203,广州卓思道温泉度假酒店,Just Stay Resort,日光浴场,23.688381,113.70728,688,2
+204,广州瑰丽府邸,Rosewood Residences Guangzhou,泳池,23.117725,113.326132,1400,2
+205,嘉腾大酒店,Grand Hotel Jiateng,停车场,23.275926,113.680516,389,1
+206,广州白云国际会议中心越秀福朋喜来登酒店,"Four Points by Sheraton Guangzhou, Baiyun",泳池,23.188597,113.272893,629,2
+207,广州鸣泉居酒店,Oriental Resort Guangzhou,免费停车,23.186231,113.285792,805,2
+208,梵铂(广州白云机场体验店),Vanbo hotels (Guangzhou baiyun airport experience),免费停车,23.365788,113.293678,202,1
+209,广州增城凯悦酒店,Hyatt Regency Guangzhou Zengcheng,桑拿,23.14911,113.610375,492,1
+210,广州鸿德国际酒店,Honder International Hotel,泳池,23.149377,113.334457,574,2
+211,广州白云国际会议中心越秀万豪酒店,Guangzhou Marriott Hotel Baiyun,泳池,23.188604,113.274777,799,1
+212,漫豪思酒店(广州北京路天字码头店),MARHAUS Hotel (Beijing Road Tian-Zi Pier Store),充电桩,23.11567,113.276663,345,1
+213,广州海心沙英迪格酒店,Hotel Indigo Guangzhou Haixinsha,泳池,23.111235,113.329552,1086,2
+214,麗枫酒店(广州番禺汉溪长隆大石地铁站店),Lavande Hotel (Guangzhou Panyu Hanxi Changlong Dashi Subway Station Store),免费停车,23.015772,113.327284,344,2
+215,广州北京路步行街美居酒店,Mercure Guangzhou Beijing Road Pedestrian Street Hotel,机器人服务,23.120692,113.26933,626,1
+216,美豪雅致酒店(广州琶洲会展中心店),Meihao Elegant Hotel (Guangzhou Pazhou Convention and Exhibition Center),影音房,23.128646,113.373732,659,2
+217,广州锦绣香江度假别墅,Guangzhou Jinxiu Xiangjiang Holiday Villa,桑拿,23.563194,113.775524,619,1
+218,广州新世界酒店,New World Guangzhou Hotel,自营亲子房,23.2349,113.297836,708,2
+219,宽融套房酒店(广州番禺长隆万达店),"Kuanrong Suite Hotel (Chimelong Wanda Store in Panyu, Guangzhou)",免费停车,23.004142,113.350457,483,1
+220,广州番禺大道希尔顿欢朋酒店,Hampton by Hilton Guangzhou Panyu Avenue,免费停车,22.976322,113.367848,668,2
+221,广州南站城际酒店,Intercity Guangzhou South Railway Station,家庭房,22.987855,113.278783,599,1
+222,广州珠江新城五羊邨地铁站亚朵酒店,Guangzhou Atour Hotel(Zhujiang New Town Wuyangcun Subway Station),免费停车,23.119356,113.312537,632,1
+223,万泓国际酒店(广州番禺万达店),Wanhong International Hotel (Guangzhou Panyu Wanda Branch),免费停车,23.012718,113.350918,309,1
+224,广州辉盛阁国际公寓(万菱汇店),Fraser Suites Guangzhou,桑拿,23.132657,113.331482,951,2
+225,广州国际金融中心雅诗阁服务公寓,Ascott IFC Guangzhou,桑拿,23.118476,113.322558,965,2
+226,穗和瑞斯丽酒店(白云国际机场人和地铁站店),Swisstouches Residences Guangzhou,桑拿,23.337549,113.292748,280,1
+227,广州西关永庆坊中山八路地铁站希岸Deluxe酒店,XANA DELUXE Hotel (Guangzhou Yongqingfang Zhongshan 8th Road Subway Station),机器人服务,23.125073,113.236135,358,2
+228,雅致酒店(广州二沙岛珠江夜游店),"Elegant Hotel (the Pearl River Night Tour in Ersha Island, Guangzhou)",窗外好景,23.113279,113.283402,806,2
+229,美豪丽致酒店(广州汉溪长隆店),Mehood Lestie Hotel(Guangzhou Hanxi Chimelong),免费停车,23.013395,113.339339,388,1
+230,广州南沙大酒店,Nansha Grand Hotel,桑拿,22.766765,113.61383,723,2
+231,丽呈朗誉酒店(广州客村地铁站广州塔店),Rezen Longuu Hotel Guangzhou,免费停车,23.093182,113.316013,389,1
+232,广州白云机场诺富特酒店(航站楼店),Novotel Guangzhou Baiyun Airport (Terminal),SPA,23.389589,113.302661,682,1
+233,广州雅诗阁琶洲服务公寓,Ascott Pazhou Guangzhou,窗外好景,23.104162,113.335277,742,2
+234,广州宾馆(北京路步行街海珠广场地铁站店),Guangzhou Hotel,江河景房,23.115854,113.265605,637,1
+235,全季酒店(广州珠江新城店),Ji Hotel (Zhujiang New Town Guangzhou),停车场,23.114786,113.31302,462,1
+236,广州珠江新城太古汇亚朵酒店,"Atour Hotel Taikoo Hui, Zhujiang New Town, Guangzhou",管家服务,23.131359,113.333514,728,1
+237,广州W服务式公寓,W Guangzhou Service Apartment,泳池,23.121824,113.328642,1022,2
+238,微八逸居公馆(广州永庆坊沙面岛店),Weibayiju Mansion (Guangzhou Yongqingfang Shamian Store),智能客控,23.116991,113.236516,302,1
+239,丽呈格芮酒店(广州太古汇广场石牌桥地铁站店),GRANDEE REZEN,窗外好景,23.132996,113.33204,619,2
+240,麗枫酒店(广州会展中心南洲地铁站店),"Lavande Hotel (Guangzhou Convention and Exhibition Center, Nanzhou Metro Station)",免费停车,23.064124,113.30112,339,2
+241,From·K欢凯酒店(广州珠江新城体育西路店),From.K Hotel (Guangzhou Zhujiang New Town&Tiyu West Road Branch),免费停车,23.128053,113.32163,518,1
+242,麗枫酒店(广州黄石机场路店),LAVANDE Hotel Guangzhou Huangshi Airport Road,免费停车,23.207227,113.263195,280,2
+243,麗枫酒店(广州番禺市桥地铁站大北路店),"Lavande Hotel (Guangzhou Panyu Shiqiao Metro Station, Dabei Road)",免费停车,22.955471,113.369353,410,1
+244,广州岭南五号酒店,LN Hotel Five,江河景房,23.115633,113.274236,680,1
+245,广州同裕国际酒店,Tongyu International Hotel,会议厅,23.209016,113.330005,298,1
+246,梵源酒店(广州珠江新城店),Fanyuan Hotel (Guangzhou Zhujiang New Town Store),管家服务,23.127307,113.331946,357,1
+247,广州珠江新城维多利酒店,Victoria Hotel Zhujiang New Town Guangzhou,免费停车,23.126196,113.336917,627,1
+248,广州白云国际机场T2航站楼澳斯特精选酒店,Ausotel Smart Guangzhou Baiyun International Airport Terminal 2,免费停车,23.367583,113.30211,319,1
+249,宜致酒店(广州珠江新城体育西路地铁站店),Yizhi Hotel (Guangzhou Zhujiang New Town Sports West Road Subway Station),智能客控,23.128346,113.31944,368,2
+250,广州保利悦雅酒店,La Yarda Hotel Guangzhou,机器人服务,23.103398,113.383195,682,1
+251,广州中山医东山口地铁站希岸Deluxe酒店,"Xian Deluxe Hotel (Dongshankou Subway Station, First Affiliated Hospital of Sun Yat sen University)",免费停车,23.120114,113.29425,387,1
+252,广州环贸中心雅诗阁服务公寓,Ascott ICC Guangzhou,桑拿,23.142161,113.327643,649,2
+253,凯高思酒店(广州火车站地铁站白马服装城店),Kaigaosi Hotel (Guangzhou Railway Station Subway Station Baima Clothing City),机器人服务,23.14794,113.252368,325,1
+254,美豪丽致酒店(广州东圃金融城店),Mehood LIZ Hotel (Guangzhou Dongpu Financial City store),免费停车,23.118925,113.440574,388,1
+255,维也纳酒店(广州白云国际机场航站楼店),Vienna Hotel (Guangzhou Baiyun International Airport Terminal),停车场,23.427532,113.310272,258,1
+256,美豪丽致酒店(广州番禺银座店),"Mehood  Li Zhi Hotel (Yinzuo, Panyu, Guangzhou)",免费停车,22.940918,113.352886,368,1
+257,CityNote希诺酒店(广州体育西路地铁站店),CityNote Hotel (Guangzhou Tiyu West Road Metro Station),健身室,23.130963,113.321072,356,1
+258,宜尚PLUS酒店(广州达镖国际中心昌岗地铁站店),ECHARM PLUS Hotel (Guangzhou Dart International Center Changgang Metro Station),充电桩,23.089552,113.276591,482,1
+259,广州黄埔萝岗科学城亚朵酒店,Atour Hotel (Huangpu Luogang Science city Guangzhou),免费停车,23.181241,113.474422,526,1
+260,麗枫酒店(广州金融城车陂地铁站店),Lavande Hotels,免费停车,23.123951,113.39302,449,1
+261,从化方圆·云雅酒店,The Rayna Resort,桑拿,23.65595,113.661869,679,1
+262,CityNote希诺酒店(广州北京路纪念堂地铁站店),"CityNote Hotel (Guangzhou Beijing Road ,Sun Yatsen Memorial Hall Metro Station)",智能客控,23.131222,113.262619,337,2
+263,麗枫酒店(广州市桥地铁站钻汇广场店),Lavande Hotel (Guangzhou Chimelong Shiqiao Metro Station Yifa Pedestrian Street),会议厅,22.940708,113.366541,278,1
+264,麗枫酒店(广州白云机场空港店),Lavande Hotel(Guangzhou Baiyun Airport Branch),免费停车,23.439234,113.328655,219,1
+265,广州吾乡石屋田园度假酒店,Deng Stone House Pastoral Resort,免费停车,23.47049,113.820216,768,2
+266,柏高·雅酒店(广州龙口西岗顶地铁站店),Paco Hotel Gangding Metro Guangzhou-Free Shuttle Bus during Canton Fair,免费停车,23.137729,113.336004,350,1
+267,广州江南西华美达安可酒店,Guangzhou Ramada Encore Hotel (Jiangnanxi Subway Station R&F Haizhu City Branch),免费停车,23.092991,113.267738,375,1
+268,府上酒店(火车站越秀公园店),Fushang Hotel (Railway Station Yuexiu Park Branch),管家服务,23.135514,113.260015,420,1
+269,广州番禺智选假日酒店,Holiday Inn Express  Guangzhou Panyu,免费停车,22.935766,113.33405,362,1
+270,广州红象堡树屋亲子酒店,Hongxiangbao Tree Parenting House Hotel,免费停车,23.007972,113.308123,333,2
+271,广州山庄旅舍,Guangzhou Mountain Villa,免费停车,23.179516,113.303091,656,1
+272,广州禧悦昇酒店(增城高铁站店),GUANGZHOU JOYOUS HOTEL,免费停车,23.227396,113.831163,276,1
+273,丽呈来住酒店(广州白云国际机场花都文旅城店),Licheng Laizhu Hotel (Guangzhou Baiyun International Airport Huadu Cultural Tourism City),免费停车,23.366807,113.26116,298,2
+274,麗枫酒店(广州高铁南站石壁地铁站店),Lavande Hotel (Guangzhou South High-speed Railway Station Shibi Metro Station),充电桩,22.995061,113.275902,423,1
+275,广州知识城MUSTEL木文缇酒店,MUSTEL Hotel Knowledge City Guangzhou,免费停车,23.322743,113.552738,328,1
+276,柏高·雅酒店(广州北京路步行街地铁站店),Paco Hotel (Guangzhou Beijing Road Metro Station),洗衣房,23.117312,113.269588,332,1
+277,桔子酒店(广州越秀公园店),Orange Hotel (Guangzhou Yuexiu Park),智能马桶,23.136796,113.262052,413,1
+278,广州从心隐艺术设计民宿(增城白水寨店),Guangzhou Congxinyin Art Design Homestay (Zengcheng Baishuizhai Branch),山景房,23.580043,113.761442,498,1
+279,漫心酒店(广州白云机场清塘地铁站店),Guangzhou Baiyun Airport Manxin Hotel,免费停车,23.366917,113.26025,349,2
+280,宜尚酒店(广州天河体育西路地铁站店),ECHARM Hotel (Guangzhou Tianhe Tiyu West Road Subway Station),管家服务,23.132431,113.319465,371,2
+281,轻居酒店(广州番禺长隆欢乐世界店),Guangzhou Panyu  Atour Light Hotel,免费停车,23.006427,113.330132,394,1
+282,艺龙玺程国际酒店(白云站江南市场店),Yilong Yicheng International Hotel (Baiyun Station Jiangnan Market),管家服务,23.177998,113.226811,381,1
+283,维也纳酒店(广州南站高铁站店),Vienna (Guangzhou South Railway Station Hotel),免费停车,22.988489,113.277377,430,1
+284,美豪丽致酒店(广州花都文旅城白云机场店),Meihao Lizhi Hotel (Guangzhou Huadu Cultural Tourism City Baiyun Airport),免费停车,23.369873,113.234443,335,1
+285,广州番禺万博中心亚朵X酒店,"Atour X Hotel, Wanbo Center, Guangzhou",家庭房,23.011659,113.341729,588,2
+286,柏高酒店(广州天河北天平架地铁站店),Paco Hotel (Guangzhou Tianhebei Tianpingjia Metro Station),山景房,23.161586,113.321735,312,2
+287,广州溪边汤宿,Guangzhou stream side soup stay,免费停车,23.691006,113.705766,755,1
+288,从化岭南东方温泉酒店,Conghua Lingnan Oriental Hot Spring Hotel,网红泳池,23.639876,113.657247,555,1
+289,CityNote希诺酒店(广州上下九步行街十三行店),CityNote Hotel(ShiSanHang store Shangxiajiu pedestrian street Guangzhou),管家服务,23.1119,113.248475,368,1
+290,广州白云国际机场人和地铁站亚朵X酒店,Atour X Hotel Guangzhou Baiyun International Airport Renhe Metro Station,免费停车,23.33956,113.290258,366,1
+291,CityNote希诺酒店(广州北京路步行街中华广场店),"CityNote Hotel (Zhonghua Plaza, Beijing Road Pedestrian Street, Guangzhou)",机器人服务,23.127221,113.279751,350,1
+292,广州圣托利温泉庄园,Santorini Hot Spring Resort,日光浴场,23.648359,113.654548,686,2
+293,柏高·雅酒店(广州龙洞植物园地铁站店),Paco Hotel. Botanical Garden Metro Guangzhou,免费停车,23.193725,113.365247,305,1
+294,艺星酒店(广州区庄地铁站店),Art Star Hotel (Guangzhou Quzhuang Metro Station),机器人服务,23.130541,113.29662,401,2
+295,广州人和白云机场希尔顿欢朋酒店,Hampton by Hilton Guangzhou Renhe Baiyun Airport,自营亲子房,23.331368,113.288897,622,1
+296,广州星河吉酒店,G Hotel GuangZhou,窗外好景,22.803428,113.531985,563,1
+297,琶洲岭南东方酒店,Lingnan Dongfang Hotel,免费停车,23.095847,113.377858,754,1
+298,如家精选酒店(广州天河体育中心店),Homeinn Plus hotel  (Guangzhou Tianhe Sports Center),机器人服务,23.134782,113.316966,310,1
+299,雅朵酒店(广州番禺市桥地铁站店),Yaduo Hotel (Guangzhou Panyu Bridge Metro Station),免费停车,22.95195,113.373337,306,1
+300,维也纳国际酒店(广州花都广场文旅城店),Vienna International Hotel (Guangzhou Huadu Square),免费停车,23.396736,113.21216,291,2
+301,凤悦轻尚酒店(广州白云机场人和地铁站店),"Fengyue Light Shang Hotel (Guangzhou Baiyun Airport, Renhe Subway Station)",桑拿,23.337037,113.29346,229,1
+302,柏高酒店(广州天河北水荫路店),Paco Hotel (Guangzhou Tianhebei Shuiyin Road),机器人服务,23.142956,113.311592,300,2
+303,广州花溪雨云居民宿,Guangzhou huaxiyu yunjuB&B,洗衣房,22.90613,113.339075,433,2
+304,广州琶洲会展广州塔地铁站轻居酒店,Guangzhou Pazhou Exhibition Guangzhou Tower Metro Station Light Hotel,家庭房,23.103813,113.323104,693,1
+305,丽途国际公寓(广州琶洲会展中心店),Litu International Apartment (Guangzhou Pazhou Convention and Exhibition Center),酒店公寓,23.099751,113.378098,468,2
+306,三龙湾·云栖酒店(广州南站店),Sanlongwan YunXi Hotel (Guangzhou South Railway Station),免费停车,23.021526,113.247775,316,1
+307,徽园(广州五山店),HUIYUAN,停车场,23.1482,113.35826,542,2
+308,广州善钰阁民宿,Guangzhou Shanyuge Guesthouse,免费停车,23.476474,113.621844,459,1
+309,广州丛林大象酒店(番禺长隆南村万博地铁站店),Jungle Elephant Hotel,免费停车,23.006144,113.353015,320,1
+310,从林里野奢民宿,Wooded homestay,私汤房,23.493028,113.623841,1198,2
+311,网鱼电竞酒店(广州琶洲会展中心店),Netfish E-sports Hotel (Guangzhou Pazhou Convention and Exhibition Center),免费停车,23.132764,113.376158,393,1
+312,广州世间香境七溪地天香里酒店,Guangzhou Shijianxiangjing Qixidi Tianxiangli Hotel,日光浴场,23.535873,113.379242,868,1
+313,桔子水晶广州白云国际机场酒店,Orange Crystal Guangzhou Baiyun International Airport Hotel,免费停车,23.391489,113.245329,315,2
+314,花墨公寓(广州南站汉溪长隆地铁站店),Huamo Apartment (Guangzhou South Railway Station Hanxi Changlong Metro Station),小而美,22.994731,113.335399,483,1
+315,维也纳酒店(广州汉溪长隆公园店),Vienna HotelVienna Hotel (Guangzhou Hanxi Changlong Park Branch),免费停车,23.008946,113.328616,259,2
+316,正盛红谷酒店(广州融创文旅城花都广场店),Zhengsheng Honggu Hotel (Guangzhou Sunac Cultural Tourism City Huadu Square),免费停车,23.400731,113.222472,306,1
+317,广州远洋宾馆,Ocean Hotel,免费停车,23.13454,113.291767,406,1
+318,畿云瑶精品文旅酒店,Ji Yun Yao Resort,网红泳池,23.53309,113.704599,1530,2
+319,天人山水·溪谷度假营地,TAO SENCE RV CAMP,免费停车,23.445182,113.597274,657,2
+320,广州乡约·雅轩温泉民宿,Guangzhou Xiangyue Yaxuan Hot Spring Homestay,日光浴场,23.566784,113.766139,420,2
+321,广州客天下禧悦庄精品民宿,Gaiety Valley ·Yunlin,免费停车,23.475665,113.589944,958,2
+322,广州从化荔下田边民宿,Lychee boutique resort,免费停车,23.682516,113.703206,830,2
+323,超时光潮玩设计酒店(广州北京路步行街大佛寺店),Super Times Design Hotel,管家服务,23.122709,113.266815,348,1
+324,开诚楼艺术民宿(广州花山小镇店),Kaichenglou B&B (Guangzhou Huashan Town Branch),免费停车,23.439507,113.284083,388,1
+325,柏合俪舍酒店(广州火车站地铁站白马服装城市场店),Lilium elysees Hotel (Guangzhou Railway Station Subway Station Baima Clothing City Market),机器人服务,23.144003,113.252232,339,1
+326,容锦酒店(广州林和西地铁站店),Rongjin Hotel (Guangzhou Linhexi Metro Station),免费停车,23.140655,113.318191,434,1
+327,广州新天河宾馆,New TianHe Hotel,免费停车,23.133426,113.319619,437,1
+328,宜致酒店(广州番禺市桥地铁站店),Yizhi Hotel (Guangzhou Panyu Shiqiao Subway Station Store),停车场,22.954103,113.366317,246,1
+329,麗枫酒店(广州南沙店),Lavande Hotel Guangzhou Nansha Branch,免费停车,22.795854,113.552249,268,1
+330,品若酒店(广州市桥地铁站店),Paradigm Hotel,免费停车,22.948366,113.361609,258,1
+331,宜尚酒店(广州太古汇华师地铁站店),ECHARM Hotel (Guangzhou TaiKoo Hui Huashi  Subway Station ),影音房,23.139659,113.344492,354,1
+332,广州雅阁澳斯特酒店(白云国际机场人和地铁站店),AUSOTEL by Argyle Guangzhou Baiyun International Airport Renhe Metro Exit B,免费停车,23.33709,113.295336,211,1
+333,SUSHAN宿山房,SUSHAN Resort,免费停车,23.552532,113.748883,1137,1
+334,广州九龙湖国王酒店,Dragon Lake King Hotel,免费停车,23.47034,113.430269,788,1
+335,广州麦客72House民宿,Macke 72House Homestay,免费停车,23.49154,113.732569,594,2
+336,玉壶溪馆精品民宿,Yuhuxiguan Boutique B&B,免费停车,23.641722,113.655595,887,1
+337,华美达安可酒店(广州白云三元里店),Ramada Encore Hotel (Guangzhou Baiyun Sanyuanli Branch),免费停车,23.18407,113.257043,308,2
+338,友和酒店(广州东站天河体育中心店),Yuwa Hotel(Guangzhou East Railway Station),免费停车,23.152889,113.333834,537,1
+339,嘉虹酒店(广州白云国际机场航站楼店),SkyBird Hotel (Guangzhou Baiyun International Airport Terminal),免费停车,23.427049,113.310491,235,2
+340,广州菁木山舍精品民宿,The Jing House,免费停车,23.493587,113.63111,738,1
+341,广州长禧家,Changxi Inn,免费停车,22.935258,113.355787,486,2
+342,广州仟信至尊酒店(广州从化儿童公园店),QIANXIN LUXURY HOTEL,免费停车,23.561624,113.606772,308,1
+343,广州流溪河湖庐自然艺术空间,Guangzhou Liuxi River Lake Lu 1993 homestays,免费停车,23.763234,113.802789,1766,2
+344,全季酒店(广州凤凰大道环宇城店),Quanji Hotel (Guangzhou Fenghuang Avenue Huanyu City Store),停车场,22.788641,113.519051,449,1
+345,和颐酒店(广州琶洲会展中心赤岗地铁站店),Yitel (Guangzhou Pazhou Exhibition Center Chigang Metro Station),影音房,23.097619,113.337227,371,1
+346,广州恒溪湾民宿,Guangzhou Hengxiwan Homestay,日光浴场,23.497932,113.788421,517,2
+347,维也纳国际酒店(广州新滘西路中大店),"Vienna International Hotel (Zhongda Branch, Xinjiao West Road, Guangzhou)",免费停车,23.074403,113.287867,413,2
+348,海珠湿地公园悦度空间私密民宿(广州塔琶洲会展中心店),Guangzhou Haizhu Wetland Park Yuedu Homestay,免费停车,23.062923,113.339463,550,1
+349,观芦民宿,Guanlu Homestay,免费停车,23.463186,113.108632,569,1
+350,亚美酒店(广州花都融创文旅城店),Yamei Hotel,免费停车,23.4089,113.209078,251,1
+351,艾圣医皇艾灸养生文化酒店(广州白云机场店),Aishengyihuang Moxibustion Hotel (Guangzhou Baiyun Airport),免费停车,23.427532,113.310272,499,2
+352,广州柒舍云宿庄园,Guangzhou Qisheli Yunsu Manor,民宿,23.443028,113.80678,789,1
+353,美豪酒店(广州增城万达广场店),Mehood Theater Hotel,免费停车,23.282002,113.780529,294,1
+354,柏高酒店(广州塔大塘地铁站店),Paco Hotel (Guangzhouta Datang Metro Station),多功能厅,23.080449,113.325521,286,1
+355,广州海俊酒店(广州北京路天字码头店),Haijun Hotel,免费停车,23.115645,113.274654,259,1
+356,美豪丽致酒店(广州花都文旅城狮岭店),Meihao Lizhi Hotel (Guangzhou Huadu Cultural Tourism City Shiling),免费停车,23.463168,113.166694,271,1
+357,广州彼岸云水间民宿(正果老街店),Guangzhou Bi'an Yunshuijian Homestay (Zhengguo Old Street Branch),免费停车,23.426608,113.898666,542,2
+358,骏粤大酒店(广州番禺长隆万博店),Junyue Hotel,免费停车,23.01353,113.341176,320,1
+359,广州隐溪民宿,Yinxii Homestay in Guangzhou.,免费停车,23.715833,113.728298,402,2
+360,珠江宾馆(珠江新城五羊邨站店),Zhujiang Hotel,江河景房,23.115393,113.308082,557,2
+361,广州设计师村温泉酒店,L.Resort,免费停车,23.701167,113.727141,734,2
+362,美豪丽致(广州高铁南站顺德碧桂园店),"Mehood Lestie (Shunde Country Garden Branch, Guangzhou High Speed Rail South Station)",免费停车,22.954433,113.275102,308,1
+363,CityNote希诺酒店(广州北京路步行街公园前地铁站店),CityNote Hotel (GuangZhou Beijing Road Pedestrian GonygYuanQian Subway Station Branch),家庭房,23.125992,113.268573,401,1
+364,广州善野营地,SINYE WILDNESS RETREAT,窗外好景,23.44966,113.892191,1228,1
+365,广州世间香境七溪地度假村,Habitat Creek Villa,日光浴场,23.52988,113.390069,863,2
+366,广州得舍生活民宿,Deshe Life Guesthouse,免费停车,23.176642,113.395559,988,1
+367,CHILL TIME电竞酒店(广州塔店),Chill Time Electrosports Hotel (Guangzhou Tower Branch),智能客控,23.099109,113.339112,536,2
+368,广州默娘之家民宿,Mo Niang Home,免费停车,22.757309,113.622382,431,2
+369,广州中新知识城纳米国际大酒店,Nami International Hotel Guangzhou Zhongxin Knowledge City,机器人服务,23.306726,113.54652,309,1
+370,宜致酒店(广州塔地铁站琶洲会展中心店),Yizhi Hotel (Guangzhou Tower Subway Station Pazhou Exhibition Center Branch),家庭房,23.104873,113.317467,331,1
+371,广州吾宿民宿,Guangzhou W.sooll  Homestay,免费停车,23.087111,113.405223,364,2
+372,广州天河智慧城希尔顿欢朋酒店,Hampton by Hilton Guangzhou Tianhe Smart City,窗外好景,23.168844,113.389439,505,1
+373,骏业国际公寓,Guangzhou Junye Hotel,免费停车,23.135683,113.531896,168,1
+374,广州黔霖山度假民宿,Guangzhou Qianlinshan Boutique Bed and Breakfast,免费停车,23.510752,113.834992,447,2
+375,广州机场空港希尔顿花园酒店,Hilton Garden Inn Guangzhou Airport Aerotropolis,停车场,23.425696,113.316389,332,1
+376,全季酒店(广州彩虹桥地铁站店),Full Seasons Hotel (Guangzhou Rainbow Bridge Subway Station),智能马桶,23.132495,113.244916,388,1
+377,麗枫酒店(广州南沙万达广场金洲店),Lavande Hotel (Guangzhou Nansha Wanda Plaza Jinzhou),免费停车,22.801675,113.554569,287,1
+378,广州花都狮岭大道亚朵酒店,Atour Hotel Shiling Avenue Huadu Guangzhou,窗外好景,23.452358,113.180579,332,1
+379,广州白云站江南市场都城酒店,Metropolis Hotel,免费停车,23.179519,113.2258,269,2
+380,迎商酒店(广州淘金地铁站正佳环市中心店),"Insail Hotels (Guangzhou Taojin Metro Station, Zengjiahuan)",健身室,23.134962,113.288178,323,1
+381,优丽雅客栈(广州塔地铁站店),YULIA B&B HOMESTAY,家庭房,23.100533,113.320622,467,1
+382,漫豪思·熙源公馆(广州从化温泉镇店),Marhaus Hot Spring Homestay,私汤房,23.637966,113.641593,719,1
+383,广州从化花雨间玻璃房客栈,Huayujian Glass House,别墅,23.514585,113.691413,528,2
+384,奕玥S酒店(广州天河公园科韵路地铁站店),SURPRISE Hotel(Guangzhou International Financial City Branch),影音房,23.119685,113.373379,546,1
+385,珠光星御国际公寓(广州珠江新城御景店),Royal Stars Apartment (Zhujiang New Town Branch),酒店公寓,23.116832,113.348289,396,1
+386,柏高·颂酒店(广州金融城车陂南地铁站店),Paco Song Hotel (Guangzhou Financial City Chebei South Metro Station),免费停车,23.119551,113.390547,341,1
+387,美豪丽致(广州南站番禺长隆店),Mehood Lestie Hotel (Guangzhou South Railway Station Panyu Changlong Branch),家庭房,23.012677,113.373704,366,1
+388,广州塱头古村·和春住民宿,Guangzhou LangTou Village · Hechun Stay Homestay,网红泳池,23.337378,113.087929,664,1
+389,南洋长胜酒店(广州东站天平架地铁站店),Nanyang Changsheng Hotel,管家服务,23.159193,113.319951,340,1
+390,广州涵天戴斯酒店,Guangzhou Hantian Days Hotel,多功能厅,23.130396,113.37706,328,2
+391,宜致酒店(广州东站天平架地铁站店),Yizhi Hotel (Guangzhou East Railway Station Tianpingjia Subway Station),影音房,23.16083,113.321382,292,1
+392,广州番禺市桥富华东路轻居酒店,Guangzhou Panyu City Bridge Fuhua East Road light Ju hotel,影音房,22.945801,113.375596,358,1
+393,丽呈睿轩酒店(广州琶洲会展中心金融城店),Lichengruixuan Hotel (Guangzhou Pazhou Convention and Exhibition Center Financial City),充电桩,23.119288,113.373927,322,1
+394,柏高·雅酒店(广州江泰路地铁站店),Paco Hotel (Guangzhou Jiantai Road Metro Station),洗衣房,23.083601,113.279648,332,1
+395,桔子酒店(广州白云国际机场店),Orange Hotel (Guangzhou Baiyun International Airport),家庭房,23.427588,113.310861,256,1
+396,罗洞工匠小镇流溪田园尚居,Luodong Craftsman Town Liuxi Countryside Shangju,免费停车,23.500106,113.614506,423,2
+397,柏高酒店(广州东风东路区庄地铁站店),Paco Hotel (Guangzhou Dongfeng East Road Ouzhuang Subway Station),管家服务,23.132639,113.297879,336,1
+398,柏高·雅酒店(广州科学城萝岗万达广场店),Paco Hotel,免费停车,23.171058,113.466368,352,2
+399,榆漫居行政公寓(广州火车东站珠江新城店),"Yu Manju Executive apartment (Guangzhou East Railway Station, Zhengjia Square)",动人夜景,23.148051,113.32357,295,1

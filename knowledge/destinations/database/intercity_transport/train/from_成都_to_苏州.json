@@ -1,0 +1,92 @@
+[
+    {
+        "TrainID": "D638",
+        "TrainType": "动车",
+        "From": "成都东站",
+        "To": "苏州站",
+        "BeginTime": "07:10",
+        "EndTime": "21:35",
+        "Duration": 14.42,
+        "Cost": 945.53
+    },
+    {
+        "TrainID": "D354",
+        "TrainType": "动车",
+        "From": "成都东站",
+        "To": "苏州站",
+        "BeginTime": "07:52",
+        "EndTime": "21:45",
+        "Duration": 13.88,
+        "Cost": 945.53
+    },
+    {
+        "TrainID": "D954",
+        "TrainType": "动车",
+        "From": "成都东站",
+        "To": "苏州站",
+        "BeginTime": "07:47",
+        "EndTime": "19:50",
+        "Duration": 12.05,
+        "Cost": 945.53
+    },
+    {
+        "TrainID": "D3058",
+        "TrainType": "动车",
+        "From": "成都东站",
+        "To": "苏州站",
+        "BeginTime": "06:12",
+        "EndTime": "20:43",
+        "Duration": 14.52,
+        "Cost": 945.53
+    },
+    {
+        "TrainID": "K292",
+        "TrainType": "快速",
+        "From": "成都西站",
+        "To": "苏州站",
+        "BeginTime": "17:42",
+        "EndTime": "04:27",
+        "Duration": 34.75,
+        "Cost": 630.35
+    },
+    {
+        "TrainID": "D3055",
+        "TrainType": "动车",
+        "From": "成都东站",
+        "To": "苏州站",
+        "BeginTime": "06:12",
+        "EndTime": "20:43",
+        "Duration": 14.52,
+        "Cost": 945.53
+    },
+    {
+        "TrainID": "D635",
+        "TrainType": "动车",
+        "From": "成都东站",
+        "To": "苏州站",
+        "BeginTime": "07:10",
+        "EndTime": "21:35",
+        "Duration": 14.42,
+        "Cost": 945.53
+    },
+    {
+        "TrainID": "G1475",
+        "TrainType": "高铁",
+        "From": "成都东站",
+        "To": "苏州北站",
+        "BeginTime": "07:13",
+        "EndTime": "19:31",
+        "Duration": 12.3,
+        "Cost": 1024.32
+    },
+    {
+        "TrainID": "K1158",
+        "TrainType": "快速",
+        "From": "成都西站",
+        "To": "苏州站",
+        "BeginTime": "07:50",
+        "EndTime": "13:32",
+        "Duration": 29.7,
+        "Cost": 630.35
+    }
+]

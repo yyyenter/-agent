@@ -1,0 +1,32 @@
+[
+    {
+        "TrainID": "D620",
+        "TrainType": "动车",
+        "From": "成都东站",
+        "To": "武汉站",
+        "BeginTime": "07:00",
+        "EndTime": "16:01",
+        "Duration": 9.02,
+        "Cost": 587.87
+    },
+    {
+        "TrainID": "D368",
+        "TrainType": "动车",
+        "From": "成都东站",
+        "To": "武汉站",
+        "BeginTime": "10:53",
+        "EndTime": "20:22",
+        "Duration": 9.48,
+        "Cost": 587.87
+    },
+    {
+        "TrainID": "D2244",
+        "TrainType": "动车",
+        "From": "成都东站",
+        "To": "武汉站",
+        "BeginTime": "06:19",
+        "EndTime": "16:24",
+        "Duration": 10.08,
+        "Cost": 587.87
+    }
+]

@@ -84,8 +84,8 @@ with st.container():
 
     with col2:
         st.image("https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=300&q=80", use_container_width=True)
-        if st.button("🗼 徐州", use_container_width=True):
-            st.session_state.destination = "徐州"
+        if st.button("兰州", use_container_width=True):
+            st.session_state.destination = "兰州"
             st.rerun()
 
     with col3:
@@ -205,11 +205,15 @@ if active_prompt:
                         # 实时的步骤状态广播
                         if data['type'] == 'status':
                             status_placeholder.info(data['content'])
-                        # 最终生成的完美报告
                         elif data['type'] == 'finish':
                             final_reply = data['content']
-                            status_placeholder.empty()  # 清理掉蓝色的“思考中”卡片
+                            status_placeholder.empty()  
                             report_placeholder.markdown(final_reply)
+                        # 【新增】：捕获后端错误并显示，否则页面会一直没反应
+                        elif data['type'] == 'error':
+                            status_placeholder.empty()
+                            st.error(f"后端处理出错: {data['content']}")
+                            break
                             
             if final_reply:
                 st.session_state.messages.append({"role": "assistant", "content": final_reply})

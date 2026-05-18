@@ -10,27 +10,16 @@ planning_task:
     1. 调用 read_memory_tool 查询用户 {user_id} 的历史偏好。
     2. 检查当前用户的输入 {message} 是否包含了新的长期偏好（例如“我一直吃素”、“我腰不好不能走太多路”、“我只住五星级”）。
     3. 如果有新偏好，立即调用 save_memory_tool。你需要自己发明合适的 memory_key（如 'health_constraint', 'budget_tier'）并将内容存入。
-    【第二步：任务规划】
-    1. 【复杂度判定 (is_complex)】：
-       - 如果是简单的实事查询（如：今天天气、徐州有什么好吃的、故宫门票多少钱），设为 false。
-       - 如果是需要制定多天行程、路线安排、逻辑整合的复杂规划，设为 true。
-    2. 【简单回答 (simple_answer)】：
-       - 如果 is_complex 为 false，结合你的常识在这里直接给出简短的答案。
-       - 如果 is_complex 为 true，请留空 ("")。
-    3. 【实体与工具 (location & tools_needed)】：
-       - 提取目的地 location（如果没有明确地点，设为"未知"）。
-       - 预估这趟复杂任务需要用到的工具列表 tools_needed (可选: "weather_tool", "search_tool",)。
-    4. 个性化合规检查：调用 read_memory_tool 获取用户 {user_id} 的长期忌口或特殊要求。
-    如果草案中推荐了用户忌口的食物或不喜欢的出行方式，视为逻辑错误打回。
-    
-    !!! 必须且只能输出合法的 JSON 字符串，绝对禁止任何 Markdown 标记 (如 ```json) 或多余的文字解释 !!!
-    示例格式：
-    {
-      "is_complex": false,
-      "simple_answer": "杭州的特色美食是地锅鸡和烧烤。",
-      "location": "杭州",
-      "tools_needed": ["search_tool"]
-    }
+    【第二步：制定一份《行程规划执行策略》】。
+    你需要分析：
+    1. 用户的意图是什么？（规划行程、闲聊、还是修改已有行程？）
+    2. 我们是否知道确切的目的地？如果不知道，是否可以通过上下文推断？
+    3. 接下来的执行团队需要分为几步来完成这个任务？需要用到哪些方向的数据？
+
   expected_output: >
-    包含 is_complex, simple_answer, location 和 tools_needed 的纯 JSON 字符串。
+    输出一份清晰的《执行策略计划书》，包含：
+    - 任务定性（是否为复杂的旅游规划）
+    - 目标地点（如果明确的话）
+    - 核心诉求（用户最在意的点）
+    - 分步执行指导（给执行团队的SOP，例如第一步查什么，第二步写什么。如果发现严重缺失目的地等信息，请在计划中明确指出“存在信息缺失风险”）。
   agent: planner_agent

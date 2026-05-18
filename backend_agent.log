@@ -1,0 +1,21 @@
+[33m2026-05-18 18:14:56 WARNING semantic_router No index provided. Using default LocalIndex.[0m
+INFO:     Started server process [17996]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-18 18:17:42 - root - INFO - completion.py:1691 - _handle_completion() - OpenAI API usage: {'prompt_tokens': 179, 'completion_tokens': 3, 'total_tokens': 182}
+2026-05-18 18:17:43 - root - INFO - completion.py:1691 - _handle_completion() - OpenAI API usage: {'prompt_tokens': 206, 'completion_tokens': 21, 'total_tokens': 227}
+[Redis] Connected successfully
+INFO:     127.0.0.1:10148 - "POST /api/chat_stream HTTP/1.1" 200 OK
+2026-05-18 18:18:01 - root - INFO - completion.py:1691 - _handle_completion() - OpenAI API usage: {'prompt_tokens': 130, 'completion_tokens': 276, 'total_tokens': 406}
+2026-05-18 18:18:02 - root - INFO - completion.py:1691 - _handle_completion() - OpenAI API usage: {'prompt_tokens': 459, 'completion_tokens': 3, 'total_tokens': 462}
+2026-05-18 18:18:24 - root - INFO - completion.py:1691 - _handle_completion() - OpenAI API usage: {'prompt_tokens': 497, 'completion_tokens': 37, 'total_tokens': 534}
+2026-05-18 18:18:26 - root - INFO - completion.py:1691 - _handle_completion() - OpenAI API usage: {'prompt_tokens': 524, 'completion_tokens': 26, 'total_tokens': 550}
+INFO:     127.0.0.1:10155 - "POST /api/chat_stream HTTP/1.1" 200 OK
+2026-05-18 18:18:43 - root - INFO - completion.py:1691 - _handle_completion() - OpenAI API usage: {'prompt_tokens': 486, 'completion_tokens': 308, 'total_tokens': 794}
+2026-05-18 18:18:45 - root - INFO - completion.py:1691 - _handle_completion() - OpenAI API usage: {'prompt_tokens': 806, 'completion_tokens': 32, 'total_tokens': 838}
+2026-05-18 18:18:47 - root - INFO - completion.py:1691 - _handle_completion() - OpenAI API usage: {'prompt_tokens': 155, 'completion_tokens': 20, 'total_tokens': 175}
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [17996]

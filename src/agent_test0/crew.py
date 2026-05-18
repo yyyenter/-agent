@@ -2,16 +2,44 @@
 import json
 import os
 import re
+import sys
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.flow import Flow, listen, start
 from crewai.project import CrewBase, agent, task, crew
 from pydantic import BaseModel
 from crewai_tools import TavilySearchTool
 from dotenv import load_dotenv
-
+import logging
 # 加载 .env 文件
 load_dotenv()
 
+logger = logging.getLogger("crew_agent_logger")
+logger.setLevel(logging.INFO)
+
+# 1. 保留原本写入文件的 Handler
+file_handler = logging.FileHandler("agent_debug.log", encoding="utf-8")
+file_handler.setFormatter(logging.Formatter('\n[%(asctime)s] %(message)s', datefmt='%H:%M:%S'))
+logger.addHandler(file_handler)
+
+# 2. 【新增】终端输出 Handler：强行把日志同步打印到你的黑色控制台窗口！
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setFormatter(logging.Formatter('🤖 [Agent动作] %(message)s'))
+logger.addHandler(console_handler)
+
+# 3. 增强版解析函数（防止 CrewAI 返回复杂对象导致乱码）
+def agent_step_logger(step_output):
+    try:
+        if hasattr(step_output, 'thought') and step_output.thought:
+            logger.info(f"🤔 思考: {step_output.thought}")
+        if hasattr(step_output, 'tool') and step_output.tool:
+            logger.info(f"🛠️ 调用工具: {step_output.tool} | 参数: {step_output.tool_input}")
+        if hasattr(step_output, 'result') and step_output.result:
+            logger.info(f"✅ 执行结果: {step_output.result}")
+        else:
+            logger.info(f"追踪: {str(step_output)}")
+    except Exception:
+        logger.info(f"动作: {str(step_output)}")
+        
 # ✅ 引入拆分后的原子工具 (SQLite 动态 KV 版本)
 from agent_test0.tools.custom_tool import WeatherTool, ReadMemoryTool, SaveMemoryTool
 
@@ -74,7 +102,7 @@ class PlannerCrew:
         return Crew(
             agents=self.agents, 
             tasks=self.tasks, 
-            verbose=True
+            verbose=True,step_callback=agent_step_logger
         )
 
 
@@ -129,9 +157,7 @@ class TravelExpertCrew:
         return Crew(
             agents=self.agents, 
             tasks=self.tasks, 
-            process=Process.hierarchical, # 开启层级管理
-            manager_llm=zhipu_llm,         # 指定经理大脑
-            verbose=True
+            verbose=True,step_callback=agent_step_logger
         )
 
 
@@ -160,7 +186,7 @@ class ValidatorCrew:
         return Crew(
             agents=self.agents, 
             tasks=self.tasks, 
-            verbose=True
+            verbose=True,step_callback=agent_step_logger
         )
      
 # ==================== Flow 调度（自适应 ReAct 收敛闭环） ====================
@@ -179,6 +205,11 @@ class TravelWorkflow(Flow[TravelState]):
             self.status_callback(text)
 
     def _parse_feedback(self, feedback: str) -> tuple[str, str]:
+        # 特殊处理：[继续] 标签
+        if feedback.startswith("[继续]"):
+            advice = feedback.replace("[继续]", "").strip()
+            return "continue", advice
+
         feedback_lower = feedback.lower()
         if any(kw in feedback_lower for kw in ["通过", "合格", "满意", "完美", "pass", "ok"]):
             if "错误" not in feedback_lower and "不足" not in feedback_lower and "打回" not in feedback_lower:
@@ -205,9 +236,9 @@ class TravelWorkflow(Flow[TravelState]):
             "focus": self.state.focus
         }
         if self.feedback_history:
-            inputs["feedback_history"] = "\n".join(self.feedback_history[-3:])
+            inputs["feedback_history"] = "\n".join(self.feedback_history[:])
 
-        result = PlannerCrew().crew().kickoff(inputs=inputs)
+        result = PlannerCrew().crew().kickoff(inputs = inputs)
         raw_text = result.raw.strip()
 
         try:
@@ -282,6 +313,16 @@ class TravelWorkflow(Flow[TravelState]):
                 print("[Reason] 方案通过终审！");
                 self.state.final_report = self.state.draft_report
                 return
+
+            elif feedback_type == "continue":
+                # [继续] 标签：当前步骤达标，继续推进
+                advice = adjustment_hint  # adjustment_hint 在这里就是 advice
+                self.notify(f"▶️ [阶段完成] 当前步骤达标，继续推进...")
+                print(f"✅ 步骤通过，准备下一步: {advice}")
+                # 将下一步的指示追加到计划书中
+                self.state.focus = f"{self.state.focus}；(Validator最新指示: {advice})"
+                self.execute_step()
+                continue
 
             elif feedback_type in ("adjust", "incomplete"):
                 if self.current_adjust_count < self.max_adjustments:

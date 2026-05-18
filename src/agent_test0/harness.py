@@ -189,7 +189,7 @@ class MemoryManager:
             return
         
         # 仅拿最新对话进行快速解析，降低延迟与 token 成本
-        history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in history[-3:]])
+        history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in history[-5:]])
         
         prompt = f"""
         请分析以下对话，提取出属于【当前具体行程】的最新硬性指标（如目的地、出行天数、出行预算、特定的临时偏好等）。

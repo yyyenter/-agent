@@ -60,6 +60,8 @@ os.environ["OPENAI_API_KEY"] = os.getenv("GLM_API_KEY", "dummy_key")
 os.environ["OPENAI_API_BASE"] = os.getenv("GLM_API_BASE", "")
 glm_model = os.getenv("GLM_MODEL_NAME", "glm-4-flash")
 os.environ["OPENAI_MODEL_NAME"] = f"openai/{glm_model}"
+os.environ["LITELLM_LOG"] = "ERROR" 
+os.environ["SUPPRESS_LITELLM_LOGS"] = "True"
 
 # ✅ 从我们全新拆分的 harness 导入隔离机制与记忆管理器
 from agent_test0.harness import MemoryManager, get_redis_or_fallback
@@ -123,12 +125,12 @@ async def chat_endpoint_stream(request: ChatRequest):
     
     # 实例化当前会话的记忆管理器
     memory = MemoryManager(actual_session_id, actual_user_id, redis_client, is_redis_fallback)
-    
-    # 🔄 记忆转换链路 1: 启动前，快速进行 历史对话(Episodic) -> 短期约束(Working Memory) 的同步转化
-    memory.convert_episodic_to_working(zhipu_llm)
-    
+
     # 路由前先追加消息，保持上下文连贯
     memory.add_message("user", request.message)
+
+    # 转换历史对话为短期约束
+    memory.convert_episodic_to_working(zhipu_llm)
     
     # 【路由前专用】轻量级指代消解 - 绝对不传入长期记忆
     contextual_message = rewrite_query_lightweight(memory, request.message)
@@ -142,9 +144,6 @@ async def chat_endpoint_stream(request: ChatRequest):
     def run_crewai_task():
         try:
             if intent_name == "travel":
-                # 再次执行一次提纯转换，捕获当下输入暴露的短期指标
-                memory.convert_episodic_to_working(zhipu_llm)
-
                 def workflow_status_listener(status_text: str):
                     asyncio.run_coroutine_threadsafe(
                         queue.put({"type": "status", "content": status_text}), loop
@@ -171,29 +170,6 @@ async def chat_endpoint_stream(request: ChatRequest):
                 asyncio.run_coroutine_threadsafe(
                     queue.put({"type": "finish", "content": result.state.final_report}), loop
                 )
-                
-                # 流式输出生成器
-                async def generate():
-                    try:
-                        while True:
-                            # 等待消息
-                            msg = await queue.get()
-                            
-                            # 发送消息到客户端
-                            yield f"data: {json.dumps(msg, ensure_ascii=False)}\n\n"
-                            
-                            # 如果是完成或错误消息，结束流
-                            if msg["type"] in ["finish", "error"]:
-                                break
-                                
-                    except Exception as e:
-                        yield f"data: {json.dumps({'type': 'error', 'content': str(e)}, ensure_ascii=False)}\n\n"
-                
-                return StreamingResponse(
-                    generate(),
-                    media_type="text/event-stream",
-                    headers={"Cache-Control": "no-cache", "Connection": "keep-alive"}
-                )
             else:
                 # ---------- 闲聊分支 ----------
                 context_payload = memory.get_global_context_prompt(request.message)
@@ -206,7 +182,6 @@ async def chat_endpoint_stream(request: ChatRequest):
                 reply_text = response.strip()
                 
                 memory.add_message("assistant", reply_text)
-
                 # 先提取本轮对话的短期约束，再基于短期摘要提炼长期偏好
                 memory.convert_episodic_to_working(zhipu_llm)
                 memory.convert_to_semantic(zhipu_llm)

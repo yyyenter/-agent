@@ -4,10 +4,56 @@ import json
 import os
 import uuid
 import uvicorn
+from pathlib import Path
 from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.responses import StreamingResponse
+from typing import Optional
 from crewai import LLM
+from dotenv import load_dotenv
+
+# 加载 .env 文件
+load_dotenv()
+
+# ---- 意图路由: 加载 routes.json + 构建旅行关键词索引 ----
+ROUTES_PATH = Path(__file__).resolve().parent.parent.parent / "knowledge" / "routes.json"
+with open(ROUTES_PATH, "r", encoding="utf-8") as _f:
+    ROUTES = json.load(_f)
+
+from semantic_router import Route, SemanticRouter
+from semantic_router.encoders.ollama import OllamaEncoder
+
+
+travel_route = Route(
+    name="travel",
+    utterances=ROUTES.get("travel", []),
+    description="旅游规划相关请求",
+)
+chat_route = Route(
+    name="default_chat",
+    utterances=ROUTES.get("chitchat", []),
+    description="闲聊和日常对话",
+)
+
+intent_router = SemanticRouter(
+    routes=[travel_route, chat_route],
+    encoder=OllamaEncoder(
+        name="nomic-embed-text",
+        base_url="http://localhost:11434",
+        score_threshold=0.3,
+    ),
+)
+
+
+def classify_intent(message: str) -> str:
+    """基于 semantic_router + Ollama 的语义意图分类"""
+    try:
+        result = intent_router(message)
+        if result and result.name:
+            return result.name
+    except Exception:
+        pass
+    return "default_chat"
 
 # 环境变量隔离与注入
 os.environ["OPENAI_API_KEY"] = os.getenv("GLM_API_KEY", "dummy_key")
@@ -32,7 +78,7 @@ app: FastAPI = FastAPI(title="智能旅游规划 Agent API", description="基于
 
 class ChatRequest(BaseModel):
     user_id: str = "yyy"
-    session_id: str = ""
+    session_id: Optional[str] = None
     message: str
 
 def rewrite_query_lightweight(memory: MemoryManager, current_message: str) -> str:
@@ -41,7 +87,7 @@ def rewrite_query_lightweight(memory: MemoryManager, current_message: str) -> st
     - 只看最近5轮对话，不含长期记忆
     - 绝对不越界污染路由判断
     """
-    history = memory.get_chat_history()[-10:]  # 最近3轮
+    history = memory.get_chat_history()[-10:]  # 最近5轮
     if not history:
         return current_message
 
@@ -87,9 +133,8 @@ async def chat_endpoint_stream(request: ChatRequest):
     # 【路由前专用】轻量级指代消解 - 绝对不传入长期记忆
     contextual_message = rewrite_query_lightweight(memory, request.message)
     
-    # 简易多路意图分发
-    is_travel_related = any(kw in contextual_message for kw in ["旅游", "规划", "行程", "攻略", "玩", "去", "景点"])
-    intent_name = "travel" if is_travel_related else "default_chat"
+    # 多路意图分发: semantic_router + Ollama 语义路由
+    intent_name = classify_intent(contextual_message)
     
     loop = asyncio.get_running_loop()
     queue = asyncio.Queue()
@@ -174,6 +219,14 @@ async def chat_endpoint_stream(request: ChatRequest):
                 queue.put({"type": "error", "content": f"系统运行出错: {str(e)}"}), loop
             )
 
+    # 在线程池中执行 CrewAI 任务
+    import concurrent.futures
+
+    def run_in_thread():
+        run_crewai_task()
+
+    loop.run_in_executor(None, run_in_thread)
+
     async def event_generator():
         while True:
             msg = await queue.get()
@@ -185,7 +238,7 @@ async def chat_endpoint_stream(request: ChatRequest):
 
 def run():
     print("====================================")
-    print("🌍 智能旅游规划系统 - Agent API 服务已启动 ")
+    print("[GLOBAL] 智能旅游规划系统 - Agent API 服务已启动")
     print("====================================")
     uvicorn.run(app, host="0.0.0.0", port=8000)
 

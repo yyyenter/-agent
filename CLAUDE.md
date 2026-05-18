@@ -9,7 +9,7 @@
 uv sync
 
 # 启动 FastAPI 服务（API 监听 8000 端口）
-crewai run
+uv run python src/agent_test0/main.py
 
 # 启动 Streamlit 前端界面（需要另开一个终端）
 uv run streamlit run src/agent_test0/app_ui.py
@@ -61,10 +61,12 @@ crewai log-tasks-outputs          # 查看最近的任务输出
 |--------|----------|------|
 | 情节记忆 (桶3) | Redis List | 原始对话轮次 |
 | 工作记忆 (桶5) | Redis Hash | 当前行程的临时约束 |
-| 工具缓存 (桶4) | Redis KV | 全局工具结果缓存 |
+| 工具缓存 (桶4) | Redis KV | 全局工具结果缓存（L1/L2/L3 三层匹配） |
 | 语义记忆 (桶6) | SQLite `user_memory` 表 | 用户长期偏好（动态 KV 结构） |
 
-记忆流转链路：情节记忆 → 工作记忆（LLM 提取当前约束）→ 语义记忆（LLM 从工作记忆中蒸馏长期特征，而非从原始对话中提取）。
+记忆流转链路：
+- **Episodic → Working**: LLM 从原始对话中提取当前行程的临时约束
+- **Working → Semantic**: LLM 从短期摘要中蒸馏长期特征，持久化到 SQLite
 
 ### LLM 与环境配置
 
@@ -72,21 +74,46 @@ crewai log-tasks-outputs          # 查看最近的任务输出
 - `main.py` 在启动时将 `GLM_API_KEY`/`GLM_API_BASE`/`GLM_MODEL_NAME` 映射为 `OPENAI_API_KEY`/`OPENAI_API_BASE`/`OPENAI_MODEL_NAME`，使 CrewAI 的 LiteLLM 路由能透明接入智谱
 - 每个 Crew 和 Flow 各自通过 `crewai.LLM` 实例化模型连接
 
-### 配置文件（注意是 `agent.yaml` 单数，不是 `agents.yaml`）
+### 配置文件
 
-- `config/agent.yaml` — 4 个 agent 定义：planner_agent, info_search_agent, itinerary_planner_agent, logic_validator_agent
-- `config/tasks.yaml` — planning_task（PlannerCrew 用）
-- `config/research_tasks.yaml` — research_task, drafting_task, validation_task（TravelExpertCrew 用）
-- `config/logic_validator_tasks.yaml` — validation_task（ValidatorCrew 用）
+- `src/agent_test0/config/agent.yaml` — 4 个 agent 定义：planner_agent, info_search_agent, itinerary_planner_agent, logic_validator_agent
+- `src/agent_test0/config/tasks.yaml` — planning_task（PlannerCrew 用）
+- `src/agent_test0/config/research_tasks.yaml` — research_task, drafting_task, validation_task（TravelExpertCrew 用）
+- `src/agent_test0/config/logic_validator_tasks.yaml` — validation_task（ValidatorCrew 用）
 
 ### 关键自定义工具 (`tools/custom_tool.py`)
 
-- `WeatherTool` — 调用和风天气 API，带 Redis 缓存（30 分钟 TTL）
+- `WeatherTool` — 调用和风天气 API，带 Redis 缓存（5 小时 TTL），支持 L1/L2/L3 三层匹配
 - `ReadMemoryTool` / `SaveMemoryTool` — 基于 SQLite 的 KV 读写，用于用户画像的持久化（按 user_id + memory_key 做 upsert）
+- `ToolCacheManager` — 全局工具缓存管理器，支持精确匹配(L1)、归一匹配(L2)、语义匹配(L3)
+
+### 环境变量 (`.env`)
+
+```env
+# GLM 智谱 AI
+GLM_API_KEY=your_api_key
+GLM_API_BASE=https://open.bigmodel.cn/api/paas/v4/
+GLM_MODEL_NAME=glm-4-flash
+
+# 和风天气
+QWEATHER_API_KEY=your_key
+QWEATHER_API_HOST=geoapi.qweather.com
+
+# Redis (可选，不配置则回退到内存存储)
+REDIS_HOST=localhost
+REDIS_PORT=6379
+```
 
 ## 注意事项
 
 - `.env` 中包含真实 API Key，绝对不能提交到 Git。`.gitignore` 中已包含 `.env`。
-- Agent 配置文件名为单数 `agent.yaml`，而非 CrewAI 模板常用的复数 `agents.yaml`。
+- Agent 配置文件位于 `src/agent_test0/config/agent.yaml`（单数，而非复数 `agents.yaml`）。
 - Redis 预期运行在 `localhost:6379`。当 Redis 不可用时，`harness.py` 会自动回退到内存存储（仅会话有效，重启后丢失）。
 - `client_test.py` 请求的是 `/api/chat`（非流式），但 `main.py` 只有 `/api/chat_stream`（SSE 流式）端点 — 测试脚本直接运行会失败。
+- Flow 使用 `@start()`, `@listen()`, `@router()` 装饰器定义事件驱动的工作流。
+- 记忆系统有四级存储，分别对应不同的生命周期和存储介质。
+
+## 代码解析进度
+
+- `main.py` 解析到第 22 行（routes.json 加载完成），从第 23 行继续
+  - 进度记录文件：`.claude/projects/E--Python-agent-test0/memory/main_py_analysis_progress.md`

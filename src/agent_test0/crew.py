@@ -7,6 +7,10 @@ from crewai.flow import Flow, listen, start
 from crewai.project import CrewBase, agent, task, crew
 from pydantic import BaseModel
 from crewai_tools import TavilySearchTool
+from dotenv import load_dotenv
+
+# 加载 .env 文件
+load_dotenv()
 
 # ✅ 引入拆分后的原子工具 (SQLite 动态 KV 版本)
 from agent_test0.tools.custom_tool import WeatherTool, ReadMemoryTool, SaveMemoryTool
@@ -191,9 +195,9 @@ class TravelWorkflow(Flow[TravelState]):
     def plan_steps(self):
         "Step 1: Plan — 决策官剖析需求"
         print(f"\n{'='*50}")
-        print(f"📋 [Plan] 决策官剖析需求中（error重试: {self.current_error_count}, adjust微调: {self.current_adjust_count}）")
+        print(f"[Plan] 决策官剖析需求中（error重试: {self.current_error_count}, adjust微调: {self.current_adjust_count}）")
         print(f"{'='*50}")
-        self.notify("📋 [决策阶段] 决策大脑正在读取您的长期特征并建立行程执行 Focus 指引...")
+        self.notify("[决策阶段] 决策大脑正在读取您的长期特征并建立行程执行 Focus 指引...")
 
         inputs = {
             "message": self.state.message,
@@ -219,20 +223,20 @@ class TravelWorkflow(Flow[TravelState]):
             else:
                 raise ValueError("未在模型输出中检测到 JSON 结构")
         except Exception as e:
-            print(f"⚠️ Planner 提取失败: {str(e)}")
+            print(f"[Planner] 提取失败: {str(e)}")
             self.state.is_complex = True
 
     @listen(plan_steps)
     def execute_step(self):
         "Step 2: Act — 核心 SOP 执行层"
         if not self.state.is_complex:
-            self.notify("⚡ [决策阶段] 判定为简单任务，正在直接解答...")
+            self.notify("[决策阶段] 判定为简单任务，正在直接解答...")
             self.state.final_report = self.state.simple_answer
             return
 
-        self.notify(f"🔎 [执行阶段] 专家团队已集结！正在深度检索与规划【{self.state.location}】...")
+        self.notify(f"[执行阶段] 专家团队已集结！正在深度检索与规划【{self.state.location}】...")
         print(f"\n{'='*50}")
-        print(f"⚡ [Act] 执行生成（focus: {self.state.focus}）...")
+        print(f"[Act] 执行生成（focus: {self.state.focus}）...")
         print(f"{'='*50}")
 
         result = TravelExpertCrew().crew().kickoff(inputs={
@@ -242,7 +246,7 @@ class TravelWorkflow(Flow[TravelState]):
             "user_id": self.state.user_id
         })
         self.state.draft_report = result.raw
-        print(f"📝 生成草案: {len(result.raw)} 字符")
+        print(f"[生成] 草案: {len(result.raw)} 字符")
 
     @listen(execute_step)
     def validate_router(self):
@@ -256,10 +260,10 @@ class TravelWorkflow(Flow[TravelState]):
 
         while True:
             print(f"\n{'='*50}")
-            print(f"🔍 [Reason] 质检评估中（error重试: {self.current_error_count}, adjust微调: {self.current_adjust_count}）")
+            print(f"[Reason] 质检评估中（error重试: {self.current_error_count}, adjust微调: {self.current_adjust_count}）")
             print(f"{'='*50}")
 
-            self.notify("🔍 [质检阶段] 逻辑质检员正在进行严格的通勤距离和长期画像合规审查...")
+            self.notify("[质检阶段] 逻辑质检员正在进行严格的通勤距离和长期画像合规审查...")
 
             result = ValidatorCrew().crew().kickoff(inputs={
                 "draft": self.state.draft_report,
@@ -270,39 +274,39 @@ class TravelWorkflow(Flow[TravelState]):
             self.feedback_history.append(validation_feedback)
 
             feedback_type, adjustment_hint = self._parse_feedback(validation_feedback)
-            print(f"📊 反馈类型: {feedback_type}")
+            print(f"[反馈] 类型: {feedback_type}")
             if adjustment_hint:
                 print(f"   提示: {adjustment_hint[:200]}")
 
             if feedback_type == "pass":
-                print("✅ [Reason] 方案通过终审！");
+                print("[Reason] 方案通过终审！");
                 self.state.final_report = self.state.draft_report
                 return
 
             elif feedback_type in ("adjust", "incomplete"):
                 if self.current_adjust_count < self.max_adjustments:
                     self.current_adjust_count += 1
-                    print(f"🔄 [Reason] 需要优化/补充（第{self.current_adjust_count}次微调），重新执行...");
-                    self.notify(f"🔄 [重试 {self.current_adjust_count}/{self.max_adjustments}] 根据质检反馈微调行程...");
+                    print(f"[Reason] 需要优化/补充（第{self.current_adjust_count}次微调），重新执行...");
+                    self.notify(f"[重试 {self.current_adjust_count}/{self.max_adjustments}] 根据质检反馈微调行程...");
                     self.state.focus = f"{self.state.focus}；(质检整改要求: {adjustment_hint})"
                     self.execute_step()
                     continue
                 else:
-                    print(f"⚠️ 微调次数耗尽，强制结束")
+                    print(f"[警告] 微调次数耗尽，强制结束")
                     self.state.final_report = self.state.draft_report
                     return
 
             elif feedback_type == "error":
                 if self.current_error_count < self.max_error_retries:
                     self.current_error_count += 1
-                    print(f"❌ [Reason] 严重逻辑矛盾（第{self.current_error_count}次），回滚到 Plan 重新规划...")
-                    self.notify(f"❌ [重试 {self.current_error_count}/{self.max_error_retries}] 发现严重问题，回滚重新规划...")
+                    print(f"[Reason] 严重逻辑矛盾（第{self.current_error_count}次），回滚到 Plan 重新规划...")
+                    self.notify(f"[重试 {self.current_error_count}/{self.max_error_retries}] 发现严重问题，回滚重新规划...")
                     self.state.focus = f"{self.state.focus}；(历史质检致命错误: {adjustment_hint})"
                     self.plan_steps()
                     self.execute_step()
                     continue
                 else:
-                    print(f"⚠️ 重试次数耗尽，强制结束")
+                    print(f"[警告] 重试次数耗尽，强制结束")
                     self.state.final_report = f"[无法收敛修正]\n{self.state.draft_report}"
                     return
 
@@ -313,7 +317,7 @@ class TravelWorkflow(Flow[TravelState]):
     @listen(validate_router)
     def finalize(self):
         print(f"\n{'='*50}")
-        print(f"🏁 流程结束")
+        print(f"[结束] 流程结束")
         print(f"{'='*50}")
         if not self.state.final_report:
             self.state.final_report = self.state.draft_report or '未能生成报告'

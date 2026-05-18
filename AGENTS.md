@@ -1007,7 +1007,7 @@ crewai run                    # Execute
 
 ## Common Pitfalls
 
-- **Using `ChatOpenAI()`** — Always use `crewai.LLM` or string shorthand like `"openai/gpt-4o"`
+- **Using `ChatOpenAI()`** — Always use `crewai.LLM` 或字符串简写如 `"openai/gpt-4o"`
 - Forgetting `# type: ignore[index]` on config dictionary access in crew classes
 - Agent/task method names not matching YAML keys
 - Missing `expected_output` in task configuration (required)
@@ -1015,3 +1015,60 @@ crewai run                    # Execute
 - Using `process=Process.hierarchical` without setting `manager_llm` or `manager_agent`
 - Circular delegation: set `allow_delegation=False` on specialist agents
 - Not installing tools package: `uv add crewai-tools`
+
+## 特定于本项目的注意事项
+
+### GLM 智谱 AI 配置
+
+本项目使用智谱 AI 的 GLM 模型作为 LLM，通过 OpenAI 兼容 API 接入：
+
+```python
+from crewai import LLM
+import os
+
+zhipu_llm = LLM(
+    model=os.getenv("GLM_MODEL_NAME") or "glm-4-flash",
+    base_url=os.getenv("GLM_API_BASE") or "https://open.bigmodel.cn/api/paas/v4/",
+    api_key=os.getenv("GLM_API_KEY"),
+)
+```
+
+在 `.env` 中配置：
+```env
+GLM_API_KEY=your_api_key
+GLM_API_BASE=https://open.bigmodel.cn/api/paas/v4/
+GLM_MODEL_NAME=glm-4-flash
+```
+
+### 项目结构
+
+```
+agent_test0/
+├── src/agent_test0/
+│   ├── config/
+│   │   ├── agent.yaml              # Agent 定义（单数）
+│   │   ├── tasks.yaml              # PlannerCrew 任务
+│   │   ├── research_tasks.yaml     # TravelExpertCrew 任务
+│   │   └── logic_validator_tasks.yaml  # ValidatorCrew 任务
+│   ├── tools/
+│   │   └── custom_tool.py          # 自定义工具（WeatherTool, ReadMemoryTool, SaveMemoryTool）
+│   ├── harness.py                  # 记忆管理器（四级存储）
+│   ├── main.py                     # FastAPI 入口
+│   └── crew.py                     # Crew 和 Flow 定义
+├── knowledge/
+│   └── user_profiles.db            # SQLite 长期记忆数据库
+└── .env                            # 环境变量（API Keys）
+```
+
+### 记忆系统架构
+
+本项目实现了四级记忆存储：
+
+1. **情节记忆 (Episodic)** - Redis List，存储原始对话轮次
+2. **工作记忆 (Working)** - Redis Hash，存储当前行程的临时约束
+3. **工具缓存 (Tool Cache)** - Redis KV，全局工具结果缓存（L1/L2/L3 三层匹配）
+4. **语义记忆 (Semantic)** - SQLite `user_memory` 表，用户长期偏好
+
+记忆流转由 `MemoryManager` 自动处理：
+- `convert_episodic_to_working()`: 从原始对话提取短期约束
+- `convert_to_semantic()`: 从短期摘要提炼长期偏好

@@ -1,8 +1,13 @@
 # agent_test0/crew.py
+import sys
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except Exception:
+    pass
+
 import json
 import os
 import re
-import sys
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.flow import Flow, listen, start
 from crewai.project import CrewBase, agent, task, crew
@@ -52,29 +57,24 @@ zhipu_llm = LLM(
 search_tool = None  # TavilySearchTool(api_key=os.getenv('TAVILY_API_KEY'))
 
 class TravelState(BaseModel):
+    # 输入
     message: str = ''
-    user_id: str = 'default_user'    
-    session_id: str = 'default_sess' 
+    user_id: str = 'default_user'
+    session_id: str = 'default_sess'
+
+    # Planner 输出（意图感知结果）
     is_complex: bool = True
     simple_answer: str = ""
-    tools_needed: list[str] = []
-    focus: str = ""
     location: str = "未知地点"
-    topic: str = "旅游规划"
-    food: str = ""
-    plan: list[str] = []
-    weather_info: str = "未查询天气"
-    food_info: str = "未查询特色"
-    draft_report: str = "" # 用于暂存生产团队的草案，供质检员审查
+    focus: str = ""
+    tools_needed: list[str] = []
+    plan_document: str = ""
+
+    # 执行中间结果
+    draft_report: str = ""
+
+    # 最终输出
     final_report: str = ""
-    
-    # ========== ReAct 循环状态 ==========
-    current_step: int = 0              # 当前执行到第几步
-    retry_count: int = 0                # 当前步骤重试次数
-    max_retries: int = 3                # 最大重试次数
-    validation_feedback: str = ""       # 质检反馈内容
-    needs_replan: bool = False          # 是否需要重新规划
-    adjustment_hint: str = ""            # 调整建议（用于 Replan）
 
 
 @CrewBase
@@ -82,6 +82,9 @@ class PlannerCrew:
     """负责 Flow 第一步的决策与长期偏好分析"""
     agents_config = 'config/agent.yaml'
     tasks_config = 'config/tasks.yaml'
+
+    def __init__(self, step_callback=None):
+        self._step_callback = step_callback or agent_step_logger
 
     @agent
     def planner_agent(self) -> Agent:
@@ -100,9 +103,9 @@ class PlannerCrew:
     @crew
     def crew(self) -> Crew:
         return Crew(
-            agents=self.agents, 
-            tasks=self.tasks, 
-            verbose=True,step_callback=agent_step_logger
+            agents=self.agents,
+            tasks=self.tasks,
+            verbose=True, step_callback=self._step_callback
         )
 
 
@@ -110,7 +113,10 @@ class PlannerCrew:
 class TravelExpertCrew:
     """自治团队：收编了旅游情报、旅游规划、内部质检等所有 SOP 执行能力"""
     agents_config = 'config/agent.yaml'
-    tasks_config  = 'config/research_tasks.yaml' 
+    tasks_config  = 'config/research_tasks.yaml'
+
+    def __init__(self, step_callback=None):
+        self._step_callback = step_callback or agent_step_logger 
 
     @agent
     def info_search_agent(self) -> Agent:
@@ -155,9 +161,9 @@ class TravelExpertCrew:
     @crew
     def crew(self) -> Crew:
         return Crew(
-            agents=self.agents, 
-            tasks=self.tasks, 
-            verbose=True,step_callback=agent_step_logger
+            agents=self.agents,
+            tasks=self.tasks,
+            verbose=True, step_callback=self._step_callback
         )
 
 
@@ -166,6 +172,9 @@ class ValidatorCrew:
     """终审重关卡：负责最终逻辑审核，不参与生产"""
     agents_config = 'config/agent.yaml'
     tasks_config = 'config/logic_validator_tasks.yaml'
+
+    def __init__(self, step_callback=None):
+        self._step_callback = step_callback or agent_step_logger
 
     @agent
     def logic_validator_agent(self) -> Agent:
@@ -184,14 +193,14 @@ class ValidatorCrew:
     @crew
     def crew(self) -> Crew:
         return Crew(
-            agents=self.agents, 
-            tasks=self.tasks, 
-            verbose=True,step_callback=agent_step_logger
+            agents=self.agents,
+            tasks=self.tasks,
+            verbose=True, step_callback=self._step_callback
         )
      
 # ==================== Flow 调度（自适应 ReAct 收敛闭环） ====================
 class TravelWorkflow(Flow[TravelState]):
-    def __init__(self, status_callback = None):
+    def __init__(self, status_callback=None, content_callback=None):
         super().__init__()
         self.max_error_retries = 3
         self.max_adjustments = 20
@@ -199,17 +208,50 @@ class TravelWorkflow(Flow[TravelState]):
         self.current_adjust_count = 0
         self.feedback_history: list[str] = []
         self.status_callback = status_callback
+        self.content_callback = content_callback
 
     def notify(self, text: str):
         if self.status_callback:
             self.status_callback(text)
 
-    def _parse_feedback(self, feedback: str) -> tuple[str, str]:
-        # 特殊处理：[继续] 标签
-        if feedback.startswith("[继续]"):
-            advice = feedback.replace("[继续]", "").strip()
-            return "continue", advice
+    def _notify_content(self, text: str, content_type: str = "content"):
+        if self.content_callback:
+            self.content_callback(text, content_type)
 
+    def _make_step_callback(self):
+        """创建 step_callback：同时写日志 + 推 SSE"""
+        flow = self
+
+        def callback(step_output):
+            # 1. 写日志（复用现有逻辑）
+            agent_step_logger(step_output)
+            # 2. 推 SSE
+            try:
+                if hasattr(step_output, 'thought') and step_output.thought:
+                    flow._notify_content(f"🤔 {step_output.thought}", "content")
+                if hasattr(step_output, 'tool') and step_output.tool:
+                    flow._notify_content(f"🛠️ 调用 {step_output.tool}", "content")
+                if hasattr(step_output, 'result') and step_output.result:
+                    flow._notify_content(str(step_output.result), "content")
+                else:
+                    flow._notify_content(str(step_output), "content")
+            except Exception:
+                pass
+
+        return callback
+
+    def _parse_feedback(self, feedback: str) -> tuple[str, str]:
+        """YAML 四标签解析：[提问] [重做] [继续] [通过]"""
+        if feedback.startswith("[提问]"):
+            return "ask_user", feedback.replace("[提问]", "").strip()
+        if feedback.startswith("[重做]"):
+            return "error", feedback.replace("[重做]", "").strip()
+        if feedback.startswith("[继续]"):
+            return "continue", feedback.replace("[继续]", "").strip()
+        if feedback.startswith("[通过]"):
+            return "pass", feedback.replace("[通过]", "").strip()
+
+        # 兜底：旧版关键词匹配
         feedback_lower = feedback.lower()
         if any(kw in feedback_lower for kw in ["通过", "合格", "满意", "完美", "pass", "ok"]):
             if "错误" not in feedback_lower and "不足" not in feedback_lower and "打回" not in feedback_lower:
@@ -238,8 +280,11 @@ class TravelWorkflow(Flow[TravelState]):
         if self.feedback_history:
             inputs["feedback_history"] = "\n".join(self.feedback_history[:])
 
-        result = PlannerCrew().crew().kickoff(inputs = inputs)
+        result = PlannerCrew(step_callback=self._make_step_callback()).crew().kickoff(inputs = inputs)
         raw_text = result.raw.strip()
+
+        # 保存完整计划文档（传给后续 Crew 使用）
+        self.state.plan_document = raw_text
 
         try:
             json_match = re.search(r'\{.*\}', raw_text, re.DOTALL)
@@ -270,11 +315,12 @@ class TravelWorkflow(Flow[TravelState]):
         print(f"[Act] 执行生成（focus: {self.state.focus}）...")
         print(f"{'='*50}")
 
-        result = TravelExpertCrew().crew().kickoff(inputs={
+        result = TravelExpertCrew(step_callback=self._make_step_callback()).crew().kickoff(inputs={
+            "plan_document": self.state.plan_document,
+            "draft": self.state.draft_report or "",
             "location": self.state.location,
-            "focus": self.state.focus or "常规规划",
             "message": self.state.message,
-            "user_id": self.state.user_id
+            "user_id": self.state.user_id,
         })
         self.state.draft_report = result.raw
         print(f"[生成] 草案: {len(result.raw)} 字符")
@@ -296,10 +342,11 @@ class TravelWorkflow(Flow[TravelState]):
 
             self.notify("[质检阶段] 逻辑质检员正在进行严格的通勤距离和长期画像合规审查...")
 
-            result = ValidatorCrew().crew().kickoff(inputs={
+            result = ValidatorCrew(step_callback=self._make_step_callback()).crew().kickoff(inputs={
+                "plan_document": self.state.plan_document,
                 "draft": self.state.draft_report,
                 "location": self.state.location,
-                "user_id": self.state.user_id
+                "user_id": self.state.user_id,
             })
             validation_feedback = result.raw
             self.feedback_history.append(validation_feedback)
@@ -310,8 +357,14 @@ class TravelWorkflow(Flow[TravelState]):
                 print(f"   提示: {adjustment_hint[:200]}")
 
             if feedback_type == "pass":
-                print("[Reason] 方案通过终审！");
+                print("[Reason] 方案通过终审！")
                 self.state.final_report = self.state.draft_report
+                return
+
+            elif feedback_type == "ask_user":
+                print(f"[提问] {adjustment_hint[:200]}")
+                self.notify(f"[反问用户] {adjustment_hint}")
+                self.state.final_report = adjustment_hint
                 return
 
             elif feedback_type == "continue":

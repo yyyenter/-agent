@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+import sys
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except Exception:
+    pass
+
 import asyncio
 import json
 import os

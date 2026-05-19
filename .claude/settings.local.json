@@ -39,7 +39,10 @@
       "Bash(findstr :8000)",
       "PowerShell(netstat *)",
       "mcp__filesystem__list_directory",
-      "mcp__filesystem__read_text_file"
+      "mcp__filesystem__read_text_file",
+      "Bash(Start-Sleep -Seconds 5)",
+      "Bash(Select-Object -First 30)",
+      "Bash(awk '{print $5}')"
     ]
   },
   "enableAllProjectMcpServers": true,

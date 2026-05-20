@@ -5,6 +5,16 @@ try:
 except Exception:
     pass
 
+# 配置 logging，确保子线程的输出也能看到
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+
 import asyncio
 import json
 import os
@@ -186,7 +196,6 @@ async def chat_endpoint_stream(request: ChatRequest):
                     {"role": "user", "content": context_payload}
                 ])
                 reply_text = response.strip()
-                
                 memory.add_message("assistant", reply_text)
                 # 先提取本轮对话的短期约束，再基于短期摘要提炼长期偏好
                 memory.convert_episodic_to_working(zhipu_llm)

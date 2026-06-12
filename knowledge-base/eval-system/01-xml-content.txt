@@ -1,0 +1,243 @@
+<title>01-eval集思路与架构</title>
+
+<h1>一、设计思路</h1>
+
+<h2>1.1 为什么需要评估体系？</h2>
+
+<p>传统测试方法的局限性：</p>
+
+<table>
+  <colgroup><col span="2" width="150"/><col width="300"/></colgroup>
+  <thead>
+    <tr><th background-color="light-gray">传统方法</th><th background-color="light-gray">问题</th><th background-color="light-gray">评估体系的改进</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>人工测试</td><td>成本高、难以复现、主观性强</td><td>自动化执行、客观量化</td></tr>
+    <tr><td>单次测试</td><td>无法追踪长期变化</td><td>持续评估、趋势分析</td></tr>
+    <tr><td>黑盒测试</td><td>无法分析内部协作</td><td>多维度指标、过程追踪</td></tr>
+    <tr><td>功能测试</td><td>只验证是否工作</td><td>性能、质量、效率全维度</td></tr>
+  </tbody>
+</table>
+
+<h2>1.2 评估体系的设计原则</h2>
+
+<callout emoji="⭐" background-color="light-blue" border-color="blue">
+  <p><b>四维评估模型</b></p>
+  <p><b>1. 任务完成度</b> → 结果质量</p>
+  <p><b>2. 智能体协作</b> → 过程效率</p>
+  <p><b>3. 记忆系统</b> → 上下文理解</p>
+  <p><b>4. 系统健康度</b> → 稳定性</p>
+</callout>
+
+<p><b>核心理念</b>：</p>
+<ul>
+  <li><b>量化优先</b>：所有指标必须可测量</li>
+  <li><b>分层设计</b>：从宏观到微观，层层递进</li>
+  <li><b>自动化</b>：支持持续集成/持续评估</li>
+  <li><b>可解释</b>：每个指标都有明确的业务含义</li>
+</ul>
+
+<hr/>
+
+<h1>二、量化指标体系</h1>
+
+<h2>2.1 任务完成度 (Task Completion)</h2>
+
+<p>衡量 Agent 最终输出是否满足用户需求。</p>
+
+<table>
+  <colgroup><col span="1" width="140"/><col span="1" width="200"/><col span="1" width="50"/><col span="1" width="200"/></colgroup>
+  <thead>
+    <tr><th background-color="light-gray">指标</th><th background-color="light-gray">计算公式</th><th background-color="light-gray">满分</th><th background-color="light-gray">说明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>准确率 (Accuracy)</b></td><td>基于关键字匹配和语义理解</td><td>10</td><td>输出符合用户需求的程度</td></tr>
+    <tr><td><b>完整性 (Completeness)</b></td><td>(已包含要素数 / 期望要素数) × 10</td><td>10</td><td>行程包含时间、地点、交通等要素的完整度</td></tr>
+    <tr><td><b>收敛性 (Convergence)</b></td><td>10 - max(0, 调整轮次 - 2) × 1.5 - 熔断惩罚</td><td>10</td><td>多少轮次完成（轮次越少越好）</td></tr>
+    <tr><td><b>综合得分</b></td><td>Accuracy×0.4 + Completeness×0.35 + Convergence×0.25</td><td>10</td><td>加权平均</td></tr>
+  </tbody>
+</table>
+
+<p><b>要素覆盖度检查清单</b>：</p>
+
+<pre lang="python" caption="要素检查清单">
+<code>EXPECTED_ELEMENTS = [
+    "时间安排",  # 是否有"天"、"上午"、"下午"等时间标记
+    "地点",      # 是否提及具体城市/景点
+    "交通方式",  # 是否有"地铁"、"公交"、"打车"等交通信息
+    "餐饮推荐",  # 是否有"吃饭"、"餐厅"、"早餐"等餐饮信息
+    "预算",      # 是否提及"预算"、"花费"、"价格"
+]</code></pre>
+
+<h2>2.2 智能体协作 (Collaboration)</h2>
+
+<p>衡量 Planner → Execute → Validator 三个 Crew 的协作效率。</p>
+
+<table>
+  <colgroup><col span="1" width="140"/><col span="1" width="150"/><col span="1" width="50"/><col span="1" width="250"/></colgroup>
+  <thead>
+    <tr><th background-color="light-gray">指标</th><th background-color="light-gray">数据来源</th><th background-color="light-gray">满分</th><th background-color="light-gray">说明</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>路由正确率</b></td><td>intent_router 输出</td><td>10</td><td>Planner 决策是否合理（旅行 vs. 闲聊）</td></tr>
+    <tr><td><b>工具调用有效性</b></td><td>工具调用日志</td><td>10</td><td>WeatherTool、MemoryTool 的命中率</td></tr>
+    <tr><td><b>质检反馈质量</b></td><td>Validator 输出</td><td>10</td><td>反馈是否有明确指导意义（通过/重做/继续）</td></tr>
+  </tbody>
+</table>
+
+<p><b>协作流程追踪</b>：</p>
+
+<pre lang="text" caption="ReAct Flow 协作流程">
+<code>用户消息
+    ↓
+[PlannerCrew] 决策 → is_complex? / simple_answer?
+    ↓ 是
+[TravelExpertCrew] 执行 → 生成 draft_report
+    ↓
+[ValidatorCrew] 质检 → feedback_type: pass/error/adjust/continue/ask_user
+    ↓ 需要修正
+[TravelExpertCrew] 执行 (修正) ← 循环
+    ↓
+最终报告</code></pre>
+
+<h2>2.3 记忆系统 (Memory)</h2>
+
+<p>衡量四级记忆系统的有效性和准确性。</p>
+
+<table>
+  <colgroup><col span="1" width="160"/><col span="1" width="300"/><col span="1" width="50"/></colgroup>
+  <thead>
+    <tr><th background-color="light-gray">指标</th><th background-color="light-gray">计算方式</th><th background-color="light-gray">满分</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>偏好提取准确率</b></td><td>匹配用户输入与提取结果</td><td>10</td></tr>
+    <tr><td><b>长期记忆利用率</b></td><td>SaveMemoryTool 写入频次与价值</td><td>10</td></tr>
+    <tr><td><b>上下文一致性</b></td><td>检查是否记得历史对话</td><td>10</td></tr>
+  </tbody>
+</table>
+
+<callout emoji="🧠" background-color="light-purple" border-color="purple">
+  <p><b>四级记忆存储架构</b></p>
+  <p><b>情节记忆 (桶3)</b> → Redis List → 原始对话轮次</p>
+  <p><b>工作记忆 (桶5)</b> → Redis Hash → 临时行程约束</p>
+  <p><b>工具缓存 (桶4)</b> → Redis KV → 全局工具缓存（L1/L2/L3 三层匹配）</p>
+  <p><b>语义记忆 (桶6)</b> → SQLite user_memory 表 → 用户长期偏好（动态 KV 结构）</p>
+</callout>
+
+<h2>2.4 系统健康度 (System Health)</h2>
+
+<p>衡量系统的响应速度和稳定性。</p>
+
+<table>
+  <colgroup><col span="1" width="140"/><col span="1" width="250"/><col span="1" width="100"/></colgroup>
+  <thead>
+    <tr><th background-color="light-gray">指标</th><th background-color="light-gray">计算方式</th><th background-color="light-gray">警戒线</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>响应延迟</b></td><td>从请求到完成的总耗时</td><td><span text-color="red">&gt;30秒</span></td></tr>
+    <tr><td><b>错误率</b></td><td>异常/中断次数 / 总请求数</td><td><span text-color="red">&gt;5%</span></td></tr>
+    <tr><td><b>熔断触发率</b></td><td>circuit_breaker_triggered / 总请求数</td><td><span text-color="red">&gt;10%</span></td></tr>
+  </tbody>
+</table>
+
+<hr/>
+
+<h1>三、测试数据集设计</h1>
+
+<h2>3.1 测试用例分类</h2>
+
+<table>
+  <colgroup><col span="1" width="100"/><col span="1" width="60"/><col span="1" width="350"/></colgroup>
+  <thead>
+    <tr><th background-color="light-gray">类型</th><th background-color="light-gray">用例数</th><th background-color="light-gray">目的</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><b>基础功能</b></td><td>2</td><td>验证核心流程是否通</td></tr>
+    <tr><td><b>核心规划</b></td><td>4</td><td>验证复杂任务处理能力</td></tr>
+    <tr><td><b>高级场景</b></td><td>2</td><td>验证记忆和多轮对话</td></tr>
+    <tr><td><b>边界情况</b></td><td>1</td><td>验证异常处理能力</td></tr>
+  </tbody>
+</table>
+
+<h2>3.2 预设测试用例</h2>
+
+<table>
+  <colgroup><col span="1" width="70"/><col span="1" width="120"/><col span="1" width="160"/><col span="1" width="60"/><col span="1" width="80"/></colgroup>
+  <thead>
+    <tr><th background-color="light-gray">ID</th><th background-color="light-gray">名称</th><th background-color="light-gray">标签</th><th background-color="light-gray">优先级</th><th background-color="light-gray">复杂度</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>tc_001</td><td>简单天气查询</td><td>basic, weather</td><td>high</td><td>简单</td></tr>
+    <tr><td>tc_002</td><td>简单闲聊</td><td>basic, chitchat</td><td>high</td><td>简单</td></tr>
+    <tr><td>tc_003</td><td>基础行程规划</td><td>planning, shanghai</td><td>high</td><td>复杂</td></tr>
+    <tr><td>tc_004</td><td>带偏好的行程</td><td>planning, chengdu</td><td>high</td><td>复杂</td></tr>
+    <tr><td>tc_005</td><td>复杂多轮对话</td><td>multi-turn, memory</td><td>normal</td><td>复杂</td></tr>
+    <tr><td>tc_006</td><td>异常输入</td><td>edge, abnormal</td><td>low</td><td>简单</td></tr>
+    <tr><td>tc_007</td><td>预算敏感型规划</td><td>planning, guangzhou</td><td>normal</td><td>复杂</td></tr>
+    <tr><td>tc_008</td><td>季节性规划</td><td>planning, harbin</td><td>normal</td><td>复杂</td></tr>
+  </tbody>
+</table>
+
+<hr/>
+
+<h1>四、使用方法</h1>
+
+<h2>4.1 CLI 快速评估</h2>
+
+<pre lang="bash" caption="CLI命令">
+<code># 快速评估
+uv run python -m agent_test0.eval.cli quick
+
+# 完整评估
+uv run python -m agent_test0.eval.cli run --tags "planning" --count 10</code></pre>
+
+<h2>4.2 Python API</h2>
+
+<pre lang="python" caption="Python调用示例">
+<code>from agent_test0.eval import AgentEvaluator, TestDataset
+
+evaluator = AgentEvaluator(TestDataset(), "http://localhost:8000")
+report = await evaluator.run_evaluation(max_cases=5)
+print(f"平均得分: {report['average_scores']['overall']:.2f}/10")</code></pre>
+
+<hr/>
+
+<h1>五、评估报告示例</h1>
+
+<pre lang="json" caption="评估报告JSON格式">
+<code>{
+  "timestamp": "2026-06-12T10:30:00",
+  "summary": {
+    "total": 5,
+    "passed": 4,
+    "failed": 1,
+    "pass_rate": 0.8
+  },
+  "average_scores": {
+    "overall": 7.8,
+    "accuracy": 8.2,
+    "completeness": 7.5,
+    "convergence": 8.0
+  },
+  "average_latency_ms": 12500
+}</code></pre>
+
+<hr/>
+
+<h1>六、持续改进</h1>
+
+<h2>6.1 定期评估周期</h2>
+
+<ul>
+  <li><b>每日</b>：自动化回归测试</li>
+  <li><b>每周</b>：全面评估 + 质量分析</li>
+  <li><b>每月</b>：深度分析 + 优化建议</li>
+</ul>
+
+<h2>6.2 改进方向</h2>
+
+<ol>
+  <li seq="auto"><b>增加测试用例</b>：根据实际用户反馈补充边界 case</li>
+  <li seq="auto"><b>调整权重</b>：根据业务重点调整各维度权重</li>
+  <li seq="auto"><b>引入 LLM Judge</b>：使用 LLM 进行更智能的语义评估</li>
+</ol>

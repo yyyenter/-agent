@@ -102,6 +102,13 @@ QWEATHER_API_HOST=geoapi.qweather.com
 # Redis (可选，不配置则回退到内存存储)
 REDIS_HOST=localhost
 REDIS_PORT=6379
+
+# MySQL (用于长期记忆存储)
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=root
+MYSQL_PASSWORD=
+MYSQL_DATABASE=agent_test0
 ```
 
 ## 注意事项
@@ -109,11 +116,64 @@ REDIS_PORT=6379
 - `.env` 中包含真实 API Key，绝对不能提交到 Git。`.gitignore` 中已包含 `.env`。
 - Agent 配置文件位于 `src/agent_test0/config/agent.yaml`（单数，而非复数 `agents.yaml`）。
 - Redis 预期运行在 `localhost:6379`。当 Redis 不可用时，`harness.py` 会自动回退到内存存储（仅会话有效，重启后丢失）。
-- `client_test.py` 请求的是 `/api/chat`（非流式），但 `main.py` 只有 `/api/chat_stream`（SSE 流式）端点 — 测试脚本直接运行会失败。
+- `client_test.py` 使用的是 `/api/chat_stream`（SSE 流式）端点，这是正确的。测试脚本可以直接运行。
 - Flow 使用 `@start()`, `@listen()`, `@router()` 装饰器定义事件驱动的工作流。
 - 记忆系统有四级存储，分别对应不同的生命周期和存储介质。
+- 舆情判断依赖本地 Ollama 服务（`http://localhost:11434`）运行的 `nomic-embed-text` 模型进行语义路由。
 
-## 代码解析进度
+## 故障排查
 
-- `main.py` 解析到第 22 行（routes.json 加载完成），从第 23 行继续
-  - 进度记录文件：`.claude/projects/E--Python-agent-test0/memory/main_py_analysis_progress.md`
+### 常见问题
+
+1. **无法连接 Redis**
+   - 错误信息: `Connection refused`
+   - 解决方案: 启动 Redis 服务 `redis-server`，或等待自动回退到内存存储
+
+2. **天气查询失败**
+   - 检查 `QWEATHER_API_KEY` 和 `QWEATHER_API_HOST` 是否在 `.env` 中正确配置
+   - 确认网络可以访问和风天气 API
+
+3. **意图路由总是返回 chitchat**
+   - 检查 Ollama 是否运行: `curl http://localhost:11434/api/tags`
+   - 如需要，重新加载语义路由模型
+
+4. **MySQL 连接失败**
+   - 确认 MySQL 服务运行中
+   - 检查用户权限和数据库是否存在
+
+5. **Flow 状态丢失**
+   - 确认 Redis 正常运行（Flow 状态持久化到 Redis）
+   - 或检查 Redis key: `session:<session_id>:flow_state`
+
+## 开发流程
+
+### 添加新功能
+
+1. **修改 Agent 配置**: 编辑 `src/agent_test0/config/agent.yaml`
+2. **添加新工具**: 在 `src/agent_test0/tools/custom_tool.py` 中创建新类，继承 `BaseTool`
+3. **修改 Workflow**: 在 `src/agent_test0/crew.py` 的 `TravelWorkflow` 中添加新的 `@listen()` 或 `@router()` 方法
+4. **更新记忆 schema**: 如需新增记忆类型，修改 `harness.py` 中的 `MemoryManager` 类
+
+### 测试流程
+
+1. 本地测试: `uv run python src/client_test.py`
+2. API 测试: 启动服务后访问 `http://localhost:8000/docs` 查看自动生成的 Swagger 文档
+3. 前端测试: `uv run streamlit run src/agent_test0/app_ui.py`
+
+### 飞书集成 (`src/agent_test0/feishu/`)
+
+使用 WebSocket 长连接方式，按飞书官方示例实现。
+
+```bash
+# 安装依赖
+uv add lark-oapi
+
+# 启动飞书机器人（长连接，持续运行）
+uv run python -m agent_test0.feishu.long_conn_bot
+```
+
+**核心文件**：
+- `long_conn_bot.py` — 唯一入口，包含全部逻辑
+- `CONNECTION_GUIDE.md` — 🔗 Agent 连接关系可视化说明
+
+**数据流**：飞书消息 → WebSocket → `do_p2_im_message_receive_v1()` → `_call_agent()` → `TravelWorkflow.kickoff()` → `_send_reply()` → 飞书用户

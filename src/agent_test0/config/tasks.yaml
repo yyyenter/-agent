@@ -10,7 +10,6 @@ planning_task:
     【历史计划状态 - 用于判断是"继续"还是"新任务"】：
     - 之前的完整计划书: {previous_plan}
     - 上一步质检给当前步骤的指令: {current_step}
-    - 最近几次质检反馈摘要: {last_validation_summary}
     - 目前已有的进度草案: {current_draft}
 
     【第一步：记忆检索与更新】
@@ -40,24 +39,46 @@ planning_task:
 
   expected_output: >
     输出一份 JSON（严格放在 ```json 代码块中），包含以下字段：
+
+    ## 流程控制字段
     - is_complex: bool, 是否为复杂的旅游规划
+    - simple_answer: string, 如果任务简单可直接回答则填答案，否则填""
     - location: string, 目标地点（如果不明确则填"未知"）
     - focus: string, 核心诉求（用户最在意的点）
     - tools_needed: list[string], 需要用到哪些工具（如 ["weather_tool", "read_memory_tool"]）
-    - simple_answer: string, 如果任务简单可直接回答则填答案，否则填""
+
+    ## 新状态机字段：步骤列表（粗粒度步骤，不指定工具）
+    - steps: list[object], 行程规划的粗粒度步骤列表
+      - index: int, 步骤索引（从0开始）
+      - description: string, 步骤描述（说明要做什么，不指定具体工具）
+      - dependencies: list[int], 依赖的前置步骤索引（空列表表示无依赖）
+
+    ## 针对性反馈
     - current_step_instruction: string, 【必须】为执行团队写下本次第一步的精确工单（如"第一步：查询大理、丽江、香格里拉三个城市的天气情况"）
       如果信息严重缺失无法执行（如不知道去哪、不知道天数），填"[提问] 你要反问用户的具体问题"
     - plan_summary: string, 对整体计划的简短描述（如果信息不足则说明需要用户补充什么）
+
+    【步骤列表生成规则】：
+    1. 步骤应该是宏观的阶段（如"查询目的地信息"、"规划每日行程"、"生成最终报告"）
+    2. 每个步骤应该有明确的目标和可验证的输出
+    3. 步骤之间应该有清晰的依赖关系
+    4. 步骤数量控制在3-8个之间，避免过于细碎
 
     示例输出：
     ```json
     {
       "is_complex": true,
+      "simple_answer": "",
       "location": "云南",
       "focus": "推荐适合的旅游城市，3天，预算2000",
       "tools_needed": ["weather_tool", "read_memory_tool"],
-      "simple_answer": "",
-      "current_step_instruction": "第一步：使用 weather_tool 查询大理、丽江、香格里拉的天气情况，用 read_memory_tool 读取用户的长期偏好限制",
+      "steps": [
+        {"index": 0, "description": "查询目的地天气和基本信息", "dependencies": []},
+        {"index": 1, "description": "读取用户长期偏好和限制", "dependencies": []},
+        {"index": 2, "description": "规划每日详细行程", "dependencies": [0, 1]},
+        {"index": 3, "description": "生成最终报告", "dependencies": [2]}
+      ],
+      "current_step_instruction": "第一步：使用 weather_tool 查询大理、丽江、香格里拉的天气情况",
       "plan_summary": "用户想去云南但不确定去哪，先对比2-3个推荐城市的天气和用户偏好，筛选出合适的选项"
     }
     ```

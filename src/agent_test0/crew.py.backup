@@ -1,0 +1,523 @@
+# agent_test0/crew.py
+import sys
+import json
+import os
+import re
+import logging
+from crewai import Agent, Crew, Process, Task, LLM
+from crewai.flow import Flow, listen, start
+from crewai.project import CrewBase, agent, task, crew
+from pydantic import BaseModel
+from crewai_tools import TavilySearchTool
+from dotenv import load_dotenv
+
+# 修复 stdout 编码（Windows 终端）
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except Exception:
+    pass
+
+from agent_test0.tools.custom_tool import ReadMemoryTool, SaveMemoryTool, WeatherTool
+
+load_dotenv()
+
+# =========================================
+# 【终端打印】处理 Windows 终端编码问题
+# =========================================
+def terminal_print(text):
+    """兼容 Windows 终端的打印函数"""
+    try:
+        # 尝试使用 utf-8 编码
+        os.write(1, (str(text) + "\n").encode('utf-8'))
+    except UnicodeEncodeError:
+        # 如果 utf-8 失败，尝试使用 gbk（Windows 终端默认）
+        try:
+            os.write(1, (str(text) + "\n").encode('gbk', errors='ignore'))
+        except Exception:
+            pass
+    except Exception:
+        pass
+
+# 使用别名保持代码一致性
+hard_print = terminal_print
+
+# ============================================
+# 终极版 Agent 动作解析函数 (处理 CrewAI Tuple 变体)
+# ============================================
+def agent_step_logger(step_output):
+    """兼容解析 CrewAI 各种格式的 step_output，使用硬打印确保输出可见"""
+    try:
+        step_list = step_output if isinstance(step_output, list) else [step_output]
+        for step in step_list:
+            # 格式1: Tuple (AgentAction, Observation)
+            if isinstance(step, tuple) and len(step) >= 2:
+                action, obs = step[0], step[1]
+                thought = getattr(action, 'log', getattr(action, 'thought', ''))
+                tool = getattr(action, 'tool', '')
+                tool_input = getattr(action, 'tool_input', '')
+
+                if thought: print(f"🤔 [Agent思考] {thought.strip()}")
+                if tool: print(f"🛠️ [Agent工具] {tool} | 参数: {tool_input}")
+                if obs: print(f"✅ [Agent结果] {str(obs)[:300]}...")
+
+            # 格式2: AgentStep Object
+            else:
+                thought = getattr(step, 'thought', getattr(step, 'log', ''))
+                tool = getattr(step, 'tool', '')
+                tool_input = getattr(step, 'tool_input', '')
+                result = getattr(step, 'result', getattr(step, 'observation', ''))
+
+                if thought: print(f"🤔 [Agent思考] {thought.strip()}")
+                if tool: print(f"🛠️ [Agent工具] {tool} | 参数: {tool_input}")
+                if result: print(f"✅ [Agent结果] {str(result)[:300]}...")
+
+                if not thought and not tool and not result:
+                    print(f"🤖 [Agent追踪] {str(step)[:300]}")
+    except Exception as e:
+        print(f"💥 [Agent原始动作异常] {str(step_output)[:300]}")
+
+
+zhipu_llm = LLM(
+    model=os.getenv("GLM_MODEL_NAME") or "glm-4-flash",
+    base_url=os.getenv("GLM_API_BASE") or "",
+    api_key=os.getenv("GLM_API_KEY") or "",
+)
+
+# 实例化搜索工具
+search_tool = TavilySearchTool()
+
+# ============================================
+# 【新状态机】辅助数据结构
+# ============================================
+
+class StepPlan(BaseModel):
+    """单个执行步骤计划"""
+    index: int
+    description: str      # 步骤描述（不指定工具）
+    tools: list[str] = [] # 需要的工具列表（StepPreparer 填充）
+    status: str = "pending"  # pending | executing | completed | failed
+    result: str = ""
+    error: str = ""
+
+class StepResult(BaseModel):
+    """步骤执行结果记录"""
+    step_index: int
+    step_description: str
+    result: str
+    passed: bool
+    validation_feedback: str
+
+class ValidationFeedback(BaseModel):
+    """统一反馈结构"""
+    is_valid: bool
+    feedback_type: str  # pass | retry | partial_fail | full_replan
+    failed_indices: list[int] = []  # 失败的步骤索引
+    reason: str = ""  # 为什么失败
+    suggested_corrections: dict[int, str] = {}  # 每个失败步骤的修正建议
+
+
+class TravelState(BaseModel):
+    # === 基础元数据 (保留) ===
+    message: str = ''
+    user_id: str = 'default_user'
+    session_id: str = 'default_sess'
+
+    # === 新状态机字段 ===
+    steps: list[StepPlan] = []          # 步骤列表（替代 plan_document）
+    current_step_index: int = 0         # 当前执行步骤索引
+    step_results: list[StepResult] = [] # 步骤执行结果历史
+    failed_steps_indices: list[int] = [] # 失败步骤索引列表
+
+    # === 旧字段（临时保留，用于兼容） ===
+    is_complex: bool = True
+    simple_answer: str = ""
+    location: str = "未知地点"
+    focus: str = ""
+    tools_needed: list[str] = []
+    plan_document: str = ""
+    draft_report: str = ""
+    previous_draft: str = ""
+    last_validation_feedback: str = ""
+    final_report: str = ""
+    current_step_instruction: str = ""
+
+@CrewBase
+class PlannerCrew:
+    agents_config = 'config/agent.yaml'
+    tasks_config = 'config/tasks.yaml'
+    # ⚠️ 去掉了 __init__ 重写，保持框架原生状态
+
+    @agent
+    def planner_agent(self) -> Agent:
+        return Agent(config=self.agents_config['planner_agent'], tools=[ReadMemoryTool(), SaveMemoryTool()], llm=zhipu_llm, verbose=True)
+    @task
+    def planning_task(self) -> Task:
+        return Task(config=self.tasks_config['planning_task'])
+    @crew
+    def crew(self) -> Crew:
+        return Crew(agents=self.agents, tasks=self.tasks, verbose=True)
+
+
+@CrewBase
+class TravelExpertCrew:
+    agents_config = 'config/agent.yaml'
+    tasks_config  = 'config/research_tasks.yaml'
+
+    @agent
+    def info_search_agent(self) -> Agent:
+        return Agent(config=self.agents_config['info_search_agent'], tools=[WeatherTool(), ReadMemoryTool()] if search_tool is None else [search_tool, WeatherTool(), ReadMemoryTool()], llm=zhipu_llm, verbose=True)
+    @agent
+    def itinerary_planner_agent(self) -> Agent:
+        return Agent(config=self.agents_config['itinerary_planner_agent'], tools=[], llm=zhipu_llm, verbose=True)
+
+    @task
+    def research_task(self) -> Task:
+        return Task(config=self.tasks_config['execution_task'])
+
+    @crew
+    def crew(self) -> Crew:
+        return Crew(
+            agents=self.agents, 
+            tasks=self.tasks, 
+            process=Process.hierarchical, # 开启层级动态拆解机制
+            manager_llm=zhipu_llm,        # 必须指定一个模型作为"包工头"来做路由分配
+            verbose=True
+        )
+
+
+@CrewBase
+class ValidatorCrew:
+    agents_config = 'config/agent.yaml'
+    tasks_config = 'config/logic_validator_tasks.yaml'
+
+    @agent
+    def logic_validator_agent(self) -> Agent:
+        return Agent(config=self.agents_config['logic_validator_agent'], tools=[ReadMemoryTool()] if search_tool is None else [search_tool, ReadMemoryTool()], llm=zhipu_llm, verbose=True)
+    @task
+    def validation_task(self) -> Task:
+        return Task(config=self.tasks_config['validation_task'])
+    @crew
+    def crew(self) -> Crew:
+        return Crew(agents=self.agents, tasks=self.tasks, verbose=True)
+
+
+# ==================== Flow 调度（自适应 ReAct 收敛闭环） ====================
+class TravelWorkflow(Flow[TravelState]):
+    def __init__(self, status_callback=None, content_callback=None):
+        super().__init__()
+        self.max_error_retries = 3
+        self.max_adjustments = 20
+        self.current_error_count = 0
+        self.current_adjust_count = 0
+        self.feedback_history: list[str] = []
+        self.status_callback = status_callback
+        self.content_callback = content_callback
+        # Compaction 配置
+        self.MAX_FEEDBACK_ENTRIES = 5
+        self.COMPACT_SUMMARY_CHARS = 600
+        # 熔断器状态
+        self._consecutive_same_error = 0
+        self._last_error_key = ""
+        self._circuit_breaker_triggered = False
+
+    def notify(self, text: str):
+        if self.status_callback:
+            self.status_callback(text)
+        # 【核弹级打印】确保 Flow 状态输出可见
+        print(f"[Flow] {text}")
+
+    def _notify_content(self, text: str, content_type: str = "status"):
+        # ⚠️ 强制指定给前端的 type 为 "status"
+        if self.content_callback:
+            self.content_callback(text, content_type)
+
+    def _make_step_callback(self):
+        """创建 step_callback：同时写日志 + 截取关键信息推 SSE"""
+        flow = self
+        def callback(step_output):
+            # 1. 强制写日志到控制台和文件
+            agent_step_logger(step_output)
+            
+            # 2. 提取精简文本推给前端的 Web 界面
+            try:
+                step_list = step_output if isinstance(step_output, list) else [step_output]
+                for step in step_list:
+                    if isinstance(step, tuple) and len(step) >= 2:
+                        thought = getattr(step[0], 'log', '')
+                        tool = getattr(step[0], 'tool', '')
+                    else:
+                        thought = getattr(step, 'thought', getattr(step, 'log', ''))
+                        tool = getattr(step, 'tool', '')
+
+                    if thought:
+                        flow._notify_content(f"🤔 {thought.strip()}", "status")
+                    elif tool:
+                        flow._notify_content(f"🛠️ 正在调用工具查询: {tool}", "status")
+            except Exception:
+                pass
+        return callback
+        
+    def _run_crew_with_callback(self, crew_class, inputs):
+        """黑科技包装器：绕过 CrewBase 强行将 Callback 绑到所有对象上"""
+        crew_instance = crew_class().crew()
+        cb = self._make_step_callback()
+        crew_instance.step_callback = cb
+        # 强制遍历，连每个 Agent 身上都挂上回调，确保万无一失
+        for a in crew_instance.agents:
+            a.step_callback = cb
+        result = crew_instance.kickoff(inputs=inputs)
+        # Crew 输出安全截断
+        if hasattr(result, 'raw') and len(result.raw) > 8000:
+            print(f"[Truncation] Crew 输出从 {len(result.raw)} 截断至 8000 字符")
+            result.raw = result.raw[:8000] + "\n\n[输出过长已截断]"
+        return result
+
+    def _parse_feedback(self, feedback: str) -> tuple[str, str]:
+        if feedback.startswith("[提问]"): return "ask_user", feedback.replace("[提问]", "").strip()
+        if feedback.startswith("[重做]"): return "error", feedback.replace("[重做]", "").strip()
+        if feedback.startswith("[继续]"): return "continue", feedback.replace("[继续]", "").strip()
+        if feedback.startswith("[通过]"): return "pass", feedback.replace("[通过]", "").strip()
+        
+        feedback_lower = feedback.lower()
+        if any(kw in feedback_lower for kw in ["通过", "合格", "满意", "完美", "pass", "ok"]):
+            if "错误" not in feedback_lower and "不足" not in feedback_lower and "打回" not in feedback_lower: return "pass", ""
+        if any(kw in feedback_lower for kw in ["逻辑错误", "严重", "错误", "矛盾", "不可行", "打回修正", "打回"]): return "error", feedback
+        if any(kw in feedback_lower for kw in ["不足", "缺少", "不完整", "建议补充", "需要更多信息"]): return "incomplete", feedback
+        if any(kw in feedback_lower for kw in ["建议", "优化", "可以调整", "改进", "更好"]): return "adjust", feedback
+        return "pass", feedback
+
+    def _compact_feedback_history(self):
+        """Compaction: 将旧质检记录压缩为摘要，保留最近 3 条原文，防止 Token 爆炸"""
+        if len(self.feedback_history) <= self.MAX_FEEDBACK_ENTRIES:
+            return
+
+        # 将最早 N-3 条发送给 LLM 压缩
+        old_entries = self.feedback_history[:len(self.feedback_history) - 3]
+        recent_entries = self.feedback_history[-3:]
+
+        all_old = "\n---\n".join(old_entries)
+        prompt = f"""将以下质检反馈历史压缩为一条不超过{self.COMPACT_SUMMARY_CHARS}字的精炼摘要。
+只保留【发现的问题类型】、【是否已修复】、【仍存在的争议点】，丢弃过程性细节和重复内容。
+
+【质检历史】:
+{all_old}
+
+【压缩摘要（{self.COMPACT_SUMMARY_CHARS}字以内）】:"""
+
+        try:
+            summary = zhipu_llm.call([{"role": "user", "content": prompt}]).strip()
+            if len(summary) > self.COMPACT_SUMMARY_CHARS:
+                summary = summary[:self.COMPACT_SUMMARY_CHARS] + "..."
+            self.feedback_history = [f"[历史质检摘要] {summary}"] + recent_entries
+            print(f"[Compaction] feedback_history 从 {len(old_entries) + len(recent_entries)} 条压缩至 {len(self.feedback_history)} 条（1摘要 + 3原文）")
+        except Exception as e:
+            print(f"[Compaction] LLM压缩失败({e}), 回退到最近3条")
+            self.feedback_history = recent_entries
+
+    def _error_fingerprint(self, feedback: str) -> str:
+        """从反馈中提取粗粒度指纹，用于检测重复错误"""
+        cleaned = re.sub(r'^\[.*?\]\s*', '', feedback).strip()
+        return cleaned[:80]
+
+    def _check_circuit_breaker(self, feedback_type: str, feedback: str) -> str | None:
+        """检测修正死循环，触发时返回干预消息，否则返回 None"""
+        if feedback_type not in ("error", "adjust", "incomplete"):
+            self._consecutive_same_error = 0
+            self._last_error_key = ""
+            return None
+
+        fp = self._error_fingerprint(feedback)
+        if fp == self._last_error_key:
+            self._consecutive_same_error += 1
+        else:
+            self._consecutive_same_error = 1
+            self._last_error_key = fp
+
+        if self._consecutive_same_error >= 3:
+            self._circuit_breaker_triggered = True
+            return (
+                f"[强制干预] 检测到连续 {self._consecutive_same_error} 次相同类型的错误反馈，"
+                f"系统判定已陷入修正死循环。请直接接受当前最佳版本并向前推进。"
+                f"上一次的错误反馈是: {feedback[:200]}"
+            )
+
+        if self.current_adjust_count >= 5 and self._consecutive_same_error >= 2:
+            self._circuit_breaker_triggered = True
+            return (
+                f"[强制干预] 当前步骤已修改 {self.current_adjust_count} 次，"
+                f"其中连续 {self._consecutive_same_error} 次收到相似反馈。"
+                f"请忽略细枝末节，接受当前草案并输出 final_report。"
+            )
+
+        return None
+
+    @start()
+    def plan_steps(self):
+        print(f"\n{'='*50}")
+        print(f"[Plan] 决策官剖析需求中（error重试: {self.current_error_count}, adjust微调: {self.current_adjust_count}）")
+        print(f"{'='*50}")
+        self.notify("📋 [决策阶段] 决策大脑正在建立行程执行策略...")
+
+        inputs = {
+            "message": self.state.message,
+            "user_id": self.state.user_id,
+            "focus": self.state.focus,
+            "previous_plan": self.state.plan_document or "无历史计划（首次规划）",
+            "current_step": self.state.current_step_instruction or "无当前工单（首次执行）",
+            "current_draft": self.state.draft_report or "无进度草案",
+            "last_validation_summary": "",  # 总是传入，即使没有历史反馈
+        }
+        if self.feedback_history:
+            # 传入已压缩的质检反馈（摘要 + 最近 3 条原文）
+            compact_feedback = "\n---\n".join(self.feedback_history[-4:])
+            inputs["last_validation_summary"] = compact_feedback
+
+        # 使用封装后的函数启动！
+        result = self._run_crew_with_callback(PlannerCrew, inputs)
+        raw_text = result.raw.strip()
+        self.state.plan_document = raw_text
+
+        try:
+            json_match = re.search(r'\{.*\}', raw_text, re.DOTALL)
+            if json_match:
+                plan_data = json.loads(json_match.group(0))
+                self.state.is_complex = plan_data.get("is_complex", True)
+                self.state.simple_answer = plan_data.get("simple_answer", "")
+                self.state.location = plan_data.get("location", "未知")
+                self.state.focus = plan_data.get("focus", "")
+                self.state.tools_needed = plan_data.get("tools_needed", [])
+                # 提取 Planner 生成的当前步骤工单
+                step_instruction = plan_data.get("current_step_instruction", "")
+                if step_instruction:
+                    self.state.current_step_instruction = step_instruction
+                    print(f"[Plan] 提取到当前步骤工单: {step_instruction[:100]}")
+            else:
+                self.state.is_complex = True
+        except Exception:
+            self.state.is_complex = True
+
+    @listen(plan_steps)
+    def execute_step(self):
+        if not self.state.is_complex:
+            self.notify("[解答] 正在直接回答您的问题...")
+            self.state.final_report = self.state.simple_answer
+            return
+
+        self.notify(f"[执行阶段] 专家团队正在规划【{self.state.location}】...")
+        print(f"\n{'='*50}")
+        print(f"[Act] 执行生成（focus: {self.state.focus}）...")
+        print(f"[Act] 当前步骤工单: {self.state.current_step_instruction or '(空 - 使用默认)'}")
+        print(f"[Act] 修改指令: {self.state.last_validation_feedback or '(空 - 无修改要求)'}")
+        print(f"[Act] 计划文档长度: {len(self.state.plan_document)}字符")
+        print(f"{'='*50}")
+
+        # 构建执行输入
+        inputs = {
+            "plan_document": self.state.plan_document,
+            "draft": self.state.draft_report or "",
+            "location": self.state.location,
+            "message": self.state.message,
+            "user_id": self.state.user_id,
+            "current_step_instruction": self.state.current_step_instruction or "初始化行程",
+            "modification_instructions": self.state.last_validation_feedback or "无特别修改要求，请按原计划和当前步骤指示执行",
+        }
+
+        # 如果存在质检反馈，将其作为修改指令加入
+        if self.state.last_validation_feedback:
+            inputs["modification_instructions"] = self.state.last_validation_feedback
+            print(f"[执行阶段] 检测到质检反馈，将按要求进行增量修改...")
+
+        # 调用 TravelExpertCrew 执行规划任务
+        result = self._run_crew_with_callback(TravelExpertCrew, inputs=inputs)
+        self.state.draft_report = result.raw
+
+    @listen(execute_step)
+    def validate_router(self):
+        if not self.state.is_complex:
+            return
+
+        while True:
+            print(f"\n{'='*50}")
+            print(f"[Reason] 质检评估中（error重试: {self.current_error_count}, adjust微调: {self.current_adjust_count}）")
+            print(f"{'='*50}")
+
+            self.notify("🔍 [质检阶段] 正在严苛审查行程...")
+
+            # 1. 唤醒质检团队，⚠️ 注意这里新增了 current_step_instruction
+            result = self._run_crew_with_callback(ValidatorCrew, inputs={
+                "plan_document": self.state.plan_document,
+                "current_step_instruction": getattr(self.state, 'current_step_instruction', '初始化行程'), 
+                "draft": self.state.draft_report,
+                "location": self.state.location,
+                "user_id": self.state.user_id,
+            })
+            validation_feedback = result.raw
+            self.feedback_history.append(validation_feedback)
+            self._compact_feedback_history()
+
+            # 2. 🌟 唯一解析入口：使用健壮的解析器，一次性拿到标签类型和内容
+            feedback_type, adjustment_hint = self._parse_feedback(validation_feedback)
+
+            # 3. 🌟 纯净的状态分发 (不再有任何 startswith 或 replace)
+            
+            # 分支 A：触发交互钩子
+            if feedback_type == "ask_user":
+                self.notify(f"🙋 [询问] {adjustment_hint}")
+                self.state.final_report = adjustment_hint
+                return
+
+            # 分支 B：当前步骤完美，推进下一步
+            elif feedback_type == "continue":
+                self.notify(f"▶️ [推进] 当前步骤达标，继续往下规划...")
+
+                # 重置熔断计数器
+                self._consecutive_same_error = 0
+                self._last_error_key = ""
+                self._circuit_breaker_triggered = False
+
+                # 宏观进度条更新
+                self.state.plan_document += f"\n\n✅ 已完成上一步。下一步指示: {adjustment_hint}"
+                # 将 Validator 说的"下一步指示"变成 Executor 下一轮的"精准工单"
+                self.state.current_step_instruction = adjustment_hint
+
+                self.execute_step()
+                continue
+
+            # 分支 C：有问题，打回重做或微调
+            elif feedback_type in ("adjust", "incomplete", "error"):
+                # 熔断检查
+                intervention = self._check_circuit_breaker(feedback_type, validation_feedback)
+                if intervention:
+                    self.notify(f"⚡ [熔断触发] {intervention}")
+                    self.state.final_report = self.state.draft_report
+                    return
+
+                self.current_error_count += 1
+                if self.current_adjust_count < self.max_adjustments:
+                    self.current_adjust_count += 1
+                    self.notify(f"🔄 [打回重做 {self.current_adjust_count}/{self.max_adjustments}] 发现瑕疵，正在修正...")
+                    
+                    self.state.previous_draft = self.state.draft_report
+                    # 将质检员的斥责单独存为修改指令，传给 Executor
+                    self.state.last_validation_feedback = adjustment_hint
+                    
+                    self.execute_step()
+                    continue
+                else:
+                    self.notify("⚠️ [警告] 修改次数耗尽，强制输出当前草案")
+                    self.state.final_report = self.state.draft_report
+                    return
+
+            # 分支 D：全局完美完结
+            elif feedback_type == "pass":
+                self.notify("🎉 [终审通过] 您的完美行程已全部分步规划完毕！")
+                self.state.final_report = self.state.draft_report
+                return
+
+    @listen(validate_router)
+    def finalize(self):
+        print(f"\n{'='*50}")
+        print(f"[结束] 流程结束")
+        print(f"{'='*50}")
+        if not self.state.final_report:
+            self.state.final_report = self.state.draft_report or '未能生成报告'

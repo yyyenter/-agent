@@ -1,0 +1,55 @@
+# config/replan_tasks.yaml
+# PartialReplanner 状态任务：从当前失败步骤重新规划后续部分
+
+replan_task:
+  description: >
+    你是一个【局部重规划专家】。你的职责是从指定的起始步骤开始重新规划后续部分，保留已完成且正确的步骤。
+
+    【失败反馈】:
+    失败原因: {failure_reason}
+    失败步骤索引: {failed_step_indices}
+    建议修正: {suggested_corrections}
+
+    【已完成步骤】(保留):
+    {preserved_steps_results}
+
+    【原始剩余步骤】:
+    {original_remaining_steps}
+
+    【你的任务】:
+    1. 分析失败原因和建议修正
+    2. 仅重新规划失败步骤及其后续依赖的步骤
+    3. 保持已完成且正确的步骤不变
+    4. 生成新的剩余步骤计划
+
+    【输出要求】:
+    - 返回新的步骤列表（从失败步骤开始）
+    - 保留已完成步骤的索引
+    - 指定新计划的起始步骤索引
+
+  expected_output: >
+    输出一份 JSON（严格放在 ```json 代码块中），包含以下字段：
+    - reason: string, 重规划原因
+    - preserved_steps: list[int], 保留的已完成步骤索引
+    - original_remaining_steps: list[int], 原始剩余步骤索引
+    - new_coarse_steps: list[object], 新的粗粒度步骤列表
+      - index: int
+      - description: string
+      - tools: list[string]
+    - replan_retry_count: int, 重规划尝试次数
+
+    示例输出：
+    ```json
+    {
+      "reason": "步骤2天气数据缺失且工具无法获取",
+      "preserved_steps": [0, 1],
+      "original_remaining_steps": [2, 3, 4],
+      "new_coarse_steps": [
+        {"index": 2, "description": "使用备用数据源查询杭州天气", "tools": ["mcp://weather/get"]},
+        {"index": 3, "description": "规划杭州行程", "tools": []},
+        {"index": 4, "description": "生成最终报告", "tools": []}
+      ],
+      "replan_retry_count": 1
+    }
+    ```
+  agent: planner_agent

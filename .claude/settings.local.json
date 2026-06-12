@@ -50,7 +50,8 @@
       "WebFetch(domain:replicate.com)",
       "Bash(npm search *)",
       "Bash(npm list *)",
-      "Bash(npm --version)"
+      "Bash(npm --version)",
+      "WebFetch(domain:open.feishu.cn)"
     ]
   },
   "enableAllProjectMcpServers": true,

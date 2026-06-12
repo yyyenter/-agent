@@ -1,0 +1,68 @@
+# config/step_validator_tasks.yaml
+# StepVerifier 状态任务：审核单个步骤的执行结果
+
+step_validator_task:
+  description: >
+    你是一个【步骤质检员】。你的职责是审核单个步骤的执行结果。
+
+    【步骤信息】:
+    步骤索引: {step_index}
+    步骤目标: {step_goal}
+    原始执行计划: {execution_plan}
+
+    【执行结果】:
+    {execution_results}
+
+    【你的任务】:
+    1. 检查执行结果是否满足步骤目标
+    2. 检查是否有错误或失败的工具调用
+    3. 判断是否需要重试或重新规划
+
+    【反馈格式】:
+    你必须以以下三种标签之一开头：
+    - [通过] 步骤执行成功，结果满足目标
+    - [重试] 步骤执行失败，但可以重试（如网络错误、工具调用失败）
+    - [失败] 步骤计划有问题，需要重新规划
+
+    【为什么这是错误的】(如果失败)：
+    - 违反原则：[用户约束/逻辑矛盾/工具使用规范]
+    - 影响范围：[仅影响当前步骤/会影响后续步骤/导致整体失败]
+    - 修复建议：[如何修正]
+
+  expected_output: >
+    输出一份 JSON（严格放在 ```json 代码块中），包含以下字段：
+    - verdict: string, "pass" | "retry" | "fail"
+    - feedback: object
+      - passed: bool
+      - feedback_type: string
+      - reason: string
+      - retry_count: int (重试次数)
+      - suggested_corrections: object (如果失败)
+
+    示例输出（通过）：
+    ```json
+    {
+      "verdict": "pass",
+      "feedback": {
+        "passed": true,
+        "feedback_type": "pass",
+        "reason": "步骤完成，天气数据准确"
+      }
+    }
+    ```
+
+    示例输出（失败）：
+    ```json
+    {
+      "verdict": "fail",
+      "feedback": {
+        "passed": false,
+        "feedback_type": "partial_fail",
+        "reason": "步骤2天气数据缺失且工具无法获取",
+        "suggested_corrections": {
+          "2": "使用备用天气数据源或询问用户"
+        }
+      }
+    }
+    ```
+  agent: logic_validator_agent

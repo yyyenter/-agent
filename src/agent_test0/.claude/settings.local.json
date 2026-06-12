@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//e/Python/agent_test0/**)",
+      "Bash(uv add *)",
+      "WebFetch(domain:open.feishu.cn)",
+      "Bash(lark-cli config *)",
+      "Bash(uv run *)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "GitHub",
+    "search"
+  ]
+}

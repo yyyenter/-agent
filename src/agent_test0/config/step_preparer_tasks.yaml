@@ -1,0 +1,49 @@
+# config/step_preparer_tasks.yaml
+# StepPreparer 状态任务：为粗粒度步骤生成细粒度执行计划（工具调用序列）
+
+step_preparer_task:
+  description: >
+    你是一个【步骤执行计划员】。你的职责是为单个粗粒度步骤生成细粒度的 MCP 工具调用序列。
+
+    【粗粒度步骤信息】:
+    步骤索引: {step_index}
+    步骤目标: {step_goal}
+
+    【上下文信息】:
+    - 历史已完成步骤结果: {previous_step_results}
+    - 全局约束: {global_constraints}
+
+    【你的任务】:
+    1. 分析步骤目标，确定需要调用的工具
+    2. 生成工具调用序列（每个工具调用包含：顺序、工具名、参数、预期输出格式）
+    3. 确保工具调用顺序合理，满足步骤目标
+
+    【可使用的工具】:
+    - weather_tool: 查询城市天气
+    - read_memory_tool: 读取用户长期偏好
+    - tavily_search: 网络搜索
+
+  expected_output: >
+    输出一份 JSON（严格放在 ```json 代码块中），包含以下字段：
+    - step_index: int, 当前步骤索引
+    - tools_to_call: list[object], 工具调用序列
+      - order: int, 调用顺序
+      - tool_name: string, 工具名（mcp://... 格式）
+      - parameters: object, 参数
+      - expected_output_schema: object, 预期输出格式
+
+    示例输出：
+    ```json
+    {
+      "step_index": 0,
+      "tools_to_call": [
+        {
+          "order": 1,
+          "tool_name": "mcp://weather/get",
+          "parameters": {"city": "杭州"},
+          "expected_output_schema": {"type": "object", "properties": {"temp": {"type": "number"}, "condition": {"type": "string"}}}
+        }
+      ]
+    }
+    ```
+  agent: info_search_agent

@@ -1,0 +1,83 @@
+# agent_test0/eval/test_cases/test_cases.json
+[
+  {
+    "id": "tc_001",
+    "name": "简单天气查询",
+    "input_message": "今天北京天气怎么样？",
+    "expected_output_contains": ["北京", "天气", "温度"],
+    "expected_elements": ["时间安排", "地点", "交通方式", "餐饮推荐", "预算"],
+    "tags": ["basic", "weather"],
+    "priority": "high",
+    "is_complex": false
+  },
+  {
+    "id": "tc_002",
+    "name": "简单闲聊",
+    "input_message": "你好！",
+    "expected_output_contains": ["你好", "欢迎"],
+    "expected_elements": ["时间安排", "地点", "交通方式", "餐饮推荐", "预算"],
+    "tags": ["basic", "chitchat"],
+    "priority": "high",
+    "is_complex": false
+  },
+  {
+    "id": "tc_003",
+    "name": "基础行程规划",
+    "input_message": "给我规划一个上海3天行程",
+    "expected_output_contains": [],
+    "expected_elements": ["时间安排", "地点", "交通方式", "餐饮推荐", "预算"],
+    "tags": ["planning", "shanghai"],
+    "priority": "high",
+    "is_complex": true
+  },
+  {
+    "id": "tc_004",
+    "name": "带偏好的行程",
+    "input_message": "我和家人想去成都玩，要吃辣的，预算5000",
+    "expected_output_contains": [],
+    "expected_elements": ["时间安排", "地点", "交通方式", "餐饮推荐", "预算"],
+    "tags": ["planning", "chengdu", "preferences"],
+    "priority": "high",
+    "is_complex": true
+  },
+  {
+    "id": "tc_005",
+    "name": "复杂多轮对话",
+    "input_message": "我想去西安旅游，之前说过喜欢历史景点",
+    "expected_output_contains": [],
+    "expected_elements": ["时间安排", "地点", "交通方式", "历史景点", "餐饮推荐"],
+    "tags": ["multi-turn", "memory", "xi'an"],
+    "priority": "normal",
+    "is_complex": true
+  },
+  {
+    "id": "tc_006",
+    "name": "异常输入",
+    "input_message": "asdfghjkl",
+    "expected_output_contains": [],
+    "expected_elements": [],
+    "tags": ["edge", "abnormal"],
+    "priority": "low",
+    "is_complex": false
+  },
+  {
+    "id": "tc_007",
+    "name": "预算敏感型规划",
+    "input_message": "预算有限，2000元以内玩广州3天",
+    "expected_output_contains": [],
+    "expected_elements": ["时间安排", "地点", "交通方式", "餐饮推荐", "预算"],
+    "tags": ["planning", "guangzhou", "budget"],
+    "priority": "normal",
+    "is_complex": true
+  },
+  {
+    "id": "tc_008",
+    "name": "季节性规划",
+    "input_message": "冬天去哈尔滨玩，有什么推荐？",
+    "expected_output_contains": [],
+    "expected_elements": ["时间安排", "地点", "冬季活动", "保暖建议"],
+    "tags": ["planning", "harbin", "seasonal"],
+    "priority": "normal",
+    "is_complex": true
+  }
+]

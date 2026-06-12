@@ -1,0 +1,74 @@
+# config/final_validator_tasks.yaml
+# FinalVerifier 状态任务：整体审核最终计划
+
+final_validator_task:
+  description: >
+    你是一个【终审质检官】。你的职责是审核完整的旅游计划（所有步骤的结果）。
+
+    【完整计划】:
+    所有步骤及结果: {all_steps_with_results}
+    总体计划文档: {full_plan_document}
+
+    【你的任务】:
+    1. 整体审核所有步骤的执行结果
+    2. 判断计划是否整体通过
+    3. 如果不通过，输出需要修复的步骤索引列表（局部修复，不是全盘重来）
+
+    【审核维度】:
+    - 完整性：所有步骤是否都已完成
+    - 可行性：计划是否切实可行
+    - 内部一致性：各步骤之间是否矛盾
+
+    【反馈格式】:
+    如果通过：输出 [通过] 标签和最终报告
+    如果不通过：输出 [失败步骤列表] 标签和失败步骤索引
+
+    【为什么这是错误的】(如果不通过)：
+    - 违反原则：[用户约束/逻辑矛盾/工具使用规范]
+    - 影响范围：[局部/整体]
+    - 修复建议：[针对每个失败步骤的具体修正]
+
+  expected_output: >
+    输出一份 JSON（严格放在 ```json 代码块中），包含以下字段：
+    - global_verdict: string, "pass" | "fail_with_patches"
+    - scores: object
+      - completeness: float (0-100)
+      - feasibility: float (0-100)
+      - internal_consistency: float (0-100)
+    - failed_step_ids: list[int] (如果失败)
+    - global_feedback: object (如果失败)
+      - reason: string
+      - suggested_corrections: object
+
+    示例输出（通过）：
+    ```json
+    {
+      "global_verdict": "pass",
+      "scores": {
+        "completeness": 100,
+        "feasibility": 95,
+        "internal_consistency": 90
+      }
+    }
+    ```
+
+    示例输出（不通过）：
+    ```json
+    {
+      "global_verdict": "fail_with_patches",
+      "scores": {
+        "completeness": 80,
+        "feasibility": 60,
+        "internal_consistency": 70
+      },
+      "failed_step_ids": [2, 4],
+      "global_feedback": {
+        "reason": "步骤2天气数据缺失且工具无法获取，步骤4行程安排过于紧凑",
+        "suggested_corrections": {
+          "2": "使用备用天气数据源或询问用户",
+          "4": "将行程从6个景点减少到3个，每个景点停留时间减半"
+        }
+      }
+    }
+    ```
+  agent: logic_validator_agent

@@ -141,7 +141,7 @@ class TravelExpertCrew:
             agents=self.agents, 
             tasks=self.tasks, 
             process=Process.hierarchical, # 开启层级动态拆解机制
-            manager_llm=zhipu_llm,        # 必须指定一个模型作为“包工头”来做路由分配
+            manager_llm=zhipu_llm,        # 必须指定一个模型作为"包工头"来做路由分配
             verbose=True
         )
 
@@ -173,6 +173,13 @@ class TravelWorkflow(Flow[TravelState]):
         self.feedback_history: list[str] = []
         self.status_callback = status_callback
         self.content_callback = content_callback
+        # Compaction 配置
+        self.MAX_FEEDBACK_ENTRIES = 5
+        self.COMPACT_SUMMARY_CHARS = 600
+        # 熔断器状态
+        self._consecutive_same_error = 0
+        self._last_error_key = ""
+        self._circuit_breaker_triggered = False
 
     def notify(self, text: str):
         if self.status_callback:
@@ -219,7 +226,12 @@ class TravelWorkflow(Flow[TravelState]):
         # 强制遍历，连每个 Agent 身上都挂上回调，确保万无一失
         for a in crew_instance.agents:
             a.step_callback = cb
-        return crew_instance.kickoff(inputs=inputs)
+        result = crew_instance.kickoff(inputs=inputs)
+        # Crew 输出安全截断
+        if hasattr(result, 'raw') and len(result.raw) > 8000:
+            print(f"[Truncation] Crew 输出从 {len(result.raw)} 截断至 8000 字符")
+            result.raw = result.raw[:8000] + "\n\n[输出过长已截断]"
+        return result
 
     def _parse_feedback(self, feedback: str) -> tuple[str, str]:
         if feedback.startswith("[提问]"): return "ask_user", feedback.replace("[提问]", "").strip()
@@ -235,6 +247,71 @@ class TravelWorkflow(Flow[TravelState]):
         if any(kw in feedback_lower for kw in ["建议", "优化", "可以调整", "改进", "更好"]): return "adjust", feedback
         return "pass", feedback
 
+    def _compact_feedback_history(self):
+        """Compaction: 将旧质检记录压缩为摘要，保留最近 3 条原文，防止 Token 爆炸"""
+        if len(self.feedback_history) <= self.MAX_FEEDBACK_ENTRIES:
+            return
+
+        # 将最早 N-3 条发送给 LLM 压缩
+        old_entries = self.feedback_history[:len(self.feedback_history) - 3]
+        recent_entries = self.feedback_history[-3:]
+
+        all_old = "\n---\n".join(old_entries)
+        prompt = f"""将以下质检反馈历史压缩为一条不超过{self.COMPACT_SUMMARY_CHARS}字的精炼摘要。
+只保留【发现的问题类型】、【是否已修复】、【仍存在的争议点】，丢弃过程性细节和重复内容。
+
+【质检历史】:
+{all_old}
+
+【压缩摘要（{self.COMPACT_SUMMARY_CHARS}字以内）】:"""
+
+        try:
+            summary = zhipu_llm.call([{"role": "user", "content": prompt}]).strip()
+            if len(summary) > self.COMPACT_SUMMARY_CHARS:
+                summary = summary[:self.COMPACT_SUMMARY_CHARS] + "..."
+            self.feedback_history = [f"[历史质检摘要] {summary}"] + recent_entries
+            print(f"[Compaction] feedback_history 从 {len(old_entries) + len(recent_entries)} 条压缩至 {len(self.feedback_history)} 条（1摘要 + 3原文）")
+        except Exception as e:
+            print(f"[Compaction] LLM压缩失败({e}), 回退到最近3条")
+            self.feedback_history = recent_entries
+
+    def _error_fingerprint(self, feedback: str) -> str:
+        """从反馈中提取粗粒度指纹，用于检测重复错误"""
+        cleaned = re.sub(r'^\[.*?\]\s*', '', feedback).strip()
+        return cleaned[:80]
+
+    def _check_circuit_breaker(self, feedback_type: str, feedback: str) -> str | None:
+        """检测修正死循环，触发时返回干预消息，否则返回 None"""
+        if feedback_type not in ("error", "adjust", "incomplete"):
+            self._consecutive_same_error = 0
+            self._last_error_key = ""
+            return None
+
+        fp = self._error_fingerprint(feedback)
+        if fp == self._last_error_key:
+            self._consecutive_same_error += 1
+        else:
+            self._consecutive_same_error = 1
+            self._last_error_key = fp
+
+        if self._consecutive_same_error >= 3:
+            self._circuit_breaker_triggered = True
+            return (
+                f"[强制干预] 检测到连续 {self._consecutive_same_error} 次相同类型的错误反馈，"
+                f"系统判定已陷入修正死循环。请直接接受当前最佳版本并向前推进。"
+                f"上一次的错误反馈是: {feedback[:200]}"
+            )
+
+        if self.current_adjust_count >= 5 and self._consecutive_same_error >= 2:
+            self._circuit_breaker_triggered = True
+            return (
+                f"[强制干预] 当前步骤已修改 {self.current_adjust_count} 次，"
+                f"其中连续 {self._consecutive_same_error} 次收到相似反馈。"
+                f"请忽略细枝末节，接受当前草案并输出 final_report。"
+            )
+
+        return None
+
     @start()
     def plan_steps(self):
         print(f"\n{'='*50}")
@@ -245,10 +322,16 @@ class TravelWorkflow(Flow[TravelState]):
         inputs = {
             "message": self.state.message,
             "user_id": self.state.user_id,
-            "focus": self.state.focus
+            "focus": self.state.focus,
+            "previous_plan": self.state.plan_document or "无历史计划（首次规划）",
+            "current_step": self.state.current_step_instruction or "无当前工单（首次执行）",
+            "current_draft": self.state.draft_report or "无进度草案",
+            "last_validation_summary": "",  # 总是传入，即使没有历史反馈
         }
         if self.feedback_history:
-            inputs["feedback_history"] = "\n".join(self.feedback_history[:])
+            # 传入已压缩的质检反馈（摘要 + 最近 3 条原文）
+            compact_feedback = "\n---\n".join(self.feedback_history[-4:])
+            inputs["last_validation_summary"] = compact_feedback
 
         # 使用封装后的函数启动！
         result = self._run_crew_with_callback(PlannerCrew, inputs)
@@ -264,6 +347,11 @@ class TravelWorkflow(Flow[TravelState]):
                 self.state.location = plan_data.get("location", "未知")
                 self.state.focus = plan_data.get("focus", "")
                 self.state.tools_needed = plan_data.get("tools_needed", [])
+                # 提取 Planner 生成的当前步骤工单
+                step_instruction = plan_data.get("current_step_instruction", "")
+                if step_instruction:
+                    self.state.current_step_instruction = step_instruction
+                    print(f"[Plan] 提取到当前步骤工单: {step_instruction[:100]}")
             else:
                 self.state.is_complex = True
         except Exception:
@@ -279,6 +367,9 @@ class TravelWorkflow(Flow[TravelState]):
         self.notify(f"[执行阶段] 专家团队正在规划【{self.state.location}】...")
         print(f"\n{'='*50}")
         print(f"[Act] 执行生成（focus: {self.state.focus}）...")
+        print(f"[Act] 当前步骤工单: {self.state.current_step_instruction or '(空 - 使用默认)'}")
+        print(f"[Act] 修改指令: {self.state.last_validation_feedback or '(空 - 无修改要求)'}")
+        print(f"[Act] 计划文档长度: {len(self.state.plan_document)}字符")
         print(f"{'='*50}")
 
         # 构建执行输入
@@ -323,6 +414,7 @@ class TravelWorkflow(Flow[TravelState]):
             })
             validation_feedback = result.raw
             self.feedback_history.append(validation_feedback)
+            self._compact_feedback_history()
 
             # 2. 🌟 唯一解析入口：使用健壮的解析器，一次性拿到标签类型和内容
             feedback_type, adjustment_hint = self._parse_feedback(validation_feedback)
@@ -338,17 +430,30 @@ class TravelWorkflow(Flow[TravelState]):
             # 分支 B：当前步骤完美，推进下一步
             elif feedback_type == "continue":
                 self.notify(f"▶️ [推进] 当前步骤达标，继续往下规划...")
-                
+
+                # 重置熔断计数器
+                self._consecutive_same_error = 0
+                self._last_error_key = ""
+                self._circuit_breaker_triggered = False
+
                 # 宏观进度条更新
                 self.state.plan_document += f"\n\n✅ 已完成上一步。下一步指示: {adjustment_hint}"
-                # 将 Validator 说的“下一步指示”变成 Executor 下一轮的“精准工单”
+                # 将 Validator 说的"下一步指示"变成 Executor 下一轮的"精准工单"
                 self.state.current_step_instruction = adjustment_hint
-                
+
                 self.execute_step()
                 continue
 
             # 分支 C：有问题，打回重做或微调
             elif feedback_type in ("adjust", "incomplete", "error"):
+                # 熔断检查
+                intervention = self._check_circuit_breaker(feedback_type, validation_feedback)
+                if intervention:
+                    self.notify(f"⚡ [熔断触发] {intervention}")
+                    self.state.final_report = self.state.draft_report
+                    return
+
+                self.current_error_count += 1
                 if self.current_adjust_count < self.max_adjustments:
                     self.current_adjust_count += 1
                     self.notify(f"🔄 [打回重做 {self.current_adjust_count}/{self.max_adjustments}] 发现瑕疵，正在修正...")

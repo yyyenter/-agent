@@ -6,20 +6,59 @@ planning_task:
     当前用户 ID 为: {user_id}。
     以下为系统自动组装的用户全局上下文（长期偏好 + 当前行程约束 + 近期对话记录），请作为决策参考：
     {focus}
+
+    【历史计划状态 - 用于判断是"继续"还是"新任务"】：
+    - 之前的完整计划书: {previous_plan}
+    - 上一步质检给当前步骤的指令: {current_step}
+    - 最近几次质检反馈摘要: {last_validation_summary}
+    - 目前已有的进度草案: {current_draft}
+
     【第一步：记忆检索与更新】
     1. 调用 read_memory_tool 查询用户 {user_id} 的历史偏好。
-    2. 检查当前用户的输入 {message} 是否包含了新的长期偏好（例如“我一直吃素”、“我腰不好不能走太多路”、“我只住五星级”）。
-    3. 如果有新偏好，立即调用 save_memory_tool。你需要自己发明合适的 memory_key（如 'health_constraint', 'budget_tier'）并将内容存入。
-    【第二步：制定一份《行程规划执行策略》】。
+       使用 context_tag = 本次行程的目的地或主题（如"云南3日游"），以便仅加载相关记忆。
+    2. 检查当前用户的输入 {message} 是否包含新的偏好或约束。严格区分三类：
+       - 【permanent 永久约束】：健康/安全相关的硬性禁忌。如"花生过敏会死"、"心脏不好不能高原"、"轮椅用户"。
+         调用 save_memory_tool(scope="permanent", context_tag="global")
+       - 【long_term 长期偏好】：反复出现的习惯性偏好。如"一直吃素"、"只住五星级"、"不喜欢早起"。
+         调用 save_memory_tool(scope="long_term", context_tag="global")
+       - 【trip_scoped 本次行程约束】：仅适用于本次出行的临时限制。如"预算2000"、"3天"、"想去海边"。
+         调用 save_memory_tool(scope="trip_scoped", context_tag="本次行程标签")
+    3. 重要：预算、天数、目的地等临时参数必须使用 scope="trip_scoped"，绝对不要设为 permanent 或 long_term！
+
+    【第二步：判断任务延续性】
+    1. 如果 {previous_plan} 不是"无历史计划"，说明这轮对话是在已有计划基础上继续。你需要：
+       - 检查用户的新输入是否对已有计划提出了修改
+       - 如果用户只是补充信息（如回答了之前的反问），更新计划中的参数（目的地、天数、预算等），但保留原来的宏观框架
+       - 如果用户提出了新需求，在当前计划框架下追加
+    2. 如果 {previous_plan} 是"无历史计划"，说明这是全新任务的开始，从头规划。
+
+    【第三步：制定一份《行程规划执行策略》】。
     你需要分析：
     1. 用户的意图是什么？（规划行程、闲聊、还是修改已有行程？）
     2. 我们是否知道确切的目的地？如果不知道，是否可以通过上下文推断？
-    3. 接下来的执行团队需要分为几步来完成这个任务？需要用到哪些方向的数据？
+    3. 接下来执行团队的第一步具体工单是什么？
 
   expected_output: >
-    输出一份清晰的《执行策略计划书》，包含：
-    - 任务定性（是否为复杂的旅游规划）
-    - 目标地点（如果明确的话）
-    - 核心诉求（用户最在意的点）
-    - 分步执行指导（给执行团队的SOP，例如第一步查什么，第二步写什么。如果发现严重缺失目的地等信息，请在计划中明确指出“存在信息缺失风险”）。
+    输出一份 JSON（严格放在 ```json 代码块中），包含以下字段：
+    - is_complex: bool, 是否为复杂的旅游规划
+    - location: string, 目标地点（如果不明确则填"未知"）
+    - focus: string, 核心诉求（用户最在意的点）
+    - tools_needed: list[string], 需要用到哪些工具（如 ["weather_tool", "read_memory_tool"]）
+    - simple_answer: string, 如果任务简单可直接回答则填答案，否则填""
+    - current_step_instruction: string, 【必须】为执行团队写下本次第一步的精确工单（如"第一步：查询大理、丽江、香格里拉三个城市的天气情况"）
+      如果信息严重缺失无法执行（如不知道去哪、不知道天数），填"[提问] 你要反问用户的具体问题"
+    - plan_summary: string, 对整体计划的简短描述（如果信息不足则说明需要用户补充什么）
+
+    示例输出：
+    ```json
+    {
+      "is_complex": true,
+      "location": "云南",
+      "focus": "推荐适合的旅游城市，3天，预算2000",
+      "tools_needed": ["weather_tool", "read_memory_tool"],
+      "simple_answer": "",
+      "current_step_instruction": "第一步：使用 weather_tool 查询大理、丽江、香格里拉的天气情况，用 read_memory_tool 读取用户的长期偏好限制",
+      "plan_summary": "用户想去云南但不确定去哪，先对比2-3个推荐城市的天气和用户偏好，筛选出合适的选项"
+    }
+    ```
   agent: planner_agent

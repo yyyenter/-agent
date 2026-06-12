@@ -1,7 +1,6 @@
 import json
 import hashlib
 import math
-import sqlite3
 import os
 import re
 from datetime import datetime
@@ -12,6 +11,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 try:
+    import pymysql
+    pymysql.install_as_MySQLdb()
+    MYSQL_AVAILABLE = True
+except ImportError:
+    MYSQL_AVAILABLE = False
+    pymysql = None
+
+try:
     import redis
     REDIS_AVAILABLE = True
 except ImportError:
@@ -20,10 +27,90 @@ except ImportError:
 
 from crewai import LLM
 
-DB_PATH = "knowledge/user_profiles.db"
-os.makedirs("knowledge", exist_ok=True)
+# ==================== MySQL 数据库配置 ====================
+def get_mysql_connection():
+    """获取 MySQL 连接（自动创建数据库和表，类似 SQLite 的自动创建行为）"""
+    host = os.getenv("MYSQL_HOST", "localhost")
+    port = int(os.getenv("MYSQL_PORT", "3306"))
+    user = os.getenv("MYSQL_USER", "root")
+    password = os.getenv("MYSQL_PASSWORD", "")
+    database = os.getenv("MYSQL_DATABASE", "agent_test0")
 
-# ==================== 内存回退存储 ====================
+    if not MYSQL_AVAILABLE:
+        raise ImportError("pymysql is not installed. Please install it with: pip install pymysql")
+
+    # 先连接到 MySQL（不指定数据库，用于创建）
+    conn = pymysql.connect(
+        host=host,
+        port=port,
+        user=user,
+        password=password,
+        charset='utf8mb4'
+    )
+
+    try:
+        with conn.cursor() as cursor:
+            # 自动创建数据库（类似 SQLite 自动创建 .db 文件）
+            cursor.execute(f"CREATE DATABASE IF NOT EXISTS `{database}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
+            # 选择数据库
+            cursor.execute(f"USE `{database}`")
+            # 自动创建表
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS `user_memory` (
+                    `user_id` VARCHAR(255) NOT NULL,
+                    `memory_key` VARCHAR(255) NOT NULL,
+                    `memory_value` TEXT,
+                    `context_tag` VARCHAR(100) DEFAULT 'global',
+                    `scope` VARCHAR(50) DEFAULT 'long_term',
+                    `last_updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    PRIMARY KEY (`user_id`, `memory_key`, `context_tag`),
+                    INDEX `idx_user_id` (`user_id`),
+                    INDEX `idx_context_tag` (`context_tag`),
+                    INDEX `idx_scope` (`scope`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            """)
+        conn.commit()
+    finally:
+        conn.close()
+
+    # 再连接到指定数据库（类似 SQLite 的 sqlite3.connect）
+    return pymysql.connect(
+        host=host,
+        port=port,
+        user=user,
+        password=password,
+        database=database,
+        charset='utf8mb4',
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
+def init_db():
+    """初始化 MySQL 动态 Key-Value 长期记忆表（含作用域隔离）
+
+    类似 SQLite 的行为，数据库和表会在第一次连接时自动创建。
+    此函数可用于手动检查/重建表结构。
+    """
+    conn = get_mysql_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS `user_memory` (
+                    `user_id` VARCHAR(255) NOT NULL,
+                    `memory_key` VARCHAR(255) NOT NULL,
+                    `memory_value` TEXT,
+                    `context_tag` VARCHAR(100) DEFAULT 'global',
+                    `scope` VARCHAR(50) DEFAULT 'long_term',
+                    `last_updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    PRIMARY KEY (`user_id`, `memory_key`, `context_tag`),
+                    INDEX `idx_user_id` (`user_id`),
+                    INDEX `idx_context_tag` (`context_tag`),
+                    INDEX `idx_scope` (`scope`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            """)
+        conn.commit()
+        print("[MySQL] 表 user_memory 创建成功或已存在")
+    finally:
+        conn.close()
 class InMemoryFallback:
     """Redis 不可用时的内存回退存储"""
     def __init__(self):
@@ -97,31 +184,58 @@ def get_redis_or_fallback():  # -> tuple[Any, bool]
         return _memory_fallback, True
 
 def init_db():
-    """初始化 SQLite 动态 Key-Value 长期记忆表"""
-    with sqlite3.connect(DB_PATH) as conn:
-        conn.execute("""
-            CREATE TABLE IF NOT EXISTS user_memory (
-                user_id TEXT,
-                memory_key TEXT,         -- 动态键，如 dietary_restrictions, physical_limits
-                memory_value TEXT,       -- 动态值，如 对海鲜严重过敏, 不能爬山
-                last_updated TIMESTAMP,
-                PRIMARY KEY (user_id, memory_key)
-            )
-        """)
-init_db()
+    """初始化 MySQL 动态 Key-Value 长期记忆表（含作用域隔离）"""
+    conn = get_mysql_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS user_memory (
+                    user_id VARCHAR(255) NOT NULL,
+                    memory_key VARCHAR(255) NOT NULL,
+                    memory_value TEXT,
+                    context_tag VARCHAR(100) DEFAULT 'global',
+                    scope VARCHAR(50) DEFAULT 'long_term',
+                    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    PRIMARY KEY (user_id, memory_key, context_tag),
+                    INDEX idx_user_id (user_id),
+                    INDEX idx_context_tag (context_tag),
+                    INDEX idx_scope (scope)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            """)
+        conn.commit()
+    finally:
+        conn.close()
+
 
 class MemoryManager:
     """工业级 Session 记忆管理器 (CC 架构) - 支持 Redis 和内存回退"""
-    
+
     def __init__(self, session_id: str, user_id: str, redis_client, is_fallback: bool = False):
         self.session_id = session_id
         self.user_id = user_id
         self.redis = redis_client
         self.is_fallback = is_fallback
-        
+        self._db_connection = None
+
         self.chat_key = f"session:{session_id}:chat"          # 桶3: 原始对话轮次 (Episodic)
         self.summary_key = f"session:{session_id}:summary"    # 桶5: 短期精炼约束 (Working Memory)
         self.ttl = 86400  # 24小时
+
+    def _get_db_connection(self):
+        """获取数据库连接（复用连接）"""
+        if self._db_connection is None or not self._db_connection.open:
+            self._db_connection = get_mysql_connection()
+        return self._db_connection
+
+    def _close_db_connection(self):
+        """关闭数据库连接"""
+        if self._db_connection and self._db_connection.open:
+            self._db_connection.close()
+            self._db_connection = None
+
+    def __del__(self):
+        """析构时关闭数据库连接"""
+        self._close_db_connection()
 
     # ==================== 桶3: Episodic Memory (Redis) ====================
     def add_message(self, role: str, content: str, max_turns: int = 8):
@@ -148,33 +262,74 @@ class MemoryManager:
         summary = self.redis.hgetall(self.summary_key)
         return {k: v for k, v in summary.items()} if summary else {}
 
-    # ==================== 桶6: Semantic Memory (SQLite KV 长期偏好) ====================
-    def save_user_memory(self, memory_key: str, memory_value: str):
-        """写入 SQLite KV 长期偏好库 (内置去重合并逻辑)"""
+    # ==================== 桶6: Semantic Memory (MySQL KV 长期偏好) ====================
+    def save_user_memory(self, memory_key: str, memory_value: str,
+                         context_tag: str = "global", scope: str = "long_term"):
+        """写入 MySQL KV 长期偏好库（支持作用域隔离）
+        scope: 'permanent' 永久约束(过敏/疾病), 'long_term' 长期偏好, 'trip_scoped' 本次行程临时约束
+        """
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        with sqlite3.connect(DB_PATH) as conn:
-            conn.execute("""
-                INSERT INTO user_memory (user_id, memory_key, memory_value, last_updated)
-                VALUES (?, ?, ?, ?)
-                ON CONFLICT(user_id, memory_key) 
-                DO UPDATE SET memory_value = excluded.memory_value, 
-                              last_updated = excluded.last_updated
-            """, (self.user_id, memory_key, memory_value, timestamp))
-
-    def get_user_profile(self) -> str:
-        """从 SQLite 提取该用户的所有长期特征，组装为可读文本"""
+        conn = self._get_db_connection()
         try:
-            with sqlite3.connect(DB_PATH) as conn:
-                cursor = conn.execute(
-                    "SELECT memory_key, memory_value FROM user_memory WHERE user_id = ?", 
-                    (self.user_id,)
-                )
+            with conn.cursor() as cursor:
+                cursor.execute("""
+                    INSERT INTO user_memory (user_id, memory_key, memory_value,
+                                             context_tag, scope, last_updated)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                    ON DUPLICATE KEY UPDATE
+                        memory_value = VALUES(memory_value),
+                        scope = VALUES(scope),
+                        last_updated = VALUES(last_updated)
+                """, (self.user_id, memory_key, memory_value, context_tag, scope, timestamp))
+            conn.commit()
+        except Exception as e:
+            print(f"[MySQL] save_user_memory failed: {e}")
+            conn.rollback()
+
+    def get_user_profile(self, context_tag: str = None) -> str:
+        """从 MySQL 提取用户长期特征（支持作用域过滤）
+        若提供 context_tag，返回该 context + global + permanent scope 的记忆。
+        不提供则返回 global + permanent scope 的记忆。
+        trip_scoped 记忆仅在 context_tag 完全匹配时返回。
+        """
+        try:
+            conn = self._get_db_connection()
+            with conn.cursor() as cursor:
+                if context_tag:
+                    cursor.execute(
+                        """SELECT memory_key, memory_value, scope, context_tag
+                           FROM user_memory
+                           WHERE user_id = %s
+                             AND (context_tag = %s OR context_tag = 'global' OR scope = 'permanent')
+                           ORDER BY
+                             CASE scope WHEN 'permanent' THEN 0 WHEN 'long_term' THEN 1 ELSE 2 END,
+                             last_updated DESC""",
+                        (self.user_id, context_tag)
+                    )
+                else:
+                    cursor.execute(
+                        """SELECT memory_key, memory_value, scope, context_tag
+                           FROM user_memory
+                           WHERE user_id = %s
+                             AND (context_tag = 'global' OR scope = 'permanent')
+                           ORDER BY
+                             CASE scope WHEN 'permanent' THEN 0 WHEN 'long_term' THEN 1 ELSE 2 END,
+                             last_updated DESC""",
+                        (self.user_id,)
+                    )
                 rows = cursor.fetchall()
             if not rows:
                 return "暂无长期偏好"
-            profile_lines = [f"{row[0]}: {row[1]}" for row in rows]
+            profile_lines = []
+            for row in rows:
+                key = row.get("memory_key")
+                value = row.get("memory_value")
+                scope = row.get("scope", "long_term")
+                scope_label = {"permanent": "[永久]", "trip_scoped": "[本次]", "long_term": ""}.get(scope, "")
+                profile_lines.append(f"- {key}{scope_label}: {value}")
             return "\n".join(profile_lines)
-        except Exception:
+        except Exception as e:
+            print(f"[MySQL] get_user_profile failed: {e}")
             return "暂无长期偏好"
 
     # ==================== 🧠 记忆生命周期自动流转机制 ====================
@@ -227,13 +382,20 @@ class MemoryManager:
 以下是用户本次行程的【临时约束摘要】：
 {short_term_text}
 
-请从中剥离出：
-1. 属于本次临时的约束（如去哪玩、几天、预算多少）。 -> 【忽略】
-2. 属于用户长期的、通用的个人偏好（如：忌口、身体状况、强烈的品牌偏好）。 -> 【提取】
+请从中剥离出三类信息：
 
-如果没有长期偏好，输出 []。
-如果有，请输出 JSON 数组，例如：
-[{{"key": "dietary_restrictions", "value": "海鲜过敏"}}, {{"key": "travel_style", "value": "不安排早起"}}]
+1. 【permanent 永久约束】健康/安全相关，任何行程都必须遵守（如过敏、疾病、身体限制） -> scope="permanent"
+2. 【long_term 长期偏好】反复出现的习惯/偏好（如饮食口味、住宿档次、出行方式） -> scope="long_term"
+3. 【trip_scoped 临时约束】仅本次行程的参数（如预算、天数、具体目的地） -> scope="trip_scoped"
+
+输出 JSON 数组，例如：
+[
+  {{"key": "allergy", "value": "花生过敏", "scope": "permanent"}},
+  {{"key": "hotel_tier", "value": "五星级", "scope": "long_term"}},
+  {{"key": "budget", "value": "2000元", "scope": "trip_scoped"}}
+]
+
+如果没有可提取的内容，输出 []。
 """
         try:
             response = llm.call([{"role": "user", "content": prompt}]).strip()
@@ -243,8 +405,9 @@ class MemoryManager:
                 for item in profile_list:
                     key = item.get("key")
                     value = item.get("value")
+                    scope = item.get("scope", "long_term")
                     if key and value:
-                        self.save_user_memory(key, value)
+                        self.save_user_memory(key, value, scope=scope)
         except Exception as e:
             print(f"[Memory Conversion] Conversion to Semantic failed: {e}")
 

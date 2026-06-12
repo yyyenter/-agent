@@ -42,7 +42,15 @@
       "mcp__filesystem__read_text_file",
       "Bash(Start-Sleep -Seconds 5)",
       "Bash(Select-Object -First 30)",
-      "Bash(awk '{print $5}')"
+      "Bash(awk '{print $5}')",
+      "WebFetch(domain:docs.ana.ai)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:mcp.so)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:replicate.com)",
+      "Bash(npm search *)",
+      "Bash(npm list *)",
+      "Bash(npm --version)"
     ]
   },
   "enableAllProjectMcpServers": true,

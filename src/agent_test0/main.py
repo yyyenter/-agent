@@ -164,29 +164,26 @@ async def chat_endpoint_stream(request: ChatRequest):
                 saved_state = redis_client.hgetall(flow_state_key)
                 if saved_state:
                     hard_print("📦 [状态恢复] 从 Redis 恢复 Flow 状态")
-                    travel_flow.state.plan_document = saved_state.get("plan_document", "")
-                    travel_flow.state.draft_report = saved_state.get("draft_report", "")
-                    travel_flow.state.current_step_instruction = saved_state.get("current_step_instruction", "")
-                    travel_flow.state.last_validation_feedback = saved_state.get("last_validation_feedback", "")
                     try:
-                        travel_flow.feedback_history = json.loads(saved_state.get("feedback_history", "[]"))
-                        travel_flow.current_adjust_count = int(saved_state.get("current_adjust_count", "0"))
-                        # 恢复后立即压缩（如果历史过多）
-                        if len(travel_flow.feedback_history) > travel_flow.MAX_FEEDBACK_ENTRIES:
-                            travel_flow._compact_feedback_history()
-                    except Exception:
-                        pass
+                        steps_json = saved_state.get("steps", "[]")
+                        if steps_json:
+                            from agent_test0.crew import StepPlan
+                            travel_flow.state.steps = [StepPlan(**s) for s in json.loads(steps_json)]
+                        travel_flow.state.current_step_index = int(saved_state.get("current_step_index", "0"))
+                        travel_flow.state.location = saved_state.get("location", "未知地点")
+                        travel_flow.state.focus = saved_state.get("focus", "")
+                    except Exception as e:
+                        hard_print(f"⚠️ [状态恢复] 解析失败: {e}")
 
                 result = travel_flow.kickoff()
 
                 # ===== 保存 Flow 状态到 Redis（24h TTL）=====
                 flow_state = {
-                    "plan_document": result.state.plan_document or "",
-                    "draft_report": result.state.draft_report or "",
-                    "current_step_instruction": result.state.current_step_instruction or "",
-                    "last_validation_feedback": result.state.last_validation_feedback or "",
-                    "feedback_history": json.dumps(travel_flow.feedback_history, ensure_ascii=False),
-                    "current_adjust_count": str(travel_flow.current_adjust_count),
+                    "steps": json.dumps([s.model_dump() for s in (result.state.steps or [])], ensure_ascii=False),
+                    "current_step_index": str(result.state.current_step_index),
+                    "location": result.state.location or "",
+                    "focus": result.state.focus or "",
+                    "final_report": result.state.final_report or "",
                 }
                 redis_client.hset(flow_state_key, mapping=flow_state)
                 redis_client.expire(flow_state_key, 86400)

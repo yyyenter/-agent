@@ -18,32 +18,45 @@ step_preparer_task:
     2. 生成工具调用序列（每个工具调用包含：顺序、工具名、参数、预期输出格式）
     3. 确保工具调用顺序合理，满足步骤目标
 
-    【可使用的工具】:
-    - weather_tool: 查询城市天气
-    - read_memory_tool: 读取用户长期偏好
-    - tavily_search: 网络搜索
+    【可使用的工具】（仅限以下工具，不得编造）:
+    - weather_tool: 查询城市天气，参数 {"city": "城市名"}
+    - tavily_search: 网络搜索，参数 {"query": "搜索词"}
+
+    【注意】
+    - 用户偏好已经在【全局约束】里注入，不需要、也没有任何记忆相关工具可以调用。
+    - 如果某步骤不需要外部信息（如纯整合/排版），tools_to_call 可以是空数组。
 
   expected_output: >
-    输出一份 JSON（严格放在 ```json 代码块中），包含以下字段：
+    输出一份 JSON（严格放在 ```json 代码块中），只输出 JSON 不要其他文字，包含以下字段：
     - step_index: int, 当前步骤索引
-    - tools_to_call: list[object], 工具调用序列
+    - tools_to_call: list[object], 工具调用序列。如果步骤无需工具（如整合/排版/撰写类），返回空数组。
       - order: int, 调用顺序
-      - tool_name: string, 工具名（mcp://... 格式）
+      - tool_name: string, **必须是上面【可使用的工具】列表中的字面名**
+        （只能是 "weather_tool" / "tavily_search" 这两个之一；
+         严禁使用 "mcp://..." 这种 URI 格式，严禁编造其他工具名）
       - parameters: object, 参数
       - expected_output_schema: object, 预期输出格式
 
-    示例输出：
+    示例输出（查询天气）：
     ```json
     {
       "step_index": 0,
       "tools_to_call": [
         {
           "order": 1,
-          "tool_name": "mcp://weather/get",
+          "tool_name": "weather_tool",
           "parameters": {"city": "杭州"},
           "expected_output_schema": {"type": "object", "properties": {"temp": {"type": "number"}, "condition": {"type": "string"}}}
         }
       ]
     }
     ```
-  agent: info_search_agent
+
+    示例输出（整合/排版类，无须工具）：
+    ```json
+    {
+      "step_index": 3,
+      "tools_to_call": []
+    }
+    ```
+  agent: step_preparer_agent

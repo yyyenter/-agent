@@ -52,4 +52,4 @@ replan_task:
       "replan_retry_count": 1
     }
     ```
-  agent: planner_agent
+  agent: partial_replanner_agent

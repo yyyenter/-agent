@@ -17,9 +17,13 @@ try:
 except Exception:
     pass
 
-from agent_test0.tools.custom_tool import ReadMemoryTool, SaveMemoryTool, WeatherTool
+from agent_test0.tools.custom_tool import WeatherTool
+from agent_test0.harness import MemoryManager, get_redis_or_fallback
 
 load_dotenv()
+
+# ─── 全局 Redis 客户端：进程级单例，crew 自己持有 ───
+_redis_client, _is_redis_fallback = get_redis_or_fallback()
 
 # =========================================
 # 【终端打印】处理 Windows 终端编码问题
@@ -98,6 +102,7 @@ class StepPlan(BaseModel):
     status: str = "pending"  # pending | executing | completed | failed
     result: str = ""
     error: str = ""
+    validation_feedback: str = ""  # 验证反馈
 
 class StepResult(BaseModel):
     """步骤执行结果记录"""
@@ -117,33 +122,29 @@ class ValidationFeedback(BaseModel):
 
 
 class TravelState(BaseModel):
-    # === 基础元数据 (保留) ===
+    # === 基础元数据 ===
     message: str = ''
     user_id: str = 'default_user'
     session_id: str = 'default_sess'
 
-    # === 新状态机字段 ===
-    steps: list[StepPlan] = []          # 步骤列表（替代 plan_document）
+    # === 状态机核心字段 ===
+    steps: list[StepPlan] = []          # 步骤列表
     current_step_index: int = 0         # 当前执行步骤索引
     step_results: list[StepResult] = [] # 步骤执行结果历史
     failed_steps_indices: list[int] = [] # 失败步骤索引列表
 
-    # === 全局控制字段 ===
-    ask_user_question: str = ""         # 如果非空，表示需要向用户提问，流程会停止并返回此问题
-    skip_remaining_steps: bool = False  # 如果为 True，跳过剩余步骤直接输出结果
+    # === 流程控制字段（结构化，替代文本前缀解析） ===
+    needs_user_input: bool = False      # True 时主流程中断，向用户提问
+    user_question: str = ""             # 当 needs_user_input=True 时填入问题
+    skip_remaining_steps: bool = False  # 跳过剩余步骤直接输出结果
 
-    # === 旧字段（临时保留，用于兼容） ===
+    # === 业务字段 ===
     is_complex: bool = True
     simple_answer: str = ""
     location: str = "未知地点"
     focus: str = ""
-    tools_needed: list[str] = []
-    plan_document: str = ""
-    draft_report: str = ""
-    previous_draft: str = ""
-    last_validation_feedback: str = ""
+    assumptions: list[str] = []   # Planner 在信息不足时所做的合理假设
     final_report: str = ""
-    current_step_instruction: str = ""
 
 @CrewBase
 class PlannerCrew:
@@ -153,7 +154,7 @@ class PlannerCrew:
 
     @agent
     def planner_agent(self) -> Agent:
-        return Agent(config=self.agents_config['planner_agent'], tools=[ReadMemoryTool(), SaveMemoryTool()], llm=zhipu_llm, verbose=True)
+        return Agent(config=self.agents_config['planner_agent'], tools=[], llm=zhipu_llm, verbose=True)
     @task
     def planning_task(self) -> Task:
         return Task(config=self.tasks_config['planning_task'])
@@ -163,43 +164,112 @@ class PlannerCrew:
 
 
 @CrewBase
-class TravelExpertCrew:
-    agents_config = 'config/agent.yaml'
-    tasks_config  = 'config/research_tasks.yaml'
-
-    @agent
-    def info_search_agent(self) -> Agent:
-        return Agent(config=self.agents_config['info_search_agent'], tools=[WeatherTool(), ReadMemoryTool()] if search_tool is None else [search_tool, WeatherTool(), ReadMemoryTool()], llm=zhipu_llm, verbose=True)
-    @agent
-    def itinerary_planner_agent(self) -> Agent:
-        return Agent(config=self.agents_config['itinerary_planner_agent'], tools=[], llm=zhipu_llm, verbose=True)
-
-    @task
-    def research_task(self) -> Task:
-        return Task(config=self.tasks_config['execution_task'])
-
-    @crew
-    def crew(self) -> Crew:
-        return Crew(
-            agents=self.agents, 
-            tasks=self.tasks, 
-            process=Process.hierarchical, # 开启层级动态拆解机制
-            manager_llm=zhipu_llm,        # 必须指定一个模型作为"包工头"来做路由分配
-            verbose=True
-        )
-
-
-@CrewBase
 class ValidatorCrew:
     agents_config = 'config/agent.yaml'
     tasks_config = 'config/logic_validator_tasks.yaml'
 
     @agent
     def logic_validator_agent(self) -> Agent:
-        return Agent(config=self.agents_config['logic_validator_agent'], tools=[ReadMemoryTool()] if search_tool is None else [search_tool, ReadMemoryTool()], llm=zhipu_llm, verbose=True)
+        tools = [search_tool] if search_tool is not None else []
+        return Agent(config=self.agents_config['logic_validator_agent'], tools=tools, llm=zhipu_llm, verbose=True)
     @task
     def validation_task(self) -> Task:
         return Task(config=self.tasks_config['validation_task'])
+    @crew
+    def crew(self) -> Crew:
+        return Crew(agents=self.agents, tasks=self.tasks, verbose=True)
+
+
+@CrewBase
+class StepPreparerCrew:
+    """StepPreparer 状态专用 Crew"""
+    agents_config = 'config/agent.yaml'
+    tasks_config = 'config/step_preparer_tasks.yaml'
+
+    @agent
+    def step_preparer_agent(self) -> Agent:
+        return Agent(config=self.agents_config['info_search_agent'], tools=[], llm=zhipu_llm, verbose=True)
+
+    @task
+    def step_preparer_task(self) -> Task:
+        return Task(config=self.tasks_config['step_preparer_task'])
+
+    @crew
+    def crew(self) -> Crew:
+        return Crew(agents=self.agents, tasks=self.tasks, verbose=True)
+
+
+@CrewBase
+class StepExecutorCrew:
+    """StepExecutor 状态专用 Crew"""
+    agents_config = 'config/agent.yaml'
+    tasks_config = 'config/executor_tasks.yaml'
+
+    @agent
+    def step_executor_agent(self) -> Agent:
+        return Agent(config=self.agents_config['info_search_agent'], tools=[WeatherTool()], llm=zhipu_llm, verbose=True)
+
+    @task
+    def executor_task(self) -> Task:
+        return Task(config=self.tasks_config['executor_task'])
+
+    @crew
+    def crew(self) -> Crew:
+        return Crew(agents=self.agents, tasks=self.tasks, verbose=True)
+
+
+@CrewBase
+class StepVerifierCrew:
+    """StepVerifier 状态专用 Crew"""
+    agents_config = 'config/agent.yaml'
+    tasks_config = 'config/step_validator_tasks.yaml'
+
+    @agent
+    def step_verifier_agent(self) -> Agent:
+        return Agent(config=self.agents_config['logic_validator_agent'], tools=[], llm=zhipu_llm, verbose=True)
+
+    @task
+    def step_validator_task(self) -> Task:
+        return Task(config=self.tasks_config['step_validator_task'])
+
+    @crew
+    def crew(self) -> Crew:
+        return Crew(agents=self.agents, tasks=self.tasks, verbose=True)
+
+
+@CrewBase
+class PartialReplannerCrew:
+    """PartialReplanner 状态专用 Crew"""
+    agents_config = 'config/agent.yaml'
+    tasks_config = 'config/replan_tasks.yaml'
+
+    @agent
+    def partial_replanner_agent(self) -> Agent:
+        return Agent(config=self.agents_config['planner_agent'], tools=[], llm=zhipu_llm, verbose=True)
+
+    @task
+    def replan_task(self) -> Task:
+        return Task(config=self.tasks_config['replan_task'])
+
+    @crew
+    def crew(self) -> Crew:
+        return Crew(agents=self.agents, tasks=self.tasks, verbose=True)
+
+
+@CrewBase
+class FinalVerifierCrew:
+    """FinalVerifier 状态专用 Crew"""
+    agents_config = 'config/agent.yaml'
+    tasks_config = 'config/final_validator_tasks.yaml'
+
+    @agent
+    def final_verifier_agent(self) -> Agent:
+        return Agent(config=self.agents_config['logic_validator_agent'], tools=[], llm=zhipu_llm, verbose=True)
+
+    @task
+    def final_validator_task(self) -> Task:
+        return Task(config=self.tasks_config['final_validator_task'])
+
     @crew
     def crew(self) -> Crew:
         return Crew(agents=self.agents, tasks=self.tasks, verbose=True)
@@ -222,9 +292,9 @@ class TravelWorkflow(Flow[TravelState]):
     # ========================================
     def _check_ask_user_hook(self):
         """检查是否需要向用户提问 - 所有状态执行前都会调用此钩子"""
-        if self.state.ask_user_question:
-            self.notify(f"🙋 [AskUser] {self.state.ask_user_question}")
-            self.state.final_report = self.state.ask_user_question
+        if self.state.needs_user_input:
+            self.notify(f"🙋 [AskUser] {self.state.user_question}")
+            self.state.final_report = self.state.user_question
             return True  # 返回 True 表示需要中断流程
         return False
 
@@ -280,85 +350,6 @@ class TravelWorkflow(Flow[TravelState]):
             result.raw = result.raw[:8000] + "\n\n[输出过长已截断]"
         return result
 
-    def _parse_feedback(self, feedback: str) -> tuple[str, str]:
-        if feedback.startswith("[提问]"): return "ask_user", feedback.replace("[提问]", "").strip()
-        if feedback.startswith("[重做]"): return "error", feedback.replace("[重做]", "").strip()
-        if feedback.startswith("[继续]"): return "continue", feedback.replace("[继续]", "").strip()
-        if feedback.startswith("[通过]"): return "pass", feedback.replace("[通过]", "").strip()
-        
-        feedback_lower = feedback.lower()
-        if any(kw in feedback_lower for kw in ["通过", "合格", "满意", "完美", "pass", "ok"]):
-            if "错误" not in feedback_lower and "不足" not in feedback_lower and "打回" not in feedback_lower: return "pass", ""
-        if any(kw in feedback_lower for kw in ["逻辑错误", "严重", "错误", "矛盾", "不可行", "打回修正", "打回"]): return "error", feedback
-        if any(kw in feedback_lower for kw in ["不足", "缺少", "不完整", "建议补充", "需要更多信息"]): return "incomplete", feedback
-        if any(kw in feedback_lower for kw in ["建议", "优化", "可以调整", "改进", "更好"]): return "adjust", feedback
-        return "pass", feedback
-
-    def _compact_feedback_history(self):
-        """Compaction: 将旧质检记录压缩为摘要，保留最近 3 条原文，防止 Token 爆炸"""
-        if len(self.feedback_history) <= self.MAX_FEEDBACK_ENTRIES:
-            return
-
-        # 将最早 N-3 条发送给 LLM 压缩
-        old_entries = self.feedback_history[:len(self.feedback_history) - 3]
-        recent_entries = self.feedback_history[-3:]
-
-        all_old = "\n---\n".join(old_entries)
-        prompt = f"""将以下质检反馈历史压缩为一条不超过{self.COMPACT_SUMMARY_CHARS}字的精炼摘要。
-只保留【发现的问题类型】、【是否已修复】、【仍存在的争议点】，丢弃过程性细节和重复内容。
-
-【质检历史】:
-{all_old}
-
-【压缩摘要（{self.COMPACT_SUMMARY_CHARS}字以内）】:"""
-
-        try:
-            summary = zhipu_llm.call([{"role": "user", "content": prompt}]).strip()
-            if len(summary) > self.COMPACT_SUMMARY_CHARS:
-                summary = summary[:self.COMPACT_SUMMARY_CHARS] + "..."
-            self.feedback_history = [f"[历史质检摘要] {summary}"] + recent_entries
-            print(f"[Compaction] feedback_history 从 {len(old_entries) + len(recent_entries)} 条压缩至 {len(self.feedback_history)} 条（1摘要 + 3原文）")
-        except Exception as e:
-            print(f"[Compaction] LLM压缩失败({e}), 回退到最近3条")
-            self.feedback_history = recent_entries
-
-    def _error_fingerprint(self, feedback: str) -> str:
-        """从反馈中提取粗粒度指纹，用于检测重复错误"""
-        cleaned = re.sub(r'^\[.*?\]\s*', '', feedback).strip()
-        return cleaned[:80]
-
-    def _check_circuit_breaker(self, feedback_type: str, feedback: str) -> str | None:
-        """检测修正死循环，触发时返回干预消息，否则返回 None"""
-        if feedback_type not in ("error", "adjust", "incomplete"):
-            self._consecutive_same_error = 0
-            self._last_error_key = ""
-            return None
-
-        fp = self._error_fingerprint(feedback)
-        if fp == self._last_error_key:
-            self._consecutive_same_error += 1
-        else:
-            self._consecutive_same_error = 1
-            self._last_error_key = fp
-
-        if self._consecutive_same_error >= 3:
-            self._circuit_breaker_triggered = True
-            return (
-                f"[强制干预] 检测到连续 {self._consecutive_same_error} 次相同类型的错误反馈，"
-                f"系统判定已陷入修正死循环。请直接接受当前最佳版本并向前推进。"
-                f"上一次的错误反馈是: {feedback[:200]}"
-            )
-
-        if self.current_adjust_count >= 5 and self._consecutive_same_error >= 2:
-            self._circuit_breaker_triggered = True
-            return (
-                f"[强制干预] 当前步骤已修改 {self.current_adjust_count} 次，"
-                f"其中连续 {self._consecutive_same_error} 次收到相似反馈。"
-                f"请忽略细枝末节，接受当前草案并输出 final_report。"
-            )
-
-        return None
-
     # ========================================
     # 【新状态机】状态 1: Planner - 生成粗粒度步骤列表
     # ========================================
@@ -373,23 +364,20 @@ class TravelWorkflow(Flow[TravelState]):
         print(f"{'='*60}")
         self.notify("📋 [Planner] 决策大脑正在建立行程执行策略...")
 
-        # 尝试从旧字段兼容转换
-        if self.state.plan_document and not self.state.steps:
-            self._convert_old_plan_to_steps()
-
         # 如果还没有步骤列表，调用 PlannerCrew 生成
         if not self.state.steps:
             inputs = {
                 "message": self.state.message,
                 "user_id": self.state.user_id,
                 "focus": self.state.focus,
-                "previous_plan": self.state.plan_document or "无历史计划（首次规划）",
-                "current_step": self.state.current_step_instruction or "无当前工单（首次执行）",
-                "current_draft": self.state.draft_report or "无进度草案",
+                "previous_plan": "无历史计划（首次规划）",
+                "current_step": "无当前工单（首次执行）",
+                "current_draft": "无进度草案",
             }
 
             result = self._run_crew_with_callback(PlannerCrew, inputs)
             raw_text = result.raw.strip()
+            print(f"[Planner] 原始输出: {raw_text[:500]}")
 
             # 解析 Planner 输出的 JSON，提取步骤列表
             try:
@@ -400,71 +388,96 @@ class TravelWorkflow(Flow[TravelState]):
                     self.state.simple_answer = plan_data.get("simple_answer", "")
                     self.state.location = plan_data.get("location", "未知")
                     self.state.focus = plan_data.get("focus", "")
-                    self.state.tools_needed = plan_data.get("tools_needed", [])
+                    self.state.assumptions = plan_data.get("assumptions", []) or []
+
+                    # 信息不足时 Planner 可能直接发起结构化提问
+                    if plan_data.get("needs_user_input") or plan_data.get("verdict") == "ask_user":
+                        question = plan_data.get("user_question") or plan_data.get("question") or "信息不足，请补充。"
+                        self._set_ask_user_question(question)
+                        return
 
                     # 提取步骤列表
                     steps = plan_data.get("steps", [])
+                    is_complex_val = plan_data.get("is_complex", True)
+                    simple_answer_val = plan_data.get("simple_answer", "")
+                    print(f"[Planner] 解析结果: is_complex={is_complex_val}, simple_answer='{simple_answer_val[:50]}', steps={len(steps)}")
                     if steps:
                         self.state.steps = [StepPlan(**s) for s in steps]
                         print(f"[Planner] 生成了 {len(self.state.steps)} 个粗粒度步骤")
-                    else:
-                        # 兼容：如果没有 steps 字段，使用旧的 current_step_instruction
-                        step_instruction = plan_data.get("current_step_instruction", "")
-                        if step_instruction and not step_instruction.startswith("[提问]"):
-                            self.state.steps = [StepPlan(
-                                index=0,
-                                description=step_instruction,
-                                status="pending"
-                            )]
-
-                    # 提取当前步骤工单（用于旧版兼容）
-                    step_instruction = plan_data.get("current_step_instruction", "")
-                    if step_instruction:
-                        self.state.current_step_instruction = step_instruction
+                else:
+                    print(f"[Planner] 警告: 输出中没有 JSON 块")
             except Exception as e:
                 print(f"[Planner] 解析失败: {e}")
                 self.state.is_complex = True
 
+            # 【兜底】Planner 没产出 steps（解析失败 / 模型直接闲聊）：
+            # 把原始输出当成简单回答，直接终止流程，避免整条链路因 not steps 静默死掉。
+            if not self.state.steps:
+                fallback_answer = (
+                    self.state.simple_answer.strip()
+                    if self.state.simple_answer
+                    else raw_text[:600] if raw_text else "抱歉，我暂时无法理解您的需求，请补充更多信息。"
+                )
+                print(f"[Planner] 兜底: 未生成 steps，直接返回 simple_answer / raw_text")
+                self.state.final_report = fallback_answer
+                self.notify("⚠️ [Planner] 未生成多步骤计划，直接返回简要回答")
+                return
+
         # 初始化当前步骤索引
         if self.state.steps:
             self.state.current_step_index = 0
-
-        # 检查是否需要向用户提问（信息不足）
-        if self.state.current_step_instruction and self.state.current_step_instruction.startswith("[提问]"):
-            self._set_ask_user_question()
-            return
 
     # ========================================
     # 【新状态机】用户提问辅助方法
     # ========================================
     def _set_ask_user_question(self, question: str = None):
         """设置需要向用户提问的问题，流程会在下一个钩子检查时中断"""
-        if question is None and self.state.current_step_instruction:
-            question = self.state.current_step_instruction.replace("[提问]", "").strip()
-        self.state.ask_user_question = question or "信息不足，无法继续规划。"
+        if question is None:
+            question = "信息不足，无法继续规划。"
+        self.state.needs_user_input = True
+        self.state.user_question = question
         print(f"\n{'='*60}")
         print(f"[AskUser] 信息不足，需要向用户提问...")
         print(f"{'='*60}")
-        self.notify(f"🙋 [AskUser] {self.state.ask_user_question}")
+        self.notify(f"🙋 [AskUser] {question}")
 
     # ========================================
     # 【新状态机】状态 2: StepPreparer - 为当前步骤生成执行计划
     # ========================================
     @listen(plan_steps)
     def step_preparer(self):
-        if not self.state.is_complex or not self.state.steps:
-            return
+        import traceback
+        print(f"[StepPreparer] 被调用，检查是否从重规划来...")
 
         # 全局钩子：检查是否需要向用户提问
         if self._check_ask_user_hook():
             return
 
+        # Planner 已提前给出 final_report（兜底简单回答）：直接结束
+        if self.state.final_report and not self.state.steps:
+            print(f"[StepPreparer] 跳过: Planner 已给出兜底 final_report")
+            return
+
+        if not self.state.steps:
+            print(f"[StepPreparer] 跳过: 没有步骤，生成兜底报告")
+            self.state.final_report = "抱歉，我没能为您的需求规划出执行步骤，请补充更多信息后再试。"
+            return
+
         step_idx = self.state.current_step_index
         if step_idx >= len(self.state.steps):
+            print(f"[StepPreparer] 跳过: 索引超出范围")
             return
 
         current_step = self.state.steps[step_idx]
+        # 跳过已完成的步骤
         if current_step.status == "completed":
+            print(f"[StepPreparer] 跳过: 步骤 {step_idx} 已完成")
+            return
+
+        # 已有工具：跳过 LLM 规划，但仍然推进到 step_executor
+        if current_step.tools:
+            print(f"[StepPreparer] 跳过 LLM 规划（已有工具 {current_step.tools}），直接推进到 step_executor")
+            self.step_executor()
             return
 
         print(f"\n{'='*60}")
@@ -489,7 +502,7 @@ class TravelWorkflow(Flow[TravelState]):
             }, ensure_ascii=False),
         }
 
-        result = self._run_crew_with_callback(TravelExpertCrew, inputs)
+        result = self._run_crew_with_callback(StepPreparerCrew, inputs)
         raw_text = result.raw.strip()
 
         # 解析执行计划（填充工具调用序列）
@@ -501,17 +514,24 @@ class TravelWorkflow(Flow[TravelState]):
                 if tools_to_call:
                     current_step.tools = [t.get("tool_name", "") for t in tools_to_call]
                     print(f"[StepPreparer] 为步骤 {step_idx} 填充了工具: {current_step.tools}")
+                else:
+                    print(f"[StepPreparer] 警告: 未找到 tools_to_call")
         except Exception as e:
             print(f"[StepPreparer] 解析执行计划失败: {e}")
             # 默认使用 weather_tool（最常用）
-            current_step.tools = ["weather_tool", "read_memory_tool"]
+            current_step.tools = ["weather_tool"]
+
+        # 显式调用 step_executor（Flow 的 @listen 不会对直接调用传播）
+        self.step_executor()
 
     # ========================================
     # 【新状态机】状态 3: StepExecutor - 执行工具调用
     # ========================================
     @listen(step_preparer)
     def step_executor(self):
-        if not self.state.is_complex or not self.state.steps:
+        print(f"[StepExecutor] 监听到 step_preparer 完成")
+        if not self.state.steps:
+            print(f"[StepExecutor] 跳过: 没有步骤")
             return
 
         # 全局钩子：检查是否需要向用户提问
@@ -525,6 +545,11 @@ class TravelWorkflow(Flow[TravelState]):
         current_step = self.state.steps[step_idx]
         if current_step.status == "completed":
             return
+        # 幂等保护：如果正在执行中则跳过
+        if current_step.status == "executing":
+            print(f"[StepExecutor] 步骤 {step_idx} 正在执行中，跳过重复调用")
+            return
+        current_step.status = "executing"
 
         print(f"\n{'='*60}")
         print(f"[StepExecutor] 执行步骤 {step_idx}: {current_step.description[:50]}...")
@@ -544,7 +569,7 @@ class TravelWorkflow(Flow[TravelState]):
             "execution_plan": json.dumps(execution_plan, ensure_ascii=False),
         }
 
-        result = self._run_crew_with_callback(TravelExpertCrew, inputs)
+        result = self._run_crew_with_callback(StepExecutorCrew, inputs)
         raw_text = result.raw.strip()
 
         # 解析执行结果
@@ -580,12 +605,38 @@ class TravelWorkflow(Flow[TravelState]):
             current_step.result = raw_text[:1000]
             current_step.status = "completed"
 
+        # 显式调用 step_verifier（Flow 的 @listen 不会对直接调用传播）
+        self.step_verifier()
+
     # ========================================
     # 【新状态机】状态 4: StepVerifier - 审核单个步骤结果
     # ========================================
     @listen(step_executor)
     def step_verifier(self):
-        if not self.state.is_complex or not self.state.steps:
+        if not self.state.steps:
+            return
+
+        # 全局钩子：检查是否需要向用户提问
+        if self._check_ask_user_hook():
+            return
+
+        step_idx = self.state.current_step_index
+        if step_idx >= len(self.state.steps):
+            return
+
+        current_step = self.state.steps[step_idx]
+
+        # 跳过已处理的步骤（防止 Flow 重复触发）
+        if current_step.status in ("completed", "failed") and current_step.validation_feedback:
+            print(f"[StepVerifier] 步骤 {step_idx} 已处理过，跳过")
+            return
+
+        print(f"\n{'='*60}")
+        print(f"[StepVerifier] 开始执行... (current_step_index: {self.state.current_step_index})")
+        print(f"{'='*60}")
+
+        if not self.state.steps:
+            print(f"[StepVerifier] 跳过: steps={len(self.state.steps) if self.state.steps else 0}")
             return
 
         # 全局钩子：检查是否需要向用户提问
@@ -603,6 +654,19 @@ class TravelWorkflow(Flow[TravelState]):
         print(f"{'='*60}")
         self.notify(f"🔍 [StepVerifier] 正在审核步骤结果...")
 
+        # 【确定性短路】如果步骤已有非空 result 且 status==completed，
+        # 直接 pass，不浪费 LLM 调用。这避免 LLM 因"数据不够丰富"挑刺退回 retry。
+        if current_step.status == "completed" and current_step.result and current_step.result.strip():
+            print(f"[StepVerifier] 短路 pass：步骤 {step_idx} 有非空结果且 StepExecutor 已标记 completed")
+            self.notify(f"✅ [StepVerifier] 步骤 {step_idx} 直接通过（有数据）")
+            current_step.validation_feedback = "有非空结果，直接通过"
+            self.state.current_step_index += 1
+            if self.state.current_step_index >= len(self.state.steps):
+                self.final_verifier()
+            else:
+                self.step_preparer()
+            return
+
         # 构建审核输入
         inputs = {
             "step_index": step_idx,
@@ -611,7 +675,7 @@ class TravelWorkflow(Flow[TravelState]):
             "execution_results": current_step.result,
         }
 
-        result = self._run_crew_with_callback(ValidatorCrew, inputs)
+        result = self._run_crew_with_callback(StepVerifierCrew, inputs)
         raw_text = result.raw.strip()
 
         # 解析验证反馈
@@ -622,18 +686,29 @@ class TravelWorkflow(Flow[TravelState]):
         # 处理用户提问
         if feedback.get("verdict") == "ask_user":
             print(f"[StepVerifier] 检测到用户提问指令")
-            self.notify(f"🙋 [AskUser] {self.state.ask_user_question}")
+            self.notify(f"🙋 [AskUser] {self.state.user_question}")
+            # 设置最终报告为用户提问内容
+            self.state.final_report = self.state.user_question
             return
 
         if feedback.get("verdict") == "pass":
             print(f"[StepVerifier] 步骤 {step_idx} 审核通过")
             self.notify(f"✅ [StepVerifier] 步骤 {step_idx} 审核通过")
 
+            # 标记完成
+            current_step.status = "completed"
+            current_step.validation_feedback = feedback.get("reason", "通过")
+
             # 推进到下一个步骤
             self.state.current_step_index += 1
             if self.state.current_step_index >= len(self.state.steps):
                 # 所有步骤完成，进入 FinalVerifier
                 self.final_verifier()
+            else:
+                # 还有更多步骤，继续执行下一个步骤
+                print(f"[StepVerifier] 准备执行步骤 {self.state.current_step_index}")
+                # 调用 step_preparer，Flow 会通过 @listen 自动触发 step_executor
+                self.step_preparer()
         elif feedback.get("verdict") == "retry":
             # 重试当前步骤
             retry_count = self.step_retry_counts.get(step_idx, 0)
@@ -641,17 +716,25 @@ class TravelWorkflow(Flow[TravelState]):
                 self.step_retry_counts[step_idx] = retry_count + 1
                 print(f"[StepVerifier] 步骤 {step_idx} 重试中 ({retry_count + 1}/{self.max_step_retries})")
                 self.notify(f"🔄 [StepVerifier] 步骤 {step_idx} 重试中...")
+                # 调用 step_executor 重试，Flow 会通过 @listen 自动触发 step_verifier
                 self.step_executor()
             else:
                 print(f"[StepVerifier] 步骤 {step_idx} 重试耗尽，标记为失败")
                 current_step.status = "failed"
+                current_step.validation_feedback = f"重试 {self.max_step_retries} 次后失败"
                 self.state.failed_steps_indices.append(step_idx)
                 # 推进到下一个步骤
                 self.state.current_step_index += 1
                 if self.state.current_step_index >= len(self.state.steps):
                     self.final_verifier()
+                else:
+                    self.step_preparer()
+                    self.step_executor()
         else:  # fail - 需要 PartialReplanner
             print(f"[StepVerifier] 步骤 {step_idx} 审核失败，触发 PartialReplanner")
+            # 将当前步骤标记为失败
+            current_step.status = "failed"
+            self.state.failed_steps_indices.append(step_idx)
             self.partial_replanner(feedback)
 
     # ========================================
@@ -662,20 +745,34 @@ class TravelWorkflow(Flow[TravelState]):
         if self._check_ask_user_hook():
             return
 
+        # 防止无限重规划
+        replan_count = getattr(self.state, '_replan_count', 0) + 1
+        self.state._replan_count = replan_count
+        if replan_count > self.max_replan_attempts:
+            print(f"[PartialReplanner] 重规划次数超限 ({replan_count}/{self.max_replan_attempts})，强制结束")
+            self.state.final_report = self._generate_final_report()
+            self.finalize()
+            return
+
         print(f"\n{'='*60}")
-        print(f"[PartialReplanner] 触发局部重规划...")
+        print(f"[PartialReplanner] 触发局部重规划 (第 {replan_count} 次)...")
         print(f"{'='*60}")
         self.notify(f"🔄 [PartialReplanner] 正在局部重规划...")
 
-        failed_indices = self.state.failed_steps_indices
+        failed_indices = list(set(self.state.failed_steps_indices))
+        self.state.failed_steps_indices = []  # 清空，重新开始
+        print(f"[PartialReplanner] 失败步骤索引: {failed_indices}")
         if not failed_indices:
+            print(f"[PartialReplanner] 没有失败的步骤，无法重规划")
             return
 
         # 保留已完成的步骤
         preserved_steps = [i for i in range(len(self.state.steps)) if i < min(failed_indices)]
+        print(f"[PartialReplanner] 保留步骤: {preserved_steps}")
 
         # 原始剩余步骤
         original_remaining = [i for i in range(len(self.state.steps)) if i >= min(failed_indices)]
+        print(f"[PartialReplanner] 原始剩余步骤: {original_remaining}")
 
         inputs = {
             "failure_reason": failure_feedback.get("reason", ""),
@@ -688,7 +785,7 @@ class TravelWorkflow(Flow[TravelState]):
             "original_remaining_steps": json.dumps(original_remaining),
         }
 
-        result = self._run_crew_with_callback(PlannerCrew, inputs)
+        result = self._run_crew_with_callback(PartialReplannerCrew, inputs)
         raw_text = result.raw.strip()
 
         # 解析重规划结果
@@ -712,21 +809,47 @@ class TravelWorkflow(Flow[TravelState]):
                     self.state.current_step_index = len(preserved)
 
                     print(f"[PartialReplanner] 重规划完成，共 {len(self.state.steps)} 个步骤")
+                    print(f"[PartialReplanner] 当前步骤索引: {self.state.current_step_index}")
+
+                    # 调用 step_preparer 开始执行新步骤
+                    # Flow 会通过 @listen 自动串联 step_executor → step_verifier
+                    self.step_preparer()
+                else:
+                    print(f"[PartialReplanner] 警告: 重规划未返回新步骤")
+            else:
+                print(f"[PartialReplanner] 警告: 无法解析重规划结果")
         except Exception as e:
             print(f"[PartialReplanner] 解析重规划结果失败: {e}")
 
     # ========================================
     # 【新状态机】状态 6: FinalVerifier - 整体审核
     # ========================================
+    @listen(step_verifier)
     def final_verifier(self):
+        import traceback
+        print(f"[FinalVerifier] 被调用，检查是否已执行...")
+
+        # 检查是否已经执行过（避免重复执行）
+        if getattr(self.state, '_final_verifier_executed', False):
+            print(f"[FinalVerifier] 已执行过，跳过")
+            return
+
         # 全局钩子：检查是否需要向用户提问
         if self._check_ask_user_hook():
             return
 
+        # 只有在所有步骤都完成时才执行最终审核
+        if self.state.current_step_index < len(self.state.steps):
+            print(f"[FinalVerifier] 跳过: 还有 {len(self.state.steps) - self.state.current_step_index} 个步骤未完成")
+            return
+
         print(f"\n{'='*60}")
-        print(f"[FinalVerifier] 进行整体审核...")
+        print(f"[FinalVerifier] 开始执行...")
         print(f"{'='*60}")
         self.notify(f"🔍 [FinalVerifier] 正在进行整体审核...")
+
+        # 标记已执行
+        self.state._final_verifier_executed = True
 
         # 收集所有步骤结果
         all_steps_with_results = [
@@ -744,11 +867,13 @@ class TravelWorkflow(Flow[TravelState]):
             "full_plan_document": "\n".join([f"步骤 {i}: {s.description}" for i, s in enumerate(self.state.steps)]),
         }
 
-        result = self._run_crew_with_callback(ValidatorCrew, inputs)
+        result = self._run_crew_with_callback(FinalVerifierCrew, inputs)
         raw_text = result.raw.strip()
+        print(f"[FinalVerifier] 原始输出: {raw_text[:500]}")
 
         # 解析全局验证反馈
         feedback = self._parse_step_feedback(raw_text)
+        print(f"[FinalVerifier] 解析反馈: {feedback}")
 
         if feedback.get("verdict") == "pass":
             print(f"[FinalVerifier] 整体审核通过")
@@ -756,6 +881,11 @@ class TravelWorkflow(Flow[TravelState]):
 
             # 生成最终报告
             self.state.final_report = self._generate_final_report()
+            report_len = len(self.state.final_report) if self.state.final_report else 0
+            print(f"[FinalVerifier] 生成的最终报告长度: {report_len}")
+            print(f"[FinalVerifier] 生成的最终报告内容: {self.state.final_report[:200] if self.state.final_report else 'None'}")
+            # 调用 finalize
+            self.finalize()
         else:
             print(f"[FinalVerifier] 整体审核不通过，触发局部重规划")
             self.notify(f"⚠️ [FinalVerifier] 整体审核不通过")
@@ -771,68 +901,102 @@ class TravelWorkflow(Flow[TravelState]):
     # 辅助函数
     # ========================================
 
-    def _convert_old_plan_to_steps(self):
-        """将旧格式的 plan_document 转换为 steps 列表"""
-        # 简单的兼容转换：将 plan_document 按行分割作为步骤
-        if not self.state.plan_document:
-            return
-
-        lines = self.state.plan_document.split('\n')
-        steps = []
-        for i, line in enumerate(lines[:8]):  # 最多 8 个步骤
-            line = line.strip()
-            if line and not line.startswith('```'):
-                steps.append(StepPlan(index=i, description=line))
-
-        if steps:
-            self.state.steps = steps
-            print(f"[Compat] 将旧格式 plan_document 转换为 {len(steps)} 个步骤")
-
     def _parse_step_feedback(self, raw_text: str) -> dict:
-        """解析步骤验证反馈（支持 JSON 格式）"""
-        # 检查用户提问标签 [提问]
-        if raw_text.startswith("[提问]"):
-            question = raw_text.replace("[提问]", "").strip()
-            self.state.ask_user_question = question
-            return {"verdict": "ask_user", "feedback": {"passed": True, "question": question}}
+        """
+        解析步骤验证反馈。优先识别结构化 JSON：
+        - {"verdict": "pass" | "retry" | "fail" | "ask_user", "reason": "...", "question": "..."}
+        - FinalVerifier 也支持 global_verdict / failed_step_ids / suggested_corrections
 
-        # 尝试解析 JSON
+        命中 ask_user 时，会通过 _set_ask_user_question 设置结构化中断标记。
+        """
         try:
             json_match = re.search(r'\{.*\}', raw_text, re.DOTALL)
             if json_match:
                 feedback = json.loads(json_match.group(0))
+
+                # FinalVerifier 兼容：global_verdict -> verdict
+                if "global_verdict" in feedback and "verdict" not in feedback:
+                    feedback["verdict"] = "pass" if feedback["global_verdict"] == "pass" else "fail_with_patches"
+
+                # 结构化用户提问
+                if feedback.get("verdict") == "ask_user":
+                    question = feedback.get("question") or feedback.get("reason") or "信息不足，请补充。"
+                    self._set_ask_user_question(question)
                 return feedback
         except Exception:
             pass
 
-        # 兼容旧格式解析
-        if raw_text.startswith("[通过]"):
-            return {"verdict": "pass", "feedback": {"passed": True}}
-        elif raw_text.startswith("[重试]"):
-            return {"verdict": "retry", "feedback": {"passed": False}}
-        elif raw_text.startswith("[失败步骤列表]"):
-            return {"verdict": "fail_with_patches", "failed_step_ids": [self.state.current_step_index]}
-
-        return {"verdict": "pass", "feedback": {"passed": True}}
+        # 没有 JSON：默认通过（保守策略，避免无谓重试）
+        print(f"[_parse_step_feedback] 无法解析 JSON，默认通过: {raw_text[:120]}")
+        return {"verdict": "pass", "reason": "无法解析反馈，默认通过"}
 
     def _generate_final_report(self) -> str:
-        """生成最终报告"""
+        """
+        将全部步骤的执行结果交给 LLM 合成为用户可读的旅游计划。
+
+        步骤的 description 是执行指令（如"查询天气"），result 才是实际数据。
+        这里只收集 result，让 LLM 生成最终的用户旅行计划。
+        """
         if not self.state.steps:
             return "未能生成行程报告"
 
-        report_parts = ["# 旅行行程规划报告\n"]
+        # 收集所有步骤的结果（实际数据，不是执行指令）
+        results_text = []
+        for s in self.state.steps:
+            label = "✅" if s.status == "completed" else "⚠️"
+            if s.result:
+                results_text.append(f"[{label}] {s.result}")
+            elif s.status == "completed":
+                results_text.append(f"[{label}] {s.description} - 已完成")
+            else:
+                results_text.append(f"[{label}] {s.description} - 未完成")
 
-        for step in self.state.steps:
-            status_icon = "✅" if step.status == "completed" else "⚠️"
-            report_parts.append(f"\n## 步骤 {step.index}: {step.description}\n")
-            report_parts.append(f"状态: {status_icon} {step.status}\n")
-            if step.result:
-                report_parts.append(f"结果:\n```\n{step.result[:2000]}\n```\n")
+        collected = "\n\n".join(results_text)
 
-        return "\n".join(report_parts)
+        # 把规划阶段做出的假设带给报告生成 LLM，让它在开头明确披露
+        assumptions_block = ""
+        if self.state.assumptions:
+            bullets = "\n".join(f"- {a}" for a in self.state.assumptions)
+            assumptions_block = f"\n【系统所做的关键假设（必须在报告开头以 📌 形式向用户披露，并提示用户可调整）】\n{bullets}\n"
 
-    @listen(final_verifier)
+        prompt = f"""你是一位资深旅游规划师。请根据以下执行数据，为用户撰写一份完整的旅行计划报告。
+
+【用户需求】
+- 目的地: {self.state.location}
+- 关注重点: {self.state.focus}
+- 用户原话: {self.state.message[:500]}
+{assumptions_block}
+【已收集的数据】
+{collected}
+
+【撰写要求】
+1. 绝不要重复原始的执行步骤描述（如"查询天气"、"获取偏好"等）。
+2. 把所有数据整合成一份自然流畅的旅行计划，像真人旅游顾问写的那样。
+3. 包含以下板块（根据数据情况可省略无数据的板块）：
+   - 目的地概况
+   - 天气与最佳出行建议
+   - 行程安排（按天列出）
+   - 预算参考
+   - 注意事项
+
+4. 如果某个板块完全没有数据，直接跳过不要硬编。
+5. 使用清晰的小标题、emoji 和分段，方便用户在飞书上阅读。
+6. 总字数控制在 800 字以内。"""
+
+        try:
+            report = zhipu_llm.call([{"role": "user", "content": prompt}]).strip()
+            if report and len(report) > 20:
+                return report
+        except Exception as e:
+            print(f"[_generate_final_report] LLM 生成报告失败: {e}")
+
+        # fallback: 返回收集到的原始结果
+        if collected:
+            return f"📋 行程规划结果\n\n{collected}"
+        return "未能生成行程报告"
+
     def finalize(self):
+        """流程结束方法 - 手动调用，不需要 listen 装饰器"""
         # 全局钩子：检查是否需要向用户提问
         if self._check_ask_user_hook():
             return
@@ -842,3 +1006,97 @@ class TravelWorkflow(Flow[TravelState]):
         print(f"{'='*60}")
         if not self.state.final_report:
             self.state.final_report = self._generate_final_report() or '未能生成报告'
+
+    # ========================================
+    # 【外部统一入口】供 long_conn_bot / main.py / test_agent 调用
+    # ========================================
+    @classmethod
+    def run_for_user(
+        cls,
+        user_text: str,
+        user_id: str,
+        session_id: str | None = None,
+        memory: "MemoryManager | None" = None,
+        status_callback=None,
+        content_callback=None,
+    ) -> str:
+        """
+        统一的"对一句用户输入跑完一轮 Flow"入口。
+
+        连接层（飞书、FastAPI、CLI）只需传 user_text + user_id 即可：
+        memory / redis 客户端 / prompt 构造 / 状态机调度 / final_report
+        生成 / 记忆写回（episodic→working、shortterm→semantic）全部封装在此处。
+
+        Args:
+            user_text: 用户输入
+            user_id: 用户 id（飞书 open_id / 网页 user_id）
+            session_id: 可选会话 id；不传时自动派生
+            memory: 可选已有的 MemoryManager（极少用，仅在外部要复用同一会话上下文时）
+            status_callback / content_callback: 流式回调
+
+        Returns:
+            最终给用户的回复文本（旅行计划 / 用户提问 / 错误信息）
+        """
+        try:
+            sid = session_id or f"sess_{user_id}_{abs(hash(user_text)) % 1000000:06d}"
+
+            # 由 crew 自己构造 MemoryManager（连接层无需关心 redis 客户端）
+            if memory is None:
+                memory = MemoryManager(sid, user_id, _redis_client, _is_redis_fallback)
+
+            # 1) 写入用户输入到 episodic 记忆
+            memory.add_message("user", user_text)
+
+            # 2) 把原始对话蒸馏到 working memory（短期约束提取）
+            try:
+                memory.convert_episodic_to_working(zhipu_llm)
+            except Exception as e:
+                print(f"[run_for_user] episodic→working 失败（可忽略）: {e}")
+
+            # 3) 跑 Flow
+            flow = cls(status_callback=status_callback, content_callback=content_callback)
+            flow.state.message = user_text
+            flow.state.user_id = user_id
+            flow.state.session_id = sid
+            flow.state.focus = memory.get_global_context_prompt(user_text)
+
+            flow.kickoff()
+
+            # 4) 取最终输出，按优先级兜底
+            final_report = (flow.state.final_report or "").strip()
+
+            if not final_report:
+                if flow.state.needs_user_input and flow.state.user_question:
+                    final_report = flow.state.user_question
+                else:
+                    completed_results = [
+                        s.result for s in (flow.state.steps or [])
+                        if s.status == "completed" and s.result
+                    ]
+                    if completed_results:
+                        final_report = "\n\n".join(completed_results)
+                    elif flow.state.simple_answer:
+                        final_report = flow.state.simple_answer
+                    else:
+                        final_report = "抱歉，本次未能成功生成行程，请稍后重试或补充更多信息。"
+
+            print(f"[run_for_user] final_report 长度: {len(final_report)}, "
+                  f"steps: {len(flow.state.steps or [])}, "
+                  f"needs_user_input: {flow.state.needs_user_input}")
+
+            # 5) 写助手回复到 episodic
+            memory.add_message("assistant", final_report)
+
+            # 6) 异步把短期摘要蒸馏到 semantic（长期偏好）
+            try:
+                memory.convert_to_semantic(zhipu_llm)
+            except Exception as e:
+                print(f"[run_for_user] shortterm→semantic 失败（可忽略）: {e}")
+
+            return final_report
+
+        except Exception as e:
+            print(f"[TravelWorkflow.run_for_user] 调用失败: {type(e).__name__}: {e}")
+            import traceback
+            traceback.print_exc()
+            return f"抱歉，处理您的请求时出现了错误：{str(e)}"

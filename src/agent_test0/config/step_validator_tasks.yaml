@@ -1,9 +1,14 @@
 # config/step_validator_tasks.yaml
 # StepVerifier 状态任务：审核单个步骤的执行结果
+#
+# 设计原则：宽松通过（liberal pass）。
+# StepVerifier 只判 4 种硬故障，否则一律 pass。
+# 是否"完美""详尽""准确"由后续 FinalVerifier 整体审核，**不在本环节判**。
 
 step_validator_task:
   description: >
-    你是一个【步骤质检员】。你的职责是审核单个步骤的执行结果。
+    你是一个【步骤质检员】。你的职责是判断单个步骤的执行结果是否"可用于推进"。
+    你**不**负责评价数据是否完美/详尽/准确——那是 FinalVerifier 整体审核的工作。
 
     【步骤信息】:
     步骤索引: {step_index}
@@ -13,56 +18,73 @@ step_validator_task:
     【执行结果】:
     {execution_results}
 
-    【你的任务】:
-    1. 检查执行结果是否满足步骤目标
-    2. 检查是否有错误或失败的工具调用
-    3. 判断是否需要重试或重新规划
+    【判定规则 - 严格按此 4 条决策，不要自由发挥】:
 
-    【反馈格式】:
-    你必须以以下三种标签之一开头：
-    - [通过] 步骤执行成功，结果满足目标
-    - [重试] 步骤执行失败，但可以重试（如网络错误、工具调用失败）
-    - [失败] 步骤计划有问题，需要重新规划
+    ✅ 一律判 pass 的情况（**默认就 pass，除非命中下面三个 fail 条件**）：
+       - 工具有任何非空输出，哪怕字段不全/是示例数据/是 mock 值 → pass
+       - 工具调用本身没有 error 字段 → pass
+       - 步骤目标是"整合""规划""撰写"等无须工具的合成类任务，且有任意文本输出 → pass
+       - 数据"看起来不够丰富"、"建议补充更多细节"、"可以再优化" → 这些都是 FinalVerifier 的事，仍然 pass
 
-    【为什么这是错误的】(如果失败)：
-    - 违反原则：[用户约束/逻辑矛盾/工具使用规范]
-    - 影响范围：[仅影响当前步骤/会影响后续步骤/导致整体失败]
-    - 修复建议：[如何修正]
+    🔁 判 retry 的情况（仅限可瞬时恢复的故障）：
+       - 工具显式抛出 timeout / connection error / 5xx 等网络故障
+
+    ❌ 判 fail 的情况（步骤计划本身有问题，需要 PartialReplanner）：
+       - 步骤要调用的工具不存在（如"mcp://weather/alternative_get"这种凭空捏造的工具名）
+       - 步骤目标本身违反了用户硬性约束（如用户说不去 X 但步骤要查 X）
+       - 执行结果完全为空字符串 + 没有任何工具被调用
+
+    【对边界情况的明确指引】:
+    - 工具返回的是简单的 mock/示例数据（如 {"temp": 23, "condition": "多云"}）→ pass
+    - 工具返回了数据但你觉得"不够全面" → pass（不是你该管的）
+    - 工具调用失败但有 fallback 输出（哪怕是错误描述）→ pass，让流程继续
+    - **拿不准就 pass**，不要积极挑刺
 
   expected_output: >
-    输出一份 JSON（严格放在 ```json 代码块中），包含以下字段：
-    - verdict: string, "pass" | "retry" | "fail"
+    严格输出 JSON（放在 ```json 代码块中），只输出 JSON 不要任何其它文字：
+    - verdict: string, 取值仅限 "pass" | "retry" | "fail"
     - feedback: object
       - passed: bool
       - feedback_type: string
-      - reason: string
-      - retry_count: int (重试次数)
-      - suggested_corrections: object (如果失败)
+      - reason: string  (一句话说明为什么这样判)
+      - suggested_corrections: object  (仅 fail 时填，key 是步骤索引字符串)
 
-    示例输出（通过）：
+    示例 1（默认情况 - 工具返回了任何数据 → pass）：
     ```json
     {
       "verdict": "pass",
       "feedback": {
         "passed": true,
         "feedback_type": "pass",
-        "reason": "步骤完成，天气数据准确"
+        "reason": "工具返回了天气数据，可推进下一步"
       }
     }
     ```
 
-    示例输出（失败）：
+    示例 2（网络故障 - 可重试）：
+    ```json
+    {
+      "verdict": "retry",
+      "feedback": {
+        "passed": false,
+        "feedback_type": "retry",
+        "reason": "工具返回 timeout"
+      }
+    }
+    ```
+
+    示例 3（工具凭空捏造 - 必须 fail）：
     ```json
     {
       "verdict": "fail",
       "feedback": {
         "passed": false,
-        "feedback_type": "partial_fail",
-        "reason": "步骤2天气数据缺失且工具无法获取",
+        "feedback_type": "tool_not_exist",
+        "reason": "执行计划引用了不存在的工具 mcp://weather/alternative_get",
         "suggested_corrections": {
-          "2": "使用备用天气数据源或询问用户"
+          "2": "改用真实存在的 weather_tool 重新规划该步骤"
         }
       }
     }
     ```
-  agent: logic_validator_agent
+  agent: step_verifier_agent

@@ -143,8 +143,8 @@ os.environ["OPENAI_MODEL_NAME"] = f"openai/{glm_model}"
 os.environ["LITELLM_LOG"] = "ERROR"
 os.environ["SUPPRESS_LITELLM_LOGS"] = "True"
 
-from agent_test0.crew import TravelWorkflow
-from agent_test0.harness import MemoryManager, get_redis_or_fallback
+from agent_test0.workflow import TravelWorkflow
+from agent_test0.memory import MemoryManager, get_redis_or_fallback
 from crewai import LLM
 
 

@@ -96,8 +96,8 @@ os.environ["OPENAI_MODEL_NAME"] = f"openai/{glm_model}"
 os.environ["LITELLM_LOG"] = "ERROR" 
 os.environ["SUPPRESS_LITELLM_LOGS"] = "True"
 
-from agent_test0.harness import MemoryManager, get_redis_or_fallback
-from agent_test0.crew import TravelWorkflow, TravelState
+from agent_test0.memory import MemoryManager, get_redis_or_fallback
+from agent_test0.workflow import TravelWorkflow, TravelState
 import json
 
 redis_client, is_redis_fallback = get_redis_or_fallback()
@@ -167,7 +167,7 @@ async def chat_endpoint_stream(request: ChatRequest):
                     try:
                         steps_json = saved_state.get("steps", "[]")
                         if steps_json:
-                            from agent_test0.crew import StepPlan
+                            from agent_test0.workflow.state import StepPlan
                             travel_flow.state.steps = [StepPlan(**s) for s in json.loads(steps_json)]
                         travel_flow.state.current_step_index = int(saved_state.get("current_step_index", "0"))
                         travel_flow.state.location = saved_state.get("location", "未知地点")

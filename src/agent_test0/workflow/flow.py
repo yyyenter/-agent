@@ -14,7 +14,7 @@ import sys
 
 from crewai.flow import Flow, listen, start
 
-from agent_test0.harness import MemoryManager, get_redis_or_fallback
+from agent_test0.memory import MemoryManager, get_redis_or_fallback
 from agent_test0.workflow.state import TravelState
 from agent_test0.workflow.callbacks import run_crew_with_callback
 from agent_test0.workflow.parsing import parse_step_feedback

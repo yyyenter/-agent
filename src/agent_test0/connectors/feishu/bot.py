@@ -22,7 +22,7 @@ from concurrent.futures import ThreadPoolExecutor
 from dotenv import load_dotenv
 import os
 
-from agent_test0.crew import TravelWorkflow
+from agent_test0.workflow import TravelWorkflow
 
 load_dotenv()
 

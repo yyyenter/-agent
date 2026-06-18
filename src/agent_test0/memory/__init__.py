@@ -4,17 +4,22 @@
 
 主要 export：
     from agent_test0.memory import MemoryManager, get_redis_or_fallback
+    from agent_test0.memory import InMemoryFallback, ToolCacheManager
 
 内部模块：
-    manager.py —— MemoryManager 主类（原 harness.py）
+    manager.py —— MemoryManager / ToolCacheManager / InMemoryFallback 等
 """
 
 from agent_test0.memory.manager import (
     MemoryManager,
     get_redis_or_fallback,
+    InMemoryFallback,
+    ToolCacheManager,
 )
 
 __all__ = [
     "MemoryManager",
     "get_redis_or_fallback",
+    "InMemoryFallback",
+    "ToolCacheManager",
 ]

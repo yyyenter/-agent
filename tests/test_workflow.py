@@ -5,7 +5,7 @@ from pathlib import Path
 # 把仓库根的 src/ 加入 sys.path（无论从哪个 cwd 运行都生效）
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from agent_test0.crew import TravelWorkflow
+from agent_test0.workflow import TravelWorkflow
 
 async def test_workflow():
     messages = []

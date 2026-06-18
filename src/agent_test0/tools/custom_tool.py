@@ -8,7 +8,7 @@ from crewai.tools import BaseTool
 import redis
 import pymysql
 # 假设 ToolCacheManager 在你的项目中正确导入
-from ..harness import ToolCacheManager
+from ..memory import ToolCacheManager
 
 # ==================== 工具输出压缩 ====================
 MAX_TOOL_OUTPUT_CHARS = 200

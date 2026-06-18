@@ -6,7 +6,7 @@ from pathlib import Path
 # 把仓库根的 src/ 加入 sys.path（无论从哪个 cwd 运行都生效）
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
-from agent_test0.main import app
+from agent_test0.api.server import app
 from fastapi.testclient import TestClient
 
 # Mock the LLM to avoid API calls

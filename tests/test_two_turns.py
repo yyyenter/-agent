@@ -39,8 +39,8 @@ os.environ["OPENAI_API_BASE"] = os.getenv("GLM_API_BASE", "")
 os.environ["OPENAI_MODEL_NAME"] = f"openai/{os.getenv('GLM_MODEL_NAME', 'glm-4-flash')}"
 os.environ["LITELLM_LOG"] = "ERROR"
 
-from agent_test0.crew import TravelWorkflow, _redis_client, _is_redis_fallback
-from agent_test0.harness import MemoryManager
+from agent_test0.workflow import TravelWorkflow, _redis_client, _is_redis_fallback
+from agent_test0.memory import MemoryManager
 
 
 def hr(title=""):

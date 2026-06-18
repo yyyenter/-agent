@@ -83,7 +83,7 @@ print("4. 导入项目模块 + 基础测试")
 print("=" * 60)
 try:
     sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[1] / "src"))
-    from agent_test0.harness import get_redis_or_fallback, InMemoryFallback, MemoryManager, ToolCacheManager
+    from agent_test0.memory import get_redis_or_fallback, InMemoryFallback, MemoryManager, ToolCacheManager
     client, is_fb = get_redis_or_fallback()
     backend_type = type(client).__name__
     print(f"   get_redis_or_fallback -> {backend_type}, is_fallback={is_fb}")

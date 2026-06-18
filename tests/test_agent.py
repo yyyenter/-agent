@@ -63,8 +63,8 @@ os.environ["SUPPRESS_LITELLM_LOGS"] = "True"
 # =========================================
 # 导入项目模块
 # =========================================
-from agent_test0.harness import MemoryManager, get_redis_or_fallback
-from agent_test0.crew import TravelWorkflow, TravelState
+from agent_test0.memory import MemoryManager, get_redis_or_fallback
+from agent_test0.workflow import TravelWorkflow, TravelState
 from crewai import LLM
 
 # =========================================

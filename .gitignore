@@ -11,3 +11,7 @@ dump.rdb
 
 # 旧的依赖锁文件备份
 pyproject-old.toml
+
+# 研究数据集（大文件，不入仓库）
+src/knowledge/*.zip
+knowledge/*.zip

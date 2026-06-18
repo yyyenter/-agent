@@ -1,3 +1,13 @@
 .env
 __pycache__/
 .DS_Store
+
+# Redis 持久化快照（本地自动生成，不跟踪）
+dump.rdb
+*.rdb
+
+# 调试日志（本地生成）
+*.log
+
+# 旧的依赖锁文件备份
+pyproject-old.toml

@@ -23,8 +23,8 @@ from agent_test0.workflow.llm import zhipu_llm, search_tool
 @CrewBase
 class PlannerCrew:
     """状态 1：复杂度判定 + 步骤生成"""
-    agents_config = 'config/agent.yaml'
-    tasks_config = 'config/tasks.yaml'
+    agents_config = '../config/agent.yaml'
+    tasks_config = '../config/tasks.yaml'
 
     @agent
     def planner_agent(self) -> Agent:
@@ -42,8 +42,8 @@ class PlannerCrew:
 @CrewBase
 class ValidatorCrew:
     """旧 ValidatorCrew，新主路径已不再使用，保留以防 main.py 旧分支需要"""
-    agents_config = 'config/agent.yaml'
-    tasks_config = 'config/logic_validator_tasks.yaml'
+    agents_config = '../config/agent.yaml'
+    tasks_config = '../config/logic_validator_tasks.yaml'
 
     @agent
     def logic_validator_agent(self) -> Agent:
@@ -62,8 +62,8 @@ class ValidatorCrew:
 @CrewBase
 class StepPreparerCrew:
     """状态 2：为粗粒度步骤生成工具调用计划"""
-    agents_config = 'config/agent.yaml'
-    tasks_config = 'config/step_preparer_tasks.yaml'
+    agents_config = '../config/agent.yaml'
+    tasks_config = '../config/step_preparer_tasks.yaml'
 
     @agent
     def step_preparer_agent(self) -> Agent:
@@ -81,8 +81,8 @@ class StepPreparerCrew:
 @CrewBase
 class StepExecutorCrew:
     """状态 3：执行工具调用（绑定 WeatherTool）"""
-    agents_config = 'config/agent.yaml'
-    tasks_config = 'config/executor_tasks.yaml'
+    agents_config = '../config/agent.yaml'
+    tasks_config = '../config/executor_tasks.yaml'
 
     @agent
     def step_executor_agent(self) -> Agent:
@@ -100,8 +100,8 @@ class StepExecutorCrew:
 @CrewBase
 class StepVerifierCrew:
     """状态 4：单步骤结果审核"""
-    agents_config = 'config/agent.yaml'
-    tasks_config = 'config/step_validator_tasks.yaml'
+    agents_config = '../config/agent.yaml'
+    tasks_config = '../config/step_validator_tasks.yaml'
 
     @agent
     def step_verifier_agent(self) -> Agent:
@@ -119,8 +119,8 @@ class StepVerifierCrew:
 @CrewBase
 class PartialReplannerCrew:
     """状态 5：仅修复失败步骤，不重新规划全局"""
-    agents_config = 'config/agent.yaml'
-    tasks_config = 'config/replan_tasks.yaml'
+    agents_config = '../config/agent.yaml'
+    tasks_config = '../config/replan_tasks.yaml'
 
     @agent
     def partial_replanner_agent(self) -> Agent:
@@ -138,8 +138,8 @@ class PartialReplannerCrew:
 @CrewBase
 class FinalVerifierCrew:
     """状态 6：整体审核（liberal pass）"""
-    agents_config = 'config/agent.yaml'
-    tasks_config = 'config/final_validator_tasks.yaml'
+    agents_config = '../config/agent.yaml'
+    tasks_config = '../config/final_validator_tasks.yaml'
 
     @agent
     def final_verifier_agent(self) -> Agent:

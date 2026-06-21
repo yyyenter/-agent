@@ -195,7 +195,7 @@ MYSQL_DATABASE=agent_test0
 - `.env` 包含真实 API Key，绝对不能提交。`.gitignore` 中已包含 `.env`
 - Agent 配置文件是 `config/agent.yaml`（单数）
 - Redis 预期运行在 `localhost:6379`；不可用时 `memory/manager.py` 自动回退到内存
-- Flow 用 `@start()` / `@listen()` 装饰器，节点之间手动调用 `self.step_executor()` 串联（CrewAI Flow 的 `@listen` 对手动调用不会自动传播）
+- Flow 只用 `@start()` 作为入口（`plan_steps`），方法体调 `nodes.run_state_machine(self)`；6 状态机由一个显式 `while` 循环驱动（支持 retry/replan 循环语义，且避免 `@listen` 自动传播 + 手动调用并存导致的双触发）。节点函数 `run_xxx(flow)` 是纯函数，只读写 `flow.state`、返回 verdict，不再手动调下游
 - 飞书长连接 bot 走 WebSocket 接口，**不**经过 `/api/chat_stream`；FastAPI SSE 仅供 Streamlit 前端
 - 意图路由依赖本地 Ollama (`http://localhost:11434`) 运行 `nomic-embed-text`；不可用时降级为关键词匹配
 

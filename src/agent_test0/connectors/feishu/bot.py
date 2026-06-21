@@ -150,13 +150,20 @@ def _call_agent(user_text: str, user_id: str, chat_id: str = None) -> str:
     """
     print("\n[Agent] 调用 CrewAI TravelWorkflow...")
 
-    session_id = f"feishu_{user_id}_{abs(hash(user_text)) % 1000000:06d}"
+    # session_id 按 user_id 稳定派生（同一飞书用户一个 session），
+    # 这样多轮上下文与 asked_fields 跨轮去重才成立。
+    # 之前用 hash(user_text) 会导致每发一句不同的话就开新 session，多轮全断。
+    session_id = f"feishu_{user_id}"
 
     final_report = TravelWorkflow.run_for_user(
         user_text=user_text,
         user_id=user_id,
         session_id=session_id,
     )
+
+    # 防御：run_for_user 理论上总返回 str，但异常路径可能返回 None / 非 str
+    if not isinstance(final_report, str) or not final_report.strip():
+        final_report = "抱歉，暂时无法生成回复，请稍后重试或补充更多信息。"
 
     print(f"  [Agent] 回复长度: {len(final_report)}")
     print(f"  [Agent] 回复预览: {final_report[:100]}")

@@ -1,19 +1,19 @@
 # agent_test0/workflow/nodes.py
 """
-状态机 6 个节点的业务逻辑。
+状态机 6 个节点的业务逻辑 + 显式驱动循环。
 
-每个节点是一个纯函数 `run_xxx(flow, ...)`，接收 TravelWorkflow 实例，
-通过 flow.state 读写状态、通过 flow._run_crew_with_callback 调用 Crew。
+设计要点（本次重构的核心修复）：
+  - 不再依赖 CrewAI Flow 的 @listen 自动传播 + 手动 flow.step_xxx() 串联两套机制并存
+    （那会导致整条链被同步跑一遍后，编排器又把下游 listener 重跑一遍 → 节点双触发、
+     LLM 翻倍、final_report 被迟到的那次覆盖）。
+  - 改为：flow.py 只保留 @start 入口，方法体调 run_state_machine(self)；
+    本文件的 run_state_machine 用一个显式 while 循环驱动 6 状态机，
+    天然支持 retry / replan 这种"循环"语义（满足"信息不足立即反馈"的硬性要求），
+    且每个 run_xxx 是纯函数，只读写 flow.state、只返回 verdict，不再手动调下游。
 
-为什么不直接做成 TravelWorkflow 的方法？
-  - 让 flow.py 只剩"调度骨架"，方法体超过几行的部分都搬到这里。
-  - 方便单独阅读：要看 Planner 业务逻辑，只看 run_planner 函数即可。
-  - 方便后续替换：想把 Planner 换成纯代码实现（不用 LLM），只改 run_planner。
-
-【@listen 装饰器在哪？】
-  在 flow.py 的方法上。本文件的函数是被 flow.py 方法直接调用的。
-  Flow 节点之间的串联（手动 self.step_executor() 调用链）在原代码里就这么做的，
-  这里保留原行为。
+每个节点函数 `run_xxx(flow, ...)`：
+  - 接收 TravelWorkflow 实例，通过 flow.state 读写、通过 flow._run_crew_with_callback 调 Crew
+  - 只做自己那一件事，推进逻辑上移到 run_state_machine
 """
 
 import json
@@ -29,6 +29,72 @@ from agent_test0.workflow.crews import (
 )
 from agent_test0.workflow.parsing import extract_json_object, parse_step_feedback
 from agent_test0.workflow.llm import zhipu_llm
+
+
+# 死循环保护：单轮 Flow 内步骤迭代总次数上限（含 retry / replan 重跑）
+MAX_STEP_ITERATIONS = 30
+
+
+# ============================================================
+# 显式驱动循环 —— 唯一的状态机推进者
+# ============================================================
+
+def run_state_machine(flow):
+    """
+    6 状态机的显式驱动循环。由 flow.plan_steps(@start) 调用。
+
+    结构：
+      1. run_planner：生成 steps；可能直接 set final_report（ask_user / 兜底简单回答）
+      2. 主步骤循环：prepare → execute → verify，按 verdict 推进/重试/重规划
+      3. 所有步骤完成 → run_final_verifier：不通过则 replan 后回到步骤循环
+
+    任何阶段 needs_user_input=True 都立即 return（final_report 已写好问题文本）。
+    """
+    # ── 1. Planner ──
+    run_planner(flow)
+    if flow._check_ask_user_hook():
+        return
+    # Planner 已给出兜底 final_report（简单闲聊 / 解析失败），或没有 steps → 直接结束
+    if flow.state.final_report or not flow.state.steps:
+        return
+
+    # ── 2 + 3. 步骤循环 ↔ 整体审核 ──
+    while True:
+        # 阶段 A：推进未完成的步骤
+        while flow.state.current_step_index < len(flow.state.steps):
+            flow.state.total_steps_counted += 1
+            if flow.state.total_steps_counted > MAX_STEP_ITERATIONS:
+                print(f"[StateMachine] 步骤迭代超限 ({MAX_STEP_ITERATIONS})，强制合成报告结束")
+                flow.state.final_report = generate_final_report(flow)
+                return
+
+            run_step_preparer(flow)
+            if flow._check_ask_user_hook():
+                return
+            run_step_executor(flow)
+            if flow._check_ask_user_hook():
+                return
+            verdict = run_step_verifier(flow)
+            if verdict == "ask_user":
+                return
+            # verdict 其它取值（pass/retry/fail）的索引推进/重置已在 run_step_verifier 内完成：
+            #   pass  → current_step_index 已 +1
+            #   retry → 索引不变，下一轮循环重跑同一步骤
+            #   fail  → 已调 run_partial_replanner，索引已重置到失败处
+
+        # 阶段 B：所有步骤完成 → 整体审核
+        fv_verdict = run_final_verifier(flow)
+        if fv_verdict == "ask_user":
+            return
+        if fv_verdict == "pass":
+            return  # final_report 已在 run_final_verifier 内生成
+        # fv_verdict == "fail"：run_final_verifier 内已触发 run_partial_replanner，
+        # 索引已重置。若有新步骤可跑 → 回到阶段 A；否则强制结束。
+        if flow.state.current_step_index >= len(flow.state.steps):
+            print("[StateMachine] FinalVerifier 不通过但无步骤可重跑，强制结束")
+            if not flow.state.final_report:
+                flow.state.final_report = generate_final_report(flow)
+            return
 
 
 # ============================================================
@@ -111,7 +177,7 @@ def run_planner(flow):
 # ============================================================
 
 def run_step_preparer(flow):
-    """为当前步骤决定调哪些工具、传什么参数。"""
+    """为当前步骤决定调哪些工具、传什么参数。纯函数：填完 tools 即返回，不串联下游。"""
     print(f"[StepPreparer] 被调用，检查是否从重规划来...")
 
     # 全局钩子：检查是否需要向用户提问
@@ -139,10 +205,9 @@ def run_step_preparer(flow):
         print(f"[StepPreparer] 跳过: 步骤 {step_idx} 已完成")
         return
 
-    # 已有工具：跳过 LLM 规划，但仍然推进到 step_executor
+    # 已有工具：跳过 LLM 规划（replan / retry 复用已有 tools），直接返回交由驱动循环调 executor
     if current_step.tools:
-        print(f"[StepPreparer] 跳过 LLM 规划（已有工具 {current_step.tools}），直接推进到 step_executor")
-        flow.step_executor()
+        print(f"[StepPreparer] 跳过 LLM 规划（已有工具 {current_step.tools}）")
         return
 
     print(f"\n{'='*60}")
@@ -184,8 +249,7 @@ def run_step_preparer(flow):
         # 默认使用 weather_tool（最常用）
         current_step.tools = ["weather_tool"]
 
-    # 显式调用 step_executor（Flow 的 @listen 不会对直接调用传播）
-    flow.step_executor()
+    # 不再手动 flow.step_executor() —— 由 run_state_machine 驱动循环统一推进
 
 
 # ============================================================
@@ -193,8 +257,8 @@ def run_step_preparer(flow):
 # ============================================================
 
 def run_step_executor(flow):
-    """按 step.tools 执行工具调用，把结果写入 step.result。"""
-    print(f"[StepExecutor] 监听到 step_preparer 完成")
+    """按 step.tools 执行工具调用，把结果写入 step.result。纯函数：写完即返回，不串联下游。"""
+    print(f"[StepExecutor] 驱动循环调度执行")
     if not flow.state.steps:
         print(f"[StepExecutor] 跳过: 没有步骤")
         return
@@ -268,50 +332,53 @@ def run_step_executor(flow):
         current_step.result = raw_text[:1000]
         current_step.status = "completed"
 
-    # 显式调用 step_verifier（Flow 的 @listen 不会对直接调用传播）
-    flow.step_verifier()
+    # 不再手动 flow.step_verifier() —— 由 run_state_machine 驱动循环统一推进
 
 
 # ============================================================
 # 状态 4: StepVerifier —— 审核单个步骤结果
 # ============================================================
 
-def run_step_verifier(flow):
-    """审核 step.result 是否满足 step.description。pass / retry / fail 三种结果。"""
+def run_step_verifier(flow) -> str:
+    """
+    审核 step.result 是否满足 step.description。
+
+    Returns:
+        "pass"    —— 通过，current_step_index 已推进
+        "retry"   —— 重试当前步骤（未耗尽），索引不变，已重置步骤状态供下轮重跑
+        "fail"    —— 失败，已触发 run_partial_replanner，索引已重置
+        "ask_user"—— 需向用户提问，final_report 已写好
+    """
     if not flow.state.steps:
-        return
+        return "pass"
 
     if flow._check_ask_user_hook():
-        return
+        return "ask_user"
 
     step_idx = flow.state.current_step_index
     if step_idx >= len(flow.state.steps):
-        return
+        return "pass"
 
     current_step = flow.state.steps[step_idx]
 
-    # 跳过已处理的步骤（防止 Flow 重复触发）
+    # 跳过已处理的步骤（防重复触发）——驱动循环单线程下一般不会到这
     if current_step.status in ("completed", "failed") and current_step.validation_feedback:
         print(f"[StepVerifier] 步骤 {step_idx} 已处理过，跳过")
-        return
+        return "pass"
 
     print(f"\n{'='*60}")
     print(f"[StepVerifier] 审核步骤 {step_idx} 结果...")
     print(f"{'='*60}")
     flow.notify(f"🔍 [StepVerifier] 正在审核步骤结果...")
 
-    # 【确定性短路】如果步骤已有非空 result 且 status==completed，
-    # 直接 pass，不浪费 LLM 调用。这避免 LLM 因"数据不够丰富"挑刺退回 retry。
+    # 【确定性短路】步骤已有非空 result 且 status==completed → 直接 pass，
+    # 不浪费 LLM 调用，避免 LLM 因"数据不够丰富"挑刺退回 retry。
     if current_step.status == "completed" and current_step.result and current_step.result.strip():
         print(f"[StepVerifier] 短路 pass：步骤 {step_idx} 有非空结果且 StepExecutor 已标记 completed")
         flow.notify(f"✅ [StepVerifier] 步骤 {step_idx} 直接通过（有数据）")
         current_step.validation_feedback = "有非空结果，直接通过"
         flow.state.current_step_index += 1
-        if flow.state.current_step_index >= len(flow.state.steps):
-            flow.final_verifier()
-        else:
-            flow.step_preparer()
-        return
+        return "pass"
 
     # 构建审核输入
     inputs = {
@@ -331,50 +398,41 @@ def run_step_verifier(flow):
     # 处理用户提问
     if feedback.get("verdict") == "ask_user":
         print(f"[StepVerifier] 检测到用户提问指令")
-        flow.notify(f"🙋 [AskUser] {flow.state.user_question}")
-        flow.state.final_report = flow.state.user_question
-        return
+        return "ask_user"
 
     if feedback.get("verdict") == "pass":
         print(f"[StepVerifier] 步骤 {step_idx} 审核通过")
         flow.notify(f"✅ [StepVerifier] 步骤 {step_idx} 审核通过")
-
-        # 标记完成
         current_step.status = "completed"
         current_step.validation_feedback = feedback.get("reason", "通过")
-
-        # 推进到下一个步骤
         flow.state.current_step_index += 1
-        if flow.state.current_step_index >= len(flow.state.steps):
-            flow.final_verifier()
-        else:
-            print(f"[StepVerifier] 准备执行步骤 {flow.state.current_step_index}")
-            flow.step_preparer()
-    elif feedback.get("verdict") == "retry":
-        # 重试当前步骤
+        return "pass"
+
+    if feedback.get("verdict") == "retry":
         retry_count = flow.step_retry_counts.get(step_idx, 0)
         if retry_count < flow.max_step_retries:
             flow.step_retry_counts[step_idx] = retry_count + 1
             print(f"[StepVerifier] 步骤 {step_idx} 重试中 ({retry_count + 1}/{flow.max_step_retries})")
             flow.notify(f"🔄 [StepVerifier] 步骤 {step_idx} 重试中...")
-            flow.step_executor()
+            # 重置步骤状态，供驱动循环下轮重新 prepare→execute
+            current_step.status = "pending"
+            current_step.result = ""
+            current_step.validation_feedback = ""
+            return "retry"
         else:
-            print(f"[StepVerifier] 步骤 {step_idx} 重试耗尽，标记为失败")
+            print(f"[StepVerifier] 步骤 {step_idx} 重试耗尽，标记为失败并跳过")
             current_step.status = "failed"
             current_step.validation_feedback = f"重试 {flow.max_step_retries} 次后失败"
             flow.state.failed_steps_indices.append(step_idx)
-            # 推进到下一个步骤
             flow.state.current_step_index += 1
-            if flow.state.current_step_index >= len(flow.state.steps):
-                flow.final_verifier()
-            else:
-                flow.step_preparer()
-                flow.step_executor()
-    else:  # fail - 需要 PartialReplanner
-        print(f"[StepVerifier] 步骤 {step_idx} 审核失败，触发 PartialReplanner")
-        current_step.status = "failed"
-        flow.state.failed_steps_indices.append(step_idx)
-        run_partial_replanner(flow, feedback)
+            return "pass"  # 推进到下一步骤（失败步骤留给 FinalVerifier 兜底）
+
+    # verdict == "fail" —— 触发局部重规划
+    print(f"[StepVerifier] 步骤 {step_idx} 审核失败，触发 PartialReplanner")
+    current_step.status = "failed"
+    flow.state.failed_steps_indices.append(step_idx)
+    run_partial_replanner(flow, feedback)
+    return "fail"
 
 
 # ============================================================
@@ -382,21 +440,20 @@ def run_step_verifier(flow):
 # ============================================================
 
 def run_partial_replanner(flow, failure_feedback: dict):
-    """仅修复失败步骤，不重新规划全局。"""
+    """仅修复失败步骤，不重新规划全局。重置 current_step_index 后返回，由驱动循环续跑。"""
     if flow._check_ask_user_hook():
         return
 
-    # 防止无限重规划
-    replan_count = getattr(flow.state, '_replan_count', 0) + 1
-    flow.state._replan_count = replan_count
-    if replan_count > flow.max_replan_attempts:
-        print(f"[PartialReplanner] 重规划次数超限 ({replan_count}/{flow.max_replan_attempts})，强制结束")
+    # 防止无限重规划（replan_count 是 state 正式字段，跨 replan 累计）
+    flow.state.replan_count += 1
+    if flow.state.replan_count > flow.max_replan_attempts:
+        print(f"[PartialReplanner] 重规划次数超限 ({flow.state.replan_count}/{flow.max_replan_attempts})，强制结束")
         flow.state.final_report = generate_final_report(flow)
         run_finalize(flow)
         return
 
     print(f"\n{'='*60}")
-    print(f"[PartialReplanner] 触发局部重规划 (第 {replan_count} 次)...")
+    print(f"[PartialReplanner] 触发局部重规划 (第 {flow.state.replan_count} 次)...")
     print(f"{'='*60}")
     flow.notify(f"🔄 [PartialReplanner] 正在局部重规划...")
 
@@ -407,7 +464,7 @@ def run_partial_replanner(flow, failure_feedback: dict):
         print(f"[PartialReplanner] 没有失败的步骤，无法重规划")
         return
 
-    # 保留已完成的步骤
+    # 保留已完成的步骤（失败处之前的）
     preserved_steps = [i for i in range(len(flow.state.steps)) if i < min(failed_indices)]
     print(f"[PartialReplanner] 保留步骤: {preserved_steps}")
 
@@ -440,40 +497,48 @@ def run_partial_replanner(flow, failure_feedback: dict):
             flow.state.current_step_index = len(preserved)
             print(f"[PartialReplanner] 重规划完成，共 {len(flow.state.steps)} 个步骤")
             print(f"[PartialReplanner] 当前步骤索引: {flow.state.current_step_index}")
-            flow.step_preparer()
         else:
             print(f"[PartialReplanner] 警告: 重规划未返回新步骤")
     else:
         print(f"[PartialReplanner] 解析重规划结果失败")
+
+    # 不再手动 flow.step_preparer() —— 由 run_state_machine 驱动循环续跑
 
 
 # ============================================================
 # 状态 6: FinalVerifier —— 整体审核
 # ============================================================
 
-def run_final_verifier(flow):
-    """整体审核 + 调用 LLM 合成最终报告 + finalize。"""
+def run_final_verifier(flow) -> str:
+    """
+    整体审核 + 合成最终报告。
+
+    Returns:
+        "pass"     —— 通过，final_report 已生成
+        "fail"     —— 不通过，已触发 run_partial_replanner，索引已重置
+        "ask_user" —— 需向用户提问
+    """
     print(f"[FinalVerifier] 被调用，检查是否已执行...")
 
-    # 检查是否已经执行过（避免重复执行）
-    if getattr(flow.state, '_final_verifier_executed', False):
+    # 重入保护（final_verifier_done 是 state 正式字段）
+    if flow.state.final_verifier_done:
         print(f"[FinalVerifier] 已执行过，跳过")
-        return
+        return "pass"
 
     if flow._check_ask_user_hook():
-        return
+        return "ask_user"
 
     # 只有在所有步骤都完成时才执行最终审核
     if flow.state.current_step_index < len(flow.state.steps):
         print(f"[FinalVerifier] 跳过: 还有 {len(flow.state.steps) - flow.state.current_step_index} 个步骤未完成")
-        return
+        return "pass"
 
     print(f"\n{'='*60}")
     print(f"[FinalVerifier] 开始执行...")
     print(f"{'='*60}")
     flow.notify(f"🔍 [FinalVerifier] 正在进行整体审核...")
 
-    flow.state._final_verifier_executed = True
+    flow.state.final_verifier_done = True
 
     all_steps_with_results = [
         {"index": i, "description": s.description, "status": s.status, "result": s.result}
@@ -492,24 +557,27 @@ def run_final_verifier(flow):
     feedback = parse_step_feedback(flow, raw_text)
     print(f"[FinalVerifier] 解析反馈: {feedback}")
 
+    if feedback.get("verdict") == "ask_user":
+        return "ask_user"
+
     if feedback.get("verdict") == "pass":
         print(f"[FinalVerifier] 整体审核通过")
         flow.notify(f"🎉 [FinalVerifier] 整体审核通过")
-
         flow.state.final_report = generate_final_report(flow)
         report_len = len(flow.state.final_report) if flow.state.final_report else 0
         print(f"[FinalVerifier] 生成的最终报告长度: {report_len}")
         print(f"[FinalVerifier] 生成的最终报告内容: {flow.state.final_report[:200] if flow.state.final_report else 'None'}")
         run_finalize(flow)
-    else:
-        print(f"[FinalVerifier] 整体审核不通过，触发局部重规划")
-        flow.notify(f"⚠️ [FinalVerifier] 整体审核不通过")
+        return "pass"
 
-        failed_indices = feedback.get("failed_step_ids", [])
-        if failed_indices:
-            flow.state.failed_steps_indices = failed_indices
-            run_partial_replanner(flow, feedback.get("global_feedback", {}))
-            flow.step_preparer()
+    # 不通过 —— 触发局部重规划
+    print(f"[FinalVerifier] 整体审核不通过，触发局部重规划")
+    flow.notify(f"⚠️ [FinalVerifier] 整体审核不通过")
+    failed_indices = feedback.get("failed_step_ids", [])
+    if failed_indices:
+        flow.state.failed_steps_indices = failed_indices
+    run_partial_replanner(flow, feedback.get("global_feedback", {}))
+    return "fail"
 
 
 # ============================================================

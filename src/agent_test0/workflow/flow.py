@@ -12,7 +12,7 @@ TravelWorkflow —— Flow 编排骨架。
 
 import sys
 
-from crewai.flow import Flow, listen, start
+from crewai.flow import Flow, start
 
 from agent_test0.memory import MemoryManager, get_redis_or_fallback
 from agent_test0.workflow.state import TravelState
@@ -94,28 +94,19 @@ class TravelWorkflow(Flow[TravelState]):
         return nodes.generate_final_report(self)
 
     # ============================================================
-    # 状态节点（@start / @listen 装饰，方法体只调 nodes 里的业务函数）
+    # 状态节点
     # ============================================================
+    #
+    # 【架构说明】只保留 @start 作为入口，整条状态机由 nodes.run_state_machine
+    # 用显式 while 循环驱动（支持 retry / replan 这种循环语义，且避免
+    # @listen 自动传播 + 手动调用并存导致的双触发）。
+    # step_preparer / step_executor / step_verifier / final_verifier 不再
+    # 用 @listen 装饰——它们由 run_state_machine 直接以 nodes.run_xxx 调用。
 
     @start()
     def plan_steps(self):
-        return nodes.run_planner(self)
-
-    @listen(plan_steps)
-    def step_preparer(self):
-        return nodes.run_step_preparer(self)
-
-    @listen(step_preparer)
-    def step_executor(self):
-        return nodes.run_step_executor(self)
-
-    @listen(step_executor)
-    def step_verifier(self):
-        return nodes.run_step_verifier(self)
-
-    @listen(step_verifier)
-    def final_verifier(self):
-        return nodes.run_final_verifier(self)
+        """Flow 入口：跑完整状态机（Planner → 步骤循环 → FinalVerifier）。"""
+        return nodes.run_state_machine(self)
 
     def partial_replanner(self, failure_feedback: dict):
         """非 @listen 节点：由 step_verifier / final_verifier 直接调用"""

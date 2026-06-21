@@ -78,6 +78,13 @@ class TravelState(BaseModel):
     total_steps_counted: int = 0                # 已经进入步骤节点的总次数
     asked_fields: list[str] = []                # 本轮已经问过用户的字段名（防重复问）
 
+    # === 显式驱动循环用的计数/标志 ===
+    # 之前用 flow.state._replan_count / _final_verifier_executed 动态挂属性，
+    # 但 Pydantic v2 默认 extra='ignore' 会丢弃 → 限流与重入保护失效。
+    # 这里提升为正式字段。
+    replan_count: int = 0                       # PartialReplanner 已触发次数（上限 max_replan_attempts）
+    final_verifier_done: bool = False           # FinalVerifier 是否已执行（防重入）
+
     # === 业务字段 ===
     is_complex: bool = True
     simple_answer: str = ""

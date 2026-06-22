@@ -17,7 +17,7 @@ from crewai import Agent, Crew, Task
 from crewai.project import CrewBase, agent, task, crew
 
 from agent_test0.tools.custom_tool import WeatherTool
-from agent_test0.workflow.llm import zhipu_llm, search_tool
+from agent_test0.workflow.llm import zhipu_llm
 
 
 @CrewBase
@@ -33,26 +33,6 @@ class PlannerCrew:
     @task
     def planning_task(self) -> Task:
         return Task(config=self.tasks_config['planning_task'])
-
-    @crew
-    def crew(self) -> Crew:
-        return Crew(agents=self.agents, tasks=self.tasks, verbose=True)
-
-
-@CrewBase
-class ValidatorCrew:
-    """旧 ValidatorCrew，新主路径已不再使用，保留以防 main.py 旧分支需要"""
-    agents_config = '../config/agent.yaml'
-    tasks_config = '../config/logic_validator_tasks.yaml'
-
-    @agent
-    def logic_validator_agent(self) -> Agent:
-        tools = [search_tool] if search_tool is not None else []
-        return Agent(config=self.agents_config['logic_validator_agent'], tools=tools, llm=zhipu_llm, verbose=True)
-
-    @task
-    def validation_task(self) -> Task:
-        return Task(config=self.tasks_config['validation_task'])
 
     @crew
     def crew(self) -> Crew:
@@ -156,7 +136,6 @@ class FinalVerifierCrew:
 
 __all__ = [
     "PlannerCrew",
-    "ValidatorCrew",
     "StepPreparerCrew",
     "StepExecutorCrew",
     "StepVerifierCrew",

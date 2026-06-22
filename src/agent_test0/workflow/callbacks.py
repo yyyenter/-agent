@@ -82,13 +82,17 @@ def run_crew_with_callback(flow, crew_class, inputs):
 
     这样能保证不管 CrewBase 内部怎么实例化 Agent，回调都能挂上去。
     """
+    from agent_test0.workflow.trace import timed
+
     crew_instance = crew_class().crew()
     cb = make_step_callback(flow)
     crew_instance.step_callback = cb
     # 强制遍历，连每个 Agent 身上都挂上回调，确保万无一失
     for a in crew_instance.agents:
         a.step_callback = cb
-    result = crew_instance.kickoff(inputs=inputs)
+    # 计时：每个 Crew 调用都是一次 LLM 往返，是耗时大头
+    with timed(f"Crew:{crew_class.__name__}"):
+        result = crew_instance.kickoff(inputs=inputs)
     # Crew 输出安全截断
     if hasattr(result, 'raw') and len(result.raw) > 8000:
         print(f"[Truncation] Crew 输出从 {len(result.raw)} 截断至 8000 字符")

@@ -17,6 +17,7 @@
 """
 
 import json
+import re
 
 from agent_test0.workflow.state import StepPlan, StepResult
 from agent_test0.workflow.crews import (
@@ -29,10 +30,112 @@ from agent_test0.workflow.crews import (
 )
 from agent_test0.workflow.parsing import extract_json_object, parse_step_feedback
 from agent_test0.workflow.llm import zhipu_llm
+from agent_test0.workflow.trace import timed
 
 
 # 死循环保护：单轮 Flow 内步骤迭代总次数上限（含 retry / replan 重跑）
 MAX_STEP_ITERATIONS = 30
+
+# 用户明确授权系统自行默认/假设的表达。只有第二轮（已问过）且命中这些表达，才允许假设。
+_USER_DELEGATION_PATTERN = re.compile(r"(看你安排|你安排|随便|无所谓|都可以|都行|默认|按常规|帮我定|你决定)")
+_TRAVEL_INTENT_PATTERN = re.compile(r"(旅游|旅行|行程|攻略|游玩|玩|安排|规划|路线)")
+_WEATHER_ONLY_PATTERN = re.compile(r"(天气|气温|下雨|温度|穿什么)")
+
+
+def _has_asked_trip_constraints(flow) -> bool:
+    """最近几轮 assistant 是否已经问过天数/预算/人数等次要约束。"""
+    assistant_lines = []
+    for line in (flow.state.focus or "").splitlines():
+        if line.startswith("assistant:"):
+            assistant_lines.append(line.removeprefix("assistant:").strip())
+    asked_text = "\n".join(assistant_lines)
+    return any(
+        kw in asked_text
+        for kw in ("计划玩几天", "大概预算", "几位出行", "几个人", "天数", "预算", "人数")
+    )
+
+
+def _user_delegated_defaults(flow) -> bool:
+    """用户本轮是否明确授权系统自行安排。"""
+    return bool(_USER_DELEGATION_PATTERN.search(flow.state.message or ""))
+
+
+def _looks_like_travel_planning(flow, plan_data: dict) -> bool:
+    """判断是否是行程规划类需求，而非天气查询/闲聊。"""
+    message = flow.state.message or ""
+    focus = plan_data.get("focus", "") or ""
+    intent_text = f"{message}\n{focus}"
+    if plan_data.get("simple_answer") and not plan_data.get("steps"):
+        return False
+    if _WEATHER_ONLY_PATTERN.search(message) and not _TRAVEL_INTENT_PATTERN.search(message):
+        return False
+    return bool(_TRAVEL_INTENT_PATTERN.search(intent_text) or plan_data.get("steps"))
+
+
+def _user_constraint_text(flow) -> str:
+    """
+    只提取用户真实说过的话，不能把 assistant 的提问或 Planner 本轮 assumptions 算作已知约束。
+
+    focus 里包含近期对话：
+        user: 想去杭州
+        assistant: 请问计划玩几天/预算/几位...
+    判断"用户有没有提供天数/预算/人数"时，只看 user 行和当前消息。
+    """
+    chunks = [flow.state.message or ""]
+    for line in (flow.state.focus or "").splitlines():
+        if line.startswith("user:"):
+            chunks.append(line.removeprefix("user:").strip())
+    return "\n".join(chunks)
+
+
+def _missing_secondary_constraints(flow, plan_data: dict) -> list[str]:
+    """代码级判断行程规划中是否缺天数/预算/人数（只看用户真实输入，不看模型假设）。"""
+    text = _user_constraint_text(flow)
+    missing = []
+    if not re.search(r"\d+\s*天|一日|一天|两天|三天|四天|五天|周末", text):
+        missing.append("天数")
+    if not re.search(r"\d+\s*(元|块|k|K|千|万)|预算\s*[:：]?\s*\d+|人均\s*\d+|经济型|中等预算|高端|豪华", text):
+        missing.append("预算")
+    if not re.search(r"\d+\s*(人|位)|一个人|独自|情侣|夫妻|家庭|亲子|朋友|同学|团队", text):
+        missing.append("人数")
+    return missing
+
+
+def _enforce_first_turn_question(flow, plan_data: dict) -> bool:
+    """
+    Planner 的代码级护栏：
+    - 行程规划类需求，目的地明确，但天数/预算/人数缺失
+    - 第一次遇到缺失 → 强制提问，禁止使用模型 assumptions 直接默认
+    - 已经问过一次且用户明确说"看你安排"等 → 允许默认假设
+
+    Returns True 表示已经写入 AskUser 并应立即 return。
+    """
+    location = (plan_data.get("location") or "").strip()
+    if not location or location in ("未知", "未指定", "不明"):
+        return False  # 目的地缺失由 prompt/plan_data 的 needs_user_input 处理
+    if not _looks_like_travel_planning(flow, plan_data):
+        return False
+
+    missing = _missing_secondary_constraints(flow, plan_data)
+    if not missing:
+        return False
+
+    already_asked = _has_asked_trip_constraints(flow)
+    delegated = _user_delegated_defaults(flow)
+    if already_asked and delegated:
+        print(f"[PlannerGuard] 已问过且用户授权默认，允许假设: missing={missing}")
+        return False
+
+    question = (
+        f"好的，{location}行程没问题！为了规划得更贴合您的需求，请先补充：\n"
+        f"① 计划玩几天？\n"
+        f"② 大概预算是多少？\n"
+        f"③ 几位出行？\n\n"
+        f"如果都没特别要求，也可以回复“看你安排”，我会按常规方案继续。"
+    )
+    print(f"[PlannerGuard] 强制提问：缺失 {missing}，already_asked={already_asked}, delegated={delegated}")
+    flow._set_ask_user_question(question)
+    return True
 
 
 # ============================================================
@@ -134,6 +237,11 @@ def run_planner(flow):
             flow.state.location = plan_data.get("location", "未知")
             flow.state.focus = plan_data.get("focus", "")
             flow.state.assumptions = plan_data.get("assumptions", []) or []
+
+            # 代码级护栏：行程规划第一次缺天数/预算/人数时，强制提问，
+            # 防止 Planner 违背 prompt 直接塞默认 assumptions 继续规划。
+            if _enforce_first_turn_question(flow, plan_data):
+                return
 
             # 信息不足时 Planner 可能直接发起结构化提问
             if plan_data.get("needs_user_input") or plan_data.get("verdict") == "ask_user":
@@ -638,7 +746,8 @@ def generate_final_report(flow) -> str:
 6. 总字数控制在 800 字以内。"""
 
     try:
-        report = zhipu_llm.call([{"role": "user", "content": prompt}]).strip()
+        with timed("LLM:generate_final_report"):
+            report = zhipu_llm.call([{"role": "user", "content": prompt}]).strip()
         if report and len(report) > 20:
             return report
     except Exception as e:

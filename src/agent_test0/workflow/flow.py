@@ -25,6 +25,7 @@ from agent_test0.workflow.ask_user import (
 )
 from agent_test0.workflow.llm import zhipu_llm
 from agent_test0.workflow import nodes
+from agent_test0.workflow.trace import timed, reset as trace_reset, report as trace_report
 
 
 # 修复 stdout 编码（Windows 终端）
@@ -147,6 +148,7 @@ class TravelWorkflow(Flow[TravelState]):
             最终给用户的回复文本（旅行计划 / 用户提问 / 错误信息）
         """
         try:
+            trace_reset()  # 每轮清空计时，避免跨轮累计
             sid = session_id or f"sess_{user_id}_{abs(hash(user_text)) % 1000000:06d}"
 
             # 由 crew 自己构造 MemoryManager（连接层无需关心 redis 客户端）
@@ -158,7 +160,8 @@ class TravelWorkflow(Flow[TravelState]):
 
             # 2) 把原始对话蒸馏到 working memory（短期约束提取）
             try:
-                memory.convert_episodic_to_working(zhipu_llm)
+                with timed("Memory:convert_episodic_to_working"):
+                    memory.convert_episodic_to_working(zhipu_llm)
             except Exception as e:
                 print(f"[run_for_user] episodic→working 失败（可忽略）: {e}")
 
@@ -172,7 +175,8 @@ class TravelWorkflow(Flow[TravelState]):
             # 顶层捕获 AskUserInterrupt：节点用新 API 抛出时，安静吞掉，
             # state.final_report 已经在 ask_user_and_exit 里写好了
             try:
-                flow.kickoff()
+                with timed("Flow:state_machine_total"):
+                    flow.kickoff()
             except AskUserInterrupt as e:
                 print(f"[run_for_user] AskUser 中断: {e.question} (field={e.blocking_field})")
 
@@ -203,10 +207,12 @@ class TravelWorkflow(Flow[TravelState]):
 
             # 6) 异步把短期摘要蒸馏到 semantic（长期偏好）
             try:
-                memory.convert_to_semantic(zhipu_llm)
+                with timed("Memory:convert_to_semantic"):
+                    memory.convert_to_semantic(zhipu_llm)
             except Exception as e:
                 print(f"[run_for_user] shortterm→semantic 失败（可忽略）: {e}")
 
+            trace_report()  # 打印本轮耗时汇总，定位大头
             return final_report
 
         except Exception as e:

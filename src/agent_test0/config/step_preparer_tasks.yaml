@@ -45,7 +45,7 @@ step_preparer_task:
         {
           "order": 1,
           "tool_name": "weather_tool",
-          "parameters": {"city": "杭州"},
+          "parameters": {"city": "<城市名>"},
           "expected_output_schema": {"type": "object", "properties": {"temp": {"type": "number"}, "condition": {"type": "string"}}}
         }
       ]

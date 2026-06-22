@@ -45,8 +45,8 @@ replan_task:
       "preserved_steps": [0, 1],
       "original_remaining_steps": [2, 3, 4],
       "new_coarse_steps": [
-        {"index": 2, "description": "使用备用数据源查询杭州天气", "tools": ["mcp://weather/get"]},
-        {"index": 3, "description": "规划杭州行程", "tools": []},
+        {"index": 2, "description": "重新查询<目的地>天气", "tools": ["weather_tool"]},
+        {"index": 3, "description": "重新规划<目的地>行程", "tools": []},
         {"index": 4, "description": "生成最终报告", "tools": []}
       ],
       "replan_retry_count": 1

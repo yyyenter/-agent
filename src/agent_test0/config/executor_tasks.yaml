@@ -45,8 +45,8 @@ executor_task:
       "execution_results": [
         {
           "tool_name": "weather_tool",
-          "input": {"city": "杭州"},
-          "output": {"temp": 25, "condition": "晴"},
+          "input": {"city": "<城市名>"},
+          "output": {"temp": "<温度>", "condition": "<天气状况>"},
           "duration_ms": 120,
           "error": null
         }

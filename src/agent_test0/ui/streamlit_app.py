@@ -50,7 +50,7 @@ if "messages" not in st.session_state:
 
 # 用于绑定表单输入框状态，方便点击快捷卡片时自动填充
 if "departure" not in st.session_state:
-    st.session_state.departure = "杭州"
+    st.session_state.departure = ""
 if "destination" not in st.session_state:
     st.session_state.destination = ""
 
@@ -78,8 +78,8 @@ with st.container():
     
     with col1:
         st.image("https://ts4.tc.mm.bing.net/th/id/OIP-C.OnKQdifKu1WYETYri87uewHaFj?rs=1&pid=ImgDetMain&o=7&rm=3", use_container_width=True)
-        if st.button("🏞️ 杭州", use_container_width=True):
-            st.session_state.destination = "杭州"
+        if st.button("🏞️ 重庆", use_container_width=True):
+            st.session_state.destination = "重庆"
             st.rerun()
 
     with col2:
@@ -152,9 +152,10 @@ if trigger_ai_plan:
         st.warning("⚠️ 请先输入或选择一个目的地！")
     else:
         pref_str = "、".join(preferences) if preferences else "无特定偏好"
+        departure_part = f"从【{st.session_state.departure}】出发，" if st.session_state.departure else ""
         active_prompt = (
-            f"请帮我规划从 【{st.session_state.departure}】 出发，"
-            f"去 【{st.session_state.destination}】 玩 【{travel_days}】 天的行程。 "
+            f"请帮我规划{departure_part}"
+            f"去【{st.session_state.destination}】玩【{travel_days}】天的行程。"
             f"我的旅行偏好是：【{pref_str}】。"
         )
         active_metadata = {

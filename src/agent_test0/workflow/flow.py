@@ -149,7 +149,7 @@ class TravelWorkflow(Flow[TravelState]):
         """
         try:
             trace_reset()  # 每轮清空计时，避免跨轮累计
-            sid = session_id or f"sess_{user_id}_{abs(hash(user_text)) % 1000000:06d}"
+            sid = session_id or f"sess_{user_id}"
 
             # 由 crew 自己构造 MemoryManager（连接层无需关心 redis 客户端）
             if memory is None:
@@ -158,12 +158,8 @@ class TravelWorkflow(Flow[TravelState]):
             # 1) 写入用户输入到 episodic 记忆
             memory.add_message("user", user_text)
 
-            # 2) 把原始对话蒸馏到 working memory（短期约束提取）
-            try:
-                with timed("Memory:convert_episodic_to_working"):
-                    memory.convert_episodic_to_working(zhipu_llm)
-            except Exception as e:
-                print(f"[run_for_user] episodic→working 失败（可忽略）: {e}")
+            # 2) 短期记忆直接使用 episodic 原文，不再做 LLM 蒸馏 summary
+            #    （蒸馏会漏字段/残留字段/示例污染，导致默认值或旧目的地泄露）。
 
             # 3) 跑 Flow
             flow = cls(status_callback=status_callback, content_callback=content_callback)

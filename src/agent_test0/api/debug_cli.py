@@ -204,10 +204,9 @@ def run_standalone_debug():
             turn_count += 1
             print_divider(f"开始执行第 {turn_count} 轮规划")
 
-            # 7.2 记忆流转 A：记录当前对话 -> 提取短期约束
+            # 7.2 记录当前对话；短期上下文直接使用原始对话，不再做 LLM 蒸馏 summary
             memory.add_message("user", user_input)
-            memory.convert_episodic_to_working(zhipu_llm)
-            print("[记忆系统] 正在结合过往对话理解您的最新意图...")
+            print("[记忆系统] 正在结合过往原始对话理解您的最新意图...")
 
             # 7.3 意图路由
             intent_name = classify_intent(user_input)

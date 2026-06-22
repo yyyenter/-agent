@@ -45,9 +45,18 @@ _WEATHER_ONLY_PATTERN = re.compile(r"(天气|气温|下雨|温度|穿什么)")
 def _has_asked_trip_constraints(flow) -> bool:
     """最近几轮 assistant 是否已经问过天数/预算/人数等次要约束。"""
     assistant_lines = []
+    in_assistant = False
     for line in (flow.state.focus or "").splitlines():
         if line.startswith("assistant:"):
+            in_assistant = True
             assistant_lines.append(line.removeprefix("assistant:").strip())
+            continue
+        if line.startswith("user:") or line.startswith("system:"):
+            in_assistant = False
+            continue
+        if in_assistant:
+            assistant_lines.append(line.strip())
+
     asked_text = "\n".join(assistant_lines)
     return any(
         kw in asked_text
@@ -232,16 +241,27 @@ def run_planner(flow):
 
         plan_data = extract_json_object(raw_text)
         if plan_data:
+            # 注意：guard 需要读取原始 focus 里的近期对话，不能先用 Planner 输出覆盖掉。
+            original_focus = flow.state.focus
+            already_asked = _has_asked_trip_constraints(flow)
+            delegated = _user_delegated_defaults(flow)
+
             flow.state.is_complex = plan_data.get("is_complex", True)
             flow.state.simple_answer = plan_data.get("simple_answer", "")
             flow.state.location = plan_data.get("location", "未知")
-            flow.state.focus = plan_data.get("focus", "")
-            flow.state.assumptions = plan_data.get("assumptions", []) or []
+            # 非授权默认时，不接受 Planner 自行编造的 assumptions；
+            # 只有 assistant 已经问过一次且用户本轮明确授权默认，才保留模型假设。
+            if already_asked and delegated:
+                flow.state.assumptions = plan_data.get("assumptions", []) or []
+            else:
+                flow.state.assumptions = []
 
             # 代码级护栏：行程规划第一次缺天数/预算/人数时，强制提问，
             # 防止 Planner 违背 prompt 直接塞默认 assumptions 继续规划。
+            flow.state.focus = original_focus
             if _enforce_first_turn_question(flow, plan_data):
                 return
+            flow.state.focus = plan_data.get("focus", "")
 
             # 信息不足时 Planner 可能直接发起结构化提问
             if plan_data.get("needs_user_input") or plan_data.get("verdict") == "ask_user":

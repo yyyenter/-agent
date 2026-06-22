@@ -132,7 +132,7 @@ async def chat_endpoint_stream(request: ChatRequest):
     actual_session_id = request.session_id or f"sess_{uuid.uuid4().hex[:6]}"
     memory = MemoryManager(actual_session_id, actual_user_id, redis_client, is_redis_fallback)
     memory.add_message("user", request.message)
-    memory.convert_episodic_to_working(zhipu_llm)
+    # 短期记忆直接使用 episodic 原文，不再做 LLM 蒸馏 summary
     contextual_message = rewrite_query_lightweight(memory, request.message)
     intent_name = classify_intent(contextual_message)
     
@@ -171,7 +171,7 @@ async def chat_endpoint_stream(request: ChatRequest):
                             travel_flow.state.steps = [StepPlan(**s) for s in json.loads(steps_json)]
                         travel_flow.state.current_step_index = int(saved_state.get("current_step_index", "0"))
                         travel_flow.state.location = saved_state.get("location", "未知地点")
-                        travel_flow.state.focus = saved_state.get("focus", "")
+                        # focus 每轮由 MemoryManager 基于原始对话重新组装，避免恢复旧 summary 造成上下文泄露
                     except Exception as e:
                         hard_print(f"⚠️ [状态恢复] 解析失败: {e}")
 
@@ -196,7 +196,6 @@ async def chat_endpoint_stream(request: ChatRequest):
                 response = zhipu_llm.call([{"role": "system", "content": system_prompt}, {"role": "user", "content": context_payload}])
                 reply_text = response.strip()
                 memory.add_message("assistant", reply_text)
-                memory.convert_episodic_to_working(zhipu_llm)
                 memory.convert_to_semantic(zhipu_llm)
                 asyncio.run_coroutine_threadsafe(queue.put({"type": "finish", "content": reply_text}), loop)
         except Exception as e:

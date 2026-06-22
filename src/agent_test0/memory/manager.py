@@ -238,11 +238,17 @@ class MemoryManager:
         self._close_db_connection()
 
     # ==================== 桶3: Episodic Memory (Redis) ====================
-    def add_message(self, role: str, content: str, max_turns: int = 8):
-        """追加原始对话并控制长度"""
+    def add_message(self, role: str, content: str, max_turns: int | None = 100):
+        """
+        追加原始对话。
+
+        短期记忆的权威来源是完整原文，不再依赖 LLM 蒸馏 summary。
+        默认仅设置一个较宽的防爆上限（100 轮≈200条消息）；传 None 可完全不裁剪。
+        """
         msg = json.dumps({"role": role, "content": content}, ensure_ascii=False)
         self.redis.rpush(self.chat_key, msg)
-        self.redis.ltrim(self.chat_key, -(max_turns * 2), -1)
+        if max_turns is not None:
+            self.redis.ltrim(self.chat_key, -(max_turns * 2), -1)
         self.redis.expire(self.chat_key, self.ttl)
 
     def get_chat_history(self) -> list[dict[str, str]]:
@@ -252,7 +258,9 @@ class MemoryManager:
 
     # ==================== 桶5: Working Memory (Redis Summary) ====================
     def update_short_term_summary(self, new_constraints: dict[str, str]):
-        """更新当前行程的硬约束"""
+        """更新当前行程的硬约束（兼容旧调用；主路径已不再依赖该 summary）。"""
+        # 先清再写，避免旧 destination/days/budget 等字段残留到新请求。
+        self.redis.delete(self.summary_key)
         if new_constraints:
             self.redis.hset(self.summary_key, mapping=new_constraints)
             self.redis.expire(self.summary_key, self.ttl)
@@ -268,6 +276,10 @@ class MemoryManager:
         """写入 MySQL KV 长期偏好库（支持作用域隔离）
         scope: 'permanent' 永久约束(过敏/疾病), 'long_term' 长期偏好, 'trip_scoped' 本次行程临时约束
         """
+        # trip_scoped 绝不能写入 global，否则会被下一轮全局 profile 读出造成行程参数泄露。
+        if scope == "trip_scoped" and context_tag == "global":
+            context_tag = self.session_id
+
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         conn = self._get_db_connection()
         try:
@@ -300,7 +312,11 @@ class MemoryManager:
                         """SELECT memory_key, memory_value, scope, context_tag
                            FROM user_memory
                            WHERE user_id = %s
-                             AND (context_tag = %s OR context_tag = 'global' OR scope = 'permanent')
+                             AND (
+                               scope = 'permanent'
+                               OR (scope = 'long_term' AND context_tag = 'global')
+                               OR (scope = 'trip_scoped' AND context_tag = %s)
+                             )
                            ORDER BY
                              CASE scope WHEN 'permanent' THEN 0 WHEN 'long_term' THEN 1 ELSE 2 END,
                              last_updated DESC""",
@@ -311,7 +327,7 @@ class MemoryManager:
                         """SELECT memory_key, memory_value, scope, context_tag
                            FROM user_memory
                            WHERE user_id = %s
-                             AND (context_tag = 'global' OR scope = 'permanent')
+                             AND (scope = 'permanent' OR (scope = 'long_term' AND context_tag = 'global'))
                            ORDER BY
                              CASE scope WHEN 'permanent' THEN 0 WHEN 'long_term' THEN 1 ELSE 2 END,
                              last_updated DESC""",
@@ -350,8 +366,8 @@ class MemoryManager:
         请分析以下对话，提取出属于【当前具体行程】的最新硬性指标（如目的地、出行天数、出行预算、特定的临时偏好等）。
         仅提取属于本次行程的临时限制或规划目标，忽略用户的通用长期习惯。
         必须以纯 JSON 格式输出，不要包含 ```json 等任何 Markdown 标记或多余的文字解释。
-        格式样例：
-        {{"destination": "杭州", "days": "3", "budget": "高预算", "preferences": "想去西湖"}}
+        格式样例（仅演示 JSON 结构，严禁照抄占位符）：
+        {{"destination": "<目的地>", "days": "<天数>", "budget": "<预算>", "preferences": "<临时偏好>"}}
         如果未分析出任何具体约束，直接输出 {{}}。
         
         【对话历史】：
@@ -369,45 +385,64 @@ class MemoryManager:
 
     def convert_to_semantic(self, llm: LLM):
         """
-        核心流转 B：Short-term Summary -> Semantic Memory (提炼并永久持久化长期偏好)
-        【关键设计】只使用短期摘要作为输入，用于控制上下文长度和提取长期价值特征
+        核心流转 B：Episodic -> Semantic Memory。
+
+        只沉淀真正长期/永久偏好；目的地、天数、预算、人数、日期等一次性行程参数
+        不得进入 global profile，避免下一次请求被旧行程污染。
         """
-        short_term = self.get_short_term_summary()
-        if not short_term:
+        history = self.get_chat_history()
+        if not history:
             return
-        
-        short_term_text = json.dumps(short_term, ensure_ascii=False)
-        
-        prompt = f"""你是一个资深用户画像分析师。
-以下是用户本次行程的【临时约束摘要】：
-{short_term_text}
 
-请从中剥离出三类信息：
+        history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in history[-20:]])
 
-1. 【permanent 永久约束】健康/安全相关，任何行程都必须遵守（如过敏、疾病、身体限制） -> scope="permanent"
-2. 【long_term 长期偏好】反复出现的习惯/偏好（如饮食口味、住宿档次、出行方式） -> scope="long_term"
-3. 【trip_scoped 临时约束】仅本次行程的参数（如预算、天数、具体目的地） -> scope="trip_scoped"
+        prompt = f"""你是一个严格的用户长期画像分析师。
+以下是用户近期原始对话（未蒸馏）：
+{history_text}
+
+请只提取【跨行程也长期成立】或【健康安全永久成立】的信息。
+
+允许保存：
+1. permanent：过敏、疾病、行动限制、宗教/健康禁忌等。
+2. long_term：反复出现或用户明确表达为长期偏好的饮食口味、住宿偏好、交通偏好、节奏偏好。
+
+禁止保存：
+- 具体目的地、城市、景点
+- 出行天数、日期、预算、人数、出发地
+- 本次行程安排、酒店、交通班次等一次性参数
 
 输出 JSON 数组，例如：
 [
-  {{"key": "allergy", "value": "花生过敏", "scope": "permanent"}},
-  {{"key": "hotel_tier", "value": "五星级", "scope": "long_term"}},
-  {{"key": "budget", "value": "2000元", "scope": "trip_scoped"}}
+  {{"key": "allergy", "value": "<过敏信息>", "scope": "permanent"}},
+  {{"key": "travel_pace", "value": "<长期节奏偏好>", "scope": "long_term"}}
 ]
-
-如果没有可提取的内容，输出 []。
+如果没有可提取的长期/永久信息，输出 []。
 """
+        deny_keys = {
+            "destination", "city", "location", "days", "dates", "date", "budget", "headcount",
+            "group_size", "people", "origin_city", "hotel", "attraction", "route", "itinerary"
+        }
+        deny_value_pattern = re.compile(r"(\d+\s*天|\d+\s*(人|位|元|块)|预算|目的地|出发地|景点|酒店|行程)")
+
         try:
             response = llm.call([{"role": "user", "content": prompt}]).strip()
             json_match = re.search(r'\[.*\]', response, re.DOTALL)
             if json_match:
                 profile_list = json.loads(json_match.group(0))
                 for item in profile_list:
-                    key = item.get("key")
-                    value = item.get("value")
-                    scope = item.get("scope", "long_term")
-                    if key and value:
-                        self.save_user_memory(key, value, scope=scope)
+                    key = (item.get("key") or "").strip()
+                    value = (item.get("value") or "").strip()
+                    scope = (item.get("scope") or "long_term").strip()
+                    if not key or not value:
+                        continue
+                    if key.lower() in deny_keys or deny_value_pattern.search(value):
+                        print(f"[Memory Conversion] drop trip-scoped semantic candidate: {key}={value}")
+                        continue
+                    if scope not in ("permanent", "long_term"):
+                        # 本次行程临时参数不进入 global profile；如需保留，也必须绑 session_id。
+                        self.save_user_memory(key, value, context_tag=self.session_id, scope="trip_scoped")
+                    else:
+                        self.save_user_memory(key, value, context_tag="global", scope=scope)
         except Exception as e:
             print(f"[Memory Conversion] Conversion to Semantic failed: {e}")
 
@@ -423,16 +458,11 @@ class MemoryManager:
         if profile != "暂无长期偏好":
             parts.append(f"【用户长期偏好画像】：\n{profile}")
         
-        # 短期约束
-        summary = self.get_short_term_summary()
-        if summary:
-            parts.append(f"【当前行程核心约束】：\n{json.dumps(summary, ensure_ascii=False)}")
-        
-        # 对话历史（限制条数）
+        # 短期上下文：直接使用原始对话。不要使用 LLM 蒸馏 summary，避免漏字段/残留字段/示例污染。
         history = self.get_chat_history()
         if history:
-            history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in history[-6:]])
-            parts.append(f"【近期对话上下文】：\n{history_text}")
+            history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in history[-20:]])
+            parts.append(f"【近期对话上下文（原文）】：\n{history_text}")
         
         if current_message:
             parts.append(f"【当前最新指令】：{current_message}")

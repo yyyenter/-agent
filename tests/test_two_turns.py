@@ -3,7 +3,7 @@
 """
 两轮对话测试：模拟"先问一次，第二轮还缺就自己假设"。
 
-轮 1: 用户说"想去杭州" → Planner 应该 needs_user_input=true，问天数/预算/人数。
+轮 1: 用户说"想去重庆" → Planner 应该 needs_user_input=true，问天数/预算/人数。
 轮 2: 同 session_id 下用户说"看你安排" → Planner 看到上一轮自己问过 →
      不再追问，做合理假设 → 生成完整旅行计划，开头有"📌 假设：..."。
 """
@@ -70,8 +70,8 @@ def main():
         print(f"🗑️  已清空 session={session_id} 的 redis 历史")
 
     # ─── 轮 1 ───
-    hr("轮 1：用户说『想去杭州』")
-    msg1 = "想去杭州"
+    hr("轮 1：用户说『想去重庆』")
+    msg1 = "想去重庆"
     print(f"👤 用户: {msg1}")
 
     reply1 = TravelWorkflow.run_for_user(
@@ -114,12 +114,14 @@ def main():
         or reply2.strip().endswith("？")
         or reply2.strip().endswith("?")
     )
+    r2_no_hangzhou_leak = "杭州" not in reply2
 
     print(f"  轮 1 是问句? {'✅ 是' if r1_is_question else '❌ 否'}")
     print(f"  轮 2 是计划（包含假设说明 / 长度 > 200）? {'✅ 是' if r2_is_plan else '❌ 否'}")
     print(f"  轮 2 不是问句? {'✅ 是' if r2_not_question else '❌ 否'}")
+    print(f"  轮 2 没有泄露杭州? {'✅ 是' if r2_no_hangzhou_leak else '❌ 否'}")
 
-    if r1_is_question and r2_is_plan and r2_not_question:
+    if r1_is_question and r2_is_plan and r2_not_question and r2_no_hangzhou_leak:
         print("\n🎉 测试通过：先问一次 → 第二轮自己假设并出计划")
     else:
         print("\n⚠️  测试未完全通过，请人工核对上面回复内容")

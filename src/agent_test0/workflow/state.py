@@ -19,11 +19,31 @@ from pydantic import BaseModel
 # 单步骤数据结构
 # ============================================
 
+class ToolCall(BaseModel):
+    """StepPreparer 生成的细粒度工具调用计划"""
+    order: int = 0
+    tool_name: str
+    parameters: dict = {}
+    expected_output_schema: dict = {}
+
+
+class ToolResult(BaseModel):
+    """Python 工具执行器返回的单次工具执行结果"""
+    tool_name: str
+    input: dict = {}
+    output: str = ""
+    error: str = ""
+    duration_ms: int = 0
+
+
 class StepPlan(BaseModel):
     """单个执行步骤的计划与执行状态"""
     index: int
     description: str            # 步骤描述（不指定工具）
-    tools: list[str] = []       # 需要的工具列表（StepPreparer 填充）
+    tools: list[str] = []       # 需要的工具名摘要（兼容旧逻辑）
+    tool_calls: list[ToolCall] = []      # StepPreparer 生成的完整小计划（含参数）
+    tool_results: list[ToolResult] = []  # Python StepExecutor 写入的结构化执行结果
+    prepared: bool = False      # True 表示 StepPreparer 已处理；tool_calls=[] 表示无需工具
     status: str = "pending"     # pending | executing | completed | failed
     result: str = ""
     error: str = ""

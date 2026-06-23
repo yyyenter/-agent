@@ -19,11 +19,10 @@
 import json
 import re
 
-from agent_test0.workflow.state import StepPlan, StepResult
+from agent_test0.workflow.state import StepPlan, StepResult, ToolCall, ToolResult
 from agent_test0.workflow.crews import (
     PlannerCrew,
     StepPreparerCrew,
-    StepExecutorCrew,
     StepVerifierCrew,
     PartialReplannerCrew,
     FinalVerifierCrew,
@@ -31,6 +30,7 @@ from agent_test0.workflow.crews import (
 from agent_test0.workflow.parsing import extract_json_object, parse_step_feedback
 from agent_test0.workflow.llm import zhipu_llm
 from agent_test0.workflow.trace import timed
+from agent_test0.tools.registry import execute_tool_calls, format_tool_results
 
 
 # 死循环保护：单轮 Flow 内步骤迭代总次数上限（含 retry / replan 重跑）
@@ -333,9 +333,9 @@ def run_step_preparer(flow):
         print(f"[StepPreparer] 跳过: 步骤 {step_idx} 已完成")
         return
 
-    # 已有工具：跳过 LLM 规划（replan / retry 复用已有 tools），直接返回交由驱动循环调 executor
-    if current_step.tools:
-        print(f"[StepPreparer] 跳过 LLM 规划（已有工具 {current_step.tools}）")
+    # 已完成细粒度规划：跳过 LLM 规划（replan / retry 复用已有 tool_calls）
+    if current_step.prepared:
+        print(f"[StepPreparer] 跳过 LLM 规划（已有小计划 {current_step.tools}）")
         return
 
     print(f"\n{'='*60}")
@@ -367,15 +367,22 @@ def run_step_preparer(flow):
     plan_data = extract_json_object(raw_text)
     if plan_data:
         tools_to_call = plan_data.get("tools_to_call", [])
-        if tools_to_call:
-            current_step.tools = [t.get("tool_name", "") for t in tools_to_call]
-            print(f"[StepPreparer] 为步骤 {step_idx} 填充了工具: {current_step.tools}")
+        current_step.tool_calls = [ToolCall(**t) for t in tools_to_call]
+        current_step.tools = [t.tool_name for t in current_step.tool_calls]
+        current_step.prepared = True
+        if current_step.tool_calls:
+            print(f"[StepPreparer] 为步骤 {step_idx} 填充了小计划: {current_step.tool_calls}")
         else:
-            print(f"[StepPreparer] 警告: 未找到 tools_to_call")
+            print(f"[StepPreparer] 步骤 {step_idx} 无需外部工具")
     else:
         print(f"[StepPreparer] 解析执行计划失败")
-        # 默认使用 weather_tool（最常用）
-        current_step.tools = ["weather_tool"]
+        # 仅天气类步骤做确定性兜底；其它步骤作为无需工具的整合步骤处理。
+        if "天气" in current_step.description and flow.state.location not in ("", "未知", "未知地点"):
+            current_step.tool_calls = [ToolCall(order=1, tool_name="weather_tool", parameters={"city": flow.state.location})]
+        else:
+            current_step.tool_calls = []
+        current_step.tools = [t.tool_name for t in current_step.tool_calls]
+        current_step.prepared = True
 
     # 不再手动 flow.step_executor() —— 由 run_state_machine 驱动循环统一推进
 
@@ -413,52 +420,42 @@ def run_step_executor(flow):
     print(f"{'='*60}")
     flow.notify(f"🛠️ [StepExecutor] 正在执行工具调用...")
 
-    # 构建执行计划
-    execution_plan = {
-        "step_index": step_idx,
-        "step_goal": current_step.description,
-        "tools": current_step.tools
-    }
+    # 纯 Python 工具执行器：StepPreparer 已经产出 tool_calls（小计划），这里不再调用 LLM。
+    if not current_step.prepared:
+        print(f"[StepExecutor] 警告: 步骤 {step_idx} 尚未完成 StepPreparer，按无需工具处理")
+        current_step.prepared = True
 
-    inputs = {
-        "step_index": step_idx,
-        "step_goal": current_step.description,
-        "execution_plan": json.dumps(execution_plan, ensure_ascii=False),
-    }
-
-    result = flow._run_crew_with_callback(StepExecutorCrew, inputs)
-    raw_text = result.raw.strip()
-
-    # 解析执行结果
-    exec_data = extract_json_object(raw_text)
-    if exec_data:
-        results = exec_data.get("execution_results", [])
-
-        # 记录执行结果
-        step_result = ""
-        has_error = False
-        for r in results:
-            step_result += f"\n[{r.get('tool_name', 'unknown')}] {str(r.get('output', ''))[:500]}"
-            if r.get('error'):
-                has_error = True
-
-        current_step.result = step_result
-        current_step.status = "failed" if has_error else "completed"
-
-        # 记录到历史
+    if not current_step.tool_calls:
+        current_step.tool_results = []
+        current_step.result = format_tool_results([])
+        current_step.status = "completed"
         flow.state.step_results.append(StepResult(
             step_index=step_idx,
             step_description=current_step.description,
-            result=step_result,
-            passed=not has_error,
+            result=current_step.result,
+            passed=True,
             validation_feedback=""
         ))
+        print(f"[StepExecutor] 步骤 {step_idx} 无需外部工具，直接完成")
+        return
 
-        print(f"[StepExecutor] 步骤 {step_idx} 执行完成: {'成功' if not has_error else '失败'}")
-    else:
-        print(f"[StepExecutor] 解析结果失败")
-        current_step.result = raw_text[:1000]
-        current_step.status = "completed"
+    result_dicts = execute_tool_calls(current_step.tool_calls)
+    results = [ToolResult(**r) for r in result_dicts]
+    current_step.tool_results = results
+    current_step.result = format_tool_results(results)
+    has_error = any(r.error for r in results)
+    current_step.status = "failed" if has_error else "completed"
+    current_step.error = "; ".join(r.error for r in results if r.error)
+
+    flow.state.step_results.append(StepResult(
+        step_index=step_idx,
+        step_description=current_step.description,
+        result=current_step.result,
+        passed=not has_error,
+        validation_feedback=""
+    ))
+
+    print(f"[StepExecutor] 步骤 {step_idx} Python 执行完成: {'成功' if not has_error else '失败'}")
 
     # 不再手动 flow.step_verifier() —— 由 run_state_machine 驱动循环统一推进
 
@@ -512,8 +509,12 @@ def run_step_verifier(flow) -> str:
     inputs = {
         "step_index": step_idx,
         "step_goal": current_step.description,
-        "execution_plan": json.dumps({"tools": current_step.tools}, ensure_ascii=False),
-        "execution_results": current_step.result,
+        "execution_plan": json.dumps({
+            "tools": current_step.tools,
+            "tool_calls": [t.model_dump() for t in current_step.tool_calls],
+        }, ensure_ascii=False),
+        "execution_results": json.dumps([r.model_dump() for r in current_step.tool_results], ensure_ascii=False)
+        if current_step.tool_results else current_step.result,
     }
 
     result = flow._run_crew_with_callback(StepVerifierCrew, inputs)
@@ -545,6 +546,8 @@ def run_step_verifier(flow) -> str:
             # 重置步骤状态，供驱动循环下轮重新 prepare→execute
             current_step.status = "pending"
             current_step.result = ""
+            current_step.error = ""
+            current_step.tool_results = []
             current_step.validation_feedback = ""
             return "retry"
         else:

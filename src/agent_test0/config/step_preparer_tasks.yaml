@@ -20,7 +20,7 @@ step_preparer_task:
 
     【可使用的工具】（仅限以下工具，不得编造）:
     - weather_tool: 查询城市天气，参数 {"city": "城市名"}
-    - tavily_search: 网络搜索，参数 {"query": "搜索词"}
+    - Tavily Search: 网络搜索，参数 {"query": "搜索词"}
 
     【注意】
     - 用户偏好已经在【全局约束】里注入，不需要、也没有任何记忆相关工具可以调用。
@@ -32,7 +32,7 @@ step_preparer_task:
     - tools_to_call: list[object], 工具调用序列。如果步骤无需工具（如整合/排版/撰写类），返回空数组。
       - order: int, 调用顺序
       - tool_name: string, **必须是上面【可使用的工具】列表中的字面名**
-        （只能是 "weather_tool" / "tavily_search" 这两个之一；
+        （只能是 "weather_tool" / "Tavily Search" 这两个之一；
          严禁使用 "mcp://..." 这种 URI 格式，严禁编造其他工具名）
       - parameters: object, 参数
       - expected_output_schema: object, 预期输出格式

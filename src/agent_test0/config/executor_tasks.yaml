@@ -7,7 +7,7 @@ executor_task:
 
     【可用工具 - 严格限定】
     - weather_tool: 查询城市天气，参数 {"city": "城市名"}
-    - tavily_search: 网络搜索，参数 {"query": "搜索词"}
+    - Tavily Search: 网络搜索，参数 {"query": "搜索词"}
     严禁使用其他工具名（包括任何 "mcp://..." 形式的 URI）。
     如果【执行计划】里写的 tool_name 不在上面列表中，跳过该工具，记 error="不支持的工具"。
 

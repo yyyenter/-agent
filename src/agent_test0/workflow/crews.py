@@ -17,7 +17,7 @@ from crewai import Agent, Crew, Task
 from crewai.project import CrewBase, agent, task, crew
 
 from agent_test0.tools.custom_tool import WeatherTool
-from agent_test0.workflow.llm import zhipu_llm
+from agent_test0.workflow.llm import zhipu_llm, search_tool
 
 
 @CrewBase
@@ -66,7 +66,10 @@ class StepExecutorCrew:
 
     @agent
     def step_executor_agent(self) -> Agent:
-        return Agent(config=self.agents_config['info_search_agent'], tools=[WeatherTool()], llm=zhipu_llm, verbose=True)
+        tools = [WeatherTool()]
+        if search_tool is not None:
+            tools.append(search_tool)
+        return Agent(config=self.agents_config['info_search_agent'], tools=tools, llm=zhipu_llm, verbose=True)
 
     @task
     def executor_task(self) -> Task:

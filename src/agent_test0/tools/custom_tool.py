@@ -63,15 +63,16 @@ def get_mysql_connection():
 
 
 class WeatherInput(BaseModel):
-    location: str = Field(..., description="需要查询天气的城市名称，例如：北京、上海")
+    city: str = Field(..., description="需要查询天气的城市名称，例如：北京、上海")
 
 
 class WeatherTool(BaseTool):
-    name: str = "GetWeatherTool"
+    name: str = "weather_tool"
     description: str = "当你需要查询某个城市的实时天气时，请调用此工具。"
     args_schema: type[BaseModel] = WeatherInput
 
-    def _run(self, location: str) -> str:
+    def _run(self, city: str) -> str:
+        location = city
         redis_client = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
 
         # 1. 先查缓存 (基于用户输入的城市名作为 Key)

@@ -43,6 +43,28 @@ def test_weather_query_not_blocked():
     print("✅ weather_query_not_blocked")
 
 
+def test_previous_user_constraints_do_not_fill_new_turn():
+    flow = TravelWorkflow()
+    flow.state.message = "想去成都"
+    flow.state.focus = """【近期对话上下文（原文）】：
+user: 想去重庆3天，预算3000，两个人
+assistant: 已为您生成重庆行程。
+user: 想去成都
+【当前最新指令】：想去成都"""
+    plan_data = {
+        "location": "成都",
+        "focus": "成都行程规划",
+        "assumptions": ["模型试图沿用历史3天/3000/2人"],
+        "steps": [{"index": 0, "description": "查询成都天气", "dependencies": []}],
+        "needs_user_input": False,
+    }
+
+    assert _enforce_first_turn_question(flow, plan_data) is True
+    assert flow.state.needs_user_input is True
+    assert "成都" in flow.state.user_question
+    print("✅ previous_user_constraints_do_not_fill_new_turn")
+
+
 def test_second_turn_delegated_can_assume():
     flow = TravelWorkflow()
     flow.state.message = "看你安排"
@@ -67,4 +89,5 @@ user: 看你安排
 if __name__ == "__main__":
     test_first_turn_must_ask()
     test_weather_query_not_blocked()
+    test_previous_user_constraints_do_not_fill_new_turn()
     test_second_turn_delegated_can_assume()

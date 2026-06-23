@@ -86,18 +86,16 @@ def _looks_like_travel_planning(flow, plan_data: dict) -> bool:
 
 def _user_constraint_text(flow) -> str:
     """
-    只提取用户真实说过的话，不能把 assistant 的提问或 Planner 本轮 assumptions 算作已知约束。
+    只看当前用户消息中的约束。
 
-    focus 里包含近期对话：
-        user: 想去杭州
-        assistant: 请问计划玩几天/预算/几位...
-    判断"用户有没有提供天数/预算/人数"时，只看 user 行和当前消息。
+    之前把 focus 里的历史 user 行也算进来，会导致同一个 session 上一轮完整行程
+    （如“重庆3天预算3000两人”）污染下一轮新需求（如“想去成都”），从而错误地认为
+    本轮已经提供了天数/预算/人数，直接出最终答案而不追问。
+
+    历史只用于 _has_asked_trip_constraints 判断 assistant 是否已经问过；
+    不用于判断本轮用户是否提供了缺失信息。
     """
-    chunks = [flow.state.message or ""]
-    for line in (flow.state.focus or "").splitlines():
-        if line.startswith("user:"):
-            chunks.append(line.removeprefix("user:").strip())
-    return "\n".join(chunks)
+    return flow.state.message or ""
 
 
 def _missing_secondary_constraints(flow, plan_data: dict) -> list[str]:

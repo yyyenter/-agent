@@ -106,9 +106,47 @@ def _missing_secondary_constraints(flow, plan_data: dict) -> list[str]:
         missing.append("天数")
     if not re.search(r"\d+\s*(元|块|k|K|千|万)|预算\s*[:：]?\s*\d+|人均\s*\d+|经济型|中等预算|高端|豪华", text):
         missing.append("预算")
-    if not re.search(r"\d+\s*(人|位)|一个人|独自|情侣|夫妻|家庭|亲子|朋友|同学|团队", text):
+    if not re.search(r"\d+\s*(人|位)|一个人|一人|两个人|两人|独自|情侣|夫妻|家庭|亲子|朋友|同学|团队", text):
         missing.append("人数")
     return missing
+
+
+def _llm_followup_question(flow, plan_data: dict, reason: str, missing: list[str] | None = None) -> str:
+    """让 LLM 根据当前输入和上下文生成追问文本；代码只决定是否需要问。"""
+    missing_text = "、".join(missing or []) or "由你判断"
+    prompt = f"""你是旅游规划助手。现在不能继续生成行程，需要向用户追问。
+
+【当前用户输入】
+{flow.state.message}
+
+【近期上下文】
+{flow.state.focus}
+
+【Planner 初步判断】
+{json.dumps(plan_data, ensure_ascii=False)[:2000]}
+
+【不能继续的原因】
+{reason}
+
+【已检测到缺失/无效的信息】
+{missing_text}
+
+请生成一条自然、简洁、贴合当前输入的中文追问。要求：
+1. 不要机械套模板，不要声称“某地行程没问题”，除非当前用户这句话确实表达了新目的地。
+2. 如果当前输入像乱码、无意义短词或没有回答上一轮问题，请先说明没有理解，再引导用户补充有效信息。
+3. 如果缺少天数/预算/人数，请一次问全。
+4. 可以提醒用户如果无特别要求，也可以授权你按常规方案安排。
+5. 只输出最终要发给用户的一段话，不要 JSON，不要解释。"""
+    try:
+        with timed("LLM:AskUserQuestion"):
+            question = zhipu_llm.call([{"role": "user", "content": prompt}]).strip()
+        if question:
+            return question[:500]
+    except Exception as e:
+        print(f"[PlannerGuard] LLM 生成追问失败: {e}")
+
+    # LLM 不可用时的兜底只保证流程不中断；正常路径不依赖硬编码模板。
+    return "我还需要补充一些关键信息才能继续规划。请说明计划玩几天、大概预算和几位出行；如果没有特别要求，也可以让我按常规方案安排。"
 
 
 def _enforce_first_turn_question(flow, plan_data: dict) -> bool:
@@ -136,13 +174,10 @@ def _enforce_first_turn_question(flow, plan_data: dict) -> bool:
         print(f"[PlannerGuard] 已问过且用户授权默认，允许假设: missing={missing}")
         return False
 
-    question = (
-        f"好的，{location}行程没问题！为了规划得更贴合您的需求，请先补充：\n"
-        f"① 计划玩几天？\n"
-        f"② 大概预算是多少？\n"
-        f"③ 几位出行？\n\n"
-        f"如果都没特别要求，也可以回复“看你安排”，我会按常规方案继续。"
-    )
+    reason = "用户本轮输入不足以继续规划，不能直接沿用历史目的地或历史约束。"
+    if already_asked and not delegated:
+        reason = "上一轮已经追问过关键信息，但用户本轮没有明确授权默认，也没有补全全部必要信息。"
+    question = _llm_followup_question(flow, plan_data, reason, missing)
     print(f"[PlannerGuard] 强制提问：缺失 {missing}，already_asked={already_asked}, delegated={delegated}")
     flow._set_ask_user_question(question)
     return True

@@ -28,7 +28,7 @@ replan_task:
     - 指定新计划的起始步骤索引
 
   expected_output: >
-    输出一份 JSON（严格放在 ```json 代码块中），包含以下字段：
+    输出必须满足系统提供的结构化字段约束，包含以下字段：
     - reason: string, 重规划原因
     - preserved_steps: list[int], 保留的已完成步骤索引
     - original_remaining_steps: list[int], 原始剩余步骤索引

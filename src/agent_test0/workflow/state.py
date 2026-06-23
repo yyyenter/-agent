@@ -12,7 +12,9 @@
   - 业务字段：location / focus / assumptions / final_report
 """
 
-from pydantic import BaseModel
+from typing import Literal
+
+from pydantic import BaseModel, model_validator
 
 
 # ============================================
@@ -66,6 +68,76 @@ class ValidationFeedback(BaseModel):
     failed_indices: list[int] = []          # 失败的步骤索引
     reason: str = ""                        # 为什么失败
     suggested_corrections: dict[int, str] = {}  # 每个失败步骤的修正建议
+
+
+# ============================================
+# LLM 结构化输出模型
+# ============================================
+
+class PlannerOutput(BaseModel):
+    """Planner 的结构化输出：大计划 + 缺失信息判断"""
+    is_complex: bool = True
+    location: str = "未知"
+    focus: str = ""
+    assumptions: list[str] = []
+    steps: list[StepPlan] = []
+    needs_user_input: bool = False
+    user_question: str = ""
+    simple_answer: str = ""
+    plan_summary: str = ""
+
+
+class StepPreparerOutput(BaseModel):
+    """StepPreparer 的结构化输出：单步骤对应工具小计划"""
+    step_index: int = 0
+    tools_to_call: list[ToolCall] = []
+
+
+class StepVerifierOutput(BaseModel):
+    """StepVerifier 的结构化输出：单步审核 verdict"""
+    verdict: Literal["pass", "retry", "fail", "ask_user"] = "pass"
+    passed: bool = True
+    feedback_type: str = "pass"
+    reason: str = ""
+    suggested_corrections: dict[str, str] = {}
+    question: str = ""
+
+    @model_validator(mode="before")
+    @classmethod
+    def flatten_feedback(cls, data):
+        # 兼容旧 prompt 输出: {"verdict": "pass", "feedback": {...}}
+        if isinstance(data, dict) and isinstance(data.get("feedback"), dict):
+            feedback = data.get("feedback") or {}
+            merged = {**feedback, **{k: v for k, v in data.items() if k != "feedback"}}
+            return merged
+        return data
+
+
+class ReplanOutput(BaseModel):
+    """PartialReplanner 的结构化输出：失败处之后的新步骤"""
+    reason: str = ""
+    preserved_steps: list[int] = []
+    original_remaining_steps: list[int] = []
+    new_coarse_steps: list[StepPlan] = []
+    replan_retry_count: int = 0
+
+
+class FinalVerifierOutput(BaseModel):
+    """FinalVerifier 的结构化输出：整体审核 verdict"""
+    global_verdict: Literal["pass", "fail_with_patches"] = "pass"
+    reason: str = ""
+    failed_step_ids: list[int] = []
+    suggested_corrections: dict[str, str] = {}
+
+    @model_validator(mode="before")
+    @classmethod
+    def flatten_global_feedback(cls, data):
+        # 兼容旧 prompt 输出: {"global_verdict": "...", "global_feedback": {...}}
+        if isinstance(data, dict) and isinstance(data.get("global_feedback"), dict):
+            feedback = data.get("global_feedback") or {}
+            merged = {**feedback, **{k: v for k, v in data.items() if k != "global_feedback"}}
+            return merged
+        return data
 
 
 # ============================================

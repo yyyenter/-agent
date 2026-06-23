@@ -12,22 +12,25 @@
     且每个 run_xxx 是纯函数，只读写 flow.state、只返回 verdict，不再手动调下游。
 
 每个节点函数 `run_xxx(flow, ...)`：
-  - 接收 TravelWorkflow 实例，通过 flow.state 读写、通过 flow._run_crew_with_callback 调 Crew
+  - 接收 TravelWorkflow 实例，通过 flow.state 读写；结构化生成走 direct LLM + Pydantic，工具执行走 Python registry
   - 只做自己那一件事，推进逻辑上移到 run_state_machine
 """
 
 import json
 import re
 
-from agent_test0.workflow.state import StepPlan, StepResult, ToolCall, ToolResult
-from agent_test0.workflow.crews import (
-    PlannerCrew,
-    StepPreparerCrew,
-    StepVerifierCrew,
-    PartialReplannerCrew,
-    FinalVerifierCrew,
+from agent_test0.workflow.state import (
+    StepPlan,
+    StepResult,
+    ToolCall,
+    ToolResult,
+    PlannerOutput,
+    StepPreparerOutput,
+    StepVerifierOutput,
+    ReplanOutput,
+    FinalVerifierOutput,
 )
-from agent_test0.workflow.parsing import extract_json_object, parse_step_feedback
+from agent_test0.workflow.structured import call_structured, load_task_prompt, StructuredCallError
 from agent_test0.workflow.llm import zhipu_llm
 from agent_test0.workflow.trace import timed
 from agent_test0.tools.registry import execute_tool_calls, format_tool_results
@@ -224,7 +227,7 @@ def run_planner(flow):
     print(f"{'='*60}")
     flow.notify("📋 [Planner] 决策大脑正在建立行程执行策略...")
 
-    # 如果还没有步骤列表，调用 PlannerCrew 生成
+    # 如果还没有步骤列表，直接调用 LLM + Pydantic 生成 PlannerOutput
     if not flow.state.steps:
         inputs = {
             "message": flow.state.message,
@@ -235,11 +238,17 @@ def run_planner(flow):
             "current_draft": "无进度草案",
         }
 
-        result = flow._run_crew_with_callback(PlannerCrew, inputs)
-        raw_text = result.raw.strip()
-        print(f"[Planner] 原始输出: {raw_text[:500]}")
+        try:
+            prompt = load_task_prompt("tasks.yaml", "planning_task", inputs)
+            plan = call_structured("Planner", prompt, PlannerOutput)
+            plan_data = plan.model_dump()
+            raw_text = json.dumps(plan_data, ensure_ascii=False)
+            print(f"[Planner] 结构化输出: {raw_text[:500]}")
+        except StructuredCallError as e:
+            print(f"[Planner] 结构化输出失败: {e}")
+            plan_data = None
+            raw_text = ""
 
-        plan_data = extract_json_object(raw_text)
         if plan_data:
             # 注意：guard 需要读取原始 focus 里的近期对话，不能先用 Planner 输出覆盖掉。
             original_focus = flow.state.focus
@@ -360,21 +369,17 @@ def run_step_preparer(flow):
         }, ensure_ascii=False),
     }
 
-    result = flow._run_crew_with_callback(StepPreparerCrew, inputs)
-    raw_text = result.raw.strip()
-
-    # 解析执行计划（填充工具调用序列）
-    plan_data = extract_json_object(raw_text)
-    if plan_data:
-        tools_to_call = plan_data.get("tools_to_call", [])
-        current_step.tool_calls = [ToolCall(**t) for t in tools_to_call]
+    try:
+        prompt = load_task_prompt("step_preparer_tasks.yaml", "step_preparer_task", inputs)
+        plan = call_structured("StepPreparer", prompt, StepPreparerOutput)
+        current_step.tool_calls = plan.tools_to_call
         current_step.tools = [t.tool_name for t in current_step.tool_calls]
         current_step.prepared = True
         if current_step.tool_calls:
             print(f"[StepPreparer] 为步骤 {step_idx} 填充了小计划: {current_step.tool_calls}")
         else:
             print(f"[StepPreparer] 步骤 {step_idx} 无需外部工具")
-    else:
+    except StructuredCallError as e:
         print(f"[StepPreparer] 解析执行计划失败")
         # 仅天气类步骤做确定性兜底；其它步骤作为无需工具的整合步骤处理。
         if "天气" in current_step.description and flow.state.location not in ("", "未知", "未知地点"):
@@ -517,11 +522,13 @@ def run_step_verifier(flow) -> str:
         if current_step.tool_results else current_step.result,
     }
 
-    result = flow._run_crew_with_callback(StepVerifierCrew, inputs)
-    raw_text = result.raw.strip()
+    try:
+        prompt = load_task_prompt("step_validator_tasks.yaml", "step_validator_task", inputs)
+        feedback = call_structured("StepVerifier", prompt, StepVerifierOutput).model_dump()
+    except StructuredCallError as e:
+        print(f"[StepVerifier] 结构化审核失败，默认通过: {e}")
+        feedback = {"verdict": "pass", "reason": "结构化审核失败，默认通过"}
 
-    # 解析验证反馈
-    feedback = parse_step_feedback(flow, raw_text)
     current_step.validation_feedback = feedback.get("reason", "")
 
     # 处理用户提问
@@ -614,11 +621,14 @@ def run_partial_replanner(flow, failure_feedback: dict):
         "original_remaining_steps": json.dumps(original_remaining),
     }
 
-    result = flow._run_crew_with_callback(PartialReplannerCrew, inputs)
-    raw_text = result.raw.strip()
+    try:
+        prompt = load_task_prompt("replan_tasks.yaml", "replan_task", inputs)
+        replan_data = call_structured("PartialReplanner", prompt, ReplanOutput).model_dump()
+    except StructuredCallError as e:
+        print(f"[PartialReplanner] 结构化重规划失败: {e}")
+        replan_data = None
 
     # 解析重规划结果
-    replan_data = extract_json_object(raw_text)
     if replan_data:
         new_steps = replan_data.get("new_coarse_steps", [])
         if new_steps:
@@ -681,12 +691,16 @@ def run_final_verifier(flow) -> str:
         "full_plan_document": "\n".join([f"步骤 {i}: {s.description}" for i, s in enumerate(flow.state.steps)]),
     }
 
-    result = flow._run_crew_with_callback(FinalVerifierCrew, inputs)
-    raw_text = result.raw.strip()
-    print(f"[FinalVerifier] 原始输出: {raw_text[:500]}")
+    try:
+        prompt = load_task_prompt("final_validator_tasks.yaml", "final_validator_task", inputs)
+        fv = call_structured("FinalVerifier", prompt, FinalVerifierOutput)
+        feedback = fv.model_dump()
+        feedback["verdict"] = "pass" if feedback.get("global_verdict") == "pass" else "fail_with_patches"
+    except StructuredCallError as e:
+        print(f"[FinalVerifier] 结构化整体审核失败，默认通过: {e}")
+        feedback = {"verdict": "pass", "reason": "结构化整体审核失败，默认通过", "failed_step_ids": []}
 
-    feedback = parse_step_feedback(flow, raw_text)
-    print(f"[FinalVerifier] 解析反馈: {feedback}")
+    print(f"[FinalVerifier] 结构化反馈: {feedback}")
 
     if feedback.get("verdict") == "ask_user":
         return "ask_user"
@@ -707,7 +721,7 @@ def run_final_verifier(flow) -> str:
     failed_indices = feedback.get("failed_step_ids", [])
     if failed_indices:
         flow.state.failed_steps_indices = failed_indices
-    run_partial_replanner(flow, feedback.get("global_feedback", {}))
+    run_partial_replanner(flow, feedback)
     return "fail"
 
 

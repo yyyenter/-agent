@@ -29,7 +29,7 @@ executor_task:
     - 包含：工具名、输入参数、输出结果、耗时、错误信息（如果有）
 
   expected_output: >
-    输出一份 JSON（严格放在 ```json 代码块中），包含以下字段：
+    输出必须满足系统提供的结构化字段约束，包含以下字段：
     - step_index: int
     - execution_results: list[object]
       - tool_name: string

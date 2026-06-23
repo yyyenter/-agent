@@ -40,7 +40,7 @@ final_validator_task:
     - **拿不准就 pass**
 
   expected_output: >
-    严格输出 JSON（放在 ```json 代码块中），只输出 JSON 不要其他文字：
+    输出必须满足系统提供的结构化字段约束；不要输出与字段无关的解释性文字：
     - global_verdict: string, 取值仅限 "pass" | "fail_with_patches"
     - reason: string, 一句话说明为什么这样判
     - failed_step_ids: list[int]  (仅 fail_with_patches 时填，命中硬规则的步骤索引)

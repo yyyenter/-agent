@@ -41,7 +41,7 @@ step_validator_task:
     - **拿不准就 pass**，不要积极挑刺
 
   expected_output: >
-    严格输出 JSON（放在 ```json 代码块中），只输出 JSON 不要任何其它文字：
+    输出必须满足系统提供的结构化字段约束；不要输出与字段无关的解释性文字：
     - verdict: string, 取值仅限 "pass" | "retry" | "fail"
     - feedback: object
       - passed: bool

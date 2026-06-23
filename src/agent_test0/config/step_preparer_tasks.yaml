@@ -30,7 +30,7 @@ step_preparer_task:
     - 如果某步骤不需要外部信息（如纯整合/排版/撰写/生成报告），tools_to_call 必须是空数组。
 
   expected_output: >
-    输出一份 JSON（严格放在 ```json 代码块中），只输出 JSON 不要其他文字，包含以下字段：
+    输出必须满足系统提供的结构化字段约束；不要输出与字段无关的解释性文字，包含以下字段：
     - step_index: int, 当前步骤索引
     - tools_to_call: list[object], 工具调用序列。如果步骤无需工具（如整合/排版/撰写类），返回空数组。
       - order: int, 调用顺序

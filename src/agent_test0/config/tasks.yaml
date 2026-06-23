@@ -49,7 +49,7 @@ planning_task:
     - 纯整合/撰写类步骤可以不需要工具。
 
   expected_output: >
-    严格输出一份 JSON（只输出 JSON，不要任何其他文字，可以放在 ```json 代码块中）：
+    输出必须满足系统提供的结构化字段约束；不要输出与字段无关的解释性文字：
 
     - is_complex: bool — 是否需要多步骤规划
     - location: string — 用户说的目的地原文；未指定则填"未知"

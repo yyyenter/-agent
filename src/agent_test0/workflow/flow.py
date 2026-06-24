@@ -248,6 +248,63 @@ class TravelWorkflow(Flow[TravelState]):
             traceback.print_exc()
             return f"抱歉，处理您的请求时出现了错误：{str(e)}"
 
+    @classmethod
+    def simple_reply(
+        cls,
+        user_text: str,
+        user_id: str,
+        session_id: str | None = None,
+        memory: "MemoryManager | None" = None,
+    ) -> str:
+        """闲聊/非旅游意图的轻量回复：走 LLM + 记忆生命周期，不跑 6 状态机。
+
+        与 run_for_user 对称：同样构造 MemoryManager、写 episodic、蒸馏 semantic，
+        但不 kickoff Flow，只做一次 LLM 回答。供飞书 / CLI 的非旅游分支复用，
+        避免在连接层重复写 LLM + 记忆逻辑。
+        """
+        try:
+            trace_reset()
+            quiet_crewai()
+            sid = session_id or f"sess_{user_id}"
+
+            if memory is None:
+                memory = MemoryManager(sid, user_id, _redis_client, _is_redis_fallback)
+
+            memory.add_message("user", user_text)
+
+            with span("simple_reply",
+                      user_id=user_id, session_id=sid,
+                      message_len=len(user_text),
+                      message_preview=user_text[:80]) as s:
+                context_payload = memory.get_global_context_prompt(user_text)
+                system_prompt = "你是一个亲切的旅游管家。请根据上下文自然地回答用户。"
+                with timed("LLM:simple_reply"):
+                    reply = zhipu_llm.call([
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": context_payload},
+                    ]).strip()
+                s.set_output(reply_len=len(reply))
+
+            if not reply:
+                reply = "抱歉，我暂时无法理解您的需求，请补充更多信息。"
+
+            memory.add_message("assistant", reply)
+
+            try:
+                with timed("Memory:convert_to_semantic"):
+                    memory.convert_to_semantic(zhipu_llm)
+            except Exception as e:
+                print(f"[simple_reply] shortterm→semantic 失败（可忽略）: {e}")
+
+            trace_report()
+            return reply
+
+        except Exception as e:
+            print(f"[TravelWorkflow.simple_reply] 调用失败: {type(e).__name__}: {e}")
+            import traceback
+            traceback.print_exc()
+            return f"抱歉，处理您的请求时出现了错误：{str(e)}"
+
 
 __all__ = [
     "TravelWorkflow",

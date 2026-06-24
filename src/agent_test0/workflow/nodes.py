@@ -41,8 +41,9 @@ MAX_STEP_ITERATIONS = 30
 
 # 用户明确授权系统自行默认/假设的表达。只有第二轮（已问过）且命中这些表达，才允许假设。
 _USER_DELEGATION_PATTERN = re.compile(r"(看你安排|你安排|随便|无所谓|都可以|都行|默认|按常规|帮我定|你决定)")
-_TRAVEL_INTENT_PATTERN = re.compile(r"(旅游|旅行|行程|攻略|游玩|玩|安排|规划|路线)")
 _WEATHER_ONLY_PATTERN = re.compile(r"(天气|气温|下雨|温度|穿什么)")
+# 注：旅游意图判定已上移到入口层 workflow.intent.classify_intent（routes.json 样本库），
+# Flow 内不再用正则重复判；本文件只保留"授权默认"与"纯天气查询"两条细分。
 
 
 def _has_asked_trip_constraints(flow) -> bool:
@@ -73,15 +74,19 @@ def _user_delegated_defaults(flow) -> bool:
 
 
 def _looks_like_travel_planning(flow, plan_data: dict) -> bool:
-    """判断是否是行程规划类需求，而非天气查询/闲聊。"""
+    """判断是否是行程规划类需求，而非纯天气查询。
+
+    入口层 (workflow.intent.classify_intent) 已把闲聊挡在 Flow 之外，本函数不再用
+    正则重复判旅游意图；只把"纯天气查询"从"旅游规划"里分出来，避免"北京天气"被
+    追问几天/预算/人数。是否算规划以 Planner 是否产出 steps 为准。
+    """
     message = flow.state.message or ""
-    focus = plan_data.get("focus", "") or ""
-    intent_text = f"{message}\n{focus}"
     if plan_data.get("simple_answer") and not plan_data.get("steps"):
         return False
-    if _WEATHER_ONLY_PATTERN.search(message) and not _TRAVEL_INTENT_PATTERN.search(message):
+    # 天气类消息 → 不按行程规划追问次要约束（避免"北京天气"被追问几天/预算/人数）
+    if _WEATHER_ONLY_PATTERN.search(message):
         return False
-    return bool(_TRAVEL_INTENT_PATTERN.search(intent_text) or plan_data.get("steps"))
+    return bool(plan_data.get("steps"))
 
 
 def _user_constraint_text(flow) -> str:

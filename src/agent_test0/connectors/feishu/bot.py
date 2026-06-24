@@ -23,6 +23,7 @@ from dotenv import load_dotenv
 import os
 
 from agent_test0.workflow import TravelWorkflow
+from agent_test0.workflow.intent import classify_intent
 
 load_dotenv()
 
@@ -144,24 +145,37 @@ event_handler = (
 
 def _call_agent(user_text: str, user_id: str, chat_id: str = None) -> str:
     """
-    调用 CrewAI TravelWorkflow 处理飞书用户消息。
-    本函数只负责连接层适配：把 user_text + user_id 透传给 TravelWorkflow.run_for_user。
-    memory / redis / prompt / final_report 生成全部在 crew 中。
+    调用 TravelWorkflow 处理飞书用户消息。
+
+    连接层只做意图分流：
+      - travel        → TravelWorkflow.run_for_user（6 状态机）
+      - default_chat  → TravelWorkflow.simple_reply（轻量 LLM 回答，不跑 Flow）
+    memory / redis / prompt 全部在 workflow 内部，本函数不持有。
     """
-    print("\n[Agent] 调用 CrewAI TravelWorkflow...")
+    print("\n[Agent] 处理飞书消息...")
 
     # session_id 按 user_id 稳定派生（同一飞书用户一个 session），
     # 这样多轮上下文与 asked_fields 跨轮去重才成立。
     # 之前用 hash(user_text) 会导致每发一句不同的话就开新 session，多轮全断。
     session_id = f"feishu_{user_id}"
 
-    final_report = TravelWorkflow.run_for_user(
-        user_text=user_text,
-        user_id=user_id,
-        session_id=session_id,
-    )
+    intent = classify_intent(user_text)
+    print(f"[Agent] 意图: {intent}")
+    if intent == "travel":
+        final_report = TravelWorkflow.run_for_user(
+            user_text=user_text,
+            user_id=user_id,
+            session_id=session_id,
+        )
+    else:
+        # 非旅游意图（闲聊/天气小问等）走轻量回复，不进 6 状态机
+        final_report = TravelWorkflow.simple_reply(
+            user_text=user_text,
+            user_id=user_id,
+            session_id=session_id,
+        )
 
-    # 防御：run_for_user 理论上总返回 str，但异常路径可能返回 None / 非 str
+    # 防御：理论上总返回 str，但异常路径可能返回 None / 非 str
     if not isinstance(final_report, str) or not final_report.strip():
         final_report = "抱歉，暂时无法生成回复，请稍后重试或补充更多信息。"
 

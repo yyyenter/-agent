@@ -6,7 +6,6 @@ import asyncio
 import json
 import uuid
 import uvicorn
-from pathlib import Path
 from fastapi import FastAPI
 from pydantic import BaseModel
 from starlette.responses import StreamingResponse
@@ -48,45 +47,9 @@ logging.getLogger("LiteLLM").setLevel(logging.WARNING)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("openai").setLevel(logging.WARNING)
 
-# ---- 意图路由: 加载 routes.json + 构建旅行关键词索引 ----
-# 路径锚定到仓库根的 knowledge/routes.json：
-#   server.py 位于  <repo>/src/agent_test0/api/server.py
-#   parents[3]   →  <repo>/
-ROUTES_PATH = Path(__file__).resolve().parents[3] / "knowledge" / "routes.json"
-with open(ROUTES_PATH, "r", encoding="utf-8") as _f:
-    ROUTES = json.load(_f)
-
-from semantic_router import Route, SemanticRouter
-from semantic_router.encoders.ollama import OllamaEncoder
-
-travel_route = Route(
-    name="travel",
-    utterances=ROUTES.get("travel", []),
-    description="旅游规划相关请求",
-)
-chat_route = Route(
-    name="default_chat",
-    utterances=ROUTES.get("chitchat", []),
-    description="闲聊和日常对话",
-)
-
-intent_router = SemanticRouter(
-    routes=[travel_route, chat_route],
-    encoder=OllamaEncoder(
-        name="nomic-embed-text",
-        base_url="http://localhost:11434",
-        score_threshold=0.3,
-    ),
-)
-
-def classify_intent(message: str) -> str:
-    try:
-        result = intent_router(message)
-        if result and result.name:
-            return result.name
-    except Exception:
-        pass
-    return "default_chat"
+# ---- 意图路由: 统一从共享模块（API / 飞书 / CLI 共用 routes.json + Ollama）----
+# 懒构造 + 关键词降级，详见 agent_test0.workflow.intent
+from agent_test0.workflow.intent import classify_intent
 
 # 环境变量隔离
 os.environ["OPENAI_API_KEY"] = os.getenv("GLM_API_KEY", "dummy_key")

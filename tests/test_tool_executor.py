@@ -17,7 +17,9 @@ def test_weather_tool_success():
     assert len(results) == 1
     assert results[0]["tool_name"] == "weather_tool"
     assert results[0]["input"] == {"city": "重庆"}
-    assert "重庆" in results[0]["output"]
+    # P0.2: output 是结构化 dict（_try_parse_structured 把 JSON 字符串解析成 dict），
+    # 不能用 "重庆" in dict（那查的是键）；按结构化契约取值断言。
+    assert results[0]["output"]["城市"] == "重庆"
     assert results[0]["error"] == ""
     print("✅ weather_tool_success")
 
@@ -51,7 +53,8 @@ def test_run_step_executor_no_tool_step_completed():
     run_step_executor(flow)
     step = flow.state.steps[0]
     assert step.status == "completed"
-    assert step.result
+    # P0.2: 无工具步骤没有结构化 result（None），其产出在 result_text
+    assert step.result_text
     assert len(flow.state.step_results) == 1
     assert flow.state.step_results[0].passed is True
     print("✅ run_step_executor_no_tool_step_completed")
@@ -72,7 +75,8 @@ def test_run_step_executor_python_weather():
     step = flow.state.steps[0]
     assert step.status == "completed"
     assert len(step.tool_results) == 1
-    assert "重庆" in step.result
+    # P0.2: step.result 是结构化 dict（单工具 → 直接取 output），按结构化契约断言
+    assert step.result["城市"] == "重庆"
     assert len(flow.state.step_results) == 1
     print("✅ run_step_executor_python_weather")
 

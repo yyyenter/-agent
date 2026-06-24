@@ -56,83 +56,10 @@ logging.getLogger("LiteLLM").setLevel(logging.WARNING)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("openai").setLevel(logging.WARNING)
 
-# ==================== 3. 意图路由机制（与 main.py 完全一致） ====================
-ROUTES_PATH = Path(__file__).resolve().parents[3] / "knowledge" / "routes.json"
-with open(ROUTES_PATH, "r", encoding="utf-8") as _f:
-    ROUTES = json.load(_f)
-
-from semantic_router import Route, SemanticRouter
-from semantic_router.encoders.ollama import OllamaEncoder
-
-travel_route = Route(
-    name="travel",
-    utterances=ROUTES.get("travel", []),
-    description="旅游规划相关请求",
-)
-chat_route = Route(
-    name="default_chat",
-    utterances=ROUTES.get("chitchat", []),
-    description="闲聊和日常对话",
-)
-
-# def get_router_with_retry(max_retries=5, delay=2):
-#     """带重试机制的路由初始化"""
-#     encoder = OllamaEncoder(
-#         name="nomic-embed-text",
-#         base_url="http://localhost:11434"
-#     )
-
-#     for i in range(max_retries):
-#         try:
-#             print(f"[路由] 正在尝试连接模型 (第 {i+1}/{max_retries} 次)...")
-#             encoder(["test"])
-#             print("[路由] 模型连接成功！")
-
-#             # 创建路由
-#             all_utterances = ROUTES.get("travel", []) + ROUTES.get("chitchat", [])
-#             print(f"[路由] 共加载 {len(all_utterances)} 条 utterances")
-
-#             # 使用 SemanticRouter.fit() 方法，传入 utterances 和对应的 route_names
-#             router = SemanticRouter(encoder=encoder)
-#             # 创建 utterance 到 route_name 的映射
-#             travel_utts = ROUTES.get("travel", [])
-#             chat_utts = ROUTES.get("chitchat", [])
-#             router.fit(
-#                 X=travel_utts + chat_utts,
-#                 y=["travel"] * len(travel_utts) + ["default_chat"] * len(chat_utts)
-#             )
-#             print("[路由] 索引建立完成！")
-
-#             return router
-#         except Exception as e:
-#             print(f"[路由] 第 {i+1} 次失败: {e}，将在 {delay} 秒后重试...")
-#             time.sleep(delay)
-
-#     print("[路由] 严重错误：Ollama 模型初始化重试失败！")
-#     return None
-
-# 替换你原本的路由初始化逻辑
-print("[路由] 正在初始化语义路由...")
-# intent_router = get_router_with_retry()
-intent_router = None
-if intent_router is None:
-    print("[路由] 路由初始化失败，将使用关键词 fallback 模式")
-    # 降级方案：使用简单的关键词匹配
-    def classify_intent(message: str) -> str:
-        travel_keywords = ["旅游", "玩", "去", "旅行", "景点", "攻略", "行程", "出差", "度假", "游玩"]
-        if any(kw in message for kw in travel_keywords):
-            return "travel"
-        return "travel"
-else:
-    def classify_intent(message: str) -> str:
-        """意图分类：返回 'travel' 或 'default_chat'"""
-        try:
-            result = intent_router(message)
-            if result and result.name:
-                return result.name
-        except Exception as e:
-            print(f"[警告] 语义路由异常: {e}，降级为闲聊模式")
-        return "travel"
+# ==================== 3. 意图路由机制（统一共享模块） ====================
+# 之前 debug_cli 重复了一份路由代码，且 intent_router 硬编码 None 导致 fallback
+# 永远 return "travel"，闲聊分支永远到不了。现统一走 agent_test0.workflow.intent。
+from agent_test0.workflow.intent import classify_intent
 
 # ==================== 4. 引入核心模块 ====================
 # 环境变量隔离（与 main.py 一致）

@@ -4,7 +4,7 @@ import math
 import os
 import re
 from datetime import datetime
-from typing import Optional
+from typing import Any, Optional
 from dotenv import load_dotenv
 
 # 加载 .env 文件
@@ -216,10 +216,30 @@ class MemoryManager:
         self.redis = redis_client
         self.is_fallback = is_fallback
         self._db_connection = None
+        # 进程内自增 msg_id 后缀, 保证同一毫秒多次 add_message 也不会撞 id
+        self._msg_seq = 0
 
-        self.chat_key = f"session:{session_id}:chat"          # 桶3: 原始对话轮次 (Episodic)
-        self.summary_key = f"session:{session_id}:summary"    # 桶5: 短期精炼约束 (Working Memory)
+        # chat_key  : 短期会话原文日志（Full Short-Term Log）
+        #              —— 完整保存 user/assistant 原始消息, 永远是审计/检索的权威源。
+        # index_key : 短期会话索引（Retrieved Short-Term Index）
+        #              —— 同步生成的轻量条目 (task_id/destination/topic/has_slots/...),
+        #                 用于从大量历史中按业务字段定位相关 turns, 避免污染当前任务。
+        # summary_key: 旧版 working summary, 不再作为权威短期记忆, 仅作兼容保留。
+        self.chat_key = f"session:{session_id}:chat"
+        self.index_key = f"session:{session_id}:index"
+        self.summary_key = f"session:{session_id}:summary"
         self.ttl = 86400  # 24小时
+
+        # === 跨轮业务字段 (Multi-turn Persistence) ===
+        # 这些字段跨飞书多轮对话持续存在, 跟 session_id 同生命周期。
+        # 在 run_for_user() 入口 bind_to_state(flow.state) 时同步到 TravelState,
+        # 让节点能直接读 flow.state.current_destination 而不必每次反查 memory。
+        # 设计上 memory 是权威源, TravelState 是单轮缓存。
+        self.current_task_id: str | None = None
+        self.current_destination: str | None = None
+        self.current_topic: str = "general"
+        # 跨轮持久计数器 (用于在 task 切换时识别"上一轮", 而不是"本轮新开")
+        self._task_seq: int = 0
 
     def _get_db_connection(self):
         """获取数据库连接（复用连接）"""
@@ -237,24 +257,186 @@ class MemoryManager:
         """析构时关闭数据库连接"""
         self._close_db_connection()
 
-    # ==================== 桶3: Episodic Memory (Redis) ====================
-    def add_message(self, role: str, content: str, max_turns: int | None = 100):
+    # ==================== 短期会话记忆：原文 + 索引 ====================
+    def add_message(self, role: str, content: str,
+                    max_turns: int | None = 100,
+                    *,
+                    task_id: str | None = None,
+                    topic: str = "general",
+                    destination: str | None = None,
+                    has_slots: bool = False,
+                    extracted_slots: dict[str, Any] | None = None,
+                    is_completed_task: bool = False):
         """
-        追加原始对话。
+        追加短期会话原文（Full Short-Term Log），并同步写入检索索引。
 
-        短期记忆的权威来源是完整原文，不再依赖 LLM 蒸馏 summary。
-        默认仅设置一个较宽的防爆上限（100 轮≈200条消息）；传 None 可完全不裁剪。
+        - chat_key 始终保留完整原文, 方便审计 / 回放 / 重新检索。
+        - index_key 保存业务级索引条目 (task_id/destination/topic/has_slots/...),
+          供 retrieve_short_term_context() 在规划前精准召回相关 turns,
+          避免把旧任务字段 (重庆/3天/3000/两人) 误用于新任务 (想去成都)。
+        - max_turns=100 仅作为防爆上限 (200 条消息); 传 None 不裁剪。
         """
-        msg = json.dumps({"role": role, "content": content}, ensure_ascii=False)
+        msg_id = self._next_msg_id()
+        msg = json.dumps(
+            {"msg_id": msg_id, "role": role, "content": content},
+            ensure_ascii=False,
+        )
         self.redis.rpush(self.chat_key, msg)
         if max_turns is not None:
             self.redis.ltrim(self.chat_key, -(max_turns * 2), -1)
         self.redis.expire(self.chat_key, self.ttl)
 
+        index_entry = self._build_index_entry(
+            msg_id=msg_id,
+            role=role,
+            content=content,
+            task_id=task_id,
+            topic=topic,
+            destination=destination,
+            has_slots=has_slots,
+            extracted_slots=extracted_slots,
+            is_completed_task=is_completed_task,
+        )
+        if index_entry is not None:
+            self.redis.rpush(self.index_key, json.dumps(index_entry, ensure_ascii=False))
+            # 索引与原文同生命周期, 裁剪保持一致
+            if max_turns is not None:
+                self.redis.ltrim(self.index_key, -(max_turns * 2), -1)
+            self.redis.expire(self.index_key, self.ttl)
+
     def get_chat_history(self) -> list[dict[str, str]]:
-        """获取最近的原始对话"""
+        """获取最近完整短期对话原文。"""
         raw = self.redis.lrange(self.chat_key, 0, -1)
         return [json.loads(m) for m in raw]
+
+    def get_short_term_index(self) -> list[dict[str, Any]]:
+        """获取完整短期会话索引。"""
+        raw = self.redis.lrange(self.index_key, 0, -1)
+        out: list[dict[str, Any]] = []
+        for item in raw:
+            try:
+                out.append(json.loads(item))
+            except json.JSONDecodeError:
+                continue
+        return out
+
+    # ============================================================
+    # 跨轮业务字段: bind / mark_completed / new_task_id
+    # ============================================================
+    def bind_to_state(self, state) -> None:
+        """把 MemoryManager 的跨轮业务字段同步到 TravelState (单轮缓存)。
+
+        流程:
+          1. run_for_user() 在 kickoff 前调一次, 把上一轮的 task/destination/topic
+             同步到 flow.state, 让 Planner 节点能直接读 flow.state.current_destination。
+          2. 节点跑完后, 通过 flow.state.current_task_id 反向回写 memory。
+
+        字段语义对照:
+          memory.current_task_id  <->  state.current_task_id  (跨轮, 字符串 ID)
+          memory.current_destination <-> state.current_destination
+          memory.current_topic    <->  state.current_topic
+        """
+        if state.current_task_id is None:
+            state.current_task_id = self.current_task_id
+        if state.current_destination is None:
+            state.current_destination = self.current_destination
+        if not state.current_topic or state.current_topic == "general":
+            if self.current_topic and self.current_topic != "general":
+                state.current_topic = self.current_topic
+
+    def sync_from_state(self, state) -> None:
+        """把 TravelState 单轮结果回写到 MemoryManager (权威源)。
+
+        在 FinalVerifier 完成 / Planner 推断出新任务时调用,
+        让下一轮 run_for_user() 能从 memory 读到最新的 task/destination/topic。
+        """
+        if state.current_task_id:
+            self.current_task_id = state.current_task_id
+        if state.current_destination:
+            self.current_destination = state.current_destination
+        if state.current_topic and state.current_topic != "general":
+            self.current_topic = state.current_topic
+
+    def new_task_id(self) -> str:
+        """分配一个新任务 ID (用于新任务开启, 例如想去成都→上轮是重庆)。
+
+        ID 格式: t_{session_id_suffix}_{seq} 避免不同 session 撞 ID。
+        """
+        self._task_seq += 1
+        suffix = (self.session_id or "anon")[-8:]
+        return f"t_{suffix}_{self._task_seq}"
+
+    def mark_current_task_completed(self) -> None:
+        """把当前 task 在索引中标记为已完成 (is_completed_task=True)。
+
+        在 FinalVerifier 完成后调用, 让下一轮 retrieve_short_term_context()
+        自动把该 task 归入 excluded_history, 避免污染新一轮。
+        """
+        if not self.current_task_id:
+            return
+        # 索引是用 LPUSH 顺序存储的 List, 倒序遍历找到第一条当前 task 的 user
+        # 条目, 用 LSET 改 is_completed_task 标记。Redis 6.2+ 原生支持, 否则
+        # 走读-改-写回退。InMemoryFallback 直接读-改-写。
+        index = self.get_short_term_index()
+        changed = False
+        for i, entry in enumerate(index):
+            if (entry.get("task_id") == self.current_task_id
+                    and entry.get("role") == "user"):
+                entry["is_completed_task"] = True
+                changed = True
+                # 只标记第一条 user (任务开启那条)
+                break
+
+        if changed:
+            # 重建索引列表
+            try:
+                self.redis.delete(self.index_key)
+            except Exception:
+                pass
+            for entry in index:
+                self.redis.rpush(self.index_key,
+                                 json.dumps(entry, ensure_ascii=False))
+            self.redis.expire(self.index_key, self.ttl)
+            # 任务完成后清空 task 指针和 destination, 下一轮若新目的地会分配新 task_id
+            # 保留 destination 会让 bind_to_state 把旧目的地"复活"到新 state,
+            # 看起来像"已完成的任务还在污染下一轮"。
+            self.current_task_id = None
+            self.current_destination = None
+            self.current_topic = "general"
+
+    def _next_msg_id(self) -> str:
+        """生成会话内唯一的 msg_id。
+
+        用 (毫秒时间戳, 自增序号) 拼接, 避免同一毫秒多次 add_message 撞 id,
+        进而导致 history_by_id / 索引合并时把不同消息当成同一条处理。
+        """
+        self._msg_seq += 1
+        return f"msg_{int(datetime.now().timestamp() * 1000)}_{self._msg_seq}"
+
+    @staticmethod
+    def _build_index_entry(*, msg_id: str, role: str, content: str,
+                           task_id: str | None, topic: str,
+                           destination: str | None, has_slots: bool,
+                           extracted_slots: dict[str, Any] | None,
+                           is_completed_task: bool) -> dict[str, Any] | None:
+        """构建一条短期索引条目。
+
+        设计原则:
+        - 索引只保留业务级结构化字段, 不存原始长文本。
+        - 不做向量, 不做 embedding, 只做业务键匹配。
+        - destination 缺省时尝试从消息中常见城市名简单抽取, 仅作为提示。
+        """
+        return {
+            "msg_id": msg_id,
+            "role": role,
+            "content_preview": content[:50],
+            "task_id": task_id,
+            "topic": topic or "general",
+            "destination": destination,
+            "has_slots": has_slots,
+            "extracted_slots": extracted_slots or {},
+            "is_completed_task": is_completed_task,
+        }
 
     # ==================== 桶5: Working Memory (Redis Summary) ====================
     def update_short_term_summary(self, new_constraints: dict[str, str]):
@@ -446,27 +628,173 @@ class MemoryManager:
         except Exception as e:
             print(f"[Memory Conversion] Conversion to Semantic failed: {e}")
 
+    def retrieve_short_term_context(self, current_message: str) -> dict[str, Any]:
+        """
+        基于短期索引 (session:{sid}:index) 检索与当前输入相关的上下文。
+
+        返回结构:
+        {
+            "current_message": ...,
+            "current_task_id": ... | None,
+            "relevant_turns": [原文 messages],          # 当前任务相关, 可注入 Planner
+            "excluded_history": ["重庆3天3000..."],    # 旧任务 / 不同目的地的历史, 不得作为当前事实
+            "last_assistant_question": "...",          # 最近一条 assistant 追问
+            "is_invalid_reply": bool,                  # 当前 message 是否像无效回复 (ff/asd/...)
+            "is_delegation": bool,                     # 当前 message 是否为授权默认
+            "recent_turns": [原文 messages],           # 最近少量原文, 仅做兜底
+        }
+
+        检索规则 (轻量, 无向量, 无 LLM):
+        1. current_task_id 优先: 若当前 message 命中已有 task_id, 沿用;
+           否则若 message 中含新目的地, 视为新任务, 沿用最近 task_id 中目的地不变者;
+           再否则使用最近非 None 的 task_id (例如回答上一轮追问/无效回复/授权默认)。
+        2. relevant_turns 召回: 同一 task_id 的原文 + 同 destination 的最近追问。
+        3. excluded_history: 索引中 is_completed_task=True 的条目, 或 destination != current_destination 的旧任务条目。
+        """
+        index = self.get_short_term_index()
+        history = self.get_chat_history()
+        history_by_id = {h.get("msg_id"): h for h in history if h.get("msg_id")}
+
+        # 找最近一条非 None task_id
+        last_task_id = None
+        for entry in reversed(index):
+            if entry.get("task_id"):
+                last_task_id = entry["task_id"]
+                break
+
+        # 当前 task 判定: 默认继承最近 task_id (回答追问 / 授权默认 / 无效回复都继承)
+        current_task_id = last_task_id
+
+        # 当前 destination 判定
+        current_destination = None
+        if index:
+            for entry in reversed(index):
+                if entry.get("task_id") == current_task_id and entry.get("destination"):
+                    current_destination = entry["destination"]
+                    break
+        if current_destination is None:
+            for entry in reversed(index):
+                if entry.get("destination"):
+                    current_destination = entry["destination"]
+                    break
+
+        msg_norm = (current_message or "").strip().lower()
+        invalid_tokens = {"ff", "??", "。。。", "不知道", "随便说"}
+        delegation_tokens = {"看你安排", "你安排", "随便", "默认", "你来", "看着办"}
+        is_invalid = len(msg_norm) <= 2 or msg_norm in invalid_tokens
+        is_delegation = msg_norm in delegation_tokens
+
+        # 相关 turns: 同一 task_id 的索引条目
+        relevant_turns: list[dict[str, str]] = []
+        for entry in index:
+            if entry.get("task_id") and entry.get("task_id") == current_task_id:
+                raw = history_by_id.get(entry.get("msg_id"))
+                if raw is not None:
+                    relevant_turns.append(raw)
+
+        # recent_turns 仅作为同 task_id 的兜底, 避免污染
+        recent_turns = relevant_turns[-6:] if relevant_turns else []
+
+        # 旧任务排除清单 (用预览, 不返回完整原文, 避免污染)
+        excluded: list[str] = []
+        for entry in index:
+            if entry.get("is_completed_task"):
+                excluded.append(
+                    f"{entry.get('destination') or '未知'}: {entry.get('content_preview')}"
+                )
+            elif (
+                entry.get("task_id")
+                and current_destination
+                and entry.get("destination")
+                and entry["destination"] != current_destination
+            ):
+                excluded.append(
+                    f"{entry.get('destination')}: {entry.get('content_preview')}"
+                )
+
+        # 最近 assistant 追问
+        last_question = ""
+        for entry in reversed(index):
+            if entry.get("role") == "assistant" and entry.get("topic") in ("ask_user", "ask_slots"):
+                msg = history_by_id.get(entry.get("msg_id"))
+                if msg:
+                    last_question = msg.get("content", "")
+                break
+
+        return {
+            "current_message": current_message,
+            "current_task_id": current_task_id,
+            "current_destination": current_destination,
+            "relevant_turns": relevant_turns,
+            "recent_turns": recent_turns,
+            "excluded_history": excluded,
+            "last_assistant_question": last_question,
+            "is_invalid_reply": is_invalid,
+            "is_delegation": is_delegation,
+        }
+
     def get_global_context_prompt(self, current_message: str = "") -> str:
         """
-        组装完整上下文 Prompt（供旅游意图时使用）
-        仅在路由判断为 travel 后调用
+        组装规划前上下文 Prompt (供旅游意图时使用)。
+
+        不再无差别拼接最近 20 条原文, 改为基于 retrieve_short_term_context() 的
+        检索结果渲染, 显式隔离旧任务。
         """
-        parts = []
-        
+        parts: list[str] = []
+
         # 长期偏好
         profile = self.get_user_profile()
         if profile != "暂无长期偏好":
             parts.append(f"【用户长期偏好画像】：\n{profile}")
-        
-        # 短期上下文：直接使用原始对话。不要使用 LLM 蒸馏 summary，避免漏字段/残留字段/示例污染。
-        history = self.get_chat_history()
-        if history:
-            history_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in history[-20:]])
-            parts.append(f"【近期对话上下文（原文）】：\n{history_text}")
-        
+
+        if current_message:
+            ctx = self.retrieve_short_term_context(current_message)
+
+            # 当前任务槽位 (来自 relevant_turns 中 extracted_slots 合并)
+            merged_slots: dict[str, Any] = {}
+            for raw in ctx["relevant_turns"]:
+                # 找对应索引条目
+                for entry in self.get_short_term_index():
+                    if entry.get("msg_id") == raw.get("msg_id"):
+                        merged_slots.update(entry.get("extracted_slots") or {})
+                        break
+            if merged_slots:
+                slot_lines = "\n".join(f"- {k}: {v}" for k, v in merged_slots.items())
+                parts.append(f"【当前任务已知槽位】：\n{slot_lines}")
+
+            # 相关近期对话
+            if ctx["recent_turns"]:
+                history_text = "\n".join(
+                    f"{msg.get('role', '')}: {msg.get('content', '')}"
+                    for msg in ctx["recent_turns"]
+                )
+                parts.append(f"【相关近期对话】：\n{history_text}")
+
+            # 上一轮追问
+            if ctx["last_assistant_question"]:
+                parts.append(f"【上一轮追问】：\n{ctx['last_assistant_question']}")
+
+            # 旧任务排除清单 (防止 Planner 误复用)
+            if ctx["excluded_history"]:
+                excluded_text = "\n".join(f"- {line}" for line in ctx["excluded_history"])
+                parts.append(
+                    f"【历史任务参考, 不得作为当前任务事实】：\n{excluded_text}\n"
+                    "注意: 上述历史只用于了解用户风格, 其中的 destination/days/budget/people "
+                    "等一次性参数禁止自动填入当前任务。"
+                )
+
+            # 标志位
+            flags: list[str] = []
+            if ctx["is_invalid_reply"]:
+                flags.append("当前回复像无效短词, 需重新引导用户补充有效信息。")
+            if ctx["is_delegation"]:
+                flags.append("用户已授权默认安排, 可以在 assumptions 中给常规默认值。")
+            if flags:
+                parts.append("【对话状态】：" + " ".join(flags))
+
         if current_message:
             parts.append(f"【当前最新指令】：{current_message}")
-        
+
         return "\n\n".join(parts) if parts else ""
 
 class ToolCacheManager:

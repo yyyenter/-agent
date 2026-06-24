@@ -1,53 +1,55 @@
 # config/replan_tasks.yaml
-# PartialReplanner 状态任务：从当前失败步骤重新规划后续部分
+# PartialReplanner 状态任务：P2.1 改为 append-only (追加而非重做)
 
 replan_task:
   description: >
-    你是一个【局部重规划专家】。你的职责是从指定的起始步骤开始重新规划后续部分，保留已完成且正确的步骤。
+    你是一个【局部重规划专家】。你的职责是分析失败步骤，给出【追加】到现有任务列表末尾的补救任务。
+    **绝对不要重新规划已经成功完成的步骤**，也不要覆盖失败步骤的索引。
 
     【失败反馈】:
     失败原因: {failure_reason}
     失败步骤索引: {failed_step_indices}
     建议修正: {suggested_corrections}
 
-    【已完成步骤】(保留):
+    【已完成步骤】(不要再生成, 保持原样):
     {preserved_steps_results}
 
-    【原始剩余步骤】:
+    【原始剩余步骤】(已失败, 不要重新规划, 保持原状作为历史):
     {original_remaining_steps}
 
-    【你的任务】:
+    【你的任务 (append-only 语义)】:
     1. 分析失败原因和建议修正
-    2. 仅重新规划失败步骤及其后续依赖的步骤
-    3. 保持已完成且正确的步骤不变
-    4. 生成新的剩余步骤计划
+    2. **追加**新的补救任务到 steps 列表末尾 (新 index 从 len(steps) 开始)
+    3. 不要覆盖已有步骤的 index / description / dependencies
+    4. 失败步骤保留为 status="failed" 的历史, 不要再写入
+    5. 新任务应能基于已有结果 (preserved_steps_results) 完成目标
 
     【输出要求】:
-    - 返回新的步骤列表（从失败步骤开始）
-    - 保留已完成步骤的索引
-    - 指定新计划的起始步骤索引
+    - 返回追加的步骤列表 (而非替换)
+    - 步骤 index 从 len(steps) 开始递增
+    - dependencies 引用已有步骤的 index (包括失败的)
 
   expected_output: >
     输出必须满足系统提供的结构化字段约束，包含以下字段：
     - reason: string, 重规划原因
-    - preserved_steps: list[int], 保留的已完成步骤索引
-    - original_remaining_steps: list[int], 原始剩余步骤索引
-    - new_coarse_steps: list[object], 新的粗粒度步骤列表
-      - index: int
-      - description: string
+    - preserved_steps: list[int], 保留的已完成步骤索引 (不要再生成)
+    - original_remaining_steps: list[int], 原始失败步骤索引 (已失败, 不要再规划)
+    - new_appended_steps: list[object], **追加**的步骤列表 (而不是替换)
+      - index: int (从 len(steps) 开始, 即 next_index)
+      - description: string (做什么补救)
+      - dependencies: list[int] (引用已有 steps 的 index; 引用失败的也算合法)
       - tools: list[string]
     - replan_retry_count: int, 重规划尝试次数
 
-    示例输出：
+    示例输出 (步骤 2 失败, 追加 step 4 寻找替代景点):
     ```json
     {
-      "reason": "步骤2天气数据缺失且工具无法获取",
+      "reason": "步骤2天气数据缺失, 追加补救任务",
       "preserved_steps": [0, 1],
-      "original_remaining_steps": [2, 3, 4],
-      "new_coarse_steps": [
-        {"index": 2, "description": "重新查询<目的地>天气", "tools": ["weather_tool"]},
-        {"index": 3, "description": "重新规划<目的地>行程", "tools": []},
-        {"index": 4, "description": "生成最终报告", "tools": []}
+      "original_remaining_steps": [2, 3],
+      "new_appended_steps": [
+        {"index": 4, "description": "重新查询<目的地>天气", "dependencies": [0, 1], "tools": ["weather_tool"]},
+        {"index": 5, "description": "基于新数据重新组装行程", "dependencies": [1, 4], "tools": []}
       ],
       "replan_retry_count": 1
     }

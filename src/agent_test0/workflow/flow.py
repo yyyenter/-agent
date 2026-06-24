@@ -168,6 +168,11 @@ class TravelWorkflow(Flow[TravelState]):
             flow.state.session_id = sid
             flow.state.focus = memory.get_global_context_prompt(user_text)
 
+            # 3a) 把 MemoryManager 跨轮业务字段同步到 TravelState
+            #     (current_task_id / current_destination / current_topic)
+            #     让 Planner 节点能直接读 flow.state.current_destination。
+            memory.bind_to_state(flow.state)
+
             # 顶层捕获 AskUserInterrupt：节点用新 API 抛出时，安静吞掉，
             # state.final_report 已经在 ask_user_and_exit 里写好了
             try:
@@ -183,9 +188,10 @@ class TravelWorkflow(Flow[TravelState]):
                 if flow.state.needs_user_input and flow.state.user_question:
                     final_report = flow.state.user_question
                 else:
+                    # P0.2: 用 result_text (格式化文本), 避免 dict 拼接到 str 列表里炸
                     completed_results = [
-                        s.result for s in (flow.state.steps or [])
-                        if s.status == "completed" and s.result
+                        s.result_text for s in (flow.state.steps or [])
+                        if s.status == "completed" and s.result_text
                     ]
                     if completed_results:
                         final_report = "\n\n".join(completed_results)
@@ -200,6 +206,18 @@ class TravelWorkflow(Flow[TravelState]):
 
             # 5) 写助手回复到 episodic
             memory.add_message("assistant", final_report)
+
+            # 5a) 把单轮结果回写到 MemoryManager 跨轮业务字段
+            #     (Planner 推断出的 current_destination / current_task_id / current_topic)
+            memory.sync_from_state(flow.state)
+
+            # 5b) 若本轮已生成 final_report (即非 AskUser 中断), 把当前 task 标记为已完成
+            #     下次 retrieve_short_term_context 会自动把该 task 归入 excluded_history。
+            if flow.state.final_report and not flow.state.needs_user_input:
+                try:
+                    memory.mark_current_task_completed()
+                except Exception as e:
+                    print(f"[run_for_user] mark_current_task_completed 失败（可忽略）: {e}")
 
             # 6) 异步把短期摘要蒸馏到 semantic（长期偏好）
             try:

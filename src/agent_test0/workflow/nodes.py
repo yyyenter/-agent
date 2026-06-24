@@ -249,6 +249,101 @@ def run_state_machine(flow):
 # 状态 1: Planner —— 生成粗粒度步骤列表
 # ============================================================
 
+def assemble_structured_plan(flow) -> dict:
+    """
+    P1.1: 确定性结构化行程组装器。
+
+    不调 LLM, 纯代码从已完成 steps 聚合结构化数据, 输出可机读 + 可被规则检查的 plan。
+
+    Returns:
+        {
+            "destination": str,                    # 目的地
+            "user_query": str,                     # 用户原始请求
+            "assumptions": list[str],              # Planner 假设
+            "steps": [                             # 每个已完成 step 的结构化记录
+                {
+                    "index": int,
+                    "description": str,
+                    "tools_used": list[str],
+                    "data": <Any>,                 # 聚合 tool_results[].output (结构化)
+                    "status": str,
+                }
+            ],
+            "data_sources": list[str],             # 全部成功调用的工具名 (去重)
+            "warnings": list[str],                 # 异常/缺失警告
+            "failed_steps": list[int],             # 失败 step 索引
+        }
+    """
+    plan = {
+        "destination": flow.state.location,
+        "user_query": flow.state.message,
+        "assumptions": list(flow.state.assumptions or []),
+        "steps": [],
+        "data_sources": [],
+        "warnings": [],
+        "failed_steps": list(flow.state.failed_steps_indices or []),
+    }
+    seen_tools = set()
+
+    for i, s in enumerate(flow.state.steps or []):
+        if s.status not in ("completed", "failed"):
+            plan["warnings"].append(f"步骤 {i} 未完成 (status={s.status}): {s.description}")
+            continue
+
+        step_entry = {
+            "index": i,
+            "description": s.description,
+            "tools_used": list(s.tools or []),
+            "data": s.result,  # P0.2: 结构化 (来自 tool_results[].output)
+            "status": s.status,
+        }
+        plan["steps"].append(step_entry)
+
+        if s.status == "failed":
+            plan["warnings"].append(
+                f"步骤 {i} 失败: {s.description} | error: {s.error[:200] if s.error else '(unknown)'}"
+            )
+            continue
+
+        for tool_name in s.tools or []:
+            if tool_name not in seen_tools:
+                plan["data_sources"].append(tool_name)
+                seen_tools.add(tool_name)
+
+    if not plan["steps"]:
+        plan["warnings"].append("没有完成的步骤, 无法组装结构化 plan")
+
+    return plan
+
+
+def _check_deterministic_rules(plan: dict) -> list[str]:
+    """
+    P1.2: 确定性规则检查器。返回失败原因列表 (空 = 全部通过)。
+
+    能用代码判的绝不用 LLM 判。当前覆盖:
+      R1: 至少 1 个 completed step
+      R2: 不存在 failed step (data inventory 必须完整)
+      R3: completed steps 至少有一个有结构化 data (None/空 = 失败)
+
+    语义类规则 (用户硬约束、跨步矛盾) 留给 FinalVerifier LLM 做软检查。
+    """
+    failures = []
+    completed = [s for s in plan.get("steps", []) if s.get("status") == "completed"]
+    if not completed:
+        failures.append("R1: 没有已完成的步骤")
+
+    if plan.get("failed_steps"):
+        failures.append(
+            f"R2: 有 {len(plan['failed_steps'])} 个失败步骤: {plan['failed_steps']}"
+        )
+
+    has_data = any(s.get("data") not in (None, "", [], {}) for s in completed)
+    if completed and not has_data:
+        failures.append("R3: 所有 completed 步骤都没有结构化数据")
+
+    return failures
+
+
 def run_planner(flow):
     """复杂度判定 + 偏好提取 + 步骤生成。"""
     # 全局钩子：检查是否需要向用户提问
@@ -451,6 +546,23 @@ def run_step_executor(flow):
     if current_step.status == "executing":
         print(f"[StepExecutor] 步骤 {step_idx} 正在执行中，跳过重复调用")
         return
+
+    # DAG 依赖检查 (P0.1: StepPlan.dependencies 字段恢复)
+    # 当前架构仍是线性串行执行, 依赖未满足只 warn, 不阻塞 (Planner 一般把 DAG 排成线性)
+    # 未来可在此处实现真正的并行调度
+    if current_step.dependencies:
+        unmet = [
+            d for d in current_step.dependencies
+            if d < 0
+            or d >= len(flow.state.steps)
+            or flow.state.steps[d].status != "completed"
+        ]
+        if unmet:
+            print(
+                f"[StepExecutor] ⚠️ 步骤 {step_idx} 依赖 {unmet} 尚未完成，"
+                f"但当前为线性执行模式 (将先尝试执行, 由 Planner DAG 顺序保证正确性)"
+            )
+
     current_step.status = "executing"
 
     print(f"\n{'='*60}")
@@ -465,12 +577,13 @@ def run_step_executor(flow):
 
     if not current_step.tool_calls:
         current_step.tool_results = []
-        current_step.result = format_tool_results([])
+        current_step.result_text = format_tool_results([])
         current_step.status = "completed"
         flow.state.step_results.append(StepResult(
             step_index=step_idx,
             step_description=current_step.description,
-            result=current_step.result,
+            result=None,
+            result_text=current_step.result_text,
             passed=True,
             validation_feedback=""
         ))
@@ -480,7 +593,17 @@ def run_step_executor(flow):
     result_dicts = execute_tool_calls(current_step.tool_calls)
     results = [ToolResult(**r) for r in result_dicts]
     current_step.tool_results = results
-    current_step.result = format_tool_results(results)
+    # P0.2: 拆分结构化 (result) + 文本 (result_text)
+    current_step.result_text = format_tool_results(results)
+    # 聚合所有工具的结构化输出: 单一工具 → 直接用; 多工具 → 包成 dict
+    structured_outputs = [r.output for r in results if r.output is not None]
+    if len(structured_outputs) == 1:
+        current_step.result = structured_outputs[0]
+    elif len(structured_outputs) > 1:
+        current_step.result = {"items": structured_outputs}
+    else:
+        current_step.result = None
+
     has_error = any(r.error for r in results)
     current_step.status = "failed" if has_error else "completed"
     current_step.error = "; ".join(r.error for r in results if r.error)
@@ -489,6 +612,7 @@ def run_step_executor(flow):
         step_index=step_idx,
         step_description=current_step.description,
         result=current_step.result,
+        result_text=current_step.result_text,
         passed=not has_error,
         validation_feedback=""
     ))
@@ -536,7 +660,14 @@ def run_step_verifier(flow) -> str:
 
     # 【确定性短路】步骤已有非空 result 且 status==completed → 直接 pass，
     # 不浪费 LLM 调用，避免 LLM 因"数据不够丰富"挑刺退回 retry。
-    if current_step.status == "completed" and current_step.result and current_step.result.strip():
+    # P0.2: result 可能是 dict (结构化) 或 str, 用统一的非空判断
+    _has_result = bool(
+        current_step.result is not None
+        and current_step.result != ""
+        and current_step.result != {}
+        and current_step.result != []
+    )
+    if current_step.status == "completed" and _has_result:
         print(f"[StepVerifier] 短路 pass：步骤 {step_idx} 有非空结果且 StepExecutor 已标记 completed")
         flow.notify(f"✅ [StepVerifier] 步骤 {step_idx} 直接通过（有数据）")
         current_step.validation_feedback = "有非空结果，直接通过"
@@ -544,6 +675,7 @@ def run_step_verifier(flow) -> str:
         return "pass"
 
     # 构建审核输入
+    # P0.2: 用 result_text (格式化文本) 给 LLM, 结构化 result 留给后续规则检查
     inputs = {
         "step_index": step_idx,
         "step_goal": current_step.description,
@@ -551,8 +683,11 @@ def run_step_verifier(flow) -> str:
             "tools": current_step.tools,
             "tool_calls": [t.model_dump() for t in current_step.tool_calls],
         }, ensure_ascii=False),
-        "execution_results": json.dumps([r.model_dump() for r in current_step.tool_results], ensure_ascii=False)
-        if current_step.tool_results else current_step.result,
+        "execution_results": (
+            json.dumps([r.model_dump() for r in current_step.tool_results], ensure_ascii=False)
+            if current_step.tool_results
+            else (current_step.result_text or (current_step.result if isinstance(current_step.result, str) else ""))
+        ),
     }
 
     try:
@@ -585,7 +720,9 @@ def run_step_verifier(flow) -> str:
             flow.notify(f"🔄 [StepVerifier] 步骤 {step_idx} 重试中...")
             # 重置步骤状态，供驱动循环下轮重新 prepare→execute
             current_step.status = "pending"
-            current_step.result = ""
+            # P0.2: result 拆分为 result (Any) + result_text (str)
+            current_step.result = None
+            current_step.result_text = ""
             current_step.error = ""
             current_step.tool_results = []
             current_step.validation_feedback = ""
@@ -611,7 +748,11 @@ def run_step_verifier(flow) -> str:
 # ============================================================
 
 def run_partial_replanner(flow, failure_feedback: dict):
-    """仅修复失败步骤，不重新规划全局。重置 current_step_index 后返回，由驱动循环续跑。"""
+    """P2.1: append-only 重规划。保留所有已有 steps (completed + failed), 仅追加补救任务。
+
+    旧语义: 失败处之后整体替换 (new_coarse_steps)
+    新语义: 已完成步骤保留, 失败步骤保留为历史, 新任务追加到末尾 (new_appended_steps)
+    """
     if flow._check_ask_user_hook():
         return
 
@@ -624,9 +765,9 @@ def run_partial_replanner(flow, failure_feedback: dict):
         return
 
     print(f"\n{'='*60}")
-    print(f"[PartialReplanner] 触发局部重规划 (第 {flow.state.replan_count} 次)...")
+    print(f"[PartialReplanner] 触发 append-only 重规划 (第 {flow.state.replan_count} 次)...")
     print(f"{'='*60}")
-    flow.notify(f"🔄 [PartialReplanner] 正在局部重规划...")
+    flow.notify(f"🔄 [PartialReplanner] 正在追加补救任务...")
 
     failed_indices = list(set(flow.state.failed_steps_indices))
     flow.state.failed_steps_indices = []  # 清空，重新开始
@@ -635,23 +776,37 @@ def run_partial_replanner(flow, failure_feedback: dict):
         print(f"[PartialReplanner] 没有失败的步骤，无法重规划")
         return
 
-    # 保留已完成的步骤（失败处之前的）
-    preserved_steps = [i for i in range(len(flow.state.steps)) if i < min(failed_indices)]
-    print(f"[PartialReplanner] 保留步骤: {preserved_steps}")
+    # P2.1: 保留全部已有步骤 (completed + failed), 不再截断到 min(failed_indices)
+    preserved_steps = list(range(len(flow.state.steps)))
+    print(f"[PartialReplanner] 保留全部步骤 (append-only): {preserved_steps}")
 
-    # 原始剩余步骤
-    original_remaining = [i for i in range(len(flow.state.steps)) if i >= min(failed_indices)]
-    print(f"[PartialReplanner] 原始剩余步骤: {original_remaining}")
+    # 原始失败步骤索引 (供 LLM 参考, 提示"这些已失败, 不要重新规划")
+    original_failed = [i for i in range(len(flow.state.steps))
+                       if flow.state.steps[i].status == "failed" or i in failed_indices]
+    print(f"[PartialReplanner] 原始失败步骤 (保留为历史): {original_failed}")
+
+    # 收集 preserved steps 的 result_text (LLM 看的文本, 不是 result 字段)
+    preserved_results = {}
+    for i in preserved_steps:
+        s = flow.state.steps[i]
+        text = s.result_text or (s.result if isinstance(s.result, str) else "")
+        if text or s.status == "completed":
+            preserved_results[str(i)] = {
+                "status": s.status,
+                "description": s.description,
+                "result": text or "(无输出)",
+            }
+    # 把失败步骤的 error 信息也带上, 让 LLM 知道失败原因
+    for i in original_failed:
+        if str(i) in preserved_results:
+            preserved_results[str(i)]["error"] = flow.state.steps[i].error
 
     inputs = {
         "failure_reason": failure_feedback.get("reason", ""),
         "failed_step_indices": json.dumps(failed_indices),
         "suggested_corrections": json.dumps(failure_feedback.get("suggested_corrections", {}), ensure_ascii=False),
-        "preserved_steps_results": json.dumps({
-            str(i): flow.state.steps[i].result
-            for i in preserved_steps if i < len(flow.state.steps)
-        }, ensure_ascii=False),
-        "original_remaining_steps": json.dumps(original_remaining),
+        "preserved_steps_results": json.dumps(preserved_results, ensure_ascii=False),
+        "original_remaining_steps": json.dumps(original_failed),
     }
 
     try:
@@ -661,20 +816,29 @@ def run_partial_replanner(flow, failure_feedback: dict):
         print(f"[PartialReplanner] 结构化重规划失败: {e}")
         replan_data = None
 
-    # 解析重规划结果
+    # 解析重规划结果 (优先 new_appended_steps, fallback new_coarse_steps 兼容旧 prompt)
+    new_steps_raw = []
     if replan_data:
-        new_steps = replan_data.get("new_coarse_steps", [])
-        if new_steps:
-            new_step_objects = [StepPlan(**s) for s in new_steps]
-            preserved = [flow.state.steps[i] for i in preserved_steps if i < len(flow.state.steps)]
-            flow.state.steps = preserved + new_step_objects
-            flow.state.current_step_index = len(preserved)
-            print(f"[PartialReplanner] 重规划完成，共 {len(flow.state.steps)} 个步骤")
-            print(f"[PartialReplanner] 当前步骤索引: {flow.state.current_step_index}")
-        else:
-            print(f"[PartialReplanner] 警告: 重规划未返回新步骤")
+        new_steps_raw = replan_data.get("new_appended_steps") or replan_data.get("new_coarse_steps") or []
+
+    if new_steps_raw:
+        next_index = len(flow.state.steps)
+        appended = []
+        for s in new_steps_raw:
+            step_obj = StepPlan(**s) if isinstance(s, dict) else s
+            # 强制修正 index 为 next available, 防止 LLM 给出重复/冲突 index
+            if step_obj.index < next_index:
+                print(f"[PartialReplanner] 修正 LLM 输出的 index {step_obj.index} → {next_index} (避免冲突)")
+                step_obj.index = next_index
+            appended.append(step_obj)
+            next_index += 1
+        flow.state.steps.extend(appended)
+        flow.state.current_step_index = len(flow.state.steps) - len(appended)
+        print(f"[PartialReplanner] append-only 完成, 共 {len(flow.state.steps)} 个步骤")
+        print(f"[PartialReplanner] 新追加索引: {[s.index for s in appended]}")
+        print(f"[PartialReplanner] 当前步骤索引: {flow.state.current_step_index}")
     else:
-        print(f"[PartialReplanner] 解析重规划结果失败")
+        print(f"[PartialReplanner] 警告: 重规划未返回新步骤 (appended=0)")
 
     # 不再手动 flow.step_preparer() —— 由 run_state_machine 驱动循环续跑
 
@@ -685,7 +849,7 @@ def run_partial_replanner(flow, failure_feedback: dict):
 
 def run_final_verifier(flow) -> str:
     """
-    整体审核 + 合成最终报告。
+    P1.2: 结构化 plan → 确定性规则 → LLM 软检查 → narrative 翻译。
 
     Returns:
         "pass"     —— 通过，final_report 已生成
@@ -714,13 +878,33 @@ def run_final_verifier(flow) -> str:
 
     flow.state.final_verifier_done = True
 
-    all_steps_with_results = [
-        {"index": i, "description": s.description, "status": s.status, "result": s.result}
-        for i, s in enumerate(flow.state.steps)
-    ]
+    # P1.2 step 1: 确定性组装结构化 plan
+    structured_plan = assemble_structured_plan(flow)
+    flow.state.structured_plan = structured_plan
+    print(f"[FinalVerifier] 结构化 plan 已组装: {len(structured_plan['steps'])} 步, "
+          f"data_sources={structured_plan['data_sources']}, warnings={len(structured_plan['warnings'])}")
 
+    # P1.2 step 2: 确定性规则检查
+    rule_failures = _check_deterministic_rules(structured_plan)
+    if rule_failures:
+        print(f"[FinalVerifier] 确定性规则不通过: {rule_failures}")
+        flow.notify(f"⚠️ [FinalVerifier] 规则检查不通过: {rule_failures[0]}")
+        # 直接走重规划, 不浪费 LLM
+        feedback = {
+            "verdict": "fail",
+            "reason": f"确定性规则不通过: {'; '.join(rule_failures)}",
+            "failed_step_ids": list(structured_plan.get("failed_steps", [])),
+        }
+        if feedback["failed_step_ids"]:
+            flow.state.failed_steps_indices = feedback["failed_step_ids"]
+        run_partial_replanner(flow, feedback)
+        return "fail"
+
+    # P1.2 step 3: 规则通过, LLM 仅做语义软检查 (用户硬约束/跨步矛盾)
+    # 把结构化 plan 也喂给 LLM, 让它做最终判断
     inputs = {
-        "all_steps_with_results": json.dumps(all_steps_with_results, ensure_ascii=False),
+        "all_steps_with_results": json.dumps(structured_plan["steps"], ensure_ascii=False, default=str),
+        "structured_plan": json.dumps(structured_plan, ensure_ascii=False, default=str),
         "full_plan_document": "\n".join([f"步骤 {i}: {s.description}" for i, s in enumerate(flow.state.steps)]),
     }
 
@@ -741,6 +925,7 @@ def run_final_verifier(flow) -> str:
     if feedback.get("verdict") == "pass":
         print(f"[FinalVerifier] 整体审核通过")
         flow.notify(f"🎉 [FinalVerifier] 整体审核通过")
+        # P1.2 step 4: LLM 仅做 narrative 翻译, 输入是结构化 plan (不是自由文本)
         flow.state.final_report = generate_final_report(flow)
         report_len = len(flow.state.final_report) if flow.state.final_report else 0
         print(f"[FinalVerifier] 生成的最终报告长度: {report_len}")
@@ -748,8 +933,8 @@ def run_final_verifier(flow) -> str:
         run_finalize(flow)
         return "pass"
 
-    # 不通过 —— 触发局部重规划
-    print(f"[FinalVerifier] 整体审核不通过，触发局部重规划")
+    # LLM 软检查不通过 —— 触发局部重规划
+    print(f"[FinalVerifier] LLM 软检查不通过，触发局部重规划")
     flow.notify(f"⚠️ [FinalVerifier] 整体审核不通过")
     failed_indices = feedback.get("failed_step_ids", [])
     if failed_indices:
@@ -764,26 +949,14 @@ def run_final_verifier(flow) -> str:
 
 def generate_final_report(flow) -> str:
     """
-    将全部步骤的执行结果交给 LLM 合成为用户可读的旅游计划。
+    P1.2: LLM 仅做 narrative 翻译, 输入是结构化 plan (而非自由文本 result)。
 
-    步骤的 description 是执行指令（如"查询天气"），result 才是实际数据。
-    这里只收集 result，让 LLM 生成最终的用户旅行计划。
+    步骤:
+      1. 优先用 state.structured_plan (P1.1 确定性组装) 作为 LLM 输入
+      2. fallback: 旧路径 (聚合 result_text)
+      3. 严格禁止 LLM 创造结构化 plan 之外的数据 (没有的工具结果不能瞎编)
     """
-    if not flow.state.steps:
-        return "未能生成行程报告"
-
-    # 收集所有步骤的结果（实际数据，不是执行指令）
-    results_text = []
-    for s in flow.state.steps:
-        label = "✅" if s.status == "completed" else "⚠️"
-        if s.result:
-            results_text.append(f"[{label}] {s.result}")
-        elif s.status == "completed":
-            results_text.append(f"[{label}] {s.description} - 已完成")
-        else:
-            results_text.append(f"[{label}] {s.description} - 未完成")
-
-    collected = "\n\n".join(results_text)
+    structured = flow.state.structured_plan if isinstance(flow.state.structured_plan, dict) and flow.state.structured_plan else None
 
     # 把规划阶段做出的假设带给报告生成 LLM，让它在开头明确披露
     assumptions_block = ""
@@ -791,7 +964,45 @@ def generate_final_report(flow) -> str:
         bullets = "\n".join(f"- {a}" for a in flow.state.assumptions)
         assumptions_block = f"\n【系统所做的关键假设（必须在报告开头以 📌 形式向用户披露，并提示用户可调整）】\n{bullets}\n"
 
-    prompt = f"""你是一位资深旅游规划师。请根据以下执行数据，为用户撰写一份完整的旅行计划报告。
+    if structured:
+        plan_json = json.dumps(structured, ensure_ascii=False, indent=2, default=str)[:6000]
+        prompt = f"""你是一位资深旅游规划师, 负责把【结构化行程数据】翻译成用户友好的中文报告。
+
+【用户需求】
+- 目的地: {flow.state.location}
+- 关注重点: {flow.state.focus}
+- 用户原话: {flow.state.message[:500]}
+{assumptions_block}
+【结构化行程数据 (JSON)】
+{plan_json}
+
+【撰写要求】
+1. 严格基于结构化数据翻译, 不得编造数据中没有的景点/天气/预算数字。
+2. 不要描述"执行步骤" (如"步骤 0 完成了查询")。
+3. 包含以下板块 (数据中没有的板块直接跳过, 不要硬编):
+   - 目的地概况
+   - 天气与最佳出行建议 (有 weather data 时)
+   - 行程要点 (按 description 任务名, 不要拼凑 day-by-day)
+   - 注意事项 (来自 warnings)
+4. 使用清晰的小标题、emoji 和分段, 方便用户在飞书上阅读。
+5. 总字数控制在 800 字以内。
+6. 如果有 warnings 字段, 在报告末尾用 ⚠️ 列出前 3 条。"""
+    else:
+        # 旧路径 fallback: 聚合 result_text
+        if not flow.state.steps:
+            return "未能生成行程报告"
+        results_text = []
+        for s in flow.state.steps:
+            label = "✅" if s.status == "completed" else "⚠️"
+            text = s.result_text or (s.result if isinstance(s.result, str) else "")
+            if text:
+                results_text.append(f"[{label}] {text}")
+            elif s.status == "completed":
+                results_text.append(f"[{label}] {s.description} - 已完成")
+            else:
+                results_text.append(f"[{label}] {s.description} - 未完成")
+        collected = "\n\n".join(results_text)
+        prompt = f"""你是一位资深旅游规划师。请根据以下执行数据，为用户撰写一份完整的旅行计划报告。
 
 【用户需求】
 - 目的地: {flow.state.location}
@@ -803,17 +1014,9 @@ def generate_final_report(flow) -> str:
 
 【撰写要求】
 1. 绝不要重复原始的执行步骤描述（如"查询天气"、"获取偏好"等）。
-2. 把所有数据整合成一份自然流畅的旅行计划，像真人旅游顾问写的那样。
-3. 包含以下板块（根据数据情况可省略无数据的板块）：
-   - 目的地概况
-   - 天气与最佳出行建议
-   - 行程安排（按天列出）
-   - 预算参考
-   - 注意事项
-
-4. 如果某个板块完全没有数据，直接跳过不要硬编。
-5. 使用清晰的小标题、emoji 和分段，方便用户在飞书上阅读。
-6. 总字数控制在 800 字以内。"""
+2. 把所有数据整合成一份自然流畅的旅行计划。
+3. 总字数控制在 800 字以内。"""
+        structured = None  # for fallback path
 
     try:
         with timed("LLM:generate_final_report"):
@@ -823,9 +1026,23 @@ def generate_final_report(flow) -> str:
     except Exception as e:
         print(f"[generate_final_report] LLM 生成报告失败: {e}")
 
-    # fallback: 返回收集到的原始结果
-    if collected:
-        return f"📋 行程规划结果\n\n{collected}"
+    # fallback: 旧路径 - 返回收集到的原始结果
+    if structured:
+        return (
+            f"📋 行程规划结果\n\n"
+            f"目的地: {structured.get('destination', '未知')}\n"
+            f"数据来源: {', '.join(structured.get('data_sources', [])) or '无'}\n"
+            f"步骤数: {len(structured.get('steps', []))}\n"
+            f"⚠️ 警告: {len(structured.get('warnings', []))} 条"
+        )
+    if flow.state.steps:
+        results_text = []
+        for s in flow.state.steps:
+            label = "✅" if s.status == "completed" else "⚠️"
+            text = s.result_text or (s.result if isinstance(s.result, str) else "")
+            if text:
+                results_text.append(f"[{label}] {text}")
+        return f"📋 行程规划结果\n\n" + "\n\n".join(results_text)
     return "未能生成行程报告"
 
 

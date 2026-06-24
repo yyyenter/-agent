@@ -8,7 +8,7 @@ from agent_test0.workflow.nodes import _enforce_first_turn_question
 
 
 def test_first_turn_must_ask():
-    nodes._llm_followup_question = lambda flow, plan_data, reason, missing=None: "LLM追问：请补充计划玩几天、预算和几位出行。"
+    nodes._llm_followup_question = lambda state, plan_data, reason, missing=None: "LLM追问：请补充计划玩几天、预算和几位出行。"
     flow = TravelWorkflow()
     flow.state.message = "想去重庆"
     flow.state.focus = "【近期对话上下文（原文）】：\nuser: 想去重庆\n【当前最新指令】：想去重庆"
@@ -20,7 +20,8 @@ def test_first_turn_must_ask():
         "needs_user_input": False,
     }
 
-    assert _enforce_first_turn_question(flow, plan_data) is True
+    # 方案A1: _enforce_first_turn_question(state, plan_data) 接 state 而非 flow
+    assert _enforce_first_turn_question(flow.state, plan_data) is True
     assert flow.state.needs_user_input is True
     assert "LLM追问" in flow.state.user_question
     assert "计划玩几天" in flow.state.user_question
@@ -41,13 +42,13 @@ def test_weather_query_not_blocked():
         "needs_user_input": False,
     }
 
-    assert _enforce_first_turn_question(flow, plan_data) is False
+    assert _enforce_first_turn_question(flow.state, plan_data) is False
     assert flow.state.needs_user_input is False
     print("✅ weather_query_not_blocked")
 
 
 def test_previous_user_constraints_do_not_fill_new_turn():
-    nodes._llm_followup_question = lambda flow, plan_data, reason, missing=None: "LLM追问：成都这次计划玩几天、预算多少、几位出行？"
+    nodes._llm_followup_question = lambda state, plan_data, reason, missing=None: "LLM追问：成都这次计划玩几天、预算多少、几位出行？"
     flow = TravelWorkflow()
     flow.state.message = "想去成都"
     flow.state.focus = """【近期对话上下文（原文）】：
@@ -63,7 +64,7 @@ user: 想去成都
         "needs_user_input": False,
     }
 
-    assert _enforce_first_turn_question(flow, plan_data) is True
+    assert _enforce_first_turn_question(flow.state, plan_data) is True
     assert flow.state.needs_user_input is True
     assert "LLM追问" in flow.state.user_question
     assert "成都" in flow.state.user_question
@@ -71,7 +72,7 @@ user: 想去成都
 
 
 def test_invalid_reply_to_previous_question_does_not_reuse_location():
-    nodes._llm_followup_question = lambda flow, plan_data, reason, missing=None: "LLM追问：我没理解 ff，请补充有效的天数、预算和人数。"
+    nodes._llm_followup_question = lambda state, plan_data, reason, missing=None: "LLM追问：我没理解 ff，请补充有效的天数、预算和人数。"
     flow = TravelWorkflow()
     flow.state.message = "ff"
     flow.state.focus = """【近期对话上下文】：
@@ -87,7 +88,7 @@ user: ff
         "needs_user_input": False,
     }
 
-    assert _enforce_first_turn_question(flow, plan_data) is True
+    assert _enforce_first_turn_question(flow.state, plan_data) is True
     assert flow.state.needs_user_input is True
     assert "LLM追问" in flow.state.user_question
     assert "ff" in flow.state.user_question
@@ -111,7 +112,7 @@ user: 看你安排
         "needs_user_input": False,
     }
 
-    assert _enforce_first_turn_question(flow, plan_data) is False
+    assert _enforce_first_turn_question(flow.state, plan_data) is False
     assert flow.state.needs_user_input is False
     print("✅ second_turn_delegated_can_assume")
 

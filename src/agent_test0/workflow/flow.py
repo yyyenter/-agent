@@ -25,6 +25,7 @@ from agent_test0.workflow.ask_user import (
 )
 from agent_test0.workflow.llm import zhipu_llm
 from agent_test0.workflow import nodes
+from agent_test0.workflow.graph import get_travel_graph
 from agent_test0.workflow.trace import (
     timed, reset as trace_reset, report as trace_report,
     quiet_crewai, dump_json, span,
@@ -101,23 +102,11 @@ class TravelWorkflow(Flow[TravelState]):
     # 状态节点
     # ============================================================
     #
-    # 【架构说明】只保留 @start 作为入口，整条状态机由 nodes.run_state_machine
-    # 用显式 while 循环驱动（支持 retry / replan 这种循环语义，且避免
-    # @listen 自动传播 + 手动调用并存导致的双触发）。
-    # step_preparer / step_executor / step_verifier / final_verifier 不再
-    # 用 @listen 装饰——它们由 run_state_machine 直接以 nodes.run_xxx 调用。
-
-    @start()
-    def plan_steps(self):
-        """Flow 入口：跑完整状态机（Planner → 步骤循环 → FinalVerifier）。"""
-        return nodes.run_state_machine(self)
-
-    def partial_replanner(self, failure_feedback: dict):
-        """非 @listen 节点：由 step_verifier / final_verifier 直接调用"""
-        return nodes.run_partial_replanner(self, failure_feedback)
-
-    def finalize(self):
-        return nodes.run_finalize(self)
+    # 【架构说明】方案 A1: 编排由 LangGraph StateGraph (workflow/graph.py) 驱动,
+    # 不再用 CrewAI Flow 的 @start/@listen。run_for_user 里直接 graph.invoke。
+    # 旧的 @start plan_steps / partial_replanner / finalize 方法已删除
+    # (它们调用的 nodes.run_state_machine / run_partial_replanner / run_finalize 已不存在)。
+    # notify 回调通过 RunnableConfig['configurable']['notify'] 注入到节点。
 
     # ============================================================
     # 外部统一入口
@@ -165,7 +154,7 @@ class TravelWorkflow(Flow[TravelState]):
             # 2) 短期记忆直接使用 episodic 原文，不再做 LLM 蒸馏 summary
             #    （蒸馏会漏字段/残留字段/示例污染，导致默认值或旧目的地泄露）。
 
-            # 3) 跑 Flow
+            # 3) 跑 Flow (方案 A1: LangGraph StateGraph 驱动, 不再用 CrewAI Flow kickoff)
             flow = cls(status_callback=status_callback, content_callback=content_callback)
             flow.state.message = user_text
             flow.state.user_id = user_id
@@ -177,6 +166,26 @@ class TravelWorkflow(Flow[TravelState]):
             #     让 Planner 节点能直接读 flow.state.current_destination。
             memory.bind_to_state(flow.state)
 
+            # 3b) 用纯 TravelState 跑 graph。
+            # ⚠️ 不能直接传 flow.state: CrewAI Flow 的 self.state 是 StateProxy 包装,
+            #    model_dump() 会带隐藏的 id 字段, 导致 LangGraph 误判为 checkpoint
+            #    state (StateWithId) → InvalidUpdateError。先 dump 成纯 TravelState。
+            pure_state = TravelState(**{k: v for k, v in flow.state.model_dump(mode="json").items()
+                                        if k in TravelState.model_fields})
+
+            # 3c) LangGraph config: 注入 notify 回调 (方案 A1: config 注入)
+            #     节点从 config['configurable']['notify'] 取回调推状态给前端。
+            # 注: 不传 thread_id / 不带 checkpointer —— 单轮 invoke 不需要 checkpoint,
+            #     跨轮上下文由 MemoryManager (Redis 记忆系统) 管理。
+            def _notify(text: str):
+                flow.notify(text)
+
+            graph_config = {
+                "configurable": {
+                    "notify": _notify,
+                },
+            }
+
             # 顶层 span: 整轮 Flow 的入口, 记录 input (用户消息) + output (最终报告)
             try:
                 with span("run_for_user",
@@ -184,7 +193,15 @@ class TravelWorkflow(Flow[TravelState]):
                           message_len=len(user_text),
                           message_preview=user_text[:80]) as run_span:
                     with timed("Flow:state_machine_total"):
-                        flow.kickoff()
+                        graph = get_travel_graph()
+                        result_state = graph.invoke(pure_state, config=graph_config)
+                    # graph 返回最终 state (dict 或 TravelState), 写回 flow.state 供下游使用
+                    if isinstance(result_state, dict):
+                        for k, v in result_state.items():
+                            if k in TravelState.model_fields:
+                                setattr(flow.state, k, v)
+                    elif isinstance(result_state, TravelState):
+                        flow.state = result_state
                     # 写 output
                     run_span.set_output(
                         final_report_len=len(flow.state.final_report or ""),
@@ -192,6 +209,7 @@ class TravelWorkflow(Flow[TravelState]):
                         needs_user_input=flow.state.needs_user_input,
                     )
             except AskUserInterrupt as e:
+                # 保留兼容: 个别路径可能仍抛 AskUserInterrupt (旧 ask_user_and_exit)
                 print(f"[run_for_user] AskUser 中断: {e.question} (field={e.blocking_field})")
 
             # 4) 取最终输出，按优先级兜底

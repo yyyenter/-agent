@@ -22,7 +22,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from agent_test0.workflow.state import StepPlan, TravelState
 from agent_test0.workflow.nodes import (
-    _check_deterministic_rules, run_final_verifier, generate_final_report,
+    _check_deterministic_rules, final_verifier_node, generate_final_report,
 )
 from agent_test0.workflow.structured import StructuredCallError
 
@@ -135,10 +135,14 @@ def test_run_final_verifier_writes_structured_plan():
     def mock_load(*a, **kw):
         raise StructuredCallError("mock: no LLM in this test")
     nodes.load_task_prompt = mock_load
+    # pass 分支会内部调 generate_final_report → zhipu_llm.call, mock 掉避免真实 LLM
+    original_call = nodes.zhipu_llm.call
+    nodes.zhipu_llm.call = MagicMock(side_effect=Exception("mock: no LLM"))
     try:
-        verdict = run_final_verifier(flow)
+        verdict = final_verifier_node(flow.state, {})
     finally:
         nodes.load_task_prompt = original_load
+        nodes.zhipu_llm.call = original_call
 
     # 规则通过 (R1/R2/R3 都 pass) → LLM 失败但默认 pass → generate_final_report 调用
     # (LLM 也失败 → fallback 到 structured_plan summary)
@@ -182,11 +186,12 @@ def test_rule_fail_triggers_replan_no_llm():
     original = nodes.load_task_prompt
     nodes.load_task_prompt = fail_load
     try:
-        verdict = run_final_verifier(flow)
+        verdict = final_verifier_node(flow.state, {})
     finally:
         nodes.load_task_prompt = original
 
-    assert verdict == "fail", f"规则失败应返回 'fail', 实际: {verdict}"
+    # 新签名返回 state 增量 dict (不再返回 verdict 字符串); 规则失败由 replan_count 体现
+    assert isinstance(verdict, dict), f"应返回 state 增量 dict, 实际: {type(verdict)}"
     assert state.structured_plan != {}, "即使规则失败, structured_plan 也应已组装 (用于 replan 输入)"
     # replan_count 应被增加
     assert state.replan_count >= 1
@@ -225,7 +230,7 @@ def test_generate_final_report_prefers_structured_plan():
     original_call = nodes.zhipu_llm.call
     nodes.zhipu_llm.call = MagicMock(side_effect=Exception("mock: no LLM"))
     try:
-        report = generate_final_report(flow)
+        report = generate_final_report(flow.state)
     finally:
         nodes.zhipu_llm.call = original_call
 
@@ -257,7 +262,7 @@ def test_generate_final_report_fallback():
     original_call = nodes.zhipu_llm.call
     nodes.zhipu_llm.call = MagicMock(side_effect=Exception("mock: no LLM"))
     try:
-        report = generate_final_report(flow)
+        report = generate_final_report(flow.state)
     finally:
         nodes.zhipu_llm.call = original_call
 

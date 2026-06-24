@@ -7,7 +7,7 @@ from unittest.mock import patch
 from agent_test0.tools.registry import execute_tool_calls
 from agent_test0.workflow.state import StepPlan, ToolCall
 from agent_test0.workflow.flow import TravelWorkflow
-from agent_test0.workflow.nodes import run_step_executor
+from agent_test0.workflow.nodes import step_executor_node
 
 
 def test_weather_tool_success():
@@ -50,7 +50,7 @@ def test_run_step_executor_no_tool_step_completed():
     flow = TravelWorkflow()
     flow.state.steps = [StepPlan(index=0, description="整合生成报告", prepared=True, tool_calls=[])]
     flow.state.current_step_index = 0
-    run_step_executor(flow)
+    step_executor_node(flow.state, {})
     step = flow.state.steps[0]
     assert step.status == "completed"
     # P0.2: 无工具步骤没有结构化 result（None），其产出在 result_text
@@ -71,7 +71,7 @@ def test_run_step_executor_python_weather():
     )]
     flow.state.current_step_index = 0
     with patch("agent_test0.tools.registry.WeatherTool._run", return_value='{"城市":"重庆","天气":"多云"}'):
-        run_step_executor(flow)
+        step_executor_node(flow.state, {})
     step = flow.state.steps[0]
     assert step.status == "completed"
     assert len(step.tool_results) == 1

@@ -60,7 +60,7 @@ def test_full_assembly():
         _make_step(2, "组装 3 天行程", status="completed", tools=[], result=None),
     ]
     flow = _make_flow(state)
-    plan = assemble_structured_plan(flow)
+    plan = assemble_structured_plan(flow.state)
 
     assert plan["destination"] == BEIJING
     assert plan["user_query"] == "想去北京 3 天"
@@ -91,7 +91,7 @@ def test_failed_step_writes_warning():
                    tools=["Tavily Search"], error="网络超时"),
     ]
     flow = _make_flow(state)
-    plan = assemble_structured_plan(flow)
+    plan = assemble_structured_plan(flow.state)
 
     assert len(plan["steps"]) == 2  # failed step 仍记录
     assert plan["steps"][1]["status"] == "failed"
@@ -114,7 +114,7 @@ def test_pending_step_writes_warning():
         _make_step(2, "assemble", status="pending"),
     ]
     flow = _make_flow(state)
-    plan = assemble_structured_plan(flow)
+    plan = assemble_structured_plan(flow.state)
 
     assert len(plan["steps"]) == 1  # 只 completed 算入
     assert any("步骤 1" in w and "pending" in w for w in plan["warnings"])
@@ -131,7 +131,7 @@ def test_empty_steps_writes_warning():
     state.message = "test"
     state.steps = []
     flow = _make_flow(state)
-    plan = assemble_structured_plan(flow)
+    plan = assemble_structured_plan(flow.state)
 
     assert plan["steps"] == []
     assert any("没有完成的步骤" in w for w in plan["warnings"])
@@ -152,7 +152,7 @@ def test_data_sources_dedup():
         _make_step(2, "weather day 3", status="completed", tools=["weather_tool"]),
     ]
     flow = _make_flow(state)
-    plan = assemble_structured_plan(flow)
+    plan = assemble_structured_plan(flow.state)
 
     # weather_tool 只出现一次
     assert plan["data_sources"].count("weather_tool") == 1
@@ -173,7 +173,7 @@ def test_assumptions_and_failed_steps():
         _make_step(0, "a", status="completed", tools=[]),
     ]
     flow = _make_flow(state)
-    plan = assemble_structured_plan(flow)
+    plan = assemble_structured_plan(flow.state)
 
     assert plan["assumptions"] == ["默认 3 天", "默认 2 人"]
     assert plan["failed_steps"] == [1, 3]
@@ -194,7 +194,7 @@ def test_tool_data_dict_preserved():
                            "数据源": "和风天气"}),
     ]
     flow = _make_flow(state)
-    plan = assemble_structured_plan(flow)
+    plan = assemble_structured_plan(flow.state)
 
     data = plan["steps"][0]["data"]
     assert data["城市"] == "北京"
@@ -216,7 +216,7 @@ def test_writes_to_state():
         _make_step(0, "weather", status="completed", tools=["weather_tool"], result={"t": 23}),
     ]
     flow = _make_flow(state)
-    plan = assemble_structured_plan(flow)
+    plan = assemble_structured_plan(flow.state)
     # 调用方负责写入
     state.structured_plan = plan
     assert state.structured_plan["destination"] == "北京"

@@ -80,7 +80,7 @@ def test_keeps_all_completed_steps():
     original_call = nodes.call_structured
     nodes.call_structured = mock_call
     try:
-        nodes.run_partial_replanner(flow, {"reason": "test fail"})
+        nodes.partial_replanner_node(flow.state, {},{"reason": "test fail"})
     finally:
         nodes.call_structured = original_call
 
@@ -127,7 +127,7 @@ def test_failed_steps_kept_as_history():
     original_call = nodes.call_structured
     nodes.call_structured = mock_call
     try:
-        nodes.run_partial_replanner(flow, {"reason": "x"})
+        nodes.partial_replanner_node(flow.state, {},{"reason": "x"})
     finally:
         nodes.call_structured = original_call
 
@@ -171,7 +171,7 @@ def test_index_collision_auto_fixed():
     original_call = nodes.call_structured
     nodes.call_structured = mock_call
     try:
-        nodes.run_partial_replanner(flow, {"reason": "x"})
+        nodes.partial_replanner_node(flow.state, {},{"reason": "x"})
     finally:
         nodes.call_structured = original_call
 
@@ -211,7 +211,7 @@ def test_legacy_new_coarse_steps_still_works():
     original_call = nodes.call_structured
     nodes.call_structured = mock_call
     try:
-        nodes.run_partial_replanner(flow, {"reason": "x"})
+        nodes.partial_replanner_node(flow.state, {},{"reason": "x"})
     finally:
         nodes.call_structured = original_call
 
@@ -243,7 +243,7 @@ def test_llm_failure_does_not_crash():
     original_call = nodes.call_structured
     nodes.call_structured = mock_call
     try:
-        nodes.run_partial_replanner(flow, {"reason": "x"})
+        nodes.partial_replanner_node(flow.state, {},{"reason": "x"})
     finally:
         nodes.call_structured = original_call
 
@@ -274,7 +274,7 @@ def test_replan_count_increments():
     original_call = nodes.call_structured
     nodes.call_structured = mock_call
     try:
-        nodes.run_partial_replanner(flow, {"reason": "x"})
+        nodes.partial_replanner_node(flow.state, {},{"reason": "x"})
     finally:
         nodes.call_structured = original_call
 
@@ -308,7 +308,7 @@ def test_failed_steps_indices_reset():
     original_call = nodes.call_structured
     nodes.call_structured = mock_call
     try:
-        nodes.run_partial_replanner(flow, {"reason": "x"})
+        nodes.partial_replanner_node(flow.state, {},{"reason": "x"})
     finally:
         nodes.call_structured = original_call
 
@@ -344,12 +344,12 @@ def test_multiple_replans_accumulate():
         # 第一次 replan
         state.failed_steps_indices = [0]
         state.steps[0].status = "failed"
-        nodes.run_partial_replanner(flow, {"reason": "first fail"})
+        nodes.partial_replanner_node(flow.state, {},{"reason": "first fail"})
         # 第二次 replan (假设新追加的 step 又失败)
         last = state.steps[-1]
         last.status = "failed"
         state.failed_steps_indices = [last.index]
-        nodes.run_partial_replanner(flow, {"reason": "second fail"})
+        nodes.partial_replanner_node(flow.state, {},{"reason": "second fail"})
     finally:
         nodes.call_structured = original_call
 

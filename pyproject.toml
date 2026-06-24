@@ -23,6 +23,7 @@ dependencies = [
     "crewai-tools>=1.14.1",
     "redis>=7.4.0",
     "lark-oapi>=1.6.8",
+    "langgraph>=1.1.10",
 ]
 
 [project.scripts]

@@ -109,50 +109,26 @@ async def chat_endpoint_stream(request: ChatRequest):
 
         try:
             if intent_name == "travel":
-                # ⚠️ 这里修改了回调，确保把消息推送到前端识别的 type 里
+                # ⚠️ 回调推送到前端 SSE queue
                 def workflow_status_listener(status_text: str):
                     asyncio.run_coroutine_threadsafe(queue.put({"type": "status", "content": status_text}), loop)
 
                 def workflow_content_listener(content: str, content_type: str):
                     asyncio.run_coroutine_threadsafe(queue.put({"type": content_type, "content": content}), loop)
 
-                travel_flow = TravelWorkflow(status_callback=workflow_status_listener, content_callback=workflow_content_listener)
-                travel_flow.state.message = request.message
-                travel_flow.state.focus = memory.get_global_context_prompt(request.message)
-                travel_flow.state.user_id = actual_user_id
-                travel_flow.state.session_id = actual_session_id
+                # 方案A1: 走 run_for_user (= graph.invoke), 与飞书/CLI 统一入口。
+                # 跨轮上下文由 MemoryManager (Redis 记忆系统) 管理;
+                # 不再手动 kickoff + 手动 Redis 存取 steps (graph 每轮重跑 Planner)。
+                final_report_text = TravelWorkflow.run_for_user(
+                    user_text=request.message,
+                    user_id=actual_user_id,
+                    session_id=actual_session_id,
+                    memory=memory,
+                    status_callback=workflow_status_listener,
+                    content_callback=workflow_content_listener,
+                )
 
-                # ===== 从 Redis 恢复 Flow 状态（跨请求保持计划进度）=====
-                flow_state_key = f"session:{actual_session_id}:flow_state"
-                saved_state = redis_client.hgetall(flow_state_key)
-                if saved_state:
-                    hard_print("📦 [状态恢复] 从 Redis 恢复 Flow 状态")
-                    try:
-                        steps_json = saved_state.get("steps", "[]")
-                        if steps_json:
-                            from agent_test0.workflow.state import StepPlan
-                            travel_flow.state.steps = [StepPlan(**s) for s in json.loads(steps_json)]
-                        travel_flow.state.current_step_index = int(saved_state.get("current_step_index", "0"))
-                        travel_flow.state.location = saved_state.get("location", "未知地点")
-                        # focus 每轮由 MemoryManager 基于原始对话重新组装，避免恢复旧 summary 造成上下文泄露
-                    except Exception as e:
-                        hard_print(f"⚠️ [状态恢复] 解析失败: {e}")
-
-                result = travel_flow.kickoff()
-
-                # ===== 保存 Flow 状态到 Redis（24h TTL）=====
-                flow_state = {
-                    "steps": json.dumps([s.model_dump() for s in (result.state.steps or [])], ensure_ascii=False),
-                    "current_step_index": str(result.state.current_step_index),
-                    "location": result.state.location or "",
-                    "focus": result.state.focus or "",
-                    "final_report": result.state.final_report or "",
-                }
-                redis_client.hset(flow_state_key, mapping=flow_state)
-                redis_client.expire(flow_state_key, 86400)
-                hard_print("💾 [状态保存] Flow 状态已持久化到 Redis")
-
-                asyncio.run_coroutine_threadsafe(queue.put({"type": "finish", "content": result.state.final_report}), loop)
+                asyncio.run_coroutine_threadsafe(queue.put({"type": "finish", "content": final_report_text}), loop)
             else:
                 context_payload = memory.get_global_context_prompt(request.message)
                 system_prompt = "你是一个亲切的旅游管家。请根据以下上下文自然地回答用户。"

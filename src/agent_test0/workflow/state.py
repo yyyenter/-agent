@@ -205,6 +205,11 @@ class TravelState(BaseModel):
     final_verifier_done: bool = False         # FinalVerifier 是否已执行 (防重入)
     is_interrupted: bool = False              # 流程是否已被 AskUser 中断
     is_done: bool = False                     # 流程是否已结束 (FinalReport 已生成)
+    # 重试计数与上限 (方案A1: 从 TravelWorkflow 实例属性搬进 state, 进 checkpoint)
+    # 之前是 flow.step_retry_counts, 跨轮不持久 (飞书多轮重试计数会丢); 现入 state 修复。
+    step_retry_counts: dict[int, int] = {}    # 每个步骤 index → 已重试次数
+    max_step_retries: int = 3                 # 单步骤最大重试次数 (原 DEFAULT_MAX_STEP_RETRIES)
+    max_replan_attempts: int = 3              # 最大重规划次数 (原 DEFAULT_MAX_REPLAN_ATTEMPTS)
 
     # === 2. Working Data (步骤数据) ===
     steps: list[StepPlan] = []                # 步骤列表

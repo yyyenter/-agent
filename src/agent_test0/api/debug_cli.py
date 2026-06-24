@@ -142,26 +142,19 @@ def run_standalone_debug():
 
             # 7.4 根据意图分发处理
             if intent_name == "travel":
-                # ========== 旅游规划模式 ==========
-                workflow = TravelWorkflow(status_callback=local_status_callback)
-                workflow.state.message = user_input
-                workflow.state.user_id = actual_user_id
-                workflow.state.session_id = actual_session_id
-                workflow.state.focus = memory.get_global_context_prompt(user_input)
-
-                workflow.kickoff()
-
-                final_output = workflow.state.final_report
-                adjust_count = getattr(workflow, 'current_adjust_count', 0)
+                # ========== 旅游规划模式 (方案A1: 走 run_for_user = graph.invoke) ==========
+                # 不传 memory: run_for_user 内部会自建 MemoryManager 并 add_message,
+                # 避免与 L135 的 memory.add_message 重复。
+                final_output = TravelWorkflow.run_for_user(
+                    user_text=user_input,
+                    user_id=actual_user_id,
+                    session_id=actual_session_id,
+                    status_callback=local_status_callback,
+                )
                 print("\n[📝 本轮最终输出]:")
                 print("-" * 60)
                 print(final_output)
                 print("-" * 60)
-                print(f"[状态机指标] 内部质检打回重改次数: {adjust_count} 次")
-
-                # 记忆流转 B：提炼长期偏好
-                print("\n[记忆系统] 正在将本轮关键信息提炼为长期偏好...")
-                memory.convert_to_semantic(zhipu_llm)
 
             else:
                 # ========== 闲聊模式 ==========

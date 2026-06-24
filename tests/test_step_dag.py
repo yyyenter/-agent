@@ -107,24 +107,25 @@ def test_travel_state_with_dag_steps():
 
 def test_step_executor_dependency_check_warns_on_unmet():
     """StepExecutor 应在依赖未完成时打 warn, 但不阻塞 (P0.1 线性执行模式)"""
-    from unittest.mock import MagicMock
     from agent_test0.workflow import nodes
+    from agent_test0.workflow.flow import TravelWorkflow
 
-    flow = MagicMock()
+    # 方案A1: 节点收 state 参数 (非 flow), 用真实 TravelWorkflow 持有 state。
+    # 不再用 MagicMock(mock 的 needs_user_input 会自动 truthy 触发 _check_ask_user 提前返回)。
+    flow = TravelWorkflow()
     flow.state.steps = [
         StepPlan(index=0, description="weather", dependencies=[], status="completed"),
         StepPlan(index=1, description="assemble", dependencies=[5]),  # 5 不存在
     ]
     flow.state.current_step_index = 1
-    flow._check_ask_user_hook.return_value = False
-    flow.notify = lambda x: None  # 静默 notify
+    # needs_user_input 默认 False, _check_ask_user 不触发
 
-    # run_step_executor 不应抛异常, 只 warn
+    # step_executor_node 不应抛异常, 只 warn
     try:
-        nodes.run_step_executor(flow)
+        nodes.step_executor_node(flow.state, {})
     except Exception as e:
         raise AssertionError(f"StepExecutor 在依赖未满足时应仅 warn, 不应抛异常: {e}")
-    # 步骤应仍进入执行 (status=executing), 不因依赖未满足被跳过
+    # 步骤应仍进入执行 (status=executing/completed/failed), 不因依赖未满足被跳过
     assert flow.state.steps[1].status in ("executing", "completed", "failed"), \
         f"步骤应进入执行流, 实际 status: {flow.state.steps[1].status}"
     print("[OK] step_executor_dependency_check_warns_on_unmet")

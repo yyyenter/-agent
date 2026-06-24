@@ -25,7 +25,10 @@ from agent_test0.workflow.ask_user import (
 )
 from agent_test0.workflow.llm import zhipu_llm
 from agent_test0.workflow import nodes
-from agent_test0.workflow.trace import timed, reset as trace_reset, report as trace_report
+from agent_test0.workflow.trace import (
+    timed, reset as trace_reset, report as trace_report,
+    quiet_crewai, dump_json, span,
+)
 
 
 # 修复 stdout 编码（Windows 终端）
@@ -149,6 +152,7 @@ class TravelWorkflow(Flow[TravelState]):
         """
         try:
             trace_reset()  # 每轮清空计时，避免跨轮累计
+            quiet_crewai()  # 关掉 CrewAI 自带的 ┌─...└─ 框
             sid = session_id or f"sess_{user_id}"
 
             # 由 crew 自己构造 MemoryManager（连接层无需关心 redis 客户端）
@@ -173,11 +177,20 @@ class TravelWorkflow(Flow[TravelState]):
             #     让 Planner 节点能直接读 flow.state.current_destination。
             memory.bind_to_state(flow.state)
 
-            # 顶层捕获 AskUserInterrupt：节点用新 API 抛出时，安静吞掉，
-            # state.final_report 已经在 ask_user_and_exit 里写好了
+            # 顶层 span: 整轮 Flow 的入口, 记录 input (用户消息) + output (最终报告)
             try:
-                with timed("Flow:state_machine_total"):
-                    flow.kickoff()
+                with span("run_for_user",
+                          user_id=user_id, session_id=sid,
+                          message_len=len(user_text),
+                          message_preview=user_text[:80]) as run_span:
+                    with timed("Flow:state_machine_total"):
+                        flow.kickoff()
+                    # 写 output
+                    run_span.set_output(
+                        final_report_len=len(flow.state.final_report or ""),
+                        steps=len(flow.state.steps or []),
+                        needs_user_input=flow.state.needs_user_input,
+                    )
             except AskUserInterrupt as e:
                 print(f"[run_for_user] AskUser 中断: {e.question} (field={e.blocking_field})")
 
@@ -226,7 +239,7 @@ class TravelWorkflow(Flow[TravelState]):
             except Exception as e:
                 print(f"[run_for_user] shortterm→semantic 失败（可忽略）: {e}")
 
-            trace_report()  # 打印本轮耗时汇总，定位大头
+            trace_report()  # 打印本轮 span 树 (新格式: 树形 + 数据流)
             return final_report
 
         except Exception as e:

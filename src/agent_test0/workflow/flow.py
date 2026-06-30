@@ -11,17 +11,11 @@ TravelWorkflow —— Flow 编排骨架。
 """
 
 import sys
-
 from crewai.flow import Flow, start
-
 from agent_test0.memory import MemoryManager, get_redis_or_fallback
 from agent_test0.workflow.state import TravelState
-from agent_test0.workflow.callbacks import run_crew_with_callback
-from agent_test0.workflow.parsing import parse_step_feedback
 from agent_test0.workflow.ask_user import (
     AskUserInterrupt,
-    check_ask_user_hook,
-    set_ask_user_question,
 )
 from agent_test0.workflow.llm import zhipu_llm
 from agent_test0.workflow import nodes
@@ -81,24 +75,9 @@ class TravelWorkflow(Flow[TravelState]):
 
     # ============================================================
     # 基础设施代理（薄包装到 workflow.* 模块）
-    # ============================================================
-
-    def _run_crew_with_callback(self, crew_class, inputs):
-        return run_crew_with_callback(self, crew_class, inputs)
-
-    def _check_ask_user_hook(self):
-        return check_ask_user_hook(self)
-
-    def _set_ask_user_question(self, question: str = None):
-        set_ask_user_question(self, question)
-
-    def _parse_step_feedback(self, raw_text: str) -> dict:
-        return parse_step_feedback(self, raw_text)
-
-    def _generate_final_report(self) -> str:
-        return nodes.generate_final_report(self)
 
     # ============================================================
+    # 状态节点
     # 状态节点
     # ============================================================
     #
@@ -148,8 +127,8 @@ class TravelWorkflow(Flow[TravelState]):
             if memory is None:
                 memory = MemoryManager(sid, user_id, _redis_client, _is_redis_fallback)
 
-            # 1) 写入用户输入到 episodic 记忆
-            memory.add_message("user", user_text)
+            # 1) 写入用户输入到 episodic 记忆 (方案 C: 拿 msg_id, 供 graph 后回写业务字段)
+            user_msg_id = memory.add_message("user", user_text)
 
             # 2) 短期记忆直接使用 episodic 原文，不再做 LLM 蒸馏 summary
             #    （蒸馏会漏字段/残留字段/示例污染，导致默认值或旧目的地泄露）。
@@ -235,14 +214,49 @@ class TravelWorkflow(Flow[TravelState]):
                   f"steps: {len(flow.state.steps or [])}, "
                   f"needs_user_input: {flow.state.needs_user_input}")
 
-            # 5) 写助手回复到 episodic
-            memory.add_message("assistant", final_report)
-
-            # 5a) 把单轮结果回写到 MemoryManager 跨轮业务字段
-            #     (Planner 推断出的 current_destination / current_task_id / current_topic)
+            # 5) 把单轮结果回写到 MemoryManager 跨轮业务字段
+            #    (Planner 推断出的 current_destination / current_topic)
             memory.sync_from_state(flow.state)
 
-            # 5b) 若本轮已生成 final_report (即非 AskUser 中断), 把当前 task 标记为已完成
+            # 5a) 方案 C: 确定本轮 task_id (新目的地 → 开新 task; 否则继承),
+            #     回写 user 索引条目的 task_id/destination (add_message 时未知),
+            #     让下一轮 retrieve_short_term_context 能按 task_id 召回历史。
+            inferred_dest = (flow.state.current_destination or "").strip()
+            task_id = memory.current_task_id
+            if inferred_dest and inferred_dest != memory.current_destination:
+                # 新目的地 (或首次) → 开新 task
+                task_id = memory.new_task_id()
+                memory.current_task_id = task_id
+                memory.current_destination = inferred_dest
+                flow.state.current_task_id = task_id
+            elif task_id is None and inferred_dest:
+                # 首次有 destination 但还没 task_id
+                task_id = memory.new_task_id()
+                memory.current_task_id = task_id
+                flow.state.current_task_id = task_id
+
+            # 5b) 回写 user 索引条目 (Planner 跑完才知道 destination, 此时补上)
+            if task_id or inferred_dest:
+                try:
+                    memory.update_index_entry(
+                        user_msg_id,
+                        task_id=task_id,
+                        destination=inferred_dest or None,
+                        topic=flow.state.current_topic if flow.state.current_topic != "general" else None,
+                    )
+                except Exception as e:
+                    print(f"[run_for_user] 回写 user 索引失败（可忽略）: {e}")
+
+            # 5c) 写助手回复到 episodic, 带上本轮 task_id/destination (索引条目完整)
+            memory.add_message(
+                "assistant", final_report,
+                task_id=task_id,
+                destination=inferred_dest or None,
+                topic=flow.state.current_topic if flow.state.current_topic != "general" else None,
+                is_completed_task=bool(flow.state.final_report and not flow.state.needs_user_input),
+            )
+
+            # 5d) 若本轮已生成 final_report (即非 AskUser 中断), 把当前 task 标记为已完成
             #     下次 retrieve_short_term_context 会自动把该 task 归入 excluded_history。
             if flow.state.final_report and not flow.state.needs_user_input:
                 try:

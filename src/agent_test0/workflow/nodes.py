@@ -30,7 +30,14 @@ from agent_test0.workflow.state import (
     ReplanOutput,
     FinalVerifierOutput,
 )
-from agent_test0.workflow.structured import call_structured, load_task_prompt, StructuredCallError
+from agent_test0.workflow.structured import load_task_prompt, StructuredCallError
+from agent_test0.workflow.agents import (
+    planner_agent,
+    step_preparer_agent,
+    step_verifier_agent,
+    partial_replanner_agent,
+    final_verifier_agent,
+)
 from agent_test0.workflow.llm import zhipu_llm
 from agent_test0.workflow.trace import timed
 from agent_test0.tools.registry import execute_tool_calls, format_tool_results
@@ -357,8 +364,9 @@ def planner_node(state, config=None) -> dict:
 
         try:
             prompt = load_task_prompt("tasks.yaml", "planning_task", inputs)
-            plan = call_structured("Planner", prompt, PlannerOutput)
-            plan_data = plan.model_dump()
+            # 使用 CrewAI Agent 执行，自带 reasoning 链和结构化输出
+            plan = planner_agent.kickoff(prompt, response_format=PlannerOutput)
+            plan_data = plan.pydantic.model_dump()
             raw_text = json.dumps(plan_data, ensure_ascii=False)
             print(f"[Planner] 结构化输出: {raw_text[:500]}")
         except StructuredCallError as e:
@@ -375,6 +383,12 @@ def planner_node(state, config=None) -> dict:
             state.is_complex = plan_data.get("is_complex", True)
             state.simple_answer = plan_data.get("simple_answer", "")
             state.location = plan_data.get("location", "未知")
+            # 方案 C: 同步推断的 destination 到跨轮业务字段, 供 run_for_user
+            # 回写记忆索引 (task_id/destination), 让下一轮 retrieve_short_term_context
+            # 能按 task_id 召回历史。
+            inferred_dest = plan_data.get("location", "").strip()
+            if inferred_dest and inferred_dest not in ("未知", "未指定", "不明"):
+                state.current_destination = inferred_dest
             # 非授权默认时，不接受 Planner 自行编造的 assumptions；
             # 只有 assistant 已经问过一次且用户本轮明确授权默认，才保留模型假设。
             if already_asked and delegated:
@@ -499,8 +513,9 @@ def step_preparer_node(state, config=None) -> dict:
 
     try:
         prompt = load_task_prompt("step_preparer_tasks.yaml", "step_preparer_task", inputs)
-        plan = call_structured("StepPreparer", prompt, StepPreparerOutput)
-        current_step.tool_calls = plan.tools_to_call
+        # 使用 CrewAI Agent 执行
+        plan = step_preparer_agent.kickoff(prompt, response_format=StepPreparerOutput)
+        current_step.tool_calls = plan.pydantic.tools_to_call
         current_step.tools = [t.tool_name for t in current_step.tool_calls]
         current_step.prepared = True
         if current_step.tool_calls:
@@ -692,10 +707,12 @@ def step_verifier_node(state, config=None) -> dict:
 
     try:
         prompt = load_task_prompt("step_validator_tasks.yaml", "step_validator_task", inputs)
-        feedback = call_structured("StepVerifier", prompt, StepVerifierOutput).model_dump()
-    except StructuredCallError as e:
-        print(f"[StepVerifier] 结构化审核失败，默认通过: {e}")
-        feedback = {"verdict": "pass", "reason": "结构化审核失败，默认通过"}
+        # 使用 CrewAI Agent 执行
+        result = step_verifier_agent.kickoff(prompt, response_format=StepVerifierOutput)
+        feedback = result.pydantic.model_dump()
+    except Exception as e:
+        print(f"[StepVerifier] Agent 执行失败，默认通过: {e}")
+        feedback = {"verdict": "pass", "reason": "Agent 执行失败，默认通过"}
 
     current_step.validation_feedback = feedback.get("reason", "")
 
@@ -815,9 +832,11 @@ def partial_replanner_node(state, config=None, failure_feedback: dict | None = N
 
     try:
         prompt = load_task_prompt("replan_tasks.yaml", "replan_task", inputs)
-        replan_data = call_structured("PartialReplanner", prompt, ReplanOutput).model_dump()
-    except StructuredCallError as e:
-        print(f"[PartialReplanner] 结构化重规划失败: {e}")
+        # 使用 CrewAI Agent 执行
+        result = partial_replanner_agent.kickoff(prompt, response_format=ReplanOutput)
+        replan_data = result.pydantic.model_dump()
+    except Exception as e:
+        print(f"[PartialReplanner] Agent 重规划失败: {e}")
         replan_data = None
 
     # 解析重规划结果 (优先 new_appended_steps, fallback new_coarse_steps 兼容旧 prompt)
@@ -914,10 +933,11 @@ def final_verifier_node(state, config=None) -> dict:
 
     try:
         prompt = load_task_prompt("final_validator_tasks.yaml", "final_validator_task", inputs)
-        fv = call_structured("FinalVerifier", prompt, FinalVerifierOutput)
-        feedback = fv.model_dump()
+        # 使用 CrewAI Agent 执行
+        fv = final_verifier_agent.kickoff(prompt, response_format=FinalVerifierOutput)
+        feedback = fv.pydantic.model_dump()
         feedback["verdict"] = "pass" if feedback.get("global_verdict") == "pass" else "fail_with_patches"
-    except StructuredCallError as e:
+    except Exception as e:
         print(f"[FinalVerifier] 结构化整体审核失败，默认通过: {e}")
         feedback = {"verdict": "pass", "reason": "结构化整体审核失败，默认通过", "failed_step_ids": []}
 

@@ -136,6 +136,12 @@ class InMemoryFallback:
     
     def expire(self, key: str, ttl: int) -> None:
         pass  # 内存存储不需要 TTL
+
+    def lset(self, key: str, index: int, value: str) -> None:
+        # 对齐 Redis LSET: 按索引就地覆写; 越界抛错, 与 redis-py 行为一致。
+        if key not in self.data or not (-len(self.data[key]) <= index < len(self.data[key])):
+            raise IndexError("index out of range")
+        self.data[key][index] = value
     
     def hset(self, key: str, mapping: dict[str, str] | None = None, **kwargs: str) -> None:
         if key not in self.hashes:
@@ -303,6 +309,51 @@ class MemoryManager:
             if max_turns is not None:
                 self.redis.ltrim(self.index_key, -(max_turns * 2), -1)
             self.redis.expire(self.index_key, self.ttl)
+
+        return msg_id
+
+    def update_index_entry(self, msg_id: str, *,
+                           task_id: str | None = None,
+                           destination: str | None = None,
+                           topic: str | None = None,
+                           has_slots: bool | None = None,
+                           extracted_slots: dict[str, Any] | None = None,
+                           is_completed_task: bool | None = None) -> bool:
+        """按 msg_id 定位 Redis 索引条目并就地更新业务字段 (方案 C)。
+
+        用途: add_message 写入时业务字段 (task_id/destination/slots) 未知
+        (user message 进来时 Planner 还没跑), 等 Planner 推断出 destination
+        后用本方法回写索引, 让下一轮 retrieve_short_term_context 能按
+        task_id/destination 召回历史。
+
+        只更新传了非 None 的字段。返回是否找到并更新。
+        """
+        raw = self.redis.lrange(self.index_key, 0, -1)
+        updated = False
+        for i, item in enumerate(raw):
+            try:
+                entry = json.loads(item)
+            except (json.JSONDecodeError, TypeError):
+                continue
+            if entry.get("msg_id") != msg_id:
+                continue
+            if task_id is not None:
+                entry["task_id"] = task_id
+            if destination is not None:
+                entry["destination"] = destination
+            if topic is not None:
+                entry["topic"] = topic
+            if has_slots is not None:
+                entry["has_slots"] = has_slots
+            if extracted_slots is not None:
+                entry["extracted_slots"] = extracted_slots
+            if is_completed_task is not None:
+                entry["is_completed_task"] = is_completed_task
+            # Redis List 没有 lset 按值更新, 用 lset 按索引写回
+            self.redis.lset(self.index_key, i, json.dumps(entry, ensure_ascii=False))
+            updated = True
+            break
+        return updated
 
     def get_chat_history(self) -> list[dict[str, str]]:
         """获取最近完整短期对话原文。"""

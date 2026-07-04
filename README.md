@@ -1,12 +1,13 @@
 # AgentTest0 — 智能旅游规划系统
 
-基于 [CrewAI](https://docs.crewai.com) 的多智能体旅游规划系统。核心是一个 6 状态机（Planner → StepPreparer → StepExecutor → StepVerifier → PartialReplanner → FinalVerifier），用显式循环驱动，能在规划过程中发现信息不足时立即向用户追问。支持飞书长连接 bot、FastAPI + SSE、Streamlit 三种前端入口。
+基于 [LangGraph StateGraph](https://langchain-ai.github.io/langgraph/) 的多智能体旅游规划系统。核心是一个 6 状态机（Planner → StepPreparer → StepExecutor → StepVerifier → PartialReplanner → FinalVerifier），由图路由驱动，能在规划过程中发现信息不足时立即向用户追问。支持飞书长连接 bot、FastAPI + SSE、Streamlit 三种前端入口。
 
 ## 功能特性
 
 - **6 状态机 + 有界循环** — 规划→准备→执行→审核→(局部重规划)→终审，retry / replan 受计数上限保护，不会死循环
-- **AskUser 中断机制** — 任何节点发现关键信息缺失可立即中断本轮并向用户提问，`asked_fields` 跨轮持久化防重复问
+- **三层护栏追问机制** — 分层候选池 (40 个字段, 8 基础 + 7 领域 31 触发 + unknown 兜底) + 混合领域检测 (20 概念 105 同义词关键词层 + LLM 语义分类兜底) + 三层拦截 (归一化 / asked_fields 去重 / max_asks 硬上限)。让 LLM 灵活发现追问维度, 又不会重复问、造词漂移、审问用户
 - **四级记忆系统** — 情节记忆 / 工作记忆 / 工具缓存（Redis）+ 语义记忆（MySQL），Redis 不可用时自动回退内存
+- **结构化输出** — 全部节点用 [instructor](https://github.com/jxnl/instructor) + Pydantic 强约束 LLM 输出, ValidationError 自动重试
 - **天气查询** — 和风天气 API，带 Redis 缓存（5 小时 TTL）
 - **多入口** — 飞书长连接 bot、FastAPI + SSE、Streamlit、本地 debug CLI
 
@@ -99,19 +100,37 @@ uv run python tests/integration/client_test.py  # API 客户端测试（需先�
 
 ```
 src/agent_test0/
-├── workflow/        # 状态机（CrewAI Flow）：state / llm / crews / nodes / flow / ask_user / parsing / callbacks
-├── memory/          # 记忆系统：MemoryManager（Redis + MySQL）
-├── api/             # FastAPI + SSE（server.py）、本地 debug CLI
-├── ui/              # Streamlit 前端
+├── workflow/           # 状态机（LangGraph StateGraph）
+│   ├── state.py       # Pydantic 状态模型 (TravelState / *Output)
+│   ├── graph.py       # StateGraph 声明 (节点注册 + 条件边)
+│   ├── nodes.py       # 6 个节点的业务逻辑 (三步模式)
+│   ├── ask_user.py    # 分层候选池 + 混合检测 + 三层护栏
+│   ├── prompt.py      # YAML 任务模板加载 + slot 填充
+│   ├── structured.py  # instructor + Pydantic 结构化调用
+│   ├── llm.py         # 共享 LLM 实例
+│   ├── trace.py       # 树形 span trace
+│   └── crews.py       # (兼容层) 旧 CrewAI Flow
+├── memory/             # 四级记忆系统（Redis + MySQL）
+├── api/                # FastAPI + SSE（server.py）、本地 debug CLI
+├── ui/                 # Streamlit 前端
 ├── connectors/feishu/  # 飞书长连接 bot
-├── tools/           # 自定义工具（WeatherTool / ToolCacheManager）
-├── config/          # YAML 配置（agent.yaml + *_tasks.yaml）
-└── eval/            # 评估系统（独立子项目）
+├── tools/              # 自定义工具（WeatherTool / ToolCacheManager）
+├── config/             # YAML 配置
+│   ├── agent.yaml
+│   ├── tasks.yaml                    # Planner
+│   ├── step_preparer_tasks.yaml
+│   ├── step_validator_tasks.yaml
+│   ├── replan_tasks.yaml
+│   ├── final_validator_tasks.yaml
+│   └── domain_classifier_task.yaml   # 混合检测第 ②层 LLM 语义分类
+└── eval/               # 评估系统（独立子项目）
 ```
 
 详细的架构、状态机执行链路、开发流程见 [CLAUDE.md](./CLAUDE.md)。
 
 ## 架构概览
+
+### 状态机执行链路
 
 ```
 用户消息
@@ -122,15 +141,54 @@ src/agent_test0/
   ↓
 [3] StepExecutor     执行工具调用，写入 step.result
   ↓
-[4] StepVerifier     单步骤审核：pass / retry / fail
+[4] StepVerifier     单步骤审核：pass / retry / fail / ask_user
   ├── pass    → 下一步骤 / FinalVerifier
   ├── retry   → 重试当前步骤（最多 3 次）
-  └── fail    → [5] PartialReplanner（局部重规划）
+  ├── fail    → [5] PartialReplanner（局部重规划）
+  └── ask_user→ 追问用户（走三层护栏）
   ↓
 [6] FinalVerifier    整体审核 → 合成最终报告
   ↓
 final_report → 用户
 ```
+
+### 追问机制 (三层护栏 + 分层候选池)
+
+```
+                任何节点想追问用户
+                       ↓
+              request_user_input(state, field, question)
+                       │
+      ┌────────────────┼────────────────┐
+      ↓                ↓                ↓
+  拦截 ①            拦截 ②           拦截 ③
+  候选池归一化      asked_fields     max_asks
+  (LLM 造词漂移    (已问过同一        (总次数超限)
+   → unknown)      field 拦截)
+      │                │                │
+      └───── 三层全过 ─┴─────────────────┘
+                       ↓
+               中断本轮 Flow, 由图路由到 END, 下一轮用户回答
+```
+
+**分层候选池** (什么字段可以问):
+
+| 层 | 数量 | 何时暴露给 LLM |
+|----|-----|--------------|
+| BASE | 8 (destination / trip_days / budget / group_size ...) | 永远暴露 |
+| DOMAIN | 7 领域 × 3~6 字段 = 31 (companion / pet / activity / medical / international / logistics / occasion) | 按用户消息触发 |
+| UNKNOWN | 1 | 兜底, LLM 说不清时归一化落点 |
+
+**混合领域检测** (决定 DOMAIN 领域是否触发):
+
+- **第 ① 层 关键词硬匹配** (免费): 20 个概念 / 105 个同义词 (启动时自检无重复), 命中直接激活对应领域
+- **第 ② 层 LLM 语义分类** (只在关键词漏检时调): 覆盖 "陪爸妈" "长者" 等语义变体
+- **短消息 / 已识别多领域时自动跳过 LLM**, 省成本
+
+**举例**: 用户说 `"带一个老人去成都玩三天"`
+1. 关键词层激活 `companion` 领域 → 候选池暴露 `elderly_health` 等字段
+2. Planner LLM 看到 `elderly_health` 字段, 生成 `missing_field="elderly_health"` + 追问文本 "老人的年龄段和身体状况如何?"
+3. 三层护栏放行, 中断本轮等用户回答
 
 ## 常见故障排查
 
@@ -140,8 +198,10 @@ final_report → 用户
 4. **意图路由总是 chitchat** — 检查 Ollama：`curl http://localhost:11434/api/tags`，不可用时自动降级关键词匹配。
 5. **天气查询失败** — 检查 `QWEATHER_API_KEY` / `QWEATHER_API_HOST`。
 6. **回复很慢** — 单轮会跑多段 LLM（记忆蒸馏 + 每步状态机 + 报告合成），属正常；若卡死检查 `total_steps_counted` 是否触发 `MAX_STEP_ITERATIONS` 上限保护。
+7. **同义词表启动报错** — `[ask_user] 同义词冲突: 'xxx' 同时在概念 ...`。 到 `workflow/ask_user.py` 检查 `CONCEPT_SYNONYMS`, 同一个词不能在多个概念下。
 
 ## 支持
 
-- [CrewAI 文档](https://docs.crewai.com)
-- [CrewAI GitHub](https://github.com/crewAIInc/crewAI)
+- [LangGraph 文档](https://langchain-ai.github.io/langgraph/)
+- [Instructor 文档](https://python.useinstructor.com/)
+- [智谱 AI (GLM)](https://open.bigmodel.cn/)

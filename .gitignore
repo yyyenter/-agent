@@ -15,3 +15,13 @@ pyproject-old.toml
 # 研究数据集（大文件，不入仓库）
 src/knowledge/*.zip
 knowledge/*.zip
+
+# 练习目录（个人学习用, 不入主仓库）
+src/agent_practice/
+
+# IDE / 编辑器
+.vscode/
+.idea/
+
+# Claude Code 临时 worktree
+.claude/worktrees/

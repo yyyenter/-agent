@@ -116,6 +116,9 @@ class PlannerOutput(BaseModel):
     steps: list[StepPlan] = []
     needs_user_input: bool = False
     user_question: str = ""
+    # 缺失字段的结构化 key. 用于跨轮精确匹配 (asked_fields 去重).
+    # LLM 必须从 ask_user.ASKABLE_FIELDS 候选池中选; 落到其他值会被归一化为 "unknown".
+    missing_field: str = ""
     simple_answer: str = ""
     plan_summary: str = ""
 
@@ -180,6 +183,18 @@ class FinalVerifierOutput(BaseModel):
         return data
 
 
+class DomainClassifierOutput(BaseModel):
+    """DomainClassifier 的结构化输出: 用户消息触发了哪些领域.
+
+    只在关键词硬匹配漏检时才调 (混合检测第 ②层).
+    active_domains 里的字符串必须是 DOMAIN_FIELDS 的 key
+    (companion / pet / activity / medical / international / logistics / occasion).
+    LLM 输出的字符串若不在这些值里, 归一化时会被过滤.
+    """
+    active_domains: list[str] = []   # LLM 判断被激活的领域名
+    reasoning: str = ""              # 可选说明, 便于调试
+
+
 # ============================================
 # Flow 全局状态 (4 类分组, LangGraph 风格)
 # ============================================
@@ -210,6 +225,7 @@ class TravelState(BaseModel):
     step_retry_counts: dict[int, int] = {}    # 每个步骤 index → 已重试次数
     max_step_retries: int = 3                 # 单步骤最大重试次数 (原 DEFAULT_MAX_STEP_RETRIES)
     max_replan_attempts: int = 3              # 最大重规划次数 (原 DEFAULT_MAX_REPLAN_ATTEMPTS)
+    max_asks: int = 3                         # 单会话追问总次数上限 (硬护栏, 防"审问用户")
 
     # === 2. Working Data (步骤数据) ===
     steps: list[StepPlan] = []                # 步骤列表

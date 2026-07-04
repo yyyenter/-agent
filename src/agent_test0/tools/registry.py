@@ -1,190 +1,162 @@
-# agent_test0/tools/registry.py
+# tools/registry.py
 """
-确定性工具执行器。
+工具注册表 + 批量执行器。
 
-StepPreparer 负责生成细粒度 tool_calls（工具名 + 参数），本模块负责用 Python
-按顺序执行工具，避免 StepExecutor 再让 LLM 走 ReAct 工具调用导致解析失败。
+【定位】
+- 路由层: name → (Input类, Output类, runner) 的映射
+- executor 节点从 state 拿到 ToolCall 列表, 交给这里执行
+- 统一错误兜底: 未知工具 / 参数校验失败 / 网络异常 都包成 ToolResult(error=...), 不抛出
+- 统一格式化: 提供 format_for_llm, 把结构化输出转成"给 LLM 看"的文本
+
+【和 state.ToolCall / ToolResult 的对接】
+  ToolCall.parameters (dict)
+    ↓ spec.input_cls.model_validate(...)
+  WeatherInput 实例
+    ↓ spec.runner(inp)
+  WeatherOutput 实例
+    ↓ out.model_dump()
+  ToolResult.output (dict, 结构化) + ToolResult.output_text (str, 给 LLM 看)
 """
-
 from __future__ import annotations
 
-import json
 import time
-from typing import Any, Callable
+from dataclasses import dataclass
+from typing import Callable
 
-from agent_test0.tools.custom_tool import WeatherTool
+from pydantic import BaseModel
 
-
-ToolRunner = Callable[[dict], str]
-
-
-def _try_parse_structured(s: str) -> Any:
-    """P0.2: 尝试把工具返回的字符串解析为结构化数据 (dict/list)。
-
-    解析失败返回原字符串。常见场景:
-      - WeatherTool 返回 '[Cache Hit] {"城市": "北京", "温度": "23°C", ...}' → 解析为 dict
-      - WeatherTool 返回压缩摘要 '城市: 北京, 温度: 23°C [完整数据已缓存]' → 解析失败, 回退 str
-      - Tavily 搜索返回纯文本段落 → 解析失败, 回退 str
-    """
-    if not s:
-        return s
-    # 去掉 [Cache Hit] 前缀
-    raw = s
-    if raw.startswith("[Cache Hit]"):
-        raw = raw[len("[Cache Hit]"):].strip()
-    try:
-        return json.loads(raw)
-    except (json.JSONDecodeError, TypeError, ValueError):
-        return s
-
-
-def _format_text_output(tool_name: str, input_params: dict, output: Any, error: str) -> str:
-    """P0.2: 把 tool_result 格式化为 LLM 可读的文本 (output_text 字段)。"""
-    if error:
-        out_preview = (output if isinstance(output, str) else json.dumps(output, ensure_ascii=False))[:800]
-        return f"[{tool_name}] 输入: {input_params}\n错误: {error}\n输出: {out_preview}"
-    if isinstance(output, str):
-        out_preview = output[:1000]
-    else:
-        out_preview = json.dumps(output, ensure_ascii=False)[:1000]
-    return f"[{tool_name}] 输入: {input_params}\n输出: {out_preview}"
-
-
-def _normalize_tool_name(name: str) -> str:
-    """统一工具名，兼容 LLM 输出的大小写/空格/下划线差异。"""
-    raw = (name or "").strip()
-    lowered = raw.lower().replace(" ", "_")
-    aliases = {
-        "weather": "weather_tool",
-        "getweathertool": "weather_tool",
-        "get_weather_tool": "weather_tool",
-        "weather_tool": "weather_tool",
-        "tavily": "tavily_search",
-        "tavily_search": "tavily_search",
-        "tavily_search_tool": "tavily_search",
-    }
-    return aliases.get(lowered, raw)
-
-
-def _run_weather(params: dict) -> str:
-    city = params.get("city") or params.get("location")
-    if not city:
-        raise ValueError("weather_tool 缺少参数 city")
-    return WeatherTool()._run(city=str(city))
-
-
-def _run_tavily(params: dict) -> str:
-    query = params.get("query") or params.get("search_query")
-    if not query:
-        raise ValueError("tavily_search 缺少参数 query")
-
-    # 延迟导入，避免 tools.registry -> workflow.llm -> workflow.__init__ -> nodes 的循环导入。
-    from agent_test0.workflow.llm import search_tool
-
-    # crewai_tools 的 BaseTool 版本之间 run/_run 签名略有差异，按最稳定方式兜底。
-    try:
-        return str(search_tool.run(query=str(query)))
-    except TypeError:
-        return str(search_tool._run(query=str(query)))
-
-
-TOOL_REGISTRY: dict[str, ToolRunner] = {
-    "weather_tool": _run_weather,
-    "Tavily Search": _run_tavily,
-    "tavily_search": _run_tavily,
-}
-
-
-_ERROR_MARKERS = (
-    "工具调用失败",
-    "天气查询失败",
-    "天气查询出错",
-    "未配置",
-    "无法解析",
-    "error",
-    "Error",
+from agent_test0.workflow.state import ToolCall, ToolResult
+from agent_practice.tools.impls import run_tavily_search, run_weather
+from agent_practice.tools.schemas import (
+    TavilySearchInput,
+    TavilySearchOutput,
+    WeatherInput,
+    WeatherOutput,
 )
 
 
-def execute_tool_call(tool_call: Any) -> dict:
-    """执行一个 ToolCall-like 对象，永不向上抛异常，错误写入 dict['error']。
+# ============================================================
+# 工具规格 & 注册表
+# ============================================================
 
-    P0.2: 返回 dict 同时含结构化 (output) + 文本 (output_text):
-      - output: 解析后的 dict/list; 解析失败回退 str
-      - output_text: 格式化后给 LLM 看的字符串
-    """
-    tool_name = getattr(tool_call, "tool_name", "")
-    params = getattr(tool_call, "parameters", {}) or {}
-    normalized_name = _normalize_tool_name(tool_name)
-    started = time.perf_counter()
+@dataclass
+class ToolSpec:
+    """一个工具的完整规格。"""
+    input_cls: type[BaseModel]
+    output_cls: type[BaseModel]
+    runner: Callable[[BaseModel], BaseModel]
 
-    runner = TOOL_REGISTRY.get(normalized_name) or TOOL_REGISTRY.get(tool_name)
-    if runner is None:
-        return {
-            "tool_name": tool_name,
-            "input": params,
-            "output": None,
-            "output_text": "",
-            "error": f"不支持的工具: {tool_name}",
-            "duration_ms": 0,
-        }
 
+REGISTRY: dict[str, ToolSpec] = {
+    "weather_tool": ToolSpec(
+        input_cls=WeatherInput,
+        output_cls=WeatherOutput,
+        runner=run_weather,
+    ),
+    "Tavily Search": ToolSpec(
+        input_cls=TavilySearchInput,
+        output_cls=TavilySearchOutput,
+        runner=run_tavily_search,
+    ),
+}
+
+
+# ============================================================
+# 批量执行入口 (executor 节点调用点)
+# ============================================================
+
+def execute_tool_calls(tool_calls: list[ToolCall]) -> list[ToolResult]:
+    """按 order 顺序执行 ToolCall 列表, 每个调用包成 ToolResult。"""
+    ordered = sorted(tool_calls, key=lambda c: c.order)
+    return [_execute_one(call) for call in ordered]
+
+
+def _execute_one(call: ToolCall) -> ToolResult:
+    """执行单个 ToolCall, 一切异常都不外抛, 包成 error 字段。"""
+    t0 = time.time()
+    spec = REGISTRY.get(call.tool_name)
+
+    # ① 未注册工具 → error
+    if spec is None:
+        return _err(call, f"未注册的工具: {call.tool_name!r}", t0)
+
+    # ② 输入参数 Pydantic 校验
     try:
-        output_str = runner(params)
-        duration_ms = int((time.perf_counter() - started) * 1000)
-        error = ""
-        if any(marker in output_str for marker in _ERROR_MARKERS):
-            error = output_str[:300]
-        # P0.2: 尝试解析为结构化
-        structured = _try_parse_structured(output_str)
-        formatted = _format_text_output(normalized_name, params, structured, error)
-        return {
-            "tool_name": normalized_name,
-            "input": params,
-            "output": structured,
-            "output_text": formatted,
-            "error": error,
-            "duration_ms": duration_ms,
-        }
+        inp = spec.input_cls.model_validate(call.parameters)
     except Exception as exc:
-        duration_ms = int((time.perf_counter() - started) * 1000)
-        return {
-            "tool_name": normalized_name,
-            "input": params,
-            "output": None,
-            "output_text": "",
-            "error": str(exc),
-            "duration_ms": duration_ms,
-        }
+        return _err(call, f"输入参数校验失败: {exc}", t0)
+
+    # ③ 真正调用
+    try:
+        out = spec.runner(inp)
+    except Exception as exc:
+        return _err(call, f"{type(exc).__name__}: {exc}", t0)
+
+    # ④ 输出类型防御 (impls 层写错的最后一道保险)
+    if not isinstance(out, spec.output_cls):
+        return _err(call, f"工具输出类型不符, 期望 {spec.output_cls.__name__}", t0)
+
+    # ⑤ 成功: 落成 ToolResult
+    return ToolResult(
+        tool_name=call.tool_name,
+        input=inp.model_dump(),
+        output=out.model_dump(),
+        output_text=format_for_llm(call.tool_name, out),
+        error="",
+        duration_ms=int((time.time() - t0) * 1000),
+    )
 
 
-def execute_tool_calls(tool_calls: list[Any]) -> list[dict]:
-    """按 order 升序执行工具调用。"""
-    ordered = sorted(tool_calls, key=lambda c: getattr(c, "order", 0))
-    return [execute_tool_call(call) for call in ordered]
+def _err(call: ToolCall, error: str, t0: float) -> ToolResult:
+    return ToolResult(
+        tool_name=call.tool_name,
+        input=call.parameters,
+        output=None,
+        output_text="",
+        error=error,
+        duration_ms=int((time.time() - t0) * 1000),
+    )
 
 
-def format_tool_results(results: list[Any]) -> str:
-    """P0.2: 优先使用 ToolResult.output_text, 兼容旧的 output 字段。"""
-    if not results:
-        return "（本步骤无需外部工具，作为整合/撰写步骤处理）"
+# ============================================================
+# 给 LLM 看的字符串格式化
+# ============================================================
 
-    chunks = []
-    for result in results:
-        # P0.2: 优先 output_text
-        text = getattr(result, "output_text", "") or ""
-        if text:
-            chunks.append(text)
-            continue
-        # 旧路径兼容: 旧的 output 字段
-        out = getattr(result, "output", "") or ""
-        err = getattr(result, "error", "") or ""
-        if err:
-            chunks.append(
-                f"[{result.tool_name}] 输入: {result.input}\n错误: {err}\n输出: {out[:800]}"
-            )
-        else:
-            chunks.append(
-                f"[{result.tool_name}] 输入: {result.input}\n输出: {out[:1000]}"
-            )
-    return "\n\n".join(chunks)
+def format_for_llm(tool_name: str, out: BaseModel) -> str:
+    """把结构化输出转成一段给 LLM 看的文本, 控制长度, 防上下文膨胀。"""
+    data = out.model_dump()
+
+    if tool_name == "weather_tool":
+        return f"[天气] {data['city']}: {data['temp_c']}°C, {data['condition']}"
+
+    if tool_name == "Tavily Search":
+        items = data.get("items") or []
+        if items:
+            head = f"[搜索] {data['query']} → {len(items)} 条结果:\n"
+            lines = [
+                f"  · {x['title']}: {x['snippet'][:100]}"
+                for x in items[:5]
+            ]
+            return head + "\n".join(lines)
+        raw = (data.get("raw_text") or "")[:500]
+        return f"[搜索] {data['query']} → 原始返回:\n{raw}"
+
+    # 兜底
+    return str(data)[:500]
+
+
+# ============================================================
+# 简易内省接口 (给 StepPreparer prompt 用: 展示工具白名单)
+# ============================================================
+
+def list_tools_for_prompt() -> str:
+    """把工具白名单渲染成 prompt 可读的文本。"""
+    lines = []
+    for name, spec in REGISTRY.items():
+        schema = spec.input_cls.model_json_schema()
+        props = schema.get("properties", {})
+        params_desc = ", ".join(
+            f'"{k}": {v.get("type", "any")}' for k, v in props.items()
+        )
+        lines.append(f"- {name}: 参数 {{{params_desc}}}")
+    return "\n".join(lines)

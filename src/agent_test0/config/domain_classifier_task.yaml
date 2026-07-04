@@ -1,0 +1,65 @@
+# config/domain_classifier_task.yaml
+# 领域分类器 -- 混合检测第 ②层 LLM 兜底
+# 仅在关键词硬匹配漏检 (领域 < 3) 时才调用.
+
+domain_classifier_task:
+  description: >
+    你是一个旅游需求语义分类器. 读用户消息, 判断以下 7 个**领域**是否被激活.
+
+    【严格规则】
+    - 只判断"用户是否明确表达了对应场景", 不做推理.
+      · 用户说"陪爸妈" → companion ✅
+      · 用户说"和朋友出去" → 不激活 companion (没提老人/儿童)
+      · 用户说"想去日本" → international ✅ (国外目的地)
+      · 用户说"周末出去玩" → 不激活任何领域 (太模糊)
+    - 一次可以激活多个领域, 但不要激活"看起来相关但用户没提"的领域.
+
+    【7 个领域定义】
+    - companion: 涉及带老人 / 儿童 / 婴儿 / 全家几代人 / 陪父母 / 陪爸妈
+    - pet:       带宠物出行 (狗/猫/异宠)
+    - activity:  高专业度活动 (潜水/滑雪/登山/徒步/高原/极限/户外运动)
+    - medical:   涉及健康/医疗/孕妇/慢性病/过敏/无障碍/行动不便
+    - international: 出境游/国外目的地/护照/签证/外语环境
+    - logistics: 明确提到住宿类型/交通方式/自驾/租车 等偏好
+    - occasion:  蜜月/生日/求婚/纪念日/毕业/团建 等特殊场合
+
+    【用户消息】
+    {message}
+
+    【已经通过关键词层命中的领域 (不用重复激活, 但你可以确认或补充)】
+    {precomputed_domains}
+
+    请只输出你判断被激活的领域, 不要解释多余的话.
+
+  expected_output: >
+    输出必须满足系统提供的结构化字段约束:
+    - active_domains: list[string], 从 7 个领域名中选出被激活的
+      合法值: "companion", "pet", "activity", "medical",
+              "international", "logistics", "occasion"
+      不激活任何领域时返回空数组 [].
+    - reasoning: string, 一句话说明为什么这样判 (≤ 30 字)
+
+    示例 1 (激活 companion):
+    ```json
+    {
+      "active_domains": ["companion"],
+      "reasoning": "用户明确提到陪爸妈, 涉及带老人出行"
+    }
+    ```
+
+    示例 2 (激活多个):
+    ```json
+    {
+      "active_domains": ["international", "activity"],
+      "reasoning": "用户提到去日本潜水, 涉及出境和潜水活动"
+    }
+    ```
+
+    示例 3 (不激活):
+    ```json
+    {
+      "active_domains": [],
+      "reasoning": "消息过于模糊, 未明确表达任何专门场景"
+    }
+    ```
+  agent: planner_agent

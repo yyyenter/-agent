@@ -288,6 +288,12 @@ def build_field_pool(state) -> str:
         lines.append(f"  - {k}: {desc}")
 
     active = _active_domains(state.message or "")
+    # ★ dismissed 域: 用户在 scoping 菜单里没选, 就别在 prompt 里骚扰 LLM 追问.
+    #   但如果用户本轮消息 **重新明确提到** 该领域, active 里会包含它 → 尊重用户意图, 让它复活.
+    #   实现: 只剔除"没被本轮 active 命中"的 dismissed, 换句话说 active 优先.
+    dismissed = set(getattr(state, "dismissed_domains", []) or [])
+    still_dismissed = dismissed - active   # 本轮没提到, 保持消默
+    active = active - still_dismissed      # 从可暴露池里去掉这些
     if active:
         for domain in sorted(active):
             fields = DOMAIN_FIELDS.get(domain, {})
@@ -312,35 +318,124 @@ def build_field_pool(state) -> str:
 # ============================================================
 
 # 每个领域用 1 个短标题 + 1-2 个触发词提示. LLM/关键词层不需要, 这只是给用户看的.
-_DOMAIN_MENU: list[tuple[str, str, str]] = [
-    ("🧓", "带老人 / 儿童",      "回复 '带娃' / '带老人' / '带全家'"),
-    ("🐕", "带宠物",             "回复 '带狗' / '带猫'"),
-    ("🎂", "特殊场合",           "回复 '蜜月' / '生日' / '求婚' / '毕业' / '团建'"),
-    ("🏔",  "高强度活动",         "回复 '潜水' / '滑雪' / '徒步' / '高原'"),
-    ("♿", "特殊需求 (健康/无障碍)", "回复 '孕妇' / '轮椅' / '慢性病' / '过敏'"),
-    ("🌏", "出境游",             "回复 '出境' / '国外'"),
-    ("🍽", "饮食禁忌",           "回复 '素食' / '清真' / '过敏'"),
+# 第 1 位 (domain_key) 必须是 DOMAIN_FIELDS 的 key, 便于按 domain 名过滤.
+_DOMAIN_MENU: list[tuple[str, str, str, str]] = [
+    # (domain_key,     emoji, title,           user_hint)
+    ("companion",      "🧓", "带老人 / 儿童",  "回复 '带娃' / '带老人' / '带全家'"),
+    ("pet",            "🐕", "带宠物",         "回复 '带狗' / '带猫'"),
+    ("occasion",       "🎂", "特殊场合",       "回复 '蜜月' / '生日' / '求婚' / '毕业' / '团建'"),
+    ("activity",       "🏔",  "高强度活动",     "回复 '潜水' / '滑雪' / '徒步' / '高原'"),
+    ("medical",        "♿", "特殊需求 (健康/无障碍)", "回复 '孕妇' / '轮椅' / '慢性病' / '过敏'"),
+    ("international",  "🌏", "出境游",         "回复 '出境' / '国外'"),
+    ("logistics",      "🏨", "住宿 / 交通偏好", "回复 '民宿' / '自驾' / '青旅'"),
 ]
 
 
-def build_scoping_menu(destination: str = "") -> str:
+def build_scoping_menu(
+    destination: str = "",
+    show_domains: set[str] | None = None,
+    already_triggered: set[str] | None = None,
+) -> str:
     """生成给用户的领域菜单 (主动 scoping).
 
-    在 Planner 收到"基础信息已够 + 无领域暗示"的首次消息时展示,
-    让用户看到能针对性细化哪些场景, 而不是自己闷头做假设、最后让用户纠正.
+    Args:
+        destination:        用户目的地 (用于菜单开头个性化文本)
+        show_domains:       只列出这些领域. None = 全列.
+        already_triggered:  用户消息里已触发的领域, 会在菜单头部以"已识别"提示,
+                            不再列在选项里 (系统会通过 request_user_input 走细化追问).
 
     参考: OpenAI Deep Research clarification / Perplexity Focus / v0 Plan Preview.
     """
     dest_hint = f"{destination}行程收到, " if destination else "收到, "
-    header = (
-        f"{dest_hint}我可以按常规方案 (2 位成人 / 中等预算 / 无特殊需求) 直接开工.\n"
-        f"如果您想让规划更贴合, 只需**回复以下关键词之一**, 我会针对性追问细节:\n"
-    )
-    lines = [header]
-    for emoji, title, hint in _DOMAIN_MENU:
+    header_parts = [
+        f"{dest_hint}我可以按常规方案 (2 位成人 / 中等预算 / 无特殊需求) 直接开工."
+    ]
+
+    # 已识别领域提示: 让用户知道系统已捕获, 不会漏
+    if already_triggered:
+        triggered_titles = [
+            f"{emoji} {title}"
+            for key, emoji, title, _ in _DOMAIN_MENU if key in already_triggered
+        ]
+        if triggered_titles:
+            header_parts.append(
+                f"**已识别到**: {' / '.join(triggered_titles)} — 稍后我会针对性追问细节."
+            )
+
+    header_parts.append("下面这些您也可以补充 (完全可选, 回复关键词即可):")
+
+    NL = "\n"
+    lines: list[str] = [NL.join(header_parts)]
+    for key, emoji, title, hint in _DOMAIN_MENU:
+        if show_domains is not None and key not in show_domains:
+            continue
+        if already_triggered and key in already_triggered:
+            continue   # 已识别的不再列在选项里
         lines.append(f"  {emoji} **{title}** — {hint}")
-    lines.append("\n如无特别需求, 直接回复 **'开工'** 或 **'看你安排'**, 我按常规继续.")
-    return "\n".join(lines)
+    lines.append(NL + "如无特别需求, 直接回复 **'开工'** 或 **'看你安排'**, 我按常规继续.")
+    return NL.join(lines)
+
+
+def offered_domains_in_menu(
+    show_domains: set[str] | None = None,
+    already_triggered: set[str] | None = None,
+) -> set[str]:
+    """返回本次菜单实际展示给用户的领域集合 (即"未选择即消默"的候选集).
+
+    用法: Planner 推完菜单后, 把这个集合塞进 state.pending_scoping_options,
+    下一轮用户消息用 consume_scoping_reply 消费 — 用户提到的复活为触发,
+    没提到的加入 state.dismissed_domains, 后续不再打扰.
+    """
+    offered = set()
+    for key, _, _, _ in _DOMAIN_MENU:
+        if show_domains is not None and key not in show_domains:
+            continue
+        if already_triggered and key in already_triggered:
+            continue
+        offered.add(key)
+    return offered
+
+
+def consume_scoping_reply(state) -> tuple[set[str], set[str]]:
+    """消费上一轮 scoping 菜单的候选集 (基于本轮 state.message 判定).
+
+    对 state.pending_scoping_options 里的每个 domain:
+      - 用户消息 (关键词层) 命中该 domain → "选中", 从 pending 里出, 走细化追问
+      - 用户消息未命中 → "未选择", 加入 state.dismissed_domains, 后续不再打扰
+
+    副作用: 清空 state.pending_scoping_options, 更新 state.dismissed_domains.
+
+    Returns:
+        (selected: set[str], dismissed_this_round: set[str])
+        - selected: 用户本轮主动选中/提到的领域
+        - dismissed_this_round: 用户本轮未选择而被消默的领域
+
+    调用位置: planner_node 开头, 早于其他 scoping 逻辑.
+    """
+    pending = set(state.pending_scoping_options or [])
+    if not pending:
+        return set(), set()
+
+    triggered_concepts = _detect_concepts_by_keyword(state.message or "")
+    triggered_domains = {
+        CONCEPT_TO_DOMAIN[c] for c in triggered_concepts if c in CONCEPT_TO_DOMAIN
+    }
+
+    selected = pending & triggered_domains
+    dismissed = pending - triggered_domains
+
+    # 副作用: 消费掉 pending, 累积 dismissed
+    state.pending_scoping_options = []
+    existing_dismissed = set(state.dismissed_domains or [])
+    state.dismissed_domains = list(existing_dismissed | dismissed)
+
+    if selected or dismissed:
+        print(
+            f"[Scoping] 消费上一轮菜单: 选中={selected}, 消默={dismissed}, "
+            f"累计 dismissed={state.dismissed_domains}"
+        )
+    return selected, dismissed
+
 
 
 # ============================================================

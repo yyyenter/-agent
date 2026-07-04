@@ -42,7 +42,15 @@ from agent_test0.workflow.state import (
 from agent_test0.workflow.structured import call_structured, load_task_prompt, StructuredCallError
 from agent_test0.workflow.llm import zhipu_llm
 from agent_test0.workflow.trace import timed
-from agent_test0.workflow.ask_user import request_user_input, build_field_pool, build_scoping_menu, _active_domains
+from agent_test0.workflow.ask_user import (
+    request_user_input,
+    build_field_pool,
+    build_scoping_menu,
+    _active_domains,
+    consume_scoping_reply,
+    offered_domains_in_menu,
+    DOMAIN_FIELDS,
+)
 from agent_test0.tools.registry import execute_tool_calls, format_for_llm
 
 
@@ -257,13 +265,23 @@ def _looks_like_slot_answer(state: TravelState) -> bool:
 def _maybe_offer_scoping(state: TravelState, plan_data: dict) -> bool:
     """判定是否推 scoping 菜单 (主动展示领域, 让用户 opt-in).
 
+    ★ 缺失驱动 (方案 A):
+      不再"检测到领域就跳过菜单", 而是永远推一次菜单, 只列 **用户未提及** 的领域.
+      已提及的领域会在菜单头部以"已识别"提示, 稍后由细化追问链路处理.
+
+    ★ 未选静默降级:
+      推菜单时, 把菜单展示的候选集写进 state.pending_scoping_options.
+      下一轮 planner_node 开头 consume_scoping_reply 消费:
+        - 用户提到了 → 从 pending 出, 走原有细化追问
+        - 用户没提到 → 加入 state.dismissed_domains, 后续不再打扰
+
     触发条件 (全部满足才推):
       1. 本会话还没推过菜单 (scoping_offered=False)
       2. 是行程规划意图 (有目的地 + 不是纯天气)
-      3. 用户消息基础信息已给 (无缺失天数/预算/人数, 或已问过一次)
-      4. 无领域触发 (关键词层没识别出任何领域)
-      5. 用户没说 "开工" / "随便" / "看你安排" (说了直接跳过, 用假设兜底)
-      6. 用户消息不像上一轮槽位回答 (纯数字 / 短问答)
+      3. 用户没说 "开工" / "随便" / "看你安排" 等授权词
+      4. 用户消息不像上一轮槽位回答 (纯数字 / 短问答)
+      5. asked_fields 为空 (已问过基础不打扰)
+      6. 有至少一个未触发的领域可展示 (candidate 非空)
 
     Returns:
         True  → 已推菜单, 走三层护栏 (成功=中断本轮; 拦截=已假设)
@@ -286,21 +304,36 @@ def _maybe_offer_scoping(state: TravelState, plan_data: dict) -> bool:
     if _looks_like_slot_answer(state):
         return False
 
-    # 检测领域: 只用关键词层, 不调 LLM (省成本, 快)
-    domains = _active_domains(state.message or "", use_llm=False)
-    if domains:
-        print(f"[Scoping] 已触发领域 {domains}, 无需推菜单")
-        return False
-
     # 已问过一次基础约束 → 不再推菜单打扰
     if state.asked_fields:
         print(f"[Scoping] 已问过 {state.asked_fields}, 不再推菜单")
         return False
 
-    # ── 推菜单 ──
-    menu = build_scoping_menu(location)
+    # 检测已触发领域 (只用关键词层, 省成本)
+    triggered = _active_domains(state.message or "", use_llm=False)
+    # 排除已被 dismissed 的 (用户上一轮没选过的, 除非本轮主动提)
+    dismissed = set(state.dismissed_domains or [])
+    all_domains = set(DOMAIN_FIELDS.keys())
+    candidate = all_domains - triggered - dismissed
+    if not candidate:
+        print(f"[Scoping] 无候选领域 (triggered={triggered}, dismissed={dismissed}), 不推菜单")
+        return False
+
+    # ── 推菜单 (缺失驱动: 只列 candidate) ──
+    menu = build_scoping_menu(
+        destination=location,
+        show_domains=candidate,
+        already_triggered=triggered,
+    )
     state.scoping_offered = True
-    print(f"[Scoping] 首次推领域菜单 (destination={location})")
+    # 记账: 这些是"推给用户看但等消费的"; 下一轮 consume_scoping_reply 会分别放进 selected/dismissed
+    state.pending_scoping_options = sorted(
+        offered_domains_in_menu(show_domains=candidate, already_triggered=triggered)
+    )
+    print(
+        f"[Scoping] 首次推领域菜单 (destination={location}, "
+        f"triggered={triggered}, offered={state.pending_scoping_options})"
+    )
     # 走三层护栏, field 用 "unknown" (因为菜单不问特定字段, 只是拉宽感知)
     return request_user_input(state, "unknown", menu)
 
@@ -313,6 +346,10 @@ def planner_node(state: TravelState, config=None) -> dict:
     """复杂度判定 + 步骤生成 (或追问 / 简单回复)."""
     if _check_ask_user(state):
         return _dirty(state)
+
+    # 消费上一轮 scoping 菜单的候选集: 用户提到的进 selected (走原有细化追问),
+    # 没提到的进 state.dismissed_domains (后续 _maybe_offer_scoping 会跳过).
+    consume_scoping_reply(state)
 
     print(f"\n[Planner] 开始规划: message={state.message[:60]!r}")
     _notify(config, "📋 [Planner] 决策大脑正在建立行程执行策略...")

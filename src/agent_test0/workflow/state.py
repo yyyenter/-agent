@@ -267,3 +267,5 @@ class TravelState(BaseModel):
     warnings: list[str] = []                  # 流程中产生的告警 (硬约束违例 / 工具失败等)
     asked_fields: list[str] = []              # 本轮已经问过用户的字段名 (防重复问)
     scoping_offered: bool = False             # 是否已向用户展示过"领域菜单" (主动 scoping 引导, 只推一次)
+    pending_scoping_options: list[str] = []   # 上一轮 scoping 菜单里向用户展示的候选领域 (下一轮消费: 用户提到→触发, 没提到→dismissed)
+    dismissed_domains: list[str] = []         # 用户在 scoping 菜单里未选择的领域, 后续不主动追问; 若用户后续消息重新提到该领域会自动"复活"

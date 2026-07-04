@@ -25,3 +25,8 @@ src/agent_practice/
 
 # Claude Code 临时 worktree
 .claude/worktrees/
+
+# 独立子项目 / 外部仓库 (不入主仓库)
+CtripSpider/
+TravelBench/
+.workbuddy/

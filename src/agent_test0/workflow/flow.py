@@ -12,6 +12,7 @@ TravelWorkflow —— Flow 编排骨架。
 
 import sys
 from crewai.flow import Flow, start
+from langgraph.types import Command
 from agent_test0.memory import MemoryManager, get_redis_or_fallback
 from agent_test0.workflow.state import TravelState
 from agent_test0.workflow.ask_user import (
@@ -19,7 +20,7 @@ from agent_test0.workflow.ask_user import (
 )
 from agent_test0.workflow.llm import zhipu_llm
 from agent_test0.workflow import nodes
-from agent_test0.workflow.graph import get_travel_graph
+from agent_test0.workflow.graph import get_travel_graph, _shared_checkpointer
 from agent_test0.workflow.trace import (
     timed, reset as trace_reset, report as trace_report,
     quiet_crewai, dump_json, span,
@@ -145,25 +146,45 @@ class TravelWorkflow(Flow[TravelState]):
             #     让 Planner 节点能直接读 flow.state.current_destination。
             memory.bind_to_state(flow.state)
 
-            # 3b) 用纯 TravelState 跑 graph。
-            # ⚠️ 不能直接传 flow.state: CrewAI Flow 的 self.state 是 StateProxy 包装,
-            #    model_dump() 会带隐藏的 id 字段, 导致 LangGraph 误判为 checkpoint
-            #    state (StateWithId) → InvalidUpdateError。先 dump 成纯 TravelState。
-            pure_state = TravelState(**{k: v for k, v in flow.state.model_dump(mode="json").items()
-                                        if k in TravelState.model_fields})
-
-            # 3c) LangGraph config: 注入 notify 回调 (方案 A1: config 注入)
-            #     节点从 config['configurable']['notify'] 取回调推状态给前端。
-            # 注: 不传 thread_id / 不带 checkpointer —— 单轮 invoke 不需要 checkpoint,
-            #     跨轮上下文由 MemoryManager (Redis 记忆系统) 管理。
-            def _notify(text: str):
-                flow.notify(text)
-
+            # 3b) 检查 checkpointer 里当前 thread_id 是否有未完成的 interrupt.
+            #     ★ Reactive Clarification: 上一轮某节点抛 interrupt 时, 全 state 已由
+            #     checkpointer 持久化. 本轮 user_text 就是对那个 interrupt 的回答, 用
+            #     Command(resume=user_text) 恢复, interrupt() 会返回 user_text, 节点从
+            #     中断处继续 —— steps / result / current_step_index 都保留.
             graph_config = {
                 "configurable": {
-                    "notify": _notify,
+                    "notify": lambda text: flow.notify(text),
+                    "thread_id": sid,   # ★ checkpointer 按 thread_id 隔离状态
                 },
             }
+            graph = get_travel_graph()
+            checkpoint = _shared_checkpointer.get(graph_config)
+            has_pending_interrupt = False
+            if checkpoint:
+                # LangGraph 把 pending interrupt 放在 next 集合里, 也可以通过
+                # graph.get_state(config).next 判断; 简单起见看 __interrupt__
+                try:
+                    snapshot = graph.get_state(graph_config)
+                    has_pending_interrupt = bool(snapshot.next) and any(
+                        it.value for it in (snapshot.tasks or [])
+                        for iv in [getattr(it, "interrupts", None)] if iv
+                    )
+                except Exception as e:
+                    print(f"[run_for_user] 读取 checkpoint 状态失败 (视为无 interrupt): {e}")
+                    has_pending_interrupt = False
+
+            if has_pending_interrupt:
+                # 走恢复路径: 不新建 state, 用 Command(resume=user_text)
+                print(f"[run_for_user] 检测到 pending interrupt, 恢复中: reply={user_text[:80]!r}")
+                graph_input = Command(resume=user_text)
+            else:
+                # 新起一轮: 用 pure_state (TravelState from flow.state, memory bind 结果)
+                # ⚠️ 不能直接传 flow.state: CrewAI Flow 的 self.state 是 StateProxy 包装,
+                #    model_dump() 会带隐藏的 id 字段, 导致 LangGraph 误判为 checkpoint
+                #    state (StateWithId) → InvalidUpdateError. 先 dump 成纯 TravelState.
+                pure_state = TravelState(**{k: v for k, v in flow.state.model_dump(mode="json").items()
+                                            if k in TravelState.model_fields})
+                graph_input = pure_state
 
             # 顶层 span: 整轮 Flow 的入口, 记录 input (用户消息) + output (最终报告)
             try:
@@ -172,15 +193,53 @@ class TravelWorkflow(Flow[TravelState]):
                           message_len=len(user_text),
                           message_preview=user_text[:80]) as run_span:
                     with timed("Flow:state_machine_total"):
-                        graph = get_travel_graph()
-                        result_state = graph.invoke(pure_state, config=graph_config)
+                        result_state = graph.invoke(graph_input, config=graph_config)
+
+                    # ★ Reactive: 检查本轮是否有新的 interrupt (节点抛出中断需要用户回答)
+                    #   result_state 里会有 "__interrupt__" 键 (LangGraph 1.x 结构)
+                    #   或通过 graph.get_state(config).tasks[*].interrupts 判断
+                    interrupt_payload = None
+                    if isinstance(result_state, dict) and result_state.get("__interrupt__"):
+                        # LangGraph 1.x 返回结构里可能带 __interrupt__ 列表
+                        raw = result_state["__interrupt__"]
+                        if raw:
+                            first = raw[0] if isinstance(raw, list) else raw
+                            interrupt_payload = getattr(first, "value", None) or first
+                    else:
+                        try:
+                            snap = graph.get_state(graph_config)
+                            for t in (snap.tasks or []):
+                                its = getattr(t, "interrupts", None) or []
+                                for it in its:
+                                    interrupt_payload = getattr(it, "value", None) or it
+                                    break
+                                if interrupt_payload:
+                                    break
+                        except Exception:
+                            pass
+
                     # graph 返回最终 state (dict 或 TravelState), 写回 flow.state 供下游使用
                     if isinstance(result_state, dict):
                         for k, v in result_state.items():
+                            if k == "__interrupt__":
+                                continue
                             if k in TravelState.model_fields:
                                 setattr(flow.state, k, v)
                     elif isinstance(result_state, TravelState):
                         flow.state = result_state
+
+                    # 若本轮有 interrupt, 把问题作为 final_report / needs_user_input
+                    if interrupt_payload:
+                        question_text = (
+                            interrupt_payload.get("question")
+                            if isinstance(interrupt_payload, dict)
+                            else str(interrupt_payload)
+                        )
+                        flow.state.needs_user_input = True
+                        flow.state.user_question = question_text or "请补充信息."
+                        flow.state.final_report = flow.state.user_question
+                        print(f"[run_for_user] 本轮以 interrupt 结束, 等待用户回答")
+
                     # 写 output
                     run_span.set_output(
                         final_report_len=len(flow.state.final_report or ""),

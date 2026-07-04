@@ -27,8 +27,14 @@ retry/fail 的回边通过读 state 判定 (见下方条件边函数)。
 
 from typing import Literal
 from langgraph.graph import StateGraph, START, END
+from langgraph.checkpoint.memory import InMemorySaver
 from agent_test0.workflow.state import TravelState
 from agent_test0.workflow import nodes
+
+
+# 全局单例 checkpointer: 存活在进程内, 按 thread_id (= session_id) 隔离.
+# 用途: 让节点里的 interrupt() 能在下轮 Command(resume=...) 恢复继续.
+_shared_checkpointer = InMemorySaver()
 
 
 # ============================================================
@@ -97,10 +103,13 @@ def _after_final_verifier(state: TravelState) -> str:
 # ============================================================
 
 def build_travel_graph():
-    """构建并编译 TravelWorkflow 的 StateGraph (不带 checkpointer)。
+    """构建并编译 TravelWorkflow 的 StateGraph, 带 InMemorySaver checkpointer.
 
-    checkpointer 由调用方 (flow.run_for_user) 在 invoke 时注入,
-    以便复用同一份图、按 thread_id 做 checkpoint。
+    checkpointer 让 interrupt() / Command(resume=...) 生效:
+      - 节点抛 interrupt 时, 图暂停, 全 state 保存在 checkpointer 里 (按 thread_id 分)
+      - 下轮同 thread_id 再 invoke 时用 Command(resume=user_answer), 从中断处继续
+    单进程 InMemorySaver 够用 (每个 session 一个 thread_id).
+    生产要跨进程持久化时可换 langgraph-checkpoint-redis (需另装).
     """
     g = StateGraph(TravelState)
 
@@ -159,7 +168,7 @@ def build_travel_graph():
     # finalize → END
     g.add_edge("finalize", END)
 
-    return g.compile()
+    return g.compile(checkpointer=_shared_checkpointer)
 
 
 # 模块级单例: 图只编译一次, 每轮 invoke 复用 (checkpointer 在 invoke config 里给)

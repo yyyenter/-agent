@@ -50,6 +50,8 @@ from agent_test0.workflow.ask_user import (
     consume_scoping_reply,
     offered_domains_in_menu,
     DOMAIN_FIELDS,
+    scan_text_for_domains,
+    interrupt_and_confirm,
 )
 from agent_test0.tools.registry import execute_tool_calls, format_for_llm
 
@@ -72,6 +74,76 @@ def _dirty(state: TravelState) -> dict:
     节点函数就地改多字段时, LangGraph 需要显式返回 dict 才会合并回全局 state.
     """
     return state.model_dump(mode="json")
+
+
+# ============================================================
+# Reactive Clarification: 节点扫描 helper (5 个节点复用)
+# ============================================================
+
+def _scan_and_maybe_interrupt(
+    state: TravelState,
+    text: str,
+    source_node: str,
+    max_domains: int = 1,
+) -> bool:
+    """扫任意文本, 命中未确认领域 → 走 interrupt 追问.
+
+    Args:
+        state:       TravelState (就地修改)
+        text:        要扫的文本 (LLM 输出 / 工具原文)
+        source_node: 谁扫的 (给日志和菜单文本用)
+        max_domains: 单次最多问几个领域 (默认 1, 避免一次追问多个打扰用户)
+
+    Returns:
+        True → 触发了 interrupt (调用方应立即 return _dirty(state))
+        False → 没触发, 调用方继续
+
+    静默条件 (任一 True 都不触发):
+        - 已问过所有命中领域
+        - 用户消息本身就在 skip_pattern 里 ("开工"/"看你安排"/"随便")
+        - 消息长度不足 3 (碎片文本)
+    """
+    # 尊重用户"别多问"表达
+    if _SCOPING_SKIP_PATTERN.search(state.message or ""):
+        return False
+
+    exclude = set(state.confirmed_domains or []) | set(state.asked_domains or [])
+    hints = scan_text_for_domains(text, exclude=exclude)
+    if not hints:
+        return False
+
+    # 一次只问 1 个, 避免打扰; 按 DOMAIN_FIELDS 顺序取
+    ordered = [d for d in DOMAIN_FIELDS if d in hints][:max_domains]
+    if not ordered:
+        return False
+
+    # 抽片段: 找命中关键词所在的 40 字周围文本, 让用户看到具体上下文
+    snippet = _extract_hint_snippet(text, hints)
+    interrupt_and_confirm(state, set(ordered), source_node, source_snippet=snippet)
+    return True
+
+
+def _extract_hint_snippet(text: str, hints: set[str], radius: int = 20) -> str:
+    """从 text 里抽出触发关键词附近 ±radius 字, 拼一段自然语言片段.
+
+    优先取第一个命中的领域, 用它的第一个同义词做定位.
+    """
+    if not text:
+        return ""
+    for domain in hints:
+        # 反查 CONCEPT_SYNONYMS 里映射到该 domain 的所有词
+        from agent_test0.workflow.ask_user import CONCEPT_TO_DOMAIN, CONCEPT_SYNONYMS
+        for concept, dom in CONCEPT_TO_DOMAIN.items():
+            if dom != domain:
+                continue
+            for word in CONCEPT_SYNONYMS.get(concept, []):
+                idx = text.find(word)
+                if idx >= 0:
+                    start = max(0, idx - radius)
+                    end = min(len(text), idx + len(word) + radius)
+                    snippet = text[start:end].strip().replace("\n", " ")
+                    return f"「...{snippet}...」"
+    return ""
 
 
 def _set_ask_user(state: TravelState, question: str) -> None:
@@ -427,6 +499,15 @@ def planner_node(state: TravelState, config=None) -> dict:
         if out.steps:
             state.steps = list(out.steps)
             print(f"[Planner] 生成了 {len(state.steps)} 个粗粒度步骤")
+
+            # Reactive: LLM 出的 focus / plan_summary 里可能提到新领域 (如 "亲子" / "滑雪")
+            scan_text = " ".join([
+                out.focus or "",
+                out.plan_summary or "",
+                " ".join(out.assumptions or []),
+            ])
+            if _scan_and_maybe_interrupt(state, scan_text, source_node="planner"):
+                return _dirty(state)
         else:
             # 兜底: 未生成 steps, 直接返回 simple_answer
             fallback = out.simple_answer or "抱歉, 我暂时无法理解您的需求, 请补充更多信息."
@@ -590,6 +671,12 @@ def step_executor_node(state: TravelState, config=None) -> dict:
     ))
 
     print(f"[StepExecutor] 步骤 {idx} 完成: {'失败' if has_error else '成功'}")
+
+    # Reactive: 工具原文里可能带出未预期领域 (最典型场景 —— 景点 API 返回 "滑雪场" / "雪山" 等)
+    if not has_error and step.result_text:
+        if _scan_and_maybe_interrupt(state, step.result_text, source_node="step_executor"):
+            return _dirty(state)
+
     return _dirty(state)
 
 
@@ -675,6 +762,9 @@ def step_verifier_node(state: TravelState, config=None) -> dict:
         state.current_step_index += 1
         print(f"[StepVerifier] 步骤 {idx} 审核通过")
         _notify(config, f"✅ [StepVerifier] 步骤 {idx} 审核通过")
+        # Reactive: 审核 reason 里 LLM 可能指出遗漏领域 (如 "未考虑用户是否带娃")
+        if out.reason and _scan_and_maybe_interrupt(state, out.reason, source_node="step_verifier"):
+            return _dirty(state)
         return _dirty(state)
 
     if out.verdict == "retry":
@@ -787,6 +877,15 @@ def partial_replanner_node(state: TravelState, config=None, failure_feedback: di
 
     state.current_step_index = len(state.steps) - len(new_steps)
     print(f"[PartialReplanner] 追加 {len(new_steps)} 步, 从 index={state.current_step_index} 继续")
+
+    # Reactive: replan 的 reason / 新步骤描述里可能暴露之前漏掉的领域
+    scan_text = " ".join([
+        out.reason or "",
+        " ".join(s.description for s in new_steps if hasattr(s, "description")),
+    ])
+    if _scan_and_maybe_interrupt(state, scan_text, source_node="partial_replanner"):
+        return _dirty(state)
+    return _dirty(state)
     return _dirty(state)
 
 
@@ -916,6 +1015,14 @@ def final_verifier_node(state: TravelState, config=None) -> dict:
         print(f"[FinalVerifier] 整体审核通过")
         _notify(config, f"🎉 [FinalVerifier] 整体审核通过")
         state.final_report = _generate_final_report(state)
+        # Reactive: 报告草稿是最后一道保险 —— 里面可能有 LLM 引入的领域词
+        # (如报告说 "建议顺便去滑雪场", 但用户从没确认过 activity)
+        if state.final_report and _scan_and_maybe_interrupt(
+            state, state.final_report, source_node="final_verifier"
+        ):
+            # 触发 interrupt: state.is_done 先不置 True, 让用户回答后
+            # 下轮回到这里 (但 final_verifier_done 已是 True 会跳过重跑) 直接出报告
+            return _dirty(state)
         state.is_done = True
         return _dirty(state)
 

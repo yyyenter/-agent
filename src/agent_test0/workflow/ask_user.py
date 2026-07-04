@@ -30,6 +30,8 @@ from __future__ import annotations
 
 import re
 
+from langgraph.types import interrupt
+
 
 # ============================================================
 # 分层候选池: BASE (必答) + DOMAIN (触发) + UNKNOWN (兜底)
@@ -435,6 +437,122 @@ def consume_scoping_reply(state) -> tuple[set[str], set[str]]:
             f"累计 dismissed={state.dismissed_domains}"
         )
     return selected, dismissed
+
+
+# ============================================================
+# Reactive Clarification: 扫任意文本 (LLM 输出 / 工具输出) 发现未确认领域
+# ============================================================
+
+# 用户回答里判"是否肯定"的关键词, 命中 → 视为 confirmed
+_POSITIVE_REPLY_PATTERN = re.compile(
+    r"(想|要|需要|安排|加上|加进|带上|考虑|可以|好|好的|行|OK|ok|Ok|"
+    r"喜欢|感兴趣|来一个|来一场|来场|试试|体验)"
+)
+# 用户回答里判"否定/跳过"的关键词, 命中 → 记 asked, 不进 confirmed
+_NEGATIVE_REPLY_PATTERN = re.compile(
+    r"(不|没|别|无|算了|跳过|不要|不需要|不用|免了|没兴趣|不去|不感兴趣)"
+)
+
+
+def scan_text_for_domains(
+    text: str,
+    exclude: set[str] | None = None,
+) -> set[str]:
+    """扫任意文本 (LLM 输出 / 工具返回) 里的领域信号.
+
+    与 _active_domains 不同, 这里只用第 ①层 (关键词硬匹配), 因为:
+      - 输入可能是长文本 (景点描述、验证反馈、报告草稿), LLM 太贵
+      - 只关心是否 **提到过** 领域, 语义变体不重要
+
+    Args:
+        text:    要扫的文本 (工具输出 / LLM 生成的 focus / 报告草稿 ...)
+        exclude: 要排除的领域 (通常传 state.confirmed_domains | state.asked_domains,
+                 避免重复触发已确认或已问过的领域)
+
+    Returns:
+        命中且未被排除的领域集合 (DOMAIN_FIELDS 的 key)
+    """
+    if not text or len(text.strip()) < 3:
+        return set()
+    exclude = exclude or set()
+    concepts = _detect_concepts_by_keyword(text)
+    domains = {
+        CONCEPT_TO_DOMAIN[c] for c in concepts if c in CONCEPT_TO_DOMAIN
+    }
+    return domains - exclude
+
+
+def interrupt_and_confirm(
+    state,
+    hint_domains: set[str],
+    source_node: str,
+    source_snippet: str = "",
+) -> None:
+    """节点扫描到未确认领域, 走 LangGraph interrupt() 追问用户.
+
+    interrupt() 会:
+      1. 立即暂停图, 全 state 由 checkpointer 持久化 (按 thread_id)
+      2. 抛给上层调用者 (run_for_user), 上层从 chunk 里读 __interrupt__
+      3. 下轮同 thread_id 用 Command(resume=user_answer) 恢复, interrupt() 返回该 answer
+
+    副作用:
+        state.asked_domains 追加本次 hint_domains (无论用户答什么, 都记账防重复)
+        用户答"肯定" → state.confirmed_domains 追加 hint_domains
+        用户答"否定" → 只留在 asked_domains, 不进 confirmed
+        用户答"模糊" (回一段新需求) → confirmed_domains 也追加 (保守起见, 让下游继续用领域字段追问细节)
+
+    Args:
+        state:          TravelState (就地修改)
+        hint_domains:   本次要问的领域集合 (通常 1-2 个)
+        source_node:    发现方 (用于日志/UI 展示, 如 "step_executor")
+        source_snippet: 触发文本片段 (让用户看到 "看到当地有滑雪场..." 更自然)
+    """
+    # 记账: 先加入 asked_domains, 避免同一 thread_id 多个节点重复问
+    for d in hint_domains:
+        if d not in state.asked_domains:
+            state.asked_domains.append(d)
+
+    # 组装问题文本
+    domain_titles = _domain_titles_for(hint_domains)
+    hint_line = f"看到{source_snippet}" if source_snippet else "我发现"
+    question = (
+        f"{hint_line}, 可能涉及 **{' / '.join(domain_titles)}**. "
+        f"您想在行程里安排吗? (回 '想' / '不想' 或 补充需求)"
+    )
+
+    # 抛 interrupt: 图暂停, 下轮 resume 时 interrupt() 返回用户回复
+    print(f"[Reactive] 🛎 interrupt from {source_node}: domains={hint_domains}, snippet={source_snippet[:50]!r}")
+    user_reply: str = interrupt({
+        "question": question,
+        "hint_domains": sorted(hint_domains),
+        "source_node": source_node,
+    })
+
+    # 恢复后, 根据用户回复判定 confirmed / dismissed
+    reply = (user_reply or "").strip()
+    is_neg = bool(_NEGATIVE_REPLY_PATTERN.search(reply))
+    is_pos = bool(_POSITIVE_REPLY_PATTERN.search(reply))
+    if is_neg and not is_pos:
+        # 明确否定 → 只 asked 记账, 不进 confirmed
+        print(f"[Reactive] 用户否定 {hint_domains}, 不加入 confirmed")
+    else:
+        # 肯定 或 模糊 (给了新需求) → 进 confirmed, 让下游节点继续追问细节
+        for d in hint_domains:
+            if d not in state.confirmed_domains:
+                state.confirmed_domains.append(d)
+        print(f"[Reactive] 用户确认 {hint_domains}, confirmed_domains={state.confirmed_domains}")
+
+    # 把用户回复拼接到 message 上, 让 LLM 后续看到 (下一步节点可能会用)
+    state.message = f"{state.message}\n[补充]{reply}".strip()
+
+
+def _domain_titles_for(domains: set[str]) -> list[str]:
+    """把 domain key 换成菜单里的中文标题 (给用户看的问题文本用)."""
+    titles = []
+    for key, emoji, title, _ in _DOMAIN_MENU:
+        if key in domains:
+            titles.append(f"{emoji} {title}")
+    return titles or list(domains)
 
 
 

@@ -42,7 +42,7 @@ from agent_test0.workflow.state import (
 from agent_test0.workflow.structured import call_structured, load_task_prompt, StructuredCallError
 from agent_test0.workflow.llm import zhipu_llm
 from agent_test0.workflow.trace import timed
-from agent_test0.workflow.ask_user import request_user_input, build_field_pool
+from agent_test0.workflow.ask_user import request_user_input, build_field_pool, build_scoping_menu, _active_domains
 from agent_test0.tools.registry import execute_tool_calls, format_for_llm
 
 
@@ -231,6 +231,81 @@ def _enforce_first_turn_question(state: TravelState, plan_data: dict) -> bool:
 
 
 # ============================================================
+# 主动 scoping: 领域菜单 (在基础齐全 + 无领域触发时推)
+# ============================================================
+
+# 用户明确"开工"授权词, 命中就跳过 scoping 直接假设
+_SCOPING_SKIP_PATTERN = re.compile(
+    r"(开工|开始|直接|马上|立刻|快点|看你|随便|无所谓|默认|你决定|你安排|按常规)"
+)
+
+
+def _looks_like_slot_answer(state: TravelState) -> bool:
+    """判断当前消息像上一轮追问的槽位回答 (数字/关键词 + 短文本), 别把答案当新请求推菜单."""
+    msg = (state.message or "").strip()
+    if not msg or len(msg) > 30:
+        return False
+    # 纯数字 / 数字+单位 (3天, 2000元, 2人)
+    if re.match(r"^\d+\s*(天|人|位|元|块|K|k|千|万)?$", msg):
+        return True
+    # 短问答 (是/否/有/无/带 + 简单名词)
+    if re.match(r"^(是|不是|有|没有|带|不带|无|要|不要)", msg):
+        return True
+    return False
+
+
+def _maybe_offer_scoping(state: TravelState, plan_data: dict) -> bool:
+    """判定是否推 scoping 菜单 (主动展示领域, 让用户 opt-in).
+
+    触发条件 (全部满足才推):
+      1. 本会话还没推过菜单 (scoping_offered=False)
+      2. 是行程规划意图 (有目的地 + 不是纯天气)
+      3. 用户消息基础信息已给 (无缺失天数/预算/人数, 或已问过一次)
+      4. 无领域触发 (关键词层没识别出任何领域)
+      5. 用户没说 "开工" / "随便" / "看你安排" (说了直接跳过, 用假设兜底)
+      6. 用户消息不像上一轮槽位回答 (纯数字 / 短问答)
+
+    Returns:
+        True  → 已推菜单, 走三层护栏 (成功=中断本轮; 拦截=已假设)
+        False → 不需要推
+    """
+    if state.scoping_offered:
+        return False
+    if not _looks_like_travel_planning(state, plan_data):
+        return False
+    location = (plan_data.get("location") or "").strip()
+    if not location or location in ("未知", "未指定", "不明"):
+        return False
+
+    # 用户已明确"开工"授权 → 不推菜单, 直接走假设
+    if _SCOPING_SKIP_PATTERN.search(state.message or ""):
+        print(f"[Scoping] 用户明确授权默认, 跳过菜单")
+        return False
+
+    # 用户消息像槽位回答, 别打断
+    if _looks_like_slot_answer(state):
+        return False
+
+    # 检测领域: 只用关键词层, 不调 LLM (省成本, 快)
+    domains = _active_domains(state.message or "", use_llm=False)
+    if domains:
+        print(f"[Scoping] 已触发领域 {domains}, 无需推菜单")
+        return False
+
+    # 已问过一次基础约束 → 不再推菜单打扰
+    if state.asked_fields:
+        print(f"[Scoping] 已问过 {state.asked_fields}, 不再推菜单")
+        return False
+
+    # ── 推菜单 ──
+    menu = build_scoping_menu(location)
+    state.scoping_offered = True
+    print(f"[Scoping] 首次推领域菜单 (destination={location})")
+    # 走三层护栏, field 用 "unknown" (因为菜单不问特定字段, 只是拉宽感知)
+    return request_user_input(state, "unknown", menu)
+
+
+# ============================================================
 # 节点 ①  Planner
 # ============================================================
 
@@ -292,6 +367,9 @@ def planner_node(state: TravelState, config=None) -> dict:
         # 代码级护栏 (需要 original_focus 判 already_asked, 所以 focus 先不覆盖)
         state.focus = original_focus
         if _enforce_first_turn_question(state, plan_data):
+            return _dirty(state)
+        # 主动 scoping: 基础齐 + 无领域触发时, 首次推领域菜单让用户 opt-in
+        if _maybe_offer_scoping(state, plan_data):
             return _dirty(state)
         state.focus = out.focus or state.focus
 

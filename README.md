@@ -9,7 +9,7 @@
 - **四级记忆系统** — 情节记忆 / 工作记忆 / 工具缓存（Redis）+ 语义记忆（MySQL），Redis 不可用时自动回退内存
 - **结构化输出** — 全部节点用 [instructor](https://github.com/jxnl/instructor) + Pydantic 强约束 LLM 输出, ValidationError 自动重试
 - **天气查询** — 和风天气 API，带 Redis 缓存（5 小时 TTL）
-- **多入口** — 飞书长连接 bot、FastAPI + SSE、Streamlit、本地 debug CLI
+- **多入口** — 飞书长连接 bot
 
 ## 环境要求
 
